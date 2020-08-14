@@ -1,70 +1,70 @@
 import React from "react";
 import "./suggestionForm.css";
 
-function MapCreateForm(){
+function SuggestionCreateForm(props){
     return(
         <div>
             <form className="suggestion-form">
                 <input
-                    value={formObject.author}
+                    value={props.formObject.author}
                     name="author"
-                    onChange={handleInputChange}
+                    onChange={props.handleInputChange}
                     type="text"
                     placeholder="author of suggestion"
                 />
                 <input
-                    value={formObject.map}
+                    value={props.formObject.map}
                     name="map"
-                    onChange={handleInputChange}
+                    onChange={props.handleInputChange}
                     type="text"
                     placeholder="map name"
                 />
                 <input
-                    value={formObject.title}
+                    value={props.formObject.title}
                     name="title"
-                    onChange={handleInputChange}
+                    onChange={props.handleInputChange}
                     type="text"
                     placeholder="title"
                 />
                 <input
-                    value={formObject.category}
+                    value={props.formObject.category}
                     name="category"
-                    onChange={handleInputChange}
+                    onChange={props.handleInputChange}
                     type="text"
                     placeholder="category"
                 />
                 <input
-                    value={formObject.description}
+                    value={props.formObject.description}
                     name="description"
-                    onChange={handleInputChange}
+                    onChange={props.handleInputChange}
                     type="text"
                     placeholder="start date"
                 />
                 <input
-                    value={formObject.endDate}
+                    value={props.formObject.endDate}
                     name="endDate"
-                    onChange={handleInputChange}
+                    onChange={props.handleInputChange}
                     type="date"
                     placeholder="end date"
                 />
                 <input
-                    value={formObject.destinations}
+                    value={props.formObject.destinations}
                     name="link"
-                    onChange={handleInputChange}
+                    onChange={props.handleInputChange}
                     type="text"
                     placeholder="destinations"
                 />
                 <input
-                    value={formObject.suggestionCategories}
+                    value={props.formObject.suggestionCategories}
                     name="cost"
-                    onChange={handleInputChange}
+                    onChange={props.handleInputChange}
                     type="text"
                     placeholder="suggestion categories"
                 />
-                <button onClick={handleFormSubmit}>create suggestion</button>
+                <button onClick={props.handleFormSubmit}>create suggestion</button>
             </form>
         </div>
     )
 }
 
-export default MapCreateForm;
+export default SuggestionCreateForm;

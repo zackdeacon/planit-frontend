@@ -71,6 +71,7 @@ function Maps() {
         <>
         {/* form with controlled inputs */}
         <MapCreateForm
+            formObject={formObject}
             onChange={handleInputChange}
             onClick={handleFormSubmit}
         />
