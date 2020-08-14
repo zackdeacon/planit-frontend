@@ -1,43 +1,43 @@
 import React from "react";
-import "./mapform.css";
+import "./suggestionForm.css";
 
-function MapCreateForm(props){
+function SuggestionCreateForm(props){
     return(
         <div>
-            <form className="map-form">
+            <form className="suggestion-form">
                 <input
-                    value={props.formObject.name}
-                    name="name"
+                    value={props.formObject.author}
+                    name="author"
                     onChange={props.handleInputChange}
                     type="text"
-                    placeholder="name of trip"
+                    placeholder="author of suggestion"
                 />
                 <input
-                    value={props.formObject.creator}
-                    name="creator"
+                    value={props.formObject.map}
+                    name="map"
                     onChange={props.handleInputChange}
                     type="text"
-                    placeholder="creator"
+                    placeholder="map name"
                 />
                 <input
-                    value={props.formObject.admins}
-                    name="admins"
+                    value={props.formObject.title}
+                    name="title"
                     onChange={props.handleInputChange}
                     type="text"
-                    placeholder="admins"
+                    placeholder="title"
                 />
                 <input
-                    value={props.formObject.guests}
-                    name="guests"
+                    value={props.formObject.category}
+                    name="category"
                     onChange={props.handleInputChange}
                     type="text"
-                    placeholder="guests"
+                    placeholder="category"
                 />
                 <input
-                    value={props.formObject.startDate}
-                    name="startDate"
+                    value={props.formObject.description}
+                    name="description"
                     onChange={props.handleInputChange}
-                    type="date"
+                    type="text"
                     placeholder="start date"
                 />
                 <input
@@ -49,22 +49,22 @@ function MapCreateForm(props){
                 />
                 <input
                     value={props.formObject.destinations}
-                    name="destinations"
+                    name="link"
                     onChange={props.handleInputChange}
                     type="text"
                     placeholder="destinations"
                 />
                 <input
                     value={props.formObject.suggestionCategories}
-                    name="suggestionCategories"
+                    name="cost"
                     onChange={props.handleInputChange}
                     type="text"
                     placeholder="suggestion categories"
                 />
-                <button onClick={props.handleFormSubmit}>create map</button>
+                <button onClick={props.handleFormSubmit}>create suggestion</button>
             </form>
         </div>
     )
 }
 
-export default MapCreateForm;
+export default SuggestionCreateForm;
