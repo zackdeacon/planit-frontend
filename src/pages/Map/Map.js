@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import API from "../utils/API";
-import "./mapform.css";
+import "./map.css"
+import MapSearchForm from "../../components/MapForm/mapform"
 
 function Maps() {
     //set book component initial state
@@ -42,6 +43,7 @@ function Maps() {
     function handleFormSubmit(event){
         event.preventDefault();
         API.saveMap(formObject).then(data=>{
+            console.log("here is your new map", data)
             loadMaps();
             setFormObject({
                 name: "",
@@ -57,70 +59,24 @@ function Maps() {
         console.log("submit function", event.target)
     }
 
-    //form with controlled inputs
+    //delete map
+    // function deleteMap(id){
+    //     API.deleteMap(id).then(data=>{
+    //         loadMaps();
+    //     })
+    // }
+  
+    
     return(
-        <div>
-            <form className="mapform">
-                <input
-                    value={formObject.name}
-                    name="name"
-                    onChange={this.handleInputChange}
-                    type="text"
-                    placeholder="name"
-                />
-                <input
-                    value={formObject.creator}
-                    name="creator"
-                    onChange={this.handleInputChange}
-                    type="text"
-                    placeholder="creator"
-                />
-                <input
-                    value={formObject.admins}
-                    name="admins"
-                    onChange={this.handleInputChange}
-                    type="text"
-                    placeholder="admins"
-                />
-                <input
-                    value={formObject.guests}
-                    name="guests"
-                    onChange={this.handleInputChange}
-                    type="text"
-                    placeholder="guests"
-                />
-                <input
-                    value={formObject.startDate}
-                    name="startDate"
-                    onChange={this.handleInputChange}
-                    type="date"
-                    placeholder="start date"
-                />
-                <input
-                    value={formObject.endDate}
-                    name="endDate"
-                    onChange={this.handleInputChange}
-                    type="date"
-                    placeholder="end date"
-                />
-                <input
-                    value={formObject.destinations}
-                    name="destinations"
-                    onChange={this.handleInputChange}
-                    type="text"
-                    placeholder="destinations"
-                />
-                <input
-                    value={formObject.suggestionCategories}
-                    name="suggestionCategories"
-                    onChange={this.handleInputChange}
-                    type="text"
-                    placeholder="suggestion categories"
-                />
-                <button onClick={handleFormSubmit}>create map</button>
-            </form>
-        </div>
+        <>
+        {/* form with controlled inputs */}
+        <MapSearchForm
+            onChange={handleInputChange}
+            onClick={handleFormSubmit}
+        />
+        </>
     )
+    
 
 }
 
