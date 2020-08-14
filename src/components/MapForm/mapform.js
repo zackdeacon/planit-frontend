@@ -4,7 +4,7 @@ import "./mapform.css";
 function MapSearchForm(){
     return(
         <div>
-            <form className="mapform">
+            <form className="map-form">
                 <input
                     value={formObject.name}
                     name="name"

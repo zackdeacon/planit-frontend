@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import API from "../utils/API";
 import "./map.css"
-import MapSearchForm from "../../components/MapForm/mapform"
+import MapCreateForm from "../../components/MapForm/mapform"
 
 function Maps() {
     //set book component initial state
@@ -70,7 +70,7 @@ function Maps() {
     return(
         <>
         {/* form with controlled inputs */}
-        <MapSearchForm
+        <MapCreateForm
             onChange={handleInputChange}
             onClick={handleFormSubmit}
         />
