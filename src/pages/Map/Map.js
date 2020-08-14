@@ -32,7 +32,7 @@ function Maps() {
     }
 
     //hanldeInputChange function to update objectForm State
-    function hanldeInputChange(event){
+    function handleInputChange(event){
         const {name,value}=event.target;
         setFormObject({...formObject,[name]:value})
         console.log("input change function", event.target)
@@ -62,60 +62,60 @@ function Maps() {
         <div>
             <form className="mapform">
                 <input
-                    value={this.state.name}
+                    value={formObject.name}
                     name="name"
                     onChange={this.handleInputChange}
                     type="text"
                     placeholder="name"
                 />
                 <input
-                    value={this.state.creator}
+                    value={formObject.creator}
                     name="creator"
                     onChange={this.handleInputChange}
                     type="text"
                     placeholder="creator"
                 />
                 <input
-                    value={this.state.admins}
+                    value={formObject.admins}
                     name="admins"
                     onChange={this.handleInputChange}
                     type="text"
                     placeholder="admins"
                 />
                 <input
-                    value={this.state.guests}
+                    value={formObject.guests}
                     name="guests"
                     onChange={this.handleInputChange}
                     type="text"
                     placeholder="guests"
                 />
                 <input
-                    value={this.state.dates}
-                    name="dates"
+                    value={formObject.startDate}
+                    name="startDate"
                     onChange={this.handleInputChange}
                     type="date"
-                    placeholder="start"
+                    placeholder="start date"
                 />
                 <input
-                    value={this.state.dates}
-                    name="dates"
+                    value={formObject.endDate}
+                    name="endDate"
                     onChange={this.handleInputChange}
                     type="date"
-                    placeholder="end"
+                    placeholder="end date"
                 />
                 <input
-                    value={this.state.destinations}
+                    value={formObject.destinations}
                     name="destinations"
                     onChange={this.handleInputChange}
                     type="text"
                     placeholder="destinations"
                 />
                 <input
-                    value={this.state.suggestionCategories}
+                    value={formObject.suggestionCategories}
                     name="suggestionCategories"
                     onChange={this.handleInputChange}
                     type="text"
-                    placeholder="suggestionCategories"
+                    placeholder="suggestion categories"
                 />
                 <button onClick={handleFormSubmit}>create map</button>
             </form>
