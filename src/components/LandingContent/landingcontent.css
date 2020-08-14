@@ -23,7 +23,7 @@ padding: 0;
 }
 
 /* Adjusting Vid & Content Container Divs for Large Screens & Phone Landscape Mode */
-@media screen and (min-width: 2060px) {
+@media screen and (min-width: 1875px) {
     .vid-container {
         width: 100vw;
     }
