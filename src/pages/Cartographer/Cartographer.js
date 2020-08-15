@@ -3,14 +3,13 @@ import API from "../../utils/API";
 import MapCreateForm from "../../components/MapForm/mapform"
 import "./cartographer.css"
 
-function Maps(props) {
+function Maps() {
     //set book component initial state
     const [maps, setMaps] = useState([])
 
     //initialize form object state
     const [formObject, setFormObject]=useState({
         name: "",
-        // creator: "",
         guests: "",
         startDate: "",
         endDate: "",
@@ -46,8 +45,7 @@ function Maps(props) {
             loadMaps();
             setFormObject({
                 name: "",
-                // creator: "",
-                // guests: "",
+                guests: "",
                 startDate: "",
                 endDate: "",
                 destinations: "" 
@@ -68,7 +66,6 @@ function Maps(props) {
         <>
         {/* form with controlled inputs */}
         <MapCreateForm
-            // props={props}
             formData={formObject}
             handleChange={handleInputChange}
             handleSave={handleFormSubmit}

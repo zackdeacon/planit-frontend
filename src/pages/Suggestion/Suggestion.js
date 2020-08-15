@@ -61,10 +61,9 @@ function Suggestions() {
         <>
         {/* form with controlled inputs */}
         <SuggestionCreateForm
-            // props={props}
-            // formObject={formObject}
-            onChange={handleInputChange}
-            onClick={handleFormSubmit}
+            formData={formObject}
+            handleChange={handleInputChange}
+            handleSave={handleFormSubmit}
         />
         </>
     )

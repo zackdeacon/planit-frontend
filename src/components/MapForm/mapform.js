@@ -13,14 +13,6 @@ function MapCreateForm(props){
                     type="text"
                     placeholder="name of trip"
                 />
-                {/* <label>Creator:</label>
-                <input
-                    value={props.formData.creator}
-                    name="creator"
-                    onChange={props.handleChange}
-                    type="text"
-                    placeholder="creator"
-                /> */}
                 <label>Guests:</label>
                 <input
                     value={props.formData.guests}
