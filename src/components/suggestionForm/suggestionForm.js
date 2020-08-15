@@ -1,5 +1,6 @@
 import React from 'react';
-import "./suggestionForm.css";
+// import "./suggestionForm.css";
+
 
 function SuggestionCreateForm(props){
     return(

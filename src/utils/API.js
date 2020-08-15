@@ -43,7 +43,6 @@ export default {
   },
   // Saves a suggestion to the database
   saveSuggestion: function(suggestionData) {
-    
     return axios.post(`${urlPrefix}/api/suggestions/new`, suggestionData)
     // return axios.post("/api/suggestions/new", suggestionData);
   },
@@ -60,9 +59,9 @@ export default {
   },
   getCurrentUser: function () {
       return axios.get(`${urlPrefix}/api/users/readsessions`, { withCredentials: true })
-  }
-    return axios.post("/api/suggestions/new", suggestionData);
   },
+    // return axios.post("/api/suggestions/new", suggestionData);
+  // }
 
   //CHATS
   getAllChats: function() {
