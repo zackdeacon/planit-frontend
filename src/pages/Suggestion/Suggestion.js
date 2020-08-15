@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import API from "../../utils/API";
+import NavBar from "../../components/NavBar/navbar";
 import "./suggestion.css"
-import SuggestionCreateForm from "../../components/suggestionForm/suggestionForm"
+import SuggestionCreateForm from "../../components/SuggestionForm/suggestionForm"
 
 function Suggestions() {
+    
     //set book component initial state
     const [suggestions, setSuggestions] = useState([])
 
@@ -24,7 +26,7 @@ function Suggestions() {
 
     //load all maps and sets them to maps
     function loadSuggestions(){
-        API.getSuggestions()
+        API.getAllSuggestions()
         .then(res=>
             setSuggestions(res.data)
         )
@@ -58,7 +60,8 @@ function Suggestions() {
   
     
     return(
-        <>
+        <div className="suggestion-background">
+        <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px"/>
         {/* form with controlled inputs */}
         <SuggestionCreateForm
             // props={props}
@@ -66,7 +69,7 @@ function Suggestions() {
             onChange={handleInputChange}
             onClick={handleFormSubmit}
         />
-        </>
+        </div>
     )
     
 

@@ -15,13 +15,11 @@ const formItemLayout = {
   };
 
   const formItemLayoutWithOutLabel = {
-wrapperCol: {
+    wrapperCol: {
     xs: { span: 24, offset: 0 },
     sm: { span: 20, offset: 0 },
 },
 };
-
-const { RangePicker } = DatePicker;
 
 function MapCreateForm(props){
     return(
@@ -121,10 +119,21 @@ function MapCreateForm(props){
             </Form.List>
             
             <Row justify="center">
-            <Form.Item name="range-picker">
-                <RangePicker 
-                name="daterange"
-                value="dates"/>
+            <Form.Item>
+                <DatePicker 
+                name="startDate"
+                value={props.startDate}
+                placeholder="Start Date"
+                style={{marginRight:"2px"}}
+                />
+            </Form.Item>
+            <Form.Item>
+                <DatePicker 
+                name="endDate"
+                value={props.endDate}
+                placeholder="End Date"
+                style={{marginLeft:"2px"}}
+                />
             </Form.Item>
             </Row>
 

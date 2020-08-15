@@ -25,7 +25,7 @@ function Maps() {
 
     //load all maps and sets them to maps
     function loadMaps(){
-        API.getMaps()
+        API.getAllMaps()
         .then(res=>
             setMaps(res.data)
         )
@@ -67,7 +67,7 @@ function Maps() {
     
     return(
         <>
-        <NavBar />
+        <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px"/>
         {/* form with controlled inputs */}
         <MapCreateForm
             // props={props}
