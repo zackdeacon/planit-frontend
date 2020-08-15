@@ -7,53 +7,53 @@ function MapCreateForm(props){
             <form className="map-form">
                 <label>Name of Trip:</label>
                 <input
-                    value={props.name}
+                    value={props.formData.name}
                     name="name"
-                    onChange={props.handleInputChange}
+                    onChange={props.handleChange}
                     type="text"
                     placeholder="name of trip"
                 />
-                <label>Creator:</label>
+                {/* <label>Creator:</label>
                 <input
-                    value={props.creator}
+                    value={props.formData.creator}
                     name="creator"
-                    onChange={props.handleInputChange}
+                    onChange={props.handleChange}
                     type="text"
                     placeholder="creator"
-                />
+                /> */}
                 <label>Guests:</label>
                 <input
-                    value={props.guests}
+                    value={props.formData.guests}
                     name="guests"
-                    onChange={props.handleInputChange}
+                    onChange={props.handleChange}
                     type="text"
                     placeholder="guests"
                 />
                 <label>Start Date:</label>
                 <input
-                    value={props.startDate}
+                    value={props.formData.startDate}
                     name="startDate"
-                    onChange={props.handleInputChange}
+                    onChange={props.handleChange}
                     type="date"
                     placeholder="start date"
                 />
                 <label>End Date:</label>
                 <input
-                    value={props.endDate}
+                    value={props.formData.endDate}
                     name="endDate"
-                    onChange={props.handleInputChange}
+                    onChange={props.handleChange}
                     type="date"
                     placeholder="end date"
                 />
                 <label>destination:</label>
                 <input
-                    value={props.destinations}
+                    value={props.formData.destinations}
                     name="destinations"
-                    onChange={props.handleInputChange}
+                    onChange={props.handleChange}
                     type="text"
                     placeholder="destinations"
                 />
-                <button onClick={props.handleFormSubmit}>create map</button>
+                <button onClick={props.handleSave}>create map</button>
             </form>
         </div>
     )

@@ -70,8 +70,6 @@ export default {
     // suggestion: { id }
     return axios.post(`${urlPrefix}/api/suggestions/delete`, suggestion);
   },
-    // return axios.post("/api/suggestions/new", suggestionData);
-  // }
 
   // * CHATS COLLECTION
   getAllChats: function () {

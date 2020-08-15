@@ -24,7 +24,7 @@ function Suggestions() {
 
     //load all maps and sets them to maps
     function loadSuggestions(){
-        API.getSuggestions()
+        API.getAllSuggestions()
         .then(res=>
             setSuggestions(res.data)
         )
