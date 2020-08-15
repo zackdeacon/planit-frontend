@@ -40,8 +40,8 @@ function Suggestions() {
 
     //handleFormSubmit function to add formObject to Database
     function handleFormSubmit(event){
-        event.preventDefault();
-        API.saveSuggestion(formObject).then(data=>{
+        // event.preventDefault();
+        API.postNewSuggestion(formObject).then(data=>{
             console.log("here is your new map", data)
             loadSuggestions();
             setFormObject({

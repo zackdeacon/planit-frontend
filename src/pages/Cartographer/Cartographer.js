@@ -11,6 +11,7 @@ function Maps() {
     //initialize form object state
     const [formObject, setFormObject]=useState({
         name: "",
+        creator: "",
         guests: "",
         startDate: "",
         endDate: "",
@@ -40,12 +41,13 @@ function Maps() {
 
     //handleFormSubmit function to add formObject to Database
     function handleFormSubmit(event){
-        event.preventDefault();
+        // event.preventDefault();
         API.postNewMap(formObject).then(data=>{
             console.log("here is your new map", data)
             loadMaps();
             setFormObject({
                 name: "",
+                creator: "",
                 guests: "",
                 startDate: "",
                 endDate: "",

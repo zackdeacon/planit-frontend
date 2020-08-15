@@ -1,9 +1,31 @@
 import React from 'react';
 // import "./suggestionForm.css";
 
+// const formItemLayout = {
+//     labelCol: {
+//       xs: { span: 24 },
+//       sm: { span: 4 },
+//     },
+//     wrapperCol: {
+//       xs: { span: 24 },
+//       sm: { span: 20 },
+//     },
+//   };
+
+//   const formItemLayoutWithOutLabel = {
+// wrapperCol: {
+//     xs: { span: 24, offset: 0 },
+//     sm: { span: 20, offset: 0 },
+// },
+// };
+
+// const { RangePicker } = DatePicker;
 
 function SuggestionCreateForm(props){
     return(
+        // <div className="cart-background">
+        // <div className="cart-buffer"></div>
+        // <Row justify="center">
         <div>
             <form className="suggestion-form">
                 <label>suggestion title</label>
