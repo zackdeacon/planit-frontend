@@ -1,65 +1,57 @@
 import React from "react";
-import "./suggestionForm.css";
+import "./suggestionform.css";
 
 function SuggestionCreateForm(props){
     return(
         <div>
             <form className="suggestion-form">
+                <label>suggestion title</label>
                 <input
-                    value={props.formObject.author}
-                    name="author"
-                    onChange={props.handleInputChange}
-                    type="text"
-                    placeholder="author of suggestion"
-                />
-                <input
-                    value={props.formObject.map}
-                    name="map"
-                    onChange={props.handleInputChange}
-                    type="text"
-                    placeholder="map name"
-                />
-                <input
-                    value={props.formObject.title}
+                    value={props.title}
                     name="title"
                     onChange={props.handleInputChange}
                     type="text"
                     placeholder="title"
                 />
+                 <label>category</label>
                 <input
-                    value={props.formObject.category}
+                    value={props.category}
                     name="category"
                     onChange={props.handleInputChange}
                     type="text"
                     placeholder="category"
                 />
+                 <label>description</label>
                 <input
-                    value={props.formObject.description}
+                    value={props.description}
                     name="description"
                     onChange={props.handleInputChange}
                     type="text"
                     placeholder="start date"
                 />
+                <label>start date</label>
                 <input
-                    value={props.formObject.endDate}
+                    value={props.startDate}
+                    name="startDate"
+                    onChange={props.handleInputChange}
+                    type="date"
+                    placeholder="start date"
+                />
+                 <label>end date</label>
+                <input
+                    value={props.endDate}
                     name="endDate"
                     onChange={props.handleInputChange}
                     type="date"
                     placeholder="end date"
                 />
+                 <label>destinations</label>
                 <input
-                    value={props.formObject.destinations}
+                    value={props.destinations}
                     name="link"
                     onChange={props.handleInputChange}
                     type="text"
                     placeholder="destinations"
-                />
-                <input
-                    value={props.formObject.suggestionCategories}
-                    name="cost"
-                    onChange={props.handleInputChange}
-                    type="text"
-                    placeholder="suggestion categories"
                 />
                 <button onClick={props.handleFormSubmit}>create suggestion</button>
             </form>

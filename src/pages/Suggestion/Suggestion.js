@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from "react";
 import API from "../../utils/API";
-import "./map.css"
-import MapCreateForm from "../../components/MapForm/mapform"
+import "./suggestion.css"
+import SuggestionCreateForm from "../../components/SuggestionForm/suggestionform"
 
-function Maps() {
+function Suggestions() {
     //set book component initial state
-    const [maps, setMaps] = useState([])
+    const [suggestions, setSuggestions] = useState([])
 
     //initialize form object state
     const [formObject, setFormObject]=useState({
-        name: "",
-        creator: "",
-        guests: "",
+        title: "",
+        category: "",
+        description: "",
         startDate: "",
         endDate: "",
         destinations:""
     })
     //load all maps, store them with setMaps
     useEffect(()=>{
-        loadMaps()
+        loadSuggestions()
         console.log(formObject)
     }, [])
 
     //load all maps and sets them to maps
-    function loadMaps(){
-        API.getMaps()
+    function loadSuggestions(){
+        API.getSuggestions()
         .then(res=>
-            setMaps(res.data)
+            setSuggestions(res.data)
         )
         .catch(err=>console.log(err))
     }
@@ -41,13 +41,13 @@ function Maps() {
     //handleFormSubmit function to add formObject to Database
     function handleFormSubmit(event){
         event.preventDefault();
-        API.saveMap(formObject).then(data=>{
+        API.saveSuggestion(formObject).then(data=>{
             console.log("here is your new map", data)
-            loadMaps();
+            loadSuggestions();
             setFormObject({
-                name: "",
-                creator: "",
-                guests: "",
+                title: "",
+                category: "",
+                description: "",
                 startDate: "",
                 endDate: "",
                 destinations: "" 
@@ -55,19 +55,12 @@ function Maps() {
         })
         console.log("submit function", event.target)
     }
-
-    //delete map
-    // function deleteMap(id){
-    //     API.deleteMap(id).then(data=>{
-    //         loadMaps();
-    //     })
-    // }
   
     
     return(
         <>
         {/* form with controlled inputs */}
-        <MapCreateForm
+        <SuggestionCreateForm
             // props={props}
             // formObject={formObject}
             onChange={handleInputChange}
@@ -79,4 +72,4 @@ function Maps() {
 
 }
 
-export default Maps;
+export default Suggestions;
