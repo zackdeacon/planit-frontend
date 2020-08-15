@@ -4,9 +4,10 @@ import Home from "./pages/Home/Home"
 import User from "./pages/User/User"
 import Cartographer from './pages/Cartographer/Cartographer';
 import MapDashboard from './pages/MapDashboard/MapDashboard';
-import Suggestions from "./pages/Suggestion/Suggestion"
-import FinalRender from "./pages/FinalRender/FinalRender"
-import NoMatch from "./pages/NoMatch/NoMatch"
+import Suggestions from "./pages/Suggestion/Suggestion";
+import FinalRender from "./pages/FinalRender/FinalRender";
+import Chat from "./components/Chat/chat";
+import NoMatch from "./pages/NoMatch/NoMatch";
 import './App.css';
 
 function App() {
@@ -32,7 +33,10 @@ function App() {
           <Route exact path="/itinerary">
             <FinalRender />
           </Route>
-          <Route path = "*">
+          <Route exact path="/chat">
+            <Chat />
+          </Route>
+          <Route path="*">
             <NoMatch />
           </Route>
         </Switch>
