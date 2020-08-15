@@ -47,21 +47,17 @@ export default {
     // return axios.post("/api/suggestions/new", suggestionData);
   },
 
-  //USERS
-  
-  // login: function (userData) {
-  //   return axios.post(`${urlPrefix}/api/users/login`, userData, { withCredentials: true })
-  // },
-  // logout:function () {
-  //     return axios.get(`${urlPrefix}/api/users/logout`, { withCredentials: true })
-  // },
-  // getCurrentUser: function () {
-  //     return axios.get(`${urlPrefix}/api/users/readsessions`, { withCredentials: true })
-  // },
-  // getCurrentUsersTanks:function(id){
-  //   return axios.get(`${urlPrefix}/api/users/${id}/tanks`)
-  // },
-  // getCurrentTanksFish:function () {
-  //     return axios.get(`${urlPrefix}/api/users/currentdata`, { withCredentials: true })
-  // }
+  // USERS
+  signup: function (userData) {
+    return axios.post(`${urlPrefix}/api/users/signup`, userData, { withCredentials: true })
+  },
+  login: function (userData) {
+    return axios.post(`${urlPrefix}/api/users/login`, userData, { withCredentials: true })
+  },
+  logout:function () {
+      return axios.get(`${urlPrefix}/api/users/logout`, { withCredentials: true })
+  },
+  getCurrentUser: function () {
+      return axios.get(`${urlPrefix}/api/users/readsessions`, { withCredentials: true })
+  }
 };
