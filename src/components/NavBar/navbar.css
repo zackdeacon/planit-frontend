@@ -79,3 +79,8 @@
     color: white;
 }
 
+.login-btn{
+    position: relative;
+    top: 4px;
+    padding-right: 15px;
+}
