@@ -41,8 +41,8 @@ function Maps() {
 
     //handleFormSubmit function to add formObject to Database
     function handleFormSubmit(event){
-        event.preventDefault();
-        API.saveMap(formObject).then(data=>{
+        // event.preventDefault();
+        API.postNewMap(formObject).then(data=>{
             console.log("here is your new map", data)
             loadMaps();
             setFormObject({
@@ -70,10 +70,9 @@ function Maps() {
         <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px"/>
         {/* form with controlled inputs */}
         <MapCreateForm
-            // props={props}
-            // formObject={formObject}
-            onChange={handleInputChange}
-            onClick={handleFormSubmit}
+            formData={formObject}
+            handleChange={handleInputChange}
+            handleSave={handleFormSubmit}
         />
         </>
     )

@@ -42,8 +42,8 @@ function Suggestions() {
 
     //handleFormSubmit function to add formObject to Database
     function handleFormSubmit(event){
-        event.preventDefault();
-        API.saveSuggestion(formObject).then(data=>{
+        // event.preventDefault();
+        API.postNewSuggestion(formObject).then(data=>{
             console.log("here is your new map", data)
             loadSuggestions();
             setFormObject({
@@ -64,10 +64,9 @@ function Suggestions() {
         <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px"/>
         {/* form with controlled inputs */}
         <SuggestionCreateForm
-            // props={props}
-            // formObject={formObject}
-            onChange={handleInputChange}
-            onClick={handleFormSubmit}
+            formData={formObject}
+            handleChange={handleInputChange}
+            handleSave={handleFormSubmit}
         />
         </div>
     )
