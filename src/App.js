@@ -10,7 +10,7 @@ import Suggestions from "./pages/Suggestion/Suggestion"
 function App() {
   return (
     <>
-      {/* <Home /> */}
+      <Home />
       <Maps/>
       <Suggestions/>
     </>

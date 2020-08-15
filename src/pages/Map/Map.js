@@ -11,7 +11,7 @@ function Maps() {
     const [formObject, setFormObject]=useState({
         name: "",
         creator: "",
-        guests: "",
+        // guests: "",
         startDate: "",
         endDate: "",
         destinations:""
@@ -47,7 +47,7 @@ function Maps() {
             setFormObject({
                 name: "",
                 creator: "",
-                guests: "",
+                // guests: "",
                 startDate: "",
                 endDate: "",
                 destinations: "" 
