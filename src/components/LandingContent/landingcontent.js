@@ -7,19 +7,17 @@ export default function LandingContent() {
         <>
         <div className="vid-container">
             <video autoPlay="autoplay" loop="loop" muted className="vid">
-                <source src="./assets/video/planit.mp4" type="video/mp4" />
+                <source src="./assets/video/PLANiT2.mp4" type="video/mp4" />
             </video>
             <div className="filter-div">
                 <Row justify="center" className="content" >
-                    <Col xs={{span: 8}}className="header-container">
-                        <Row justify="center">
-                            <img className="our-world" src="./assets/images/ourworld.png" alt="our world"/>
-                        </Row>
-                        <Row justify="center">
-                            <img className="your-plan" src="./assets/images/yourplan.png" alt="your plan"/>
-                        </Row>
+                    <Col md={{span: 6}} xs={{span: 8}} className="header-container">
+                        <img className="our-world" src="./assets/images/ourworld.png" alt="our world"/>
                     </Col>
-                    <Col md={{span: 3}} xs={{span: 4}}>
+                    <Col md={{span: 6}} xs={{span: 8}} className="header-container">
+                        <img className="your-plan" src="./assets/images/yourplan.png" alt="your plan"/>
+                    </Col>
+                    <Col md={{span: 3}} xs={{span: 6}}>
                         <img src="./assets/logos/logo.png" alt="logo"/> 
                     </Col>
                 </Row>

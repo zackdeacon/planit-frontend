@@ -8,12 +8,8 @@
 .vid {
     height: 100vh;
 }
-/* Adjusting Video for Mobile */
-/* @media (max-width: 530px) {
-    
-} */
   
-/* Darkening Filter Div */
+/* Darkening Filter/Content Container Div */
 .filter-div {
 position: absolute;
 top: 0;
@@ -26,7 +22,31 @@ align-items: center;
 padding: 0;
 }
 
-/* Content Over Vid/Filter Divs */
+/* Adjusting Vid & Content Container Divs for Large Screens & Phone Landscape Mode */
+@media screen and (min-width: 1875px) {
+    .vid-container {
+        width: 100vw;
+    }
+    .vid {
+        width: 100vw;
+    }
+    .filter-div {
+        width: 100vw;
+    }
+}
+@media screen and (width: 812px) and (height: 375px) {
+    .vid-container {
+        width: 100vw;
+    }
+    .vid {
+        width: 100vw;
+    }
+    .filter-div {
+        width: 100vw;
+    }
+}
+
+/* Content Over Vid Divs */
 .content {
     padding: 10px;
 }
@@ -35,37 +55,70 @@ padding: 0;
 }
 .content .our-world {
     position: relative;
-    right: 235px;
-    top:0px;
-    color: white;
+    right: 183px;
+    top:10px;
     margin:0px
 }
 .content .your-plan {
     position: relative;
-    left:225px;
-    bottom:80px;
-    color: white;
+    left:180px;
+    top:60px;
     margin:0px
 }
-/* Adjusting Text For Smaller Screens */
-/* @media (max-width: 1130px) {
-    .content .our-world {
-        position: absolute;
-        left:12.9vw;
-        top:43vh;
-        color: white;
-        font-size: 1.5rem;
-    }
-    .content .our-hands {
-        position: absolute;
-        right:10vw;
-        top:47vh;
-        color: white;
-        font-size: 1.5rem;
-    }
-} */
 .content img {
-width:100%;
-display: block;
-margin: 15px auto;
+    width:100%;
+    display: block;
+    margin: 15px auto;
+}
+
+/* Adjusting Text For Various Screen Sizes */
+@media screen and (max-width: 767px) {
+    .content .our-world {
+        right: 170px;
+        top:10px;
+    }
+    .content .your-plan {
+        left:180px;
+        top:100px;
+    }
+}
+@media screen and (max-width: 560px) {
+    .content .our-world {
+        right: 135px;
+        top:25px;
+    }
+    .content .your-plan {
+        left:130px;
+        top:80px;
+    }
+}
+@media screen and (max-width: 425px) {
+    .content .our-world {
+        right: 100px;
+        top:25px;
+    }
+    .content .your-plan {
+        left:95px;
+        top:60px;
+    }
+}
+@media screen and (min-width: 1170px) {
+    .content .our-world {
+        right: 300px;
+        top:0px;
+    }
+    .content .your-plan {
+        left:300px;
+        top:70px;
+    }
+}
+@media screen and (min-width: 1950px) {
+    .content .our-world {
+        right: 400px;
+        top:0px;
+    }
+    .content .your-plan {
+        left:390px;
+        top:70px;
+    }
 }
