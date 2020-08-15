@@ -1,0 +1,72 @@
+.form-container{
+    background-image: url("../../images/clay-banks-unsplash.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover; 
+    height: 100vh;
+}
+.form-filter{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.255);
+}
+.form-title{
+    color:white;
+    text-shadow: 2px 2px 5px black;
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
+.form-button {
+    width: 100%;
+    background-color: #4d534a;
+    border: #576d65;
+}
+.form-button:hover {
+    background-color: #576d65;
+    border: #4d534a;
+}
+
+@media only screen and (max-width:575px){
+    .form-buffer{
+        height: 160vh;
+    }
+    .form-container{
+        height: 130vh;
+    }
+    .form-filter{
+        height: 130vh;
+    }
+}
+
+/* Login Form Styling */
+Form a{
+    color: white;
+    margin-top: 5px;
+}
+Form a:hover{
+    color: #576d65;
+    cursor: pointer;
+}
+.login-form {
+    max-width: 300px;
+}
+.login-form-forgot {
+    float: right;
+}
+.ant-col-rtl .login-form-forgot {
+    float: left;
+}
+
+/* Reg Form Styling */
+.register-form {
+    max-width: 300px;
+}

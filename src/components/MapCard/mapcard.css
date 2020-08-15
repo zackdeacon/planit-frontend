@@ -1,0 +1,126 @@
+/* spacing and sizing of 'tabs' container */
+.card-container{
+    padding-top: 10px;
+    width: 60vw;
+    height: 70vh;
+}
+
+/* margin for description in card */
+.card-container p {
+    margin: 0;
+  }
+
+  /* text color of tab button */
+ .ant-tabs-tab-btn{
+      color: #ffffff !important
+  }
+
+  /* adds border radius to entire tab container */
+  .ant-tabs-tabpane{
+      border-radius: 0px 10px 10px 10px;
+      /* height: 100%; */
+  }
+
+  /* styling of dashboard title */
+  kbd{
+      color: #3b5e66;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+      border: none !important;
+  }
+
+  /* styling dashboard container */
+  .ant-typography{
+        font-size: 350%;
+        border-style: solid;
+        border-color: #945440;
+        border-width: 3px;
+  }
+
+  /* centering dashboard title */
+  .ant-row-center{
+    padding-top: 12vh;
+  }
+
+  /* padding to body of cards */
+  .ant-card-body{
+      padding: 5px;
+  }
+
+  /* Below is ant-design copy pasta css*/
+  .card-container > .ant-tabs-card .ant-tabs-content {
+    height: 100%;
+    margin-top: -16px;
+  }
+  .card-container > .ant-tabs-card .ant-tabs-content > .ant-tabs-tabpane {
+    background:#6c8e98;
+    padding: 16px;
+  }
+  .card-container > .ant-tabs-card > .ant-tabs-nav::before {
+    display: none;
+  }
+  .card-container > .ant-tabs-card .ant-tabs-tab,
+  [data-theme='compact'] .card-container > .ant-tabs-card .ant-tabs-tab {
+    border-color: transparent;
+    background: transparent;
+  }
+  .card-container > .ant-tabs-card .ant-tabs-tab-active,
+  [data-theme='compact'] .card-container > .ant-tabs-card .ant-tabs-tab-active {
+    background: #6c8e98;
+  }
+  #components-tabs-demo-card-top .code-box-demo {
+    background: #aeac97;
+    overflow: hidden;
+    padding: 24px;
+  }
+  [data-theme='compact'] .card-container > .ant-tabs-card .ant-tabs-content {
+    height: 120px;
+    margin-top: -8px;
+  }
+  [data-theme='dark'] .card-container > .ant-tabs-card .ant-tabs-tab {
+    border-color: transparent;
+  }
+  [data-theme='dark'] #components-tabs-demo-card-top .code-box-demo {
+    background: #000;
+  }
+  [data-theme='dark'] .card-container > .ant-tabs-card .ant-tabs-content > .ant-tabs-tabpane {
+    background: #141414;
+  }
+  [data-theme='dark'] .card-container > .ant-tabs-card .ant-tabs-tab-active {
+    border-color: #141414;
+    background: #141414;
+  }
+
+
+  /* My media queries */
+  @media only screen and (max-width: 750px) {
+    .card-container{
+        padding-top: 10px;
+        width: 100vw;
+        height: 70vh;
+    }
+  }
+  @media only screen and (max-width: 662px) {
+    .ant-typography{
+        font-size: 250%;
+          }
+  }
+  @media only screen and (max-width: 470px) {
+    .ant-typography{
+        font-size: 200%;
+          }
+  }
+  @media only screen and (max-width: 378px) {
+    .ant-typography{
+        font-size: 175%;
+          }
+  }
+  @media only screen and (max-width: 330px) {
+    .ant-typography{
+        font-size: 150%;
+          }
+  }
+  @media only screen and (max-width: 284px) {
+    .ant-typography{
+        font-size: 125%;
+          }
+  }
