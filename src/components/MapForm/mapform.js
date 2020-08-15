@@ -13,7 +13,7 @@ function MapCreateForm(props){
                     type="text"
                     placeholder="name of trip"
                 />
-                <lable>Creator:</lable>
+                <label>Creator:</label>
                 <input
                     value={props.creator}
                     name="creator"

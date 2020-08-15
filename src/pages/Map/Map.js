@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import API from "../utils/API";
+import API from "../../utils/API";
 import "./map.css"
 import MapCreateForm from "../../components/MapForm/mapform"
 

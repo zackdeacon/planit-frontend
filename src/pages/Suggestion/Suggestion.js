@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import API from "../utils/API";
+import API from "../../utils/API";
 import "./suggestion.css"
-import SuggestionCreateForm from "../../components/suggestionForm/suggestionForm"
+import SuggestionCreateForm from "../../components/SuggestionForm/suggestionform"
 
 function Suggestions() {
     //set book component initial state
