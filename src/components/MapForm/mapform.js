@@ -31,29 +31,31 @@ function MapCreateForm(props){
         <Form
             name="cartographer"
             className="map-form"
-            onFinish={props.handleFormSubmit}
+            onFinish={props.handleSave}
         >
         <div className="cart-title">THE CARTOGRAPHER</div>
         <div className="form-subtitle">Create Your Planning Map</div>
 
             <Form.Item
-                name="name"
-                type="text"
+                
                 rules={[{ required: true, message: 'Please input your trip name!'}]}>
                 <Input 
-                    value={props.name}
-                    onChange={props.handleInputChange} 
+                name="name"
+                type="text"
+                    value={props.formData.name}
+                    onChange={props.handleChange} 
                     placeholder="Name Your Trip"
                 />
             </Form.Item>
             
             <Form.Item
-                name="creator"
-                type="text"
+                
                 rules={[{ required: true, message: 'Please input your name!'}]}>
                 <Input 
-                    value={props.creator}
-                    onChange={props.handleInputChange} 
+                name="creator"
+                type="text"
+                    value={props.formData.creator}
+                    onChange={props.handleChange} 
                     placeholder="Trip Creator's Name"
                 />
             </Form.Item>
@@ -83,9 +85,10 @@ function MapCreateForm(props){
                                     noStyle
                                     >
                                     <Input 
-                                        value={props.guests}
-                                        onChange={props.handleInputChange} 
+                                        value={props.formData.guests}
+                                        onChange={props.handleChange} 
                                         type="email"
+                                        name="guests"
                                         placeholder="Guest's email" 
                                         style={{ width: '100%' }} 
                                     />
@@ -121,20 +124,52 @@ function MapCreateForm(props){
             </Form.List>
             
             <Row justify="center">
-            <Form.Item name="range-picker">
-                <RangePicker 
-                name="daterange"
-                value="dates"/>
+            <label>Start Date:</label>
+            <input
+                value={props.formData.startDate}
+                name="startDate"
+                onChange={props.handleChange}
+                type="date"
+                placeholder="start date"
+            />
+            <label>End Date:</label>
+            <input
+                value={props.formData.endDate}
+                name="endDate"
+                onChange={props.handleChange}
+                type="date"
+                placeholder="end date"
+            />
+            {/* <Form.Item name="startDate">
+                <DatePicker
+                name="startDate"
+                onChange={props.handleChange} 
+                type="text"
+                value={props.formData.startDate}
+                placeholder="Start Date"
+                style={{marginRight:"2px"}}
+                />
             </Form.Item>
+            <Form.Item name="endDate">
+                <DatePicker
+                name="endDate"
+                type="text"
+                onChange={props.handleChange} 
+                value={props.formData.endDate}
+                placeholder="End Date"
+                style={{marginLeft:"2px"}}
+                />
+            </Form.Item> */}
             </Row>
 
             <Form.Item
-                name="destinations"
-                type="text"
+               
                 rules={[{ required: true, message: 'Please input destination(s)!'}]}>
                 <Input 
-                    value={props.destinations}
-                    onChange={props.handleInputChange} 
+                 name="destinations"
+                 type="text"
+                    value={props.formData.destinations}
+                    onChange={props.handleChange} 
                     placeholder="Destination(s)"
                 />
             </Form.Item>  
@@ -158,7 +193,7 @@ export default MapCreateForm;
     <input
         value={props.name}
         name="name"
-        onChange={props.handleInputChange}
+        onChange={props.handleChange}
         type="text"
         placeholder="name of trip"
     />
@@ -166,7 +201,7 @@ export default MapCreateForm;
     <input
         value={props.creator}
         name="creator"
-        onChange={props.handleInputChange}
+        onChange={props.handleChange}
         type="text"
         placeholder="creator"
     />
@@ -174,7 +209,7 @@ export default MapCreateForm;
     <input
         value={props.guests}
         name="guests"
-        onChange={props.handleInputChange}
+        onChange={props.handleChange}
         type="text"
         placeholder="guests"
     />
@@ -182,7 +217,7 @@ export default MapCreateForm;
     <input
         value={props.startDate}
         name="startDate"
-        onChange={props.handleInputChange}
+        onChange={props.handleChange}
         type="date"
         placeholder="start date"
     />
@@ -190,7 +225,7 @@ export default MapCreateForm;
     <input
         value={props.endDate}
         name="endDate"
-        onChange={props.handleInputChange}
+        onChange={props.handleChange}
         type="date"
         placeholder="end date"
     />
@@ -198,9 +233,9 @@ export default MapCreateForm;
     <input
         value={props.destinations}
         name="destinations"
-        onChange={props.handleInputChange}
+        onChange={props.handleChange}
         type="text"
         placeholder="destinations"
     />
-    <button onClick={props.handleFormSubmit}>create map</button>
+    <button onClick={props.handleSave}>create map</button>
 </form> */}
