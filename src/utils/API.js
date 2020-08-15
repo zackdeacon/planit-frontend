@@ -1,77 +1,90 @@
 import axios from "axios";
-const urlPrefix = "http://localhost:8080"
+const urlPrefix = "http://localhost:8080";
+
+// ** Functions that take an object have the structure and keys of that 
+// ** object laid out in a comment within!
 
 export default {
-  //MAPS
-  // Gets all maps
-  getMaps: function() {
-    return axios.get(`${urlPrefix}/api/maps`)
-    // return axios.get("/api/maps")
+  // * AUTHORIZATION
+  signup: function (userData) {
+    // userData: { username, password, email, name: {first, last}}
+    return axios.post(`${urlPrefix}/api/auth/signup`, userData, { withCredentials: true });
   },
-  // Gets the map with the given id
-  getMap: function(id) {
-    return axios.get(`${urlPrefix}/api/maps/${id}`)
-    // return axios.get("/api/maps/" + id);
+  login: function (loginData) {
+    // loginData: { username, password }
+    return axios.post(`${urlPrefix}/api/auth/login`, loginData, { withCredentials: true });
   },
-  // Deletes the map with the given id
-  deleteMap: function(id) {
-    return axios.delete(`${urlPrefix}/api/maps/${id}`)
-    // return axios.delete("/api/maps/" + id);
+  logout: function () {
+    return axios.get(`${urlPrefix}/api/auth/logout`, { withCredentials: true });
   },
-  // Saves a map to the database
-  saveMap: function(mapData) {
-    return axios.post(`${urlPrefix}/api/maps/new`, mapData)
-    // return axios.post("/api/maps/new", mapData);
+  getSessionData: function () {
+    return axios.get(`${urlPrefix}/api/auth/readsession`, { withCredentials: true });
   },
 
-  //SUGGESTIONS
-  // Gets all suggesstions
-  getSuggestions: function() {
-    return axios.get(`${urlPrefix}/api/suggestions`)
-    // return axios.get("/api/suggestions");
+  // * USERS COLLECTION
+  getAllUsers: function () {
+    return axios.get(`${urlPrefix}/api/users`);
   },
-  // Gets the suggestion with the given id
-  getSuggestion: function(id) {
-    return axios.get(`${urlPrefix}/api/suggestions/${id}`)
-    // return axios.get("/api/suggestions/" + id);
+  getUserById: function (user) {
+    // user: { id }
+    return axios.get(`${urlPrefix}/api/users/one/id`, user);
   },
-  // Deletes the suggestion with the given id
-  deleteSuggestion: function(id) {
-    return axios.delete(`${urlPrefix}/api/suggestions/${id}`)
-    // return axios.delete("/api/suggestions/" + id);
-    
+  getUserByUsername: function (user) {
+    // user: { username }
+    return axios.get(`${urlPrefix}/api/users/one/username`, user);
+  },
+  deleteUser: function (user) {
+    // user: { id }
+    return axios.delete(`${urlPrefix}/api/users/delete`, user);
+  },
+
+  // * MAPS COLLECTION
+  getAllMaps: function () {
+    return axios.get(`${urlPrefix}/api/maps`);
+  },
+  getMapById: function (map) {
+    // map: { id }
+    return axios.get(`${urlPrefix}/api/maps/one/id`, map);
+  },
+  postNewMap: function (mapData) {
+    // mapData: { name, creatorId, dates: {start, end}, destinations }
+    // Note: dates and destinations keys are optional in above object
+    return axios.post(`${urlPrefix}/api/maps/new`, mapData);
+  },
+  deleteMap: function (map) {
+    // map: { id }
+    return axios.delete(`${urlPrefix}/api/maps/delete`, map);
+  },
+
+  // * SUGGESTIONS COLLECTION
+  getAllSuggestions: function () {
+    return axios.get(`${urlPrefix}/api/suggestions`);
+  },
+  postNewSuggestion: function (suggestionData) {
+    // suggestionData: { userId, mapId, title, category, description, link, cost }
+    // Note: link and cost keys are optional in above object
+    return axios.post(`${urlPrefix}/api/suggestions/new`, suggestionData);
   },
   // Saves a suggestion to the database
-  saveSuggestion: function(suggestionData) {
-    
-    return axios.post(`${urlPrefix}/api/suggestions/new`, suggestionData)
-    // return axios.post("/api/suggestions/new", suggestionData);
+  deleteSuggestion: function (suggestion) {
+    // suggestion: { id }
+    return axios.post(`${urlPrefix}/api/suggestions/delete`, suggestion);
   },
 
-  // USERS
-  signup: function (userData) {
-    return axios.post(`${urlPrefix}/api/users/signup`, userData, { withCredentials: true })
+  // * CHATS COLLECTION
+  getAllChats: function () {
+    return axios.get(`${urlPrefix}/api/chats`);
   },
-  login: function (userData) {
-    return axios.post(`${urlPrefix}/api/users/login`, userData, { withCredentials: true })
+  getChatsFromMap: function (map) {
+    // map: { id }
+    return axios.get(`${urlPrefix}/api/chats/map`, map);
   },
-  logout:function () {
-      return axios.get(`${urlPrefix}/api/users/logout`, { withCredentials: true })
+  postNewChat: function (chatData) {
+    // chatData: { userId, mapId, message }
+    return axios.post(`${urlPrefix}/api/chats/new`, chatData);
   },
-  getCurrentUser: function () {
-      return axios.get(`${urlPrefix}/api/users/readsessions`, { withCredentials: true })
+  deleteChat: function (chat) {
+    // chat: { id }
+    return axios.post(`${urlPrefix}/api/chats/delete`, chat);
   }
-    return axios.post("/api/suggestions/new", suggestionData);
-  },
-
-  //CHATS
-  getAllChats: function() {
-    return axios.get("/api/chats");
-  },
-  postChat: function(chatData) {
-    return axios.post("/api/chats/new", chatData)
-  },
-  getChatsFromMap: function(mapId) {
-    return axios.get("/api/chats/map", mapId);
-  },
 };
