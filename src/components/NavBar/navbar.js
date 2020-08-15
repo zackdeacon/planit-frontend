@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Row, Col, Button } from 'antd';
+import {Link} from 'react-scroll';
 import 'antd/dist/antd.css';
 import "./navbar.css"
+import AnchorLink from 'antd/lib/anchor/AnchorLink';
 
 export default function Navbar() {
     const [menuBtn, setMenuBtn] = useState({
@@ -42,14 +44,14 @@ export default function Navbar() {
                 </Col>
             </Row>
             <Col className={menuBtn.linksClass}>
-                <Row justify="end" className="">
-                    <Button type="text" href="/account" className="nav-btns">Account</Button>
+                <Row justify="end">
+                    <Button type="text" href="/user" className="nav-btns">Account</Button>
                 </Row>
-                <Row justify="end" className="">
-                    <Button type="text" href="/cartographer" className="nav-btns">New Map</Button>
+                <Row justify="end">
+                    <Button type="text" href="/createmap" className="nav-btns">New Map</Button>
                 </Row>
-                <Row justify="end" className="">
-                    <Button type="text" href="/#login" className="nav-btns">Login</Button>
+                <Row justify="end">
+                    <Link activeClass="active" to="loginform" spy={true} smooth={true} offset={+500} duration={1000} className="nav-btns"><span className="login-btn">Login</span></Link>
                 </Row>
             </Col>
         </div>
