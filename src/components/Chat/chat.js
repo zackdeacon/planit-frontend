@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from "react";
 import styled from "styled-components";
 import io from "socket.io-client";
+import API from "../../utils/API"
 
 //Components and styling taken from example of Youtube
 
@@ -117,22 +118,41 @@ const Chat = () => {
             receivedMessage(message);
         })
 
+        socketRef.current.on("update messages", () => {
+          API.getChatsFromMap({
+            id: "5f38153867b7864dcb3274bb",
+          }).then(function(mapChats){
+            console.log(mapChats)
+            setMessages(mapChats.data);
+
+          })
+      })
+
+
     }, []);
 
     function receivedMessage(message) {
+        API.getChatsFromMap({
+          id: "5f38153867b7864dcb3274bb",
+        }).then(function(mapChats){
+          console.log(mapChats)
+        })
         setMessages(oldMsgs => [...oldMsgs, message]);
+        //(add api call to get all messages tied to this room)
     }
 
     function sendMessage(e) {
         e.preventDefault();
         // console.log(req.session)
         const messageObject = {
-            body: message,
-            id: yourID,
-            name:"Zack",
+            userId: "5f36cee642d6dd42729bf1fd",
+            mapId: "5f38153867b7864dcb3274bb",
+            message: message,
         };
         setMessage("");
-        socketRef.current.emit("send message", messageObject);
+        API.postChat(messageObject);
+        socketRef.current.emit("new message")
+        socketRef.current.emit("send message", messageObject); //need to add post route to db 
     }
 
     function handleChange(e) {
@@ -152,8 +172,8 @@ const Chat = () => {
               return (
                 <MyRow key={index}>
                   <MyMessage>
-                    {message.body}
-                    {message.name}
+                    {message.message}
+                    {/* {message.name} */}
                   </MyMessage>
                 </MyRow>
               )
@@ -161,8 +181,8 @@ const Chat = () => {
             return (
               <PartnerRow key={index}>
                 <PartnerMessage>
-                  {message.body}
-                  {message.name}
+                  {message.message}
+                  {/* {message.name} */}
                 </PartnerMessage>
               </PartnerRow>
             )
