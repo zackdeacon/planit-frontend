@@ -125,9 +125,11 @@ const Chat = () => {
 
     function sendMessage(e) {
         e.preventDefault();
+        // console.log(req.session)
         const messageObject = {
             body: message,
             id: yourID,
+            name:"Zack",
         };
         setMessage("");
         socketRef.current.emit("send message", messageObject);
@@ -151,6 +153,7 @@ const Chat = () => {
                 <MyRow key={index}>
                   <MyMessage>
                     {message.body}
+                    {message.name}
                   </MyMessage>
                 </MyRow>
               )
@@ -159,6 +162,7 @@ const Chat = () => {
               <PartnerRow key={index}>
                 <PartnerMessage>
                   {message.body}
+                  {message.name}
                 </PartnerMessage>
               </PartnerRow>
             )
