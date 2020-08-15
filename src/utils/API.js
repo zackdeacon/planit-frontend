@@ -43,6 +43,7 @@ export default {
   },
   // Saves a suggestion to the database
   saveSuggestion: function(suggestionData) {
+    
     return axios.post(`${urlPrefix}/api/suggestions/new`, suggestionData)
     // return axios.post("/api/suggestions/new", suggestionData);
   },
@@ -60,4 +61,17 @@ export default {
   getCurrentUser: function () {
       return axios.get(`${urlPrefix}/api/users/readsessions`, { withCredentials: true })
   }
+    return axios.post("/api/suggestions/new", suggestionData);
+  },
+
+  //CHATS
+  getAllChats: function() {
+    return axios.get("/api/chats");
+  },
+  postChat: function(chatData) {
+    return axios.post("/api/chats/new", chatData)
+  },
+  getChatsFromMap: function(mapId) {
+    return axios.get("/api/chats/map", mapId);
+  },
 };
