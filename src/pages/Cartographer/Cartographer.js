@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "../../utils/API";
+import NavBar from "../../components/NavBar/navbar.js"
 import MapCreateForm from "../../components/MapForm/mapform"
 import "./cartographer.css"
 
@@ -64,6 +65,7 @@ function Maps() {
     
     return(
         <>
+        <NavBar />
         {/* form with controlled inputs */}
         <MapCreateForm
             formData={formObject}

@@ -33,7 +33,9 @@ export default function Navbar() {
         <div className="txt-logo-div">
             <Row>    
                 <Col>
+                <a href="/">
                     <img className="txt-logo" src="./assets/logos/txt.png" alt="text logo"/>
+                </a>
                 </Col>
             </Row>
         </div>
