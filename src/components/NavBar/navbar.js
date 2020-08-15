@@ -28,6 +28,13 @@ export default function Navbar() {
 
     return (
         <>
+        <div className="txt-logo-div">
+            <Row>    
+                <Col>
+                    <img className="txt-logo" src="./assets/logos/txt.png" alt="text logo"/>
+                </Col>
+            </Row>
+        </div>
         <div className="wrapper">
             <Row justify="end">
                 <Col className={menuBtn.menuClass} onClick={handleHamburgerClick}>

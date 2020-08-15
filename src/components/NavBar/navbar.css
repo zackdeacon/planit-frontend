@@ -6,6 +6,18 @@
     z-index:1;
 }
 
+/* Text Logo */
+.txt-logo-div{
+   position: absolute;
+   left:50%;
+   margin-left:-90px;
+   margin-top: 19px;
+   z-index:1;
+}
+.txt-logo{
+    width: 180px;
+}
+
 /* Hamburger Styling */
 .menu-btn{
     position: relative;
