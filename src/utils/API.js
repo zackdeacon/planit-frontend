@@ -25,13 +25,13 @@ export default {
   getAllUsers: function () {
     return axios.get(`${urlPrefix}/api/users`);
   },
-  getUserById: function (user) {
-    // user: { id }
-    return axios.get(`${urlPrefix}/api/users/one/id`, user);
+  getUserById: function (userId) {
+    // userId is type String
+    return axios.get(`${urlPrefix}/api/users/one/id/${userId}`);
   },
-  getUserByUsername: function (user) {
-    // user: { username }
-    return axios.get(`${urlPrefix}/api/users/one/username`, user);
+  getUserByUsername: function (username) {
+    // username is type String
+    return axios.get(`${urlPrefix}/api/users/one/username/${username}`);
   },
   deleteUser: function (user) {
     // user: { id }
@@ -42,9 +42,9 @@ export default {
   getAllMaps: function () {
     return axios.get(`${urlPrefix}/api/maps`);
   },
-  getMapById: function (map) {
-    // map: { id }
-    return axios.get(`${urlPrefix}/api/maps/one/id`, map);
+  getMapById: function (mapId) {
+    // mapId is type String
+    return axios.get(`${urlPrefix}/api/maps/one/id/${mapId}`);
   },
   postNewMap: function (mapData) {
     // mapData: { name, creatorId, dates: {start, end}, destinations }
@@ -75,9 +75,9 @@ export default {
   getAllChats: function () {
     return axios.get(`${urlPrefix}/api/chats`);
   },
-  getChatsFromMap: function (map) {
-    // map: { id }
-    return axios.get(`${urlPrefix}/api/chats/map`, map);
+  getChatsForMap: function (mapId) {
+    // mapId is type String
+    return axios.get(`${urlPrefix}/api/chats/map/${mapId}`);
   },
   postNewChat: function (chatData) {
     // chatData: { userId, mapId, message }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import io from "socket.io-client";
 import API from "../../utils/API"
@@ -100,102 +100,93 @@ const PartnerMessage = styled.div`
 //Code to keep below this line 
 
 
+const TEST_MAP_ID = "5f384a5519ff8c4b3065e025";
+const TEST_USER_ID = "5f383fd888b8063738330863";
+
 const Chat = () => {
-    const [yourID, setYourID] = useState();
-    const [messages, setMessages] = useState([]);
-    const [message, setMessage] = useState("");
+  const [yourID, setYourID] = useState();
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState("");
 
-    const socketRef = useRef();
+  const socketRef = useRef();
 
-    useEffect(() => {
-        socketRef.current = io.connect("/");
+  useEffect(() => {
+    socketRef.current = io.connect("/");
 
-        socketRef.current.on("your id", id => {
-            setYourID(id);
-        })
+    updateMessages();
 
-        socketRef.current.on("message", (message) => {
-            receivedMessage(message);
-        })
+    socketRef.current.on("your id", id => {
+      setYourID(id);
+    })
 
-        socketRef.current.on("update messages", () => {
-          API.getChatsFromMap({
-            id: "5f38153867b7864dcb3274bb",
-          }).then(function(mapChats){
-            console.log(mapChats)
-            setMessages(mapChats.data);
+    socketRef.current.on("update messages", () => {
+      updateMessages();
+    })
 
-          })
-      })
+  }, []);
 
+  async function getCurrentMessages() {
+    const chats = await API.getChatsForMap(TEST_MAP_ID);
+    return chats.data;
+  }
 
-    }, []);
+  async function updateMessages() {
+    const chats = await getCurrentMessages();
+    setMessages(chats)
+  };
 
-    function receivedMessage(message) {
-        API.getChatsFromMap({
-          id: "5f38153867b7864dcb3274bb",
-        }).then(function(mapChats){
-          console.log(mapChats)
-        })
-        setMessages(oldMsgs => [...oldMsgs, message]);
-        //(add api call to get all messages tied to this room)
-    }
+  function sendMessage(e) {
+    e.preventDefault();
+    const chatData = {
+      userId: TEST_USER_ID,
+      mapId: TEST_MAP_ID,
+      message: message,
+    };
+    setMessage("");
+    API.postNewChat(chatData);
+    socketRef.current.emit("new message");
+  }
 
-    function sendMessage(e) {
-        e.preventDefault();
-        // console.log(req.session)
-        const messageObject = {
-            userId: "5f36cee642d6dd42729bf1fd",
-            mapId: "5f38153867b7864dcb3274bb",
-            message: message,
-        };
-        setMessage("");
-        API.postChat(messageObject);
-        socketRef.current.emit("new message")
-        socketRef.current.emit("send message", messageObject); //need to add post route to db 
-    }
-
-    function handleChange(e) {
-        setMessage(e.target.value);
-    }
+  function handleChange(e) {
+    setMessage(e.target.value);
+  }
 
 
-    //Code to keep above this line 
+  //Code to keep above this line 
 
-    return (
-        //Components and styling taken from example of Youtube
-        <Page>
-        <Container>
-          {messages.map((message, index) => {
-              console.log(messages)
-            if (message.id === yourID) {
-              return (
-                <MyRow key={index}>
-                  <MyMessage>
-                    {message.message}
-                    {/* {message.name} */}
-                  </MyMessage>
-                </MyRow>
-              )
-            }
+  return (
+    //Components and styling taken from example of Youtube
+    <Page>
+      <Container>
+        {messages.map((message, index) => {
+          if (message.id === yourID) {
             return (
-              <PartnerRow key={index}>
-                <PartnerMessage>
+              <MyRow key={index}>
+                <MyMessage>
                   {message.message}
                   {/* {message.name} */}
-                </PartnerMessage>
-              </PartnerRow>
+                </MyMessage>
+              </MyRow>
             )
-          })}
-        </Container>
-        <Form onSubmit={sendMessage}>
-          <TextArea value={message} onChange={handleChange} placeholder="Say something..." />
-          <Button>Send</Button>
-        </Form>
-      </Page>   
-              //Components and styling taken from example of Youtube
+          }
+          return (
+            <PartnerRow key={index}>
+              <PartnerMessage>
+                {message.message}
+                {/* {message.name} */}
+              </PartnerMessage>
+            </PartnerRow>
+          )
+        })}
+      </Container>
+      <Form onSubmit={sendMessage}>
+        <TextArea value={message} onChange={handleChange} placeholder="Say something..." />
+        <Button>Send</Button>
+      </Form>
+    </Page>
+    //Components and styling taken from example of Youtube
 
-      )
+  )
 }
 
 export default Chat;
