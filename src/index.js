@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Chat /> */}
     <App/>
   </React.StrictMode>,
   document.getElementById('root')
