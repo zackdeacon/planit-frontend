@@ -4,12 +4,15 @@ import Home from "./pages/Home/Home"
 import './App.css';
 import Mapcard from './components/MapCard/mapcard';
 import MapForm from './components/MapForm/mapform';
+import Maps from './pages/Map/Map';
+import Suggestions from "./pages/Suggestion/Suggestion"
 
 function App() {
   return (
     <>
-      <Home />
-      <MapForm/>
+      {/* <Home /> */}
+      <Maps/>
+      <Suggestions/>
     </>
   );
 }
