@@ -68,5 +68,6 @@ Form a:hover{
 
 /* Reg Form Styling */
 .register-form {
+    padding-top: 5px;
     max-width: 300px;
 }
