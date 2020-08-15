@@ -2,13 +2,15 @@ import React from 'react';
 import Home from "./pages/Home/Home"
 // import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
-import MapForm from './components/MapForm/mapform';
+import Maps from './components/MapForm/mapform';
+import Suggestions from "./components/suggestionForm/suggestionForm"
 
 function App() {
   return (
     <>
-      <Home />
-      <MapForm/>
+      {/* <Home /> */}
+      <Maps/>
+      <Suggestions/>
     </>
   );
 }

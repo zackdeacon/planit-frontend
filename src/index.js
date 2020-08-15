@@ -7,7 +7,8 @@ import Chat from "../src/components/Chat/chat"
 
 ReactDOM.render(
   <React.StrictMode>
-    <Chat />
+    {/* <Chat /> */}
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
