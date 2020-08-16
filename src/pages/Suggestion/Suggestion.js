@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import API from "../../utils/API";
 import NavBar from "../../components/NavBar/navbar";
 import "./suggestion.css"
-import SuggestionCreateForm from "../../components/suggestionForm/suggestionForm"
+import SuggestionCreateForm from "../../components/SuggestionForm/suggestionForm"
 
 function Suggestions() {
     
