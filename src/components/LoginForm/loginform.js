@@ -36,6 +36,11 @@ export default function LoginForm() {
                 password: ""
             })
         })
+    };
+
+    //HANDLE NEW USER 
+    const handleNewUser = (e) => {
+        e.preventDefault();
         if(newUser.status === false) {
             setNewUser({
                 status: true,
@@ -129,7 +134,7 @@ export default function LoginForm() {
                 Log in
                 </Button>
                 <Row justify="center">
-                <a href=" " >New User Sign Up</a>
+                <a href=" " onClick={handleNewUser}>New User Sign Up</a>
                 </Row>
             </Form.Item>
         </Form>
