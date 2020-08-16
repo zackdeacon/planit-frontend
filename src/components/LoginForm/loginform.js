@@ -13,14 +13,18 @@ export default function LoginForm() {
 
     const [form] = Form.useForm();
 
+    //LOGIN FUNCITONALITY
     const [formObjectLogin, setFormObjectLogin] = useState({
         username: "",
-        password: ""
+        password: "",
+      
     })
 
     function handleInputLogin (event){
         const {name,value}=event.target;
         setFormObjectLogin({...formObjectLogin, [name]:value})
+        console.log("input change function", event.target)
+        
     }
 
     const handleSubmitLogin = (e) => {
@@ -47,9 +51,7 @@ export default function LoginForm() {
         }
     };
     
-
-    
-
+    //SIGNUP FUNCTIONALITY
     const [formObjectSignup, setFormObjectSignup] = useState({
         firstName: "",
         lastName: "",
@@ -85,10 +87,11 @@ export default function LoginForm() {
         
     return (
     <>
+    {/* login form */}
     <div className="form-container" id="loginform">
     <Row justify="center" align="middle" className="form-filter">
         <div className="form-buffer"></div>
-    Login Form
+    {/* Login Form */}
         <Form
             name="normal_login"
             className={newUser.loginForm}
@@ -103,6 +106,7 @@ export default function LoginForm() {
                 <Input 
                 prefix={<UserOutlined className="site-form-item-icon" />} 
                 name="username"
+                type="text"
                 value={formObjectLogin.username}
                 onChange={handleInputLogin}
                 placeholder="Username" />
@@ -113,6 +117,7 @@ export default function LoginForm() {
                 rules={[{ required: true, message: 'Please input your Password!' }]}>
                 <Input
                 prefix={<LockOutlined className="site-form-item-icon" />}
+                name="password"
                 type="password"
                 value={formObjectLogin.password}
                 onChange={handleInputLogin}
