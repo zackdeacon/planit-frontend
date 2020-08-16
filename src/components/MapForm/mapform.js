@@ -40,9 +40,9 @@ function MapCreateForm(props){
                 <Input 
                 name="name"
                 type="text"
-                    value={props.formData.name}
-                    onChange={props.handleChange} 
-                    placeholder="Name Your Trip"
+                value={props.formData.name}
+                onChange={props.handleChange} 
+                placeholder="Name Your Trip"
                 />
             </Form.Item>
             
@@ -52,9 +52,9 @@ function MapCreateForm(props){
                 <Input 
                 name="creator"
                 type="text"
-                    value={props.formData.creator}
-                    onChange={props.handleChange} 
-                    placeholder="Trip Creator's Name"
+                value={props.formData.creator}
+                onChange={props.handleChange} 
+                placeholder="Trip Creator's Name"
                 />
             </Form.Item>
 
@@ -146,11 +146,11 @@ function MapCreateForm(props){
                
                 rules={[{ required: true, message: 'Please input destination(s)!'}]}>
                 <Input 
-                 name="destinations"
-                 type="text"
-                    value={props.formData.destinations}
-                    onChange={props.handleChange} 
-                    placeholder="Destination(s)"
+                name="destinations"
+                type="text"
+                value={props.formData.destinations}
+                onChange={props.handleChange} 
+                placeholder="Destination(s)"
                 />
             </Form.Item>  
 
