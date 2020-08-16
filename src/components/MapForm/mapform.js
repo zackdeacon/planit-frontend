@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Form, Input, Button, DatePicker } from 'antd';
+import { Row, Col, Form, Input, Button} from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import "./mapform.css";
 
@@ -15,13 +15,11 @@ const formItemLayout = {
   };
 
   const formItemLayoutWithOutLabel = {
-wrapperCol: {
+    wrapperCol: {
     xs: { span: 24, offset: 0 },
     sm: { span: 20, offset: 0 },
 },
 };
-
-const { RangePicker } = DatePicker;
 
 function MapCreateForm(props){
     return(
@@ -124,7 +122,8 @@ function MapCreateForm(props){
             </Form.List>
             
             <Row justify="center">
-            <label>Start Date:</label>
+            <Col md={{span:6}} xs={{span:10}} style={{marginLeft:"-50px", marginBottom: "25px"}}>
+            <label className="date-labels">Start Date:</label>
             <input
                 value={props.formData.startDate}
                 name="startDate"
@@ -132,7 +131,7 @@ function MapCreateForm(props){
                 type="date"
                 placeholder="start date"
             />
-            <label>End Date:</label>
+            <label className="date-labels">End Date:</label>
             <input
                 value={props.formData.endDate}
                 name="endDate"
@@ -140,26 +139,7 @@ function MapCreateForm(props){
                 type="date"
                 placeholder="end date"
             />
-            {/* <Form.Item name="startDate">
-                <DatePicker
-                name="startDate"
-                onChange={props.handleChange} 
-                type="text"
-                value={props.formData.startDate}
-                placeholder="Start Date"
-                style={{marginRight:"2px"}}
-                />
-            </Form.Item>
-            <Form.Item name="endDate">
-                <DatePicker
-                name="endDate"
-                type="text"
-                onChange={props.handleChange} 
-                value={props.formData.endDate}
-                placeholder="End Date"
-                style={{marginLeft:"2px"}}
-                />
-            </Form.Item> */}
+            </Col>
             </Row>
 
             <Form.Item
@@ -186,56 +166,3 @@ function MapCreateForm(props){
 }
 
 export default MapCreateForm;
-
-
-{/* <form className="map-form">
-    <label>Name of Trip:</label>
-    <input
-        value={props.name}
-        name="name"
-        onChange={props.handleChange}
-        type="text"
-        placeholder="name of trip"
-    />
-    <label>Creator:</label>
-    <input
-        value={props.creator}
-        name="creator"
-        onChange={props.handleChange}
-        type="text"
-        placeholder="creator"
-    />
-    <label>Guests:</label>
-    <input
-        value={props.guests}
-        name="guests"
-        onChange={props.handleChange}
-        type="text"
-        placeholder="guests"
-    />
-    <label>Start Date:</label>
-    <input
-        value={props.startDate}
-        name="startDate"
-        onChange={props.handleChange}
-        type="date"
-        placeholder="start date"
-    />
-    <label>End Date:</label>
-    <input
-        value={props.endDate}
-        name="endDate"
-        onChange={props.handleChange}
-        type="date"
-        placeholder="end date"
-    />
-    <label>destination:</label>
-    <input
-        value={props.destinations}
-        name="destinations"
-        onChange={props.handleChange}
-        type="text"
-        placeholder="destinations"
-    />
-    <button onClick={props.handleSave}>create map</button>
-</form> */}

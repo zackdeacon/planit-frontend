@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import API from "../../utils/API";
+import NavBar from "../../components/NavBar/navbar";
 import "./suggestion.css"
-import SuggestionCreateForm from "../../components/suggestionForm/suggestionForm"
+import SuggestionCreateForm from "../../components/SuggestionForm/suggestionForm"
 
 function Suggestions() {
+    
     //set book component initial state
     const [suggestions, setSuggestions] = useState([])
 
@@ -58,14 +60,15 @@ function Suggestions() {
   
     
     return(
-        <>
+        <div className="suggestion-background">
+        <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px"/>
         {/* form with controlled inputs */}
         <SuggestionCreateForm
             formData={formObject}
             handleChange={handleInputChange}
             handleSave={handleFormSubmit}
         />
-        </>
+        </div>
     )
     
 

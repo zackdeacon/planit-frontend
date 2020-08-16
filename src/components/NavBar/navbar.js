@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 import "./navbar.css"
 import AnchorLink from 'antd/lib/anchor/AnchorLink';
 
-export default function Navbar() {
+export default function Navbar(props) {
     const [menuBtn, setMenuBtn] = useState({
         menuOpen: false,
         menuClass: "menu-btn",
@@ -34,7 +34,7 @@ export default function Navbar() {
             <Row>    
                 <Col>
                 <a href="/">
-                    <img className="txt-logo" src="./assets/logos/txt.png" alt="text logo"/>
+                    <img src={props.logo} alt="text logo" style={{width:`${props.width}`, marginLeft:`${props.left}`, marginTop:`${props.top}`}}/>
                 </a>
                 </Col>
             </Row>

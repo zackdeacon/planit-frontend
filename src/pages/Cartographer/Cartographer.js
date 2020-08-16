@@ -67,7 +67,7 @@ function Maps() {
     
     return(
         <>
-        <NavBar />
+        <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px"/>
         {/* form with controlled inputs */}
         <MapCreateForm
             formData={formObject}
