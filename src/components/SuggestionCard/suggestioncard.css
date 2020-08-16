@@ -1,5 +1,26 @@
+.sug-card-container{
+   max-height: 300px;
+   overflow: scroll;
+}
 
-/* spacing between link and price */
-h3{
-   padding: 10px 0px 10px 0px;
+.ant-card-head-title{
+   font-weight: bolder;
+   color: white;
+}
+
+.vote-btn{
+   background: #6c8e98;
+   border-color: white;
+}
+
+.vote-btn:hover{
+   background: white;
+   border-color: #6c8e98 solid;
+}
+
+.description-text{
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   margin-bottom: 10px;
 }
