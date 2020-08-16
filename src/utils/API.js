@@ -8,7 +8,9 @@ export default {
   // * AUTHORIZATION
   signup: function (userData) {
     // userData: { username, password, email, name: {first, last}}
-    return axios.post(`${urlPrefix}/api/auth/signup`, userData, { withCredentials: true });
+    return axios.post(`${urlPrefix}/api/auth/signup`, userData, 
+    { withCredentials: true }
+    );
   },
   login: function (loginData) {
     // loginData: { username, password }
