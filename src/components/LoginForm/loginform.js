@@ -64,10 +64,10 @@ export default function LoginForm() {
         setFormObjectSignup({...formObjectSignup, [name]:value})
     }
     
-    function handleNewUser(e){
+    function handleSubmitSignup(e){
         // e.preventDefault();
         API.signup(formObjectSignup).then(data=>{
-            console.log("logged in as", data)
+            console.log("you are a new user", data)
             setFormObjectSignup({
                 firstName: "",
                 lastName: "",
@@ -120,11 +120,11 @@ export default function LoginForm() {
                 />
             </Form.Item>
             <Form.Item>
-                <Button type="primary" htmlType="submit" className="form-button">
+                <Button onClick={handleSubmitLogin} type="primary" htmlType="submit" className="form-button">
                 Log in
                 </Button>
                 <Row justify="center">
-                <a href=" " onClick={handleSubmitLogin}>New User Sign Up</a>
+                <a href=" " >New User Sign Up</a>
                 </Row>
             </Form.Item>
         </Form>
@@ -264,7 +264,7 @@ export default function LoginForm() {
                 />
             </Form.Item>
 
-            <Button onClick={handleNewUser} type="primary" htmlType="submit" className="form-button">
+            <Button onClick={handleSubmitSignup} type="primary" htmlType="submit" className="form-button">
             Register
             </Button>
             <Row justify="center">
