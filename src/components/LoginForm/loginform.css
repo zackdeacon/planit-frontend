@@ -19,6 +19,10 @@
     margin-bottom: 20px;
     text-align: center;
 }
+.register-form label{
+    color: white;
+}
+
 .show{
     display: block;
 }
