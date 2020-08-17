@@ -65,7 +65,7 @@ export default {
   postNewSuggestion: function (suggestionData) {
     // suggestionData: { userId, mapId, title, category, description, link, cost }
     // Note: link and cost keys are optional in above object
-    return axios.post(`${urlPrefix}/api/suggestions/new`, suggestionData);
+    return axios.post(`${urlPrefix}/api/suggestions/new`, suggestionData, { withCredentials: true });
   },
   // Saves a suggestion to the database
   deleteSuggestion: function (suggestion) {
@@ -83,7 +83,7 @@ export default {
   },
   postNewChat: function (chatData) {
     // chatData: { userId, mapId, message }
-    return axios.post(`${urlPrefix}/api/chats/new`, chatData);
+    return axios.post(`${urlPrefix}/api/chats/new`, chatData, { withCredentials: true });
   },
   deleteChat: function (chat) {
     // chat: { id }
