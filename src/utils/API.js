@@ -51,7 +51,7 @@ export default {
   postNewMap: function (mapData) {
     // mapData: { name, creatorId, dates: {start, end}, destinations }
     // Note: dates and destinations keys are optional in above object
-    return axios.post(`${urlPrefix}/api/maps/new`, mapData);
+    return axios.post(`${urlPrefix}/api/maps/new`, mapData, { withCredentials: true });
   },
   deleteMap: function (map) {
     // map: { id }
