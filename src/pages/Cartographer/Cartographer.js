@@ -83,7 +83,6 @@ function Maps() {
     //     })
     // }
 
-
     return (
         <>
             <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
