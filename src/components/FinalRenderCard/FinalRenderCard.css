@@ -52,18 +52,22 @@
     display: flex;
     justify-content: center;
  }
+
  .RenderCardDiv {
-    max-height: 400px;
+    height: 350px;
+    border: inset #987b55;
     overflow: auto;
     overflow-x: hidden;
     /* overflow-y: hidden; */
  }
+
  .transparentBackground {
     background-color:rgba(255, 255, 255, 0.287);
-    border-radius: 2px;
+    border-radius: 20px;
+    padding: 20px;
  }
+
 .setCardHeight {
    height: 275px;
-   
    overflow: auto;
 }

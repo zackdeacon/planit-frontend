@@ -13,12 +13,20 @@ export default function User() {
     })
 
     useEffect(() => {
-        // API.getUserByUsername(req.session.username).then(result => {
-        //     const currentUserInfo = {
-        //         username: result.username,
-        //         email: result.email
-        //     } 
-        //     setUser(currentUserInfo)
+        API.getSessionData().then(result => {
+            console.log(result.data.user.username);
+            const currentUserInfo = {
+                username: result.data.user.username,
+        
+                email: result.data.user.email
+            } 
+            setUser(currentUserInfo)
+            })
+        .catch(err => console.log('err', err))
+    }, [])
+
+    useEffect(() => {
+        
             API.getAllMaps().then(data => {
                 console.log('data', data)
                 const prunedMaps = data.data.map(item => {
@@ -30,14 +38,14 @@ export default function User() {
                 setMaps(prunedMaps)
             })
             .catch(err => console.log('err', err))
-        // })
-        // .catch(err => console.log('err', err))
 }, [])
 
-return (
-    <>
-        <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
-        <UserCard maps={maps} user={user}/>
-    </>
-)
+    return (
+        <>
+        <div className="user-background">
+            <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
+            <UserCard maps={maps} user={user}/>
+        </div>
+        </>
+    )
 }

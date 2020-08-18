@@ -21,15 +21,9 @@ const formItemLayoutWithOutLabel = {
     },
 };
 
-<<<<<<< HEAD
 function MapCreateForm(props){
     return(
        
-=======
-
-function MapCreateForm(props) {
-    return (
->>>>>>> 9109600a37713194c3f2116e83edc642ce99d59e
         <div className="cart-background">
             <div className="cart-buffer"></div>
             <Row justify="center">
@@ -143,17 +137,6 @@ function MapCreateForm(props) {
                         </Col>
                     </Row>
 
-<<<<<<< HEAD
-            <Form.Item>
-                <Button type="primary" htmlType="submit" className="form-button">
-                Create Map!
-                </Button>
-            </Form.Item>
-        </Form>
-        </Row>
-         </div>
-   
-=======
                     <Form.Item
                         rules={[{ required: true, message: 'Please input destination(s)!' }]}>
                         <label className="date-labels">Destination(s):</label>
@@ -174,7 +157,6 @@ function MapCreateForm(props) {
                 </Form>
             </Row>
         </div>
->>>>>>> 9109600a37713194c3f2116e83edc642ce99d59e
     )
 }
 

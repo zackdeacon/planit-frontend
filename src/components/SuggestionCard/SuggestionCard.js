@@ -1,19 +1,13 @@
-<<<<<<< HEAD
+
 import React, {useEffect, useState} from 'react'
-import { Row, Col, Card, Button, Tooltip} from 'antd'
-import { LikeTwoTone, DislikeTwoTone, ApiFilled, ControlOutlined } from "@ant-design/icons"
-=======
-import React, { useState, useEffect } from 'react'
 import { Row, Col, Card, Button, Tooltip, Modal, Progress, Statistic} from 'antd'
 import { LikeTwoTone, DislikeTwoTone, ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons"
 // import DashMod from '../../components/DashModule/dashmod'
->>>>>>> 9109600a37713194c3f2116e83edc642ce99d59e
 import 'antd/dist/antd.css';
 import API from "../../utils/API";
 import "./suggestioncard.css"
 
 export default function SuggestionCard(props) {
-<<<<<<< HEAD
   const [count, setCount]=useState(0)
 
   const [upVote, setUpVote]=useState()
@@ -39,11 +33,12 @@ export default function SuggestionCard(props) {
     })
     .catch(err=>console.log(err))
   }
-=======
 
   const [modal, setModal] = useState({
     visible: false 
   })
+
+  console.log('props', props)
 
   const switchModal = () => {
     setModal({
@@ -51,13 +46,12 @@ export default function SuggestionCard(props) {
     });
   };
   
->>>>>>> 9109600a37713194c3f2116e83edc642ce99d59e
   return (
     <>
       <Col xl={{span: 6}} md={{ span: 12 }} >
         
         <Card className="sug-card-container" type="inner"
-        title={props.title.toUpperCase()} extra={
+        title={props.suggestions.title.toUpperCase()} extra={
             // adding up and downvote buttons
             <>
             <Tooltip>
@@ -70,9 +64,9 @@ export default function SuggestionCard(props) {
           }
         style={{ margin: "10px" }} headStyle={{ backgroundColor: "#987b55" }} 
           >
-          <a href={props.link} target="_blank" style={{color: "#6c8e98"}}>Link to Suggestion</a>
-          <p style={{marginTop:"14px", marginBottom:"13px"}}><strong style={{color:"#3b5e66"}}>Cost Est:</strong> ${props.cost}</p>
-          <p className="description-text"><strong style={{color:"#3b5e66"}}>Description:</strong> {props.description}</p>
+          <a href={props.suggestions.link} target="_blank" rel="noopener noreferrer" style={{color: "#6c8e98"}}>Link to Suggestion</a>
+          <p style={{marginTop:"14px", marginBottom:"13px"}}><strong style={{color:"#3b5e66"}}>Cost Est:</strong> $ {props.suggestions.cost}</p>
+          <p className="description-text"><strong style={{color:"#3b5e66"}}>Description:</strong> {props.suggestions.description}</p>
           <Row justify="center">
             <button onClick={switchModal} style={{color: "#3b5e66"}}>Read More</button >
           </Row>
@@ -100,7 +94,7 @@ export default function SuggestionCard(props) {
                 }
                 style={{ margin: "10px" }} headStyle={{ backgroundColor: "#987b55" }} 
                 >
-                <a href={props.link} target="_blank" style={{color: "#6c8e98"}}>Link to Suggestion</a>
+                <a href={props.link} target="_blank" rel="noopener noreferrer" style={{color: "#6c8e98"}}>Link to Suggestion</a>
                 <p style={{marginTop:"14px", marginBottom:"13px"}}><strong style={{color:"#3b5e66"}}>Cost Est:</strong> ${props.cost}</p>
                 <p><strong style={{color:"#3b5e66"}}>Description:</strong> {props.description}</p>
             </Card>
