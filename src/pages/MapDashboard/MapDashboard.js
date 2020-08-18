@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { useParams } from "react-router-dom";
 import {Row, Col} from 'antd'
 import NavBar from '../../components/NavBar/navbar'
 import MapCard from '../../components/MapCard/mapcard'
@@ -7,28 +8,41 @@ import API from '../../utils/API'
 import './mapdashboard.css'
 
 
-export default function MapDashboard() {
-
+export default function MapDashboard(props) {
+    const [board, setBoard] = useState({
+        name: ""
+    })
     const [categories, setCategories] = useState([])
     const [suggestions, setSuggestions] = useState([])
 
+    const {id} = useParams()
     useEffect(() => {
         // API.getMapById(req.params.id)
-        API.getMapById("5f3c3f9d77f52a117a1b908a").then(res =>{
-            // console.log(res);
+        API.getMapById(id).then(res =>{
+            console.log(res.data.name);
+            const boardName = res.data.name;
             const categoriesArr = res.data.suggestionCategories.map(item => {
                 return item
+            })
+            setBoard({
+                name: boardName
             })
             setCategories(categoriesArr)
             console.log(categoriesArr);
         }).catch(err => console.log('err', err))
     }, [])
 
-    useEffect(()=>{
-        // API.getSuggestionForMap().then(res =>{
-
-        // })
-    })
+    // useEffect(()=>{
+    //     API.getSuggestionsForMap(id).then(res =>{
+    //         // console.log('res', res.data)
+    //         const suggestionArr = res.data.map(suggestion => {
+    //             return suggestion
+    //         })
+    //         setSuggestions(suggestionArr)
+    //         console.log(suggestionArr);
+    //     })
+    //     .catch(err => console.log('err', err))
+    // }, [])
 
 
     return (
@@ -38,7 +52,7 @@ export default function MapDashboard() {
                 <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px"/>
                 
                 <Row justify= "center">
-                    <div className="dash-title">Bachelor Trip: New Orleans</div>
+                    <div className="dash-title">{board.name}</div>
                 </Row>
                 
                 <div className="top-buffer">
