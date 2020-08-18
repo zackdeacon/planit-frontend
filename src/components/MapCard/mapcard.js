@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link} from "react-router-dom"
+
 import SuggestionCard from "../SuggestionCard/SuggestionCard"
 import { Tabs, Row} from 'antd';
 import "./mapcard.css"
@@ -17,7 +19,6 @@ export default function MapCard(props) {
   //        } 
   //     })
   // }
-
   return (
     <>
       <div className="mapcard-wrapper">
@@ -31,6 +32,15 @@ export default function MapCard(props) {
               <Row>
                   {/* This is a function to pass in the specific suggestions associated with the category, {categorySuggestions(props.suggestionCategory.name)} 
                   Function above is the call to the function commented out on lines 12-19 which will hopefully render the correct amount of card into the tabs*/}
+                  <Link
+                    to={{
+                      pathname: "/addsuggestion",
+                      state: { 
+                        // pass down information about the map
+                      }
+                      }}
+                    >
+                  <button >add suggestion</button> </Link>
                   <SuggestionCard module={module} _id="1" title="AirBnb house" cost="175" link="https://www.airbnb.com/rooms/16068259?s=67&unique_share_id=5951f1de-099c-4b12-a013-54df4c947520" description="Cool AirBnb with a hottub in Whistler. simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
                   <SuggestionCard module={module} _id="2" title="VRBO house" cost="175" link="https://www.airbnb.com/rooms/16068259?s=67&unique_share_id=5951f1de-099c-4b12-a013-54df4c947520" description="Cool AirBnb with a hottub in Whistler lorem blahlorem blah lorem blah lorem blah lorem blah lorem blah lorem blah lorem blahlorem blah lorem blah lorem bla" />
                   <SuggestionCard module={module} _id="3" title="Marriot hotel" cost="175" link="https://www.airbnb.com/rooms/16068259?s=67&unique_share_id=5951f1de-099c-4b12-a013-54df4c947520" description="Cool AirBnb with a hottub in Whistler" />

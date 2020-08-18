@@ -1,19 +1,12 @@
-<<<<<<< HEAD
-import React, {useEffect, useState} from 'react'
-import { Row, Col, Card, Button, Tooltip} from 'antd'
-import { LikeTwoTone, DislikeTwoTone, ApiFilled, ControlOutlined } from "@ant-design/icons"
-=======
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Card, Button, Tooltip, Modal, Progress, Statistic} from 'antd'
 import { LikeTwoTone, DislikeTwoTone, ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons"
 // import DashMod from '../../components/DashModule/dashmod'
->>>>>>> 9109600a37713194c3f2116e83edc642ce99d59e
 import 'antd/dist/antd.css';
 import API from "../../utils/API";
 import "./suggestioncard.css"
 
 export default function SuggestionCard(props) {
-<<<<<<< HEAD
   const [count, setCount]=useState(0)
 
   const [upVote, setUpVote]=useState()
@@ -39,7 +32,6 @@ export default function SuggestionCard(props) {
     })
     .catch(err=>console.log(err))
   }
-=======
 
   const [modal, setModal] = useState({
     visible: false 
@@ -51,7 +43,6 @@ export default function SuggestionCard(props) {
     });
   };
   
->>>>>>> 9109600a37713194c3f2116e83edc642ce99d59e
   return (
     <>
       <Col xl={{span: 6}} md={{ span: 12 }} >

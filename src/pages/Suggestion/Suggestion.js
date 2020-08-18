@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
+import {useHistory, useLocation} from "react-router-dom"
 import API from "../../utils/API";
 import NavBar from "../../components/NavBar/navbar";
 import "./suggestion.css"
-import SuggestionCreateForm from "../../components/SuggestionForm/suggestionForm"
+import SuggestionCreateForm from "../../components/suggestionForm/suggestionForm"
 
 function Suggestions() {
+    const history = useHistory()
+
+    let data = useLocation()
+    console.log("this is data", data)
     
     //set book component initial state
     const [suggestions, setSuggestions] = useState([])
@@ -44,7 +49,7 @@ function Suggestions() {
     function handleFormSubmit(event){
         // event.preventDefault();
         API.postNewSuggestion(formObject).then(data=>{
-            console.log("here is your new map", data)
+            console.log("here is your new suggestion", data)
             loadSuggestions();
             setFormObject({
                 title: "",
@@ -54,7 +59,9 @@ function Suggestions() {
                 endDate: "",
                 // destinations: "" 
             })
+            history.push("/dashboard")
         })
+        
         console.log("submit function", event.target)
     }
   

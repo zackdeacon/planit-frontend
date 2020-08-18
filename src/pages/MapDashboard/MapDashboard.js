@@ -1,12 +1,30 @@
-import React from 'react'
+import React, {useEffect, useState}from 'react'
 import {Row, Col} from 'antd'
 import NavBar from '../../components/NavBar/navbar'
 import MapCard from '../../components/MapCard/mapcard'
 import Chat from '../../components/Chat/chat'
 import './mapdashboard.css'
+import API from "../../utils/API";
+
+// import { useEffect } from 'react'
 
 
 export default function MapDashboard() {
+    const [suggestions, setSuggestions] = useState([])
+ 
+    useEffect(()=>{
+        loadSuggestions()
+        
+    }, [])
+
+    function loadSuggestions(){
+        API.getAllSuggestions()
+        .then(res=>
+            setSuggestions(res.data)
+        )
+        .catch(err=>console.log(err))
+    }
+
     return (
         <>
             <div className="dash-filter-background"></div>
