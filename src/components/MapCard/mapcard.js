@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
 import SuggestionCard from "../SuggestionCard/SuggestionCard"
-import { Tabs, Row } from 'antd';
+import { Tabs, Button, Row} from 'antd';
 import "./mapcard.css"
 import API from '../../utils/API'
 
@@ -58,6 +58,9 @@ export default function MapCard(props) {
           <Tabs type="card">
             {tabsArr.map(item => { return item })}
           </Tabs>
+          <Row className="add-sug-row" justify="center">
+              <Button className="add-sug-btn" href="/addsuggestion">Add Suggestion</Button>
+          </Row>
         </div>
       </div>
     </>
