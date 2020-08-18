@@ -1,28 +1,52 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from "react-router-dom";
 import SuggestionCard from "../SuggestionCard/SuggestionCard"
-import { Tabs, Row} from 'antd';
+import { Tabs, Row } from 'antd';
 import "./mapcard.css"
+import API from '../../utils/API'
 
 const { TabPane } = Tabs;
 
 // import API from "../../utils/API"
 
 export default function MapCard(props) {
-// console.log(props);
-
-//This function takes in an id and queries the database with checking for suggestions with the proper suggestion id and map id
-  // const categorySuggestions = (id) => {
-  //     API.getSuggestions(id).then(res =>{
-  //        for (let i = 0; i < res.data.length; i++) {
-  //         return <SuggestionCard handleClick={handleClick} title={props.suggestion[i].title} cost={props.suggestion[i].cost} link={props.suggestion[i].link} description={props.suggestion[i].description}/>
-  //        } 
+  const [suggestions, setSuggestions] = useState([])
+  // console.log(props);
+  const { id } = useParams()
+  // useEffect(() => {
+  //   API.getSuggestionsForMap(id).then(res => {
+  //     // console.log('res', res.data)
+  //     const suggestionArr = res.data.map(suggestion => {
+  //       return suggestion
   //     })
-  // }
-  
+  //     setSuggestions(suggestionArr)
+  //     console.log(suggestionArr);
+  //   })
+  //     .catch(err => console.log('err', err))
+  // }, [])
+
+  //This function takes in an id and queries the database with checking for suggestions with the proper suggestion id and map id
+  const categorySuggestions = (id) => {
+    API.getSuggestionsForMap(id).then(res => {
+      // console.log('res', res.data)
+      const suggestionArr = res.data.map(suggestion => {
+         return <SuggestionCard title={props.suggestions.title} cost={props.suggestions.cost} link={props.suggestions.link} description={props.suggestions.description} />
+        // return suggestion
+      })
+      setSuggestions(suggestionArr)
+      console.log('suggestions', suggestions);
+    })
+      .catch(err => console.log('err', err))
+  }
+
   const tabsArr = [];
 
   for (let i = 0; i < props.categories.length; i++) {
-  tabsArr.push(<TabPane tab={props.categories[i]} key={[i]}></TabPane>);
+    tabsArr.push(<TabPane tab={props.categories[i]} key={[i]} suggestions={props.suggestions}>{categorySuggestions(id)}
+
+
+
+    </TabPane>);
   }
 
 
@@ -32,7 +56,7 @@ export default function MapCard(props) {
 
         <div className="card-container">
           <Tabs type="card">
-            {tabsArr.map(item => {return item})}
+            {tabsArr.map(item => { return item })}
           </Tabs>
         </div>
       </div>
