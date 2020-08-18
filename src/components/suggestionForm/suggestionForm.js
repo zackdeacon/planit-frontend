@@ -1,8 +1,37 @@
-import React from 'react';
+import React, {useEffect, useState } from "react";
 import { Row, Col, Form, Input, Button} from 'antd';
 import "./suggestionForm.css"
+import API from '../../utils/API';
 
 function SuggestionCreateForm(props){
+    // // //set book component initial state
+    // const [suggestion, setSuggestion] = useState([])
+    // //initialize form object state
+    // const [formObject, setFormObject]=useState({
+    //     title: "",
+    //     category: "",
+    //     link: "",
+    //     cost: "",
+    //     description: ""
+    // })
+
+    // function handleChange (event){
+    //     const {name,value}=event.target;
+    //     setFormObject({...formObject, [name]:value})
+    // }
+
+    // function handleSave (){
+    //     API.postNewSuggestion(formObject).then(data=>{
+    //         console.log("here is your new suggestion", data)
+    //         setFormObject({
+    //             title: "",
+    //             category: "",
+    //             link: "",
+    //             cost: "",
+    //             description: ""
+    //         })
+    //     })
+    // }
     return(
         <div>
         <div className="cart-buffer"></div> 
@@ -41,7 +70,7 @@ function SuggestionCreateForm(props){
                     <Input 
                     name="link"
                     type="text"
-                    // value={props.formData.link}
+                    value={props.formData.link}
                     onChange={props.handleChange} 
                     placeholder="Share A Link"
                 />
@@ -52,7 +81,7 @@ function SuggestionCreateForm(props){
                     <Input 
                     name="cost"
                     type="text"
-                    // value={props.formData.cost}
+                    value={props.formData.cost}
                     onChange={props.handleChange} 
                     placeholder="Price Range?"
                 />

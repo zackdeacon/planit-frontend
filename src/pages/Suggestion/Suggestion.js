@@ -14,9 +14,9 @@ function Suggestions() {
         title: "",
         category: "",
         description: "",
-        startDate: "",
-        endDate: "",
-        destinations:""
+        cost: "",
+        link: "",
+        // destinations:""
     })
     //load all maps, store them with setMaps
     useEffect(()=>{
@@ -52,7 +52,7 @@ function Suggestions() {
                 description: "",
                 startDate: "",
                 endDate: "",
-                destinations: "" 
+                // destinations: "" 
             })
         })
         console.log("submit function", event.target)
