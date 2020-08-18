@@ -6,11 +6,13 @@ import FinalRenderCard from '../../components/FinalRenderCard/FinalRenderCard'
 
 export default function FinalRender() {
     return (
-        <div className="dash-background">
-        <div className="dash-filter-background">
-        <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px"/>
-        <FinalRenderCard />
+        <>
+        <div className="render-background">
+            <div className="render-filter-background">
+                <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px"/>
+                <FinalRenderCard />
+            </div>
         </div>
-        </div>
+        </>
     )
 }

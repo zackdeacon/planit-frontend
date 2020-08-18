@@ -66,6 +66,7 @@ function Maps() {
   
     
     return(
+        <>
         <div className="cart-background">
         <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px"/>
         {/* form with controlled inputs */}
@@ -75,6 +76,7 @@ function Maps() {
             handleSave={handleFormSubmit}
         />
         </div>
+       </>
     )
     
 
