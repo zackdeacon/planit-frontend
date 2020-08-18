@@ -11,6 +11,8 @@ export default function SuggestionCard(props) {
     visible: false 
   })
 
+  console.log('props', props)
+
   const switchModal = () => {
     setModal({
       visible: !modal.visible,
@@ -22,7 +24,7 @@ export default function SuggestionCard(props) {
       <Col xl={{span: 6}} md={{ span: 12 }} >
         
         <Card className="sug-card-container" type="inner"
-        title={props.title.toUpperCase()} extra={
+        title={props.suggestions.title.toUpperCase()} extra={
             // adding up and downvote buttons
             <>
             <Tooltip>
@@ -35,9 +37,9 @@ export default function SuggestionCard(props) {
           }
         style={{ margin: "10px" }} headStyle={{ backgroundColor: "#987b55" }} 
           >
-          <a href={props.link} target="_blank" rel="noopener noreferrer" style={{color: "#6c8e98"}}>Link to Suggestion</a>
-          <p style={{marginTop:"14px", marginBottom:"13px"}}><strong style={{color:"#3b5e66"}}>Cost Est:</strong> ${props.cost}</p>
-          <p className="description-text"><strong style={{color:"#3b5e66"}}>Description:</strong> {props.description}</p>
+          <a href={props.suggestions.link} target="_blank" rel="noopener noreferrer" style={{color: "#6c8e98"}}>Link to Suggestion</a>
+          <p style={{marginTop:"14px", marginBottom:"13px"}}><strong style={{color:"#3b5e66"}}>Cost Est:</strong> $ {props.suggestions.cost}</p>
+          <p className="description-text"><strong style={{color:"#3b5e66"}}>Description:</strong> {props.suggestions.description}</p>
           <Row justify="center">
             <button onClick={switchModal} style={{color: "#3b5e66"}}>Read More</button >
           </Row>
