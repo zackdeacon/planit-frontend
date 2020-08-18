@@ -48,7 +48,7 @@ function Maps() {
             setFormObject({
                 name: "",
                 creator: "",
-                guests: "",
+                guests: [],
                 startDate: "",
                 endDate: "",
                 destinations: "" 
@@ -66,7 +66,7 @@ function Maps() {
   
     
     return(
-        <>
+        <div className="cart-background">
         <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px"/>
         {/* form with controlled inputs */}
         <MapCreateForm
@@ -74,7 +74,7 @@ function Maps() {
             handleChange={handleInputChange}
             handleSave={handleFormSubmit}
         />
-        </>
+        </div>
     )
     
 

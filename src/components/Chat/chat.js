@@ -1,58 +1,59 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Row, Col } from "antd";
 import styled from "styled-components";
 import io from "socket.io-client";
 import API from "../../utils/API"
+import "./chat.css"
 
 //Components and styling taken from example of Youtube
 
-const Page = styled.div`
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  align-items: center;
-  background-color: #46516e;
-  flex-direction: column;
-`;
+// const Page = styled.div`
+//   display: flex;
+//   height: 100%
+//   width: 100%
+//   align-items: center;
+//   background-color: #46516e;
+//   flex-direction: column;
+// `;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 500px;
-  max-height: 500px;
-  overflow: auto;
-  width: 400px;
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  padding-bottom: 10px;
-  margin-top: 25px;
-`;
+// const Container = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   height: 100%;
+//   overflow: auto;
+//   width: 400px;
+//   border: 1px solid lightgray;
+//   border-radius: 10px;
+//   padding-bottom: 10px;
+//   margin-top: 25px;
+// `;
 
-const TextArea = styled.textarea`
-  width: 98%;
-  height: 100px;
-  border-radius: 10px;
-  margin-top: 10px;
-  padding-left: 10px;
-  padding-top: 10px;
-  font-size: 17px;
-  background-color: transparent;
-  border: 1px solid lightgray;
-  outline: none;
-  color: lightgray;
-  letter-spacing: 1px;
-  line-height: 20px;
-  ::placeholder {
-    color: lightgray;
-  }
-`;
+// const TextArea = styled.textarea`
+//   width: 98%;
+//   height: 100px;
+//   border-radius: 10px;
+//   margin-top: 10px;
+//   padding-left: 10px;
+//   padding-top: 10px;
+//   font-size: 17px;
+//   background-color: transparent;
+//   border: 1px solid lightgray;
+//   outline: none;
+//   color: lightgray;
+//   letter-spacing: 1px;
+//   line-height: 20px;
+//   ::placeholder {
+//     color: lightgray;
+//   }
+// `;
 
 const Button = styled.button`
-  background-color: pink;
+  background-color: #576d65;
   width: 100%;
   border: none;
   height: 50px;
   border-radius: 10px;
-  color: #46516e;
+  color: white;
   font-size: 17px;
 `;
 
@@ -85,7 +86,7 @@ const PartnerRow = styled(MyRow)`
 const PartnerMessage = styled.div`
   width: 45%;
   background-color: transparent;
-  color: lightgray;
+  color: White;
   border: 1px solid lightgray;
   padding: 10px;
   margin-left: 5px;
@@ -98,9 +99,7 @@ const PartnerMessage = styled.div`
 
 
 //Code to keep below this line 
-
-
-const TEST_MAP_ID = "5f3b4c530d72e61ca0b8018c";
+const TEST_MAP_ID = "5f3b524e62d7267aedb92826";
 const TEST_USER_ID = "5f383fd888b8063738330863";
 
 const Chat = () => {
@@ -150,40 +149,76 @@ const Chat = () => {
   function handleChange(e) {
     setMessage(e.target.value);
   }
-
-
   //Code to keep above this line 
 
   return (
-    //Components and styling taken from example of Youtube
-    <Page>
-      <Container>
-        {messages.map((message, index) => {
-          if (message.id === yourID) {
+    <>
+    <div className="chat-container" style={{display:"flex", justifyContent:"center"}}>
+      <Row justify= "center">
+        <div className="chat-title">Chat Room</div>
+      </Row>
+
+      <Row justify="center">
+        <div className="chat-box">
+          {messages.map((message, index) => {
+            if (message.id === yourID) {
+              return (
+                <MyRow key={index}>
+                  <MyMessage>
+                    {message.message}
+                    {/* {message.name} */}
+                  </MyMessage>
+                </MyRow>
+              )
+            }
             return (
-              <MyRow key={index}>
-                <MyMessage>
+              <PartnerRow key={index}>
+                <PartnerMessage>
                   {message.message}
                   {/* {message.name} */}
-                </MyMessage>
-              </MyRow>
+                </PartnerMessage>
+              </PartnerRow>
             )
-          }
-          return (
-            <PartnerRow key={index}>
-              <PartnerMessage>
-                {message.message}
-                {/* {message.name} */}
-              </PartnerMessage>
-            </PartnerRow>
-          )
-        })}
-      </Container>
-      <Form onSubmit={sendMessage}>
-        <TextArea value={message} onChange={handleChange} placeholder="Say something..." />
-        <Button>Send</Button>
-      </Form>
-    </Page>
+          })}
+        </div>
+
+        <Form onSubmit={sendMessage}>
+          <textArea className="textArea" value={message} onChange={handleChange} placeholder="Say something..." />
+          <Button>Send</Button>
+        </Form>
+      </Row>
+    </div>
+    </>
+
+    //Components and styling taken from example of Youtube
+    // <Page>
+      // <Container>
+      //   {messages.map((message, index) => {
+      //     if (message.id === yourID) {
+      //       return (
+      //         <MyRow key={index}>
+      //           <MyMessage>
+      //             {message.message}
+      //             {/* {message.name} */}
+      //           </MyMessage>
+      //         </MyRow>
+      //       )
+      //     }
+      //     return (
+      //       <PartnerRow key={index}>
+      //         <PartnerMessage>
+      //           {message.message}
+      //           {/* {message.name} */}
+      //         </PartnerMessage>
+      //       </PartnerRow>
+      //     )
+      //   })}
+      // </Container>
+      // <Form onSubmit={sendMessage}>
+      //   <TextArea value={message} onChange={handleChange} placeholder="Say something..." />
+      //   <Button>Send</Button>
+      // </Form>
+    // </Page>
     //Components and styling taken from example of Youtube
 
   )
