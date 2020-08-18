@@ -100,7 +100,7 @@ const PartnerMessage = styled.div`
 //Code to keep below this line 
 
 
-const TEST_MAP_ID = "5f384a5519ff8c4b3065e025";
+const TEST_MAP_ID = "5f3b4c530d72e61ca0b8018c";
 const TEST_USER_ID = "5f383fd888b8063738330863";
 
 const Chat = () => {
