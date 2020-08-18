@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Row } from "antd";
+import { Row, Button } from "antd";
 import styled from "styled-components";
 import io from "socket.io-client";
 import API from "../../utils/API"
@@ -44,15 +44,6 @@ letter-spacing: 1px;
 line-height: 20px;
 `;
 
-const Button = styled.button`
-  background-color: #576d65;
-  width: 100%;
-  border: none;
-  height: 50px;
-  border-radius: 10px;
-  color: white;
-  font-size: 17px;
-`;
 
 const Form = styled.form`
   width: 400px;
@@ -180,8 +171,10 @@ const Chat = () => {
         </div>
 
         <Form onSubmit={sendMessage}>
-          <TextArea className="textArea" value={message} onChange={handleChange} placeholder="Say something..." />
-          <Button>Send</Button>
+          <TextArea className="text-area" value={message} onChange={handleChange} placeholder="Say something..." />
+          <Row justify="center">
+            <Button className="send-btn">Send</Button>
+          </Row> 
         </Form>
       </Row>
     </div>

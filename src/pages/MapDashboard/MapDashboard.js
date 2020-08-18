@@ -14,7 +14,7 @@ export default function MapDashboard() {
 
     useEffect(() => {
         // API.getMapById(req.params.id)
-        API.getMapById("5f3c16253264400619410260").then(res =>{
+        API.getMapById("5f3c3f9d77f52a117a1b908a").then(res =>{
             // console.log(res);
             const categoriesArr = res.data.suggestionCategories.map(item => {
                 return item
@@ -26,7 +26,7 @@ export default function MapDashboard() {
 
     useEffect(()=>{
         // API.getSuggestionForMap().then(res =>{
-            
+
         // })
     })
 

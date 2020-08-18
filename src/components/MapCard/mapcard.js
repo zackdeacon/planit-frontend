@@ -1,6 +1,6 @@
 import React from 'react'
 import SuggestionCard from "../SuggestionCard/SuggestionCard"
-import { Tabs, Row} from 'antd';
+import { Tabs, Button, Row, Col} from 'antd';
 import "./mapcard.css"
 
 const { TabPane } = Tabs;
@@ -34,6 +34,9 @@ export default function MapCard(props) {
           <Tabs type="card">
             {tabsArr.map(item => {return item})}
           </Tabs>
+          <Row className="add-sug-row" justify="center">
+              <Button className="add-sug-btn" href="/addsuggestion">Add Suggestion</Button>
+          </Row>
         </div>
       </div>
     </>

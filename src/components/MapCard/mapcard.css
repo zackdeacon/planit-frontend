@@ -21,7 +21,7 @@
   }
   .card-container > .ant-tabs-card .ant-tabs-content > .ant-tabs-tabpane {
     padding: 16px;
-    height: 70vh;
+    height: 55vh;
   }
   .card-container > .ant-tabs-card > .ant-tabs-nav::before {
     display: none;
@@ -74,4 +74,28 @@
   .ant-tabs-tab-btn{
     font-weight: bolder;
     font-size: large;
+  }
+
+  .add-sug-row {
+    padding-top: 20px;
+    width: 100%;
+  }
+
+  .add-sug-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #576d65;
+    width: 90%;
+    border: none;
+    height: 50px;
+    border-radius: 10px;
+    color: white;
+    font-size: 17px;
+    padding-bottom: 0;
+  }
+
+  .add-sug-btn:hover{
+    background-color: #4d534a;
+    color: white
   }
