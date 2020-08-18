@@ -3,15 +3,8 @@
     position: relative;
     height: 100vh;
     overflow: hidden;
-    /* background-image: url("../../images/charlotte-noelle-unsplash.jpg");
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: cover;  */
 }
-/* .vid {
-    height: 100vh;
-} */
+
 video.vid { 
     position: fixed;
     top: 50%;
@@ -22,7 +15,7 @@ video.vid {
     height: auto;
     z-index: -100;
     transform: translate(-50%, -50%);
-  }
+}
   
 /* Darkening Filter/Content Container Div */
 .filter-div {
