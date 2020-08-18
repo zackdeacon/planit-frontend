@@ -1,0 +1,27 @@
+.site-card-wrapper  {
+    padding-top: 20%;
+}
+
+.background-wrapper {
+    background-color: rgba(255, 255, 255, 0.822);
+}
+.ant-card-head {
+    display: flex;
+    justify-content: center;
+    /* background-color:rgb(152, 123, 85); */
+    background-color: #6c8e98;
+}
+
+.ant-card-head-title {
+color: black !important;
+}
+
+.card-column{
+    display: flex;
+    justify-content: center;
+}
+
+.card-content {
+    display: flex;
+    justify-content: left;
+}
