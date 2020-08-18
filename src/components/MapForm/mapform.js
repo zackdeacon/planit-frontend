@@ -23,6 +23,7 @@ const formItemLayout = {
 
 function MapCreateForm(props){
     return(
+       
         <div className="cart-background">
         <div className="cart-buffer"></div>
         <Row justify="center">
@@ -161,7 +162,8 @@ function MapCreateForm(props){
             </Form.Item>
         </Form>
         </Row>
-        </div>
+         </div>
+   
     )
 }
 
