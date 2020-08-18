@@ -9,22 +9,20 @@ import Entertainment from "../FinalRenderColumns/Entertainment"
 
 export default function FinalRenderCard(props) {
 
-  return (
-    <>
-<div className="mapcard-top-buffer">
-<Row justify= "center">
-  <div className="dash-title">Bachelor Trip: New Orleans</div>
-</Row>
 
-<div className="transparentBackground">
-<Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-<Accomodations/>
-<Flights/>
-<Food/>
-<Entertainment/>
-</Row>
-</div>
-</div>
+
+return (
+    <>
+      <div className="mapcard-top-buffer">
+      <div className="transparentBackground">
+        <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+          <Accomodations/>
+          <Flights/>
+          <Food/>
+          <Entertainment/>
+        </Row>
+      </div>
+      </div>
     </>
   )
 }
