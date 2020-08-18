@@ -23,7 +23,7 @@ const formItemLayout = {
 
 function MapCreateForm(props){
     return(
-        <div className="cart-background">
+        <div>
         <div className="cart-buffer"></div>
         <Row justify="center">
         <Form
@@ -43,18 +43,6 @@ function MapCreateForm(props){
                 value={props.formData.name}
                 onChange={props.handleChange} 
                 placeholder="Name Your Trip"
-                />
-            </Form.Item>
-            
-            <Form.Item
-                
-                rules={[{ required: true, message: 'Please input your name!'}]}>
-                <Input 
-                name="creator"
-                type="text"
-                value={props.formData.creator}
-                onChange={props.handleChange} 
-                placeholder="Trip Creator's Name"
                 />
             </Form.Item>
 
