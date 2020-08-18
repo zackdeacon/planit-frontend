@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
+import {BrowserRouter as Router,Route,Redirect,Switch, useHistory} from "react-router-dom";
 import { Row, Form, Input, Button, } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import "./loginform.css"
 import API from '../../utils/API';
+import "../../pages/User/User"
 
 export default function LoginForm() {
     const [newUser, setNewUser] = useState({
@@ -20,6 +22,8 @@ export default function LoginForm() {
       
     })
 
+    const history = useHistory()
+
     function handleInputLogin (event){
         const {name,value}=event.target;
         setFormObjectLogin({...formObjectLogin, [name]:value})
@@ -36,6 +40,7 @@ export default function LoginForm() {
                 password: ""
             })
         })
+        history.push("/user")
     };
 
     //HANDLE NEW USER 
@@ -54,12 +59,15 @@ export default function LoginForm() {
                 regForm:"register-form hide"
             })
         }
+        
     };
     
     //SIGNUP FUNCTIONALITY
     const [formObjectSignup, setFormObjectSignup] = useState({
-        firstName: "",
-        lastName: "",
+        name:{
+            first: "",
+            last: ""
+        },
         email: "",
         username: "",
         password: "",
@@ -68,7 +76,14 @@ export default function LoginForm() {
 
     function handleInputSignup (event){
         const {name,value}=event.target;
-        setFormObjectSignup({...formObjectSignup, [name]:value})
+        if(name==="first"|| name==="last"){
+            let nameCopy = {first:formObjectSignup.name.first, last: formObjectSignup.name.last}
+            nameCopy[name]=value;
+            formObjectSignup.name = nameCopy;
+        } else{
+            setFormObjectSignup({...formObjectSignup, [name]:value})
+
+        }
     }
     
     function handleSubmitSignup(e){
@@ -76,14 +91,17 @@ export default function LoginForm() {
         API.signup(formObjectSignup).then(data=>{
             console.log("you are a new user", data)
             setFormObjectSignup({
-                firstName: "",
-                lastName: "",
+                name:{
+                    first: "",
+                    last: ""
+                },
                 email: "",
                 username: "",
                 password: "",
                 confirm: ""
             })
         })
+        history.push("/")
     }
         
     const onFinish = values => {
@@ -130,11 +148,11 @@ export default function LoginForm() {
                 />
             </Form.Item>
             <Form.Item>
-                <Button onClick={handleSubmitLogin} type="primary" htmlType="submit" className="form-button">
+                <Button  onClick={handleSubmitLogin} type="primary" htmlType="submit" className="form-button">
                 Log in
                 </Button>
                 <Row justify="center">
-                <a href=" " onClick={handleNewUser}>New User Sign Up</a>
+                <a href=" " onClick={handleNewUser} >New User Sign Up</a>
                 </Row>
             </Form.Item>
         </Form>
@@ -151,7 +169,7 @@ export default function LoginForm() {
         
             <Form.Item
                 className="first-name"
-                name="firstName"
+                name="first"
                 label="First Name"
                 rules={[
                     {
@@ -163,14 +181,14 @@ export default function LoginForm() {
                 <Input 
                     value={formObjectSignup.firstName}
                     onChange={handleInputSignup}
-                    name="firstName"
+                    name="first"
                     type="text"
                     />
             </Form.Item>
 
             <Form.Item
                 className="last-name"
-                name="lastName"
+                name="last"
                 label="Last Name"
                 rules={[
                     {
@@ -182,7 +200,7 @@ export default function LoginForm() {
                 <Input 
                 value={formObjectSignup.lastName}
                 onChange={handleInputSignup}
-                name="lastName"
+                name="last"
                 type="text"
                 />
             </Form.Item>
