@@ -9,49 +9,68 @@ function Maps() {
     const [maps, setMaps] = useState([])
 
     //initialize form object state
-    const [formObject, setFormObject]=useState({
+    const [formObject, setFormObject] = useState({
         name: "",
-        creator: "",
-        guests: "",
+        guests: [],
         startDate: "",
         endDate: "",
-        destinations:""
+        destinations: [],
+        destinationsDisplay: "",
     })
     //load all maps, store them with setMaps
-    useEffect(()=>{
+    useEffect(() => {
         loadMaps()
         console.log(formObject)
     }, [])
 
     //load all maps and sets them to maps
-    function loadMaps(){
+    function loadMaps() {
         API.getAllMaps()
-        .then(res=>
-            setMaps(res.data)
-        )
-        .catch(err=>console.log(err))
+            .then(res =>
+                setMaps(res.data)
+            )
+            .catch(err => console.log(err))
     }
 
     //hanldeInputChange function to update objectForm State
-    function handleInputChange(event){
-        const {name,value}=event.target;
-        setFormObject({...formObject,[name]:value})
-        console.log("input change function", event.target)
+    function handleInputChange(event) {
+        const { name, value, dataset } = event.target;
+        if (name === "name" || name === "startDate" || name === "endDate") {
+            setFormObject({ ...formObject, [name]: value });
+        } else if (name === "guestEmail") {
+            const guests = [...formObject.guests];
+            guests[dataset.index] = value;
+            setFormObject({ ...formObject, guests: guests });
+        } else if (name === "destinations") {
+            const destinations = value.split(",").map(dest => dest.trim());
+            setFormObject({
+                ...formObject,
+                destinations: destinations,
+                destinationsDisplay: value,
+            });
+        }
+    }
+
+    function removeGuest(index) {
+        const guests = [...formObject.guests];
+        guests.splice(index, 1);
+        setFormObject({ ...formObject, guests: guests });
     }
 
     //handleFormSubmit function to add formObject to Database
-    function handleFormSubmit(event){
+    function handleFormSubmit(event) {
         // event.preventDefault();
-        API.postNewMap(formObject).then(data=>{
+        API.postNewMap(formObject).then(data => {
             console.log("here is your new map", data)
             loadMaps();
             setFormObject({
                 name: "",
                 creator: "",
-                guests: "",
+                guests: [],
                 startDate: "",
                 endDate: "",
-                destinations: "" 
+                destinations: [],
+                destinationsDisplay: "",
             })
         })
         console.log("submit function", event.target)
@@ -63,20 +82,20 @@ function Maps() {
     //         loadMaps();
     //     })
     // }
-  
-    
-    return(
+
+    return (
         <>
-        <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px"/>
-        {/* form with controlled inputs */}
-        <MapCreateForm
-            formData={formObject}
-            handleChange={handleInputChange}
-            handleSave={handleFormSubmit}
-        />
+            <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
+            {/* form with controlled inputs */}
+            <MapCreateForm
+                formData={formObject}
+                handleChange={handleInputChange}
+                handleSave={handleFormSubmit}
+                removeGuest={removeGuest}
+            />
         </>
     )
-    
+
 
 }
 
