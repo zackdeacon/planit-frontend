@@ -278,7 +278,7 @@ export default function LoginForm() {
             Register
             </Button>
             <Row justify="center">
-                <a href=" " >Already A User</a>
+                <a href=" " onClick={handleNewUser} >Already A User</a>
             </Row>
         </Form>
 

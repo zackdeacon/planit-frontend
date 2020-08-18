@@ -71,3 +71,7 @@
           }
   }
 
+  .ant-tabs-tab-btn{
+    font-weight: bolder;
+    font-size: large;
+  }

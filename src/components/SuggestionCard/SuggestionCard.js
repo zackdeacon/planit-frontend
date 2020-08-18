@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Row, Col, Card, Button, Tooltip, Modal, Progress, Statistic} from 'antd'
 import { LikeTwoTone, DislikeTwoTone, ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons"
 // import DashMod from '../../components/DashModule/dashmod'
@@ -35,7 +35,7 @@ export default function SuggestionCard(props) {
           }
         style={{ margin: "10px" }} headStyle={{ backgroundColor: "#987b55" }} 
           >
-          <a href={props.link} target="_blank" style={{color: "#6c8e98"}}>Link to Suggestion</a>
+          <a href={props.link} target="_blank" rel="noopener noreferrer" style={{color: "#6c8e98"}}>Link to Suggestion</a>
           <p style={{marginTop:"14px", marginBottom:"13px"}}><strong style={{color:"#3b5e66"}}>Cost Est:</strong> ${props.cost}</p>
           <p className="description-text"><strong style={{color:"#3b5e66"}}>Description:</strong> {props.description}</p>
           <Row justify="center">
@@ -65,7 +65,7 @@ export default function SuggestionCard(props) {
                 }
                 style={{ margin: "10px" }} headStyle={{ backgroundColor: "#987b55" }} 
                 >
-                <a href={props.link} target="_blank" style={{color: "#6c8e98"}}>Link to Suggestion</a>
+                <a href={props.link} target="_blank" rel="noopener noreferrer" style={{color: "#6c8e98"}}>Link to Suggestion</a>
                 <p style={{marginTop:"14px", marginBottom:"13px"}}><strong style={{color:"#3b5e66"}}>Cost Est:</strong> ${props.cost}</p>
                 <p><strong style={{color:"#3b5e66"}}>Description:</strong> {props.description}</p>
             </Card>
