@@ -83,7 +83,7 @@ export default {
   },
   postNewChat: function (chatData) {
     // chatData: { userId, mapId, message }
-    return axios.post(`${urlPrefix}/api/chats/new`, chatData);
+    return axios.post(`${urlPrefix}/api/chats/new`, chatData, {withCredentials:true});
   },
   deleteChat: function (chat) {
     // chat: { id }
