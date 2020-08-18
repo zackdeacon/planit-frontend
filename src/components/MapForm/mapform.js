@@ -21,6 +21,7 @@ const formItemLayoutWithOutLabel = {
     },
 };
 
+
 function MapCreateForm(props) {
     return (
         <div className="cart-background">
@@ -34,8 +35,7 @@ function MapCreateForm(props) {
                     <div className="cart-title">THE CARTOGRAPHER</div>
                     <div className="form-subtitle">Create Your Planning Map</div>
 
-                    <Form.Item
-                        rules={[{ required: true, message: 'Please input your trip name!' }]}>
+                    <Form.Item rules={[{ required: true, message: 'Please input your trip name!' }]}>
                         <Input
                             name="name"
                             type="text"
