@@ -1,29 +1,5 @@
-/* Dashboard/Map title */
-.dash-title{
-  color:white;
-  text-shadow: 2px 2px 5px black;
-  font-size: 40px;
-  font-weight: bold;
-  margin: 30px 0px 30px 0px;
-  text-align: center;
-}
-
-/* Wrapper of Entire Dashboard */
-.dash-wrapper{
-  overflow: scroll;
-}
-
-/* Buffer to Push down Dashboard Content */
-.mapcard-top-buffer{
-  padding-top: 100px;
-}
 
 /* STYLING FOR TABS COMPONENTS */
-/* spacing and sizing of 'tabs' container */
-.card-container{
-  padding-top: 10px;
-  width: 60vw;
-}
 
   /* text color of tab button */
  .ant-tabs-tab-btn{
@@ -33,7 +9,7 @@
 
   /* adds border radius to entire tab container */
   .ant-tabs-tabpane{
-      border-radius: 0px 10px 10px 10px;
+    border-radius: 0px 10px 10px 10px;
   }
 
   /* Below is ant-design copy pasta css*/
@@ -45,7 +21,7 @@
   }
   .card-container > .ant-tabs-card .ant-tabs-content > .ant-tabs-tabpane {
     padding: 16px;
-    height: 80vh;
+    height: 70vh;
   }
   .card-container > .ant-tabs-card > .ant-tabs-nav::before {
     display: none;
@@ -62,7 +38,7 @@
   }
 
   /* My media queries */
-  @media only screen and (max-width: 750px) {
+  @media only screen and (max-width: 574px) {
     .card-container{
         padding-top: 10px;
         width: 100vw;
@@ -95,12 +71,3 @@
           }
   }
 
-/* Module Hide/Show CSS */
-.showMod{
-  display: block;
-  /* transition: all .5s ease-in-out; */
-}
-.hideMod{
-  display: none;
-  /* transition: all .5s ease-in-out; */
-}
