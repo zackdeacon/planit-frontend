@@ -47,14 +47,14 @@ export default function SuggestionCard(props) {
       </Col>
 
       <Modal
-          title={props.title.toUpperCase()}
+          title={props.suggestions.title.toUpperCase()}
           visible={modal.visible}
           onOk={switchModal}
           onCancel={switchModal}
         >
           <Row justify="center">
             <Card className="modsug-card-container" type="inner"
-                title={props.title.toUpperCase()} extra={
+                title={props.suggestions.title.toUpperCase()} extra={
                     // adding up and downvote buttons
                     <>
                     <Tooltip>
@@ -67,9 +67,9 @@ export default function SuggestionCard(props) {
                 }
                 style={{ margin: "10px" }} headStyle={{ backgroundColor: "#987b55" }} 
                 >
-                <a href={props.link} target="_blank" rel="noopener noreferrer" style={{color: "#6c8e98"}}>Link to Suggestion</a>
-                <p style={{marginTop:"14px", marginBottom:"13px"}}><strong style={{color:"#3b5e66"}}>Cost Est:</strong> ${props.cost}</p>
-                <p><strong style={{color:"#3b5e66"}}>Description:</strong> {props.description}</p>
+                <a href={props.suggestions.link} target="_blank" rel="noopener noreferrer" style={{color: "#6c8e98"}}>Link to Suggestion</a>
+                <p style={{marginTop:"14px", marginBottom:"13px"}}><strong style={{color:"#3b5e66"}}>Cost Est:</strong> ${props.suggestions.cost}</p>
+                <p><strong style={{color:"#3b5e66"}}>Description:</strong> {props.suggestions.description}</p>
             </Card>
             </Row>
             <hr/>
