@@ -10,8 +10,6 @@ function Suggestions() {
 
     let data = useLocation()
     console.log("this is data", data)
-    
-    const history = useHistory()
 
     const {id} = useParams()
     const subSugBtn = `/dashboard/${id}`
@@ -21,6 +19,7 @@ function Suggestions() {
 
     //initialize form object state
     const [formObject, setFormObject]=useState({
+        mapId:id,
         title: "",
         category: "",
         description: "",
@@ -55,16 +54,17 @@ function Suggestions() {
         API.postNewSuggestion(formObject).then(data=>{
             console.log("here is your new suggestion", data)
             loadSuggestions();
-            setFormObject({
+            setFormObject({...formObject,
                 title: "",
                 category: "",
                 description: "",
                 cost: "",
                 link: "",
             })
+            
+        }).then ((data) => {
             history.push(subSugBtn)
         })
-        console.log("submit function", event.target)
     }
   
     
