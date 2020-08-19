@@ -35,6 +35,7 @@ export default function Navbar(props) {
     }
 
     const logOut = () => {
+        window.location.reload(false)
         API.logout().then(req => {
             console.log("You have been launched out of PLANiT!");
         })

@@ -40,7 +40,7 @@ export default function LoginForm() {
                 password: ""
             })
         })
-        history.push("/user")
+        // history.push("/one/id/:userId")
     };
 
     //HANDLE NEW USER 
