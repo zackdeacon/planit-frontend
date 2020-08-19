@@ -38,8 +38,6 @@ export default function SuggestionCard(props) {
     visible: false 
   })
 
-  console.log('props', props)
-
   const switchModal = () => {
     setModal({
       visible: !modal.visible,
