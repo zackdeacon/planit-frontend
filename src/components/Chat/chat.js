@@ -29,7 +29,7 @@ import "./chat.css"
 // `;
 
 const TextArea = styled.textarea`
-width: 100%;
+width: 90%;
 height: 100px;
 border-radius: 10px;
 margin-top: 10px;
@@ -171,7 +171,9 @@ const Chat = () => {
         </div>
 
         <Form onSubmit={sendMessage}>
-          <TextArea className="text-area" value={message} onChange={handleChange} placeholder="Say something..." />
+          <Row justify="center">
+            <TextArea className="text-area" value={message} onChange={handleChange} placeholder="Say something..." />
+          </Row> 
           <Row justify="center">
             <Button className="send-btn">Send</Button>
           </Row> 

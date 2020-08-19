@@ -10,9 +10,9 @@
 }
 
 .chat-container{
-    margin-top: 3vh;
+    margin-top: 6vh;
     display: flex;
-    height: 70vh;
+    height: 50vh;
     width: 100%;
     background: rgba(255, 255, 255, 0.287);
     flex-direction: column;
@@ -33,6 +33,10 @@
 }
 
 
+.text-area{
+width: 90%;
+}
+
 .text-area::placeholder{
 color: white;
 }
@@ -46,6 +50,7 @@ color: white;
     background-color: #576d65;
   width: 60%;
   border: none;
+  margin-top: 10px;
   height: 50px;
   border-radius: 10px;
   color: white;

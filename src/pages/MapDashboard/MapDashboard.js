@@ -15,6 +15,7 @@ export default function MapDashboard(props) {
     const [suggestions, setSuggestions] = useState([])
 
     const {id} = useParams()
+
     useEffect(() => {
         // API.getMapById(req.params.id)
         API.getMapById(id).then(res =>{
@@ -31,39 +32,40 @@ export default function MapDashboard(props) {
         }).catch(err => console.log('err', err))
     }, [])
 
-    // useEffect(()=>{
-    //     API.getSuggestionsForMap(id).then(res =>{
-    //         // console.log('res', res.data)
-    //         const suggestionArr = res.data.map(suggestion => {
-    //             return suggestion
-    //         })
-    //         setSuggestions(suggestionArr)
-    //         console.log(suggestionArr);
-    //     })
-    //     .catch(err => console.log('err', err))
-    // }, [])
+    useEffect(()=>{
+        API.getSuggestionsForMap(id).then(res =>{
+            // console.log('res', res.data)
+            const suggestionArr = res.data.map(suggestion => {
+                return suggestion
+            })
+            setSuggestions(suggestionArr)
+            console.log(suggestionArr);
+        })
+        .catch(err => console.log('err', err))
+    }, [])
 
 
     return (
         <>
             <div className="dash-background">
-                <div className="dash-filter-background"></div>
-                <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px"/>
-                
-                <Row justify= "center">
-                    <div className="dash-title">{board.name}</div>
-                </Row>
-                
-                <div className="top-buffer">
-                    <Row justify="space-around">
-                        <Col lg={{span:14}} sm={{span:13}} xs={{span:24}}>
-                            <MapCard categories={categories}/>
-                        </Col>
-                        <div className="mid-col-buffer"></div>
-                        <Col lg={{span:9}} sm={{span:10}} xs={{span:24}}>
-                            <Chat />
-                        </Col>
+                <div className="dash-filter-background">
+                    <NavBar logo="./assets/logos/logotxt.png"  width="80px" left="-40px" top="10px"/>
+                    
+                    <Row justify= "center">
+                        <div className="dash-title">{board.name}</div>
                     </Row>
+                    
+                    <div className="top-buffer">
+                        <Row justify="space-around">
+                            <Col lg={{span:14}} sm={{span:13}} xs={{span:24}}>
+                                <MapCard categories={categories}/>
+                            </Col>
+                            <div className="mid-col-buffer"></div>
+                            <Col lg={{span:9}} sm={{span:10}} xs={{span:24}}>
+                                <Chat />
+                            </Col>
+                        </Row>
+                    </div>
                 </div>
             </div>
             
