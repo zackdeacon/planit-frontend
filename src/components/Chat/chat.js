@@ -141,75 +141,75 @@ const Chat = () => {
 
   return (
     <>
-    <div className="chat-container" style={{display:"flex", justifyContent:"center"}}>
-      <Row justify= "center">
-        <div className="chat-title">Chat Room</div>
-      </Row>
+      <div className="chat-container" style={{ display: "flex", justifyContent: "center" }}>
+        <Row justify="center">
+          <div className="chat-title">Chat Room</div>
+        </Row>
 
-      <Row justify="center">
-        <div className="chat-box">
-          {messages.map((message, index) => {
-            if (message.id === yourID) {
+        <Row justify="center">
+          <div className="chat-box">
+            {messages.map((message, index) => {
+              if (message.id === yourID) {
+                return (
+                  <MyRow key={index}>
+                    <MyMessage>
+                      {message.message}
+                      {/* {message.name} */}
+                    </MyMessage>
+                  </MyRow>
+                )
+              }
               return (
-                <MyRow key={index}>
-                  <MyMessage>
+                <PartnerRow key={index}>
+                  <PartnerMessage>
                     {message.message}
                     {/* {message.name} */}
-                  </MyMessage>
-                </MyRow>
+                  </PartnerMessage>
+                </PartnerRow>
               )
-            }
-            return (
-              <PartnerRow key={index}>
-                <PartnerMessage>
-                  {message.message}
-                  {/* {message.name} */}
-                </PartnerMessage>
-              </PartnerRow>
-            )
-          })}
-        </div>
+            })}
+          </div>
 
-        <Form onSubmit={sendMessage}>
-          <Row justify="center">
-            <TextArea className="text-area" value={message} onChange={handleChange} placeholder="Say something..." />
-          </Row> 
-          <Row justify="center">
-            <Button className="send-btn">Send</Button>
-          </Row> 
-        </Form>
-      </Row>
-    </div>
+          <Form onSubmit={sendMessage}>
+            <Row justify="center">
+              <TextArea className="text-area" value={message} onChange={handleChange} placeholder="Say something..." />
+            </Row>
+            <Row justify="center">
+              <Button className="send-btn">Send</Button>
+            </Row>
+          </Form>
+        </Row>
+      </div>
     </>
 
     //Components and styling taken from example of Youtube
     // <Page>
-      // <Container>
-      //   {messages.map((message, index) => {
-      //     if (message.id === yourID) {
-      //       return (
-      //         <MyRow key={index}>
-      //           <MyMessage>
-      //             {message.message}
-      //             {/* {message.name} */}
-      //           </MyMessage>
-      //         </MyRow>
-      //       )
-      //     }
-      //     return (
-      //       <PartnerRow key={index}>
-      //         <PartnerMessage>
-      //           {message.message}
-      //           {/* {message.name} */}
-      //         </PartnerMessage>
-      //       </PartnerRow>
-      //     )
-      //   })}
-      // </Container>
-      // <Form onSubmit={sendMessage}>
-      //   <TextArea value={message} onChange={handleChange} placeholder="Say something..." />
-      //   <Button>Send</Button>
-      // </Form>
+    // <Container>
+    //   {messages.map((message, index) => {
+    //     if (message.id === yourID) {
+    //       return (
+    //         <MyRow key={index}>
+    //           <MyMessage>
+    //             {message.message}
+    //             {/* {message.name} */}
+    //           </MyMessage>
+    //         </MyRow>
+    //       )
+    //     }
+    //     return (
+    //       <PartnerRow key={index}>
+    //         <PartnerMessage>
+    //           {message.message}
+    //           {/* {message.name} */}
+    //         </PartnerMessage>
+    //       </PartnerRow>
+    //     )
+    //   })}
+    // </Container>
+    // <Form onSubmit={sendMessage}>
+    //   <TextArea value={message} onChange={handleChange} placeholder="Say something..." />
+    //   <Button>Send</Button>
+    // </Form>
     // </Page>
     //Components and styling taken from example of Youtube
 
