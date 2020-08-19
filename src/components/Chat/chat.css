@@ -51,3 +51,10 @@ overflow: scroll;
 .textArea::placeholder{
 color: white;
 }
+
+.userName {
+    color: #c0c4c4;
+    font-size: xx-small;
+    display: flex;
+    justify-content: flex-end;
+}
