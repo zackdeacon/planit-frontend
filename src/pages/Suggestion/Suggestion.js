@@ -31,12 +31,8 @@ function Suggestions() {
         console.log("input change function", event.target)
     }
 
-    function handleInputChangeSelect(event){
-        console.log(event)
-        // const {name,value} = event;
-        // const {name,value}=event.target;
-        // setFormObject({...formObject,[name]:value})
-        console.log("input change function", event.target)
+    function handleInputChangeSelect(value){
+        setFormObject({...formObject,category:(value)})
     }
 
     //handleFormSubmit function to add formObject to Database
