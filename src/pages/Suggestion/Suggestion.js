@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {useParams, useHistory} from "react-router-dom";
+import {useParams, useHistory, useLocation} from "react-router-dom"
 import API from "../../utils/API";
 import NavBar from "../../components/NavBar/navbar";
 import "./suggestion.css"
 import SuggestionCreateForm from "../../components/SuggestionForm/suggestionForm"
 
 function Suggestions() {
+    const history = useHistory()
+
+    let data = useLocation()
+    console.log("this is data", data)
     
     const history = useHistory()
 
@@ -20,7 +24,8 @@ function Suggestions() {
         title: "",
         category: "",
         description: "",
-        destinations:""
+        cost: "",
+        link: ""
     })
     //load all maps, store them with setMaps
     useEffect(()=>{
@@ -48,16 +53,17 @@ function Suggestions() {
     function handleFormSubmit(event){
         // event.preventDefault();
         API.postNewSuggestion(formObject).then(data=>{
-            console.log("here is your new map", data)
+            console.log("here is your new suggestion", data)
             loadSuggestions();
             setFormObject({
                 title: "",
                 category: "",
                 description: "",
-                destinations: "" 
+                cost: "",
+                link: "",
             })
+            history.push(subSugBtn)
         })
-        history.push(subSugBtn)
         console.log("submit function", event.target)
     }
   

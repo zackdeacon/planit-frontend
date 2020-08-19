@@ -4,6 +4,7 @@ import styled from "styled-components";
 import io from "socket.io-client";
 import API from "../../utils/API"
 import "./chat.css"
+import { useParams } from "react-router-dom";
 
 //Components and styling taken from example of Youtube
 
@@ -58,13 +59,13 @@ const MyRow = styled.div`
 
 const MyMessage = styled.div`
   width: 45%;
-  background-color: pink;
-  color: #46516e;
+  background-color: #6eb0b4;
+  color: white;
   padding: 10px;
   margin-right: 5px;
   text-align: center;
-  border-top-right-radius: 10%;
-  border-bottom-right-radius: 10%;
+  border: 1px solid lightgray;
+  border-radius: 20px 20px 0px 20px;
 `;
 
 const PartnerRow = styled(MyRow)`
@@ -73,27 +74,42 @@ const PartnerRow = styled(MyRow)`
 
 const PartnerMessage = styled.div`
   width: 45%;
-  background-color: transparent;
+  background-color: #3b5e66;
   color: White;
   border: 1px solid lightgray;
   padding: 10px;
   margin-left: 5px;
   text-align: center;
-  border-top-left-radius: 10%;
-  border-bottom-left-radius: 10%;
+  border-radius: 20px 20px 20px 0px;
 `;
 
 //Components and styling taken from example of Youtube
 
 
 //Code to keep below this line 
-const TEST_MAP_ID = "5f3b524e62d7267aedb92826";
-const TEST_USER_ID = "5f383fd888b8063738330863";
+
+
+
+
+
+
+// const TEST_MAP_ID = id;
+const TEST_USER_ID = "5f3c2a5b7d3f2d25dab2becc";
+
 
 const Chat = () => {
+  const { id } = useParams()
+
   const [yourID, setYourID] = useState();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    API.getSessionData().then(res=> {
+      setUserData(res.data.user);
+    }).catch(console.log)
+  }, [])
 
   const socketRef = useRef();
 
@@ -102,8 +118,8 @@ const Chat = () => {
 
     updateMessages();
 
-    socketRef.current.on("your id", id => {
-      setYourID(id);
+    socketRef.current.on("your id", _id => {
+      setYourID(_id);
     })
 
     socketRef.current.on("update messages", () => {
@@ -113,7 +129,7 @@ const Chat = () => {
   }, []);
 
   async function getCurrentMessages() {
-    const chats = await API.getChatsForMap(TEST_MAP_ID);
+    const chats = await API.getChatsForMap(id);
     return chats.data;
   }
 
@@ -121,12 +137,12 @@ const Chat = () => {
     const chats = await getCurrentMessages();
     setMessages(chats)
   };
-
+console.log(userData)
   function sendMessage(e) {
     e.preventDefault();
     const chatData = {
       userId: TEST_USER_ID,
-      mapId: TEST_MAP_ID,
+      mapId: id,
       message: message,
     };
     setMessage("");
@@ -137,6 +153,8 @@ const Chat = () => {
   function handleChange(e) {
     setMessage(e.target.value);
   }
+
+
   //Code to keep above this line 
 
   return (
@@ -149,12 +167,15 @@ const Chat = () => {
       <Row justify="center">
         <div className="chat-box">
           {messages.map((message, index) => {
-            if (message.id === yourID) {
+            // console.log(message);
+            if (message.userId === TEST_USER_ID) {
               return (
                 <MyRow key={index}>
                   <MyMessage>
                     {message.message}
-                    {/* {message.name} */}
+                  <span className="userName">
+                  {userData.username}
+                  </span>
                   </MyMessage>
                 </MyRow>
               )
@@ -162,7 +183,7 @@ const Chat = () => {
             return (
               <PartnerRow key={index}>
                 <PartnerMessage>
-                  {message.message}
+                {message.message}
                   {/* {message.name} */}
                 </PartnerMessage>
               </PartnerRow>
@@ -216,4 +237,8 @@ const Chat = () => {
   )
 }
 
+
+
 export default Chat;
+
+

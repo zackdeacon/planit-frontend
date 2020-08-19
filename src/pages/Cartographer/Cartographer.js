@@ -73,7 +73,7 @@ function Maps() {
                 destinationsDisplay: "",
             })
         })
-        console.log("submit function", event.target)
+        // console.log("submit function", event.target)
     }
 
     //delete map
