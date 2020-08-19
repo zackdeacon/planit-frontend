@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {BrowserRouter as Router,Route,Redirect,Switch, useHistory} from "react-router-dom";
+import {BrowserRouter as Router,Route,Redirect,Switch, useHistory, Link} from "react-router-dom";
 import { Row, Form, Input, Button, } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import "./loginform.css"
@@ -39,9 +39,10 @@ export default function LoginForm() {
                 username: "",
                 password: ""
             })
+        }).then(data=>{
+            history.push("/user")
+
         })
-        // history.push("/one/id/:userId")
-        history.push("/user")
     };
 
     //HANDLE NEW USER 
@@ -89,7 +90,9 @@ export default function LoginForm() {
     
     function handleSubmitSignup(e){
         // e.preventDefault();
+        console.log(e)
         API.signup(formObjectSignup).then(data=>{
+
             console.log("you are a new user", data)
             setFormObjectSignup({
                 name:{
@@ -101,8 +104,13 @@ export default function LoginForm() {
                 password: "",
                 confirm: ""
             })
+        }).then(data=>{
+            window.location.reload(false)
+
         })
-        history.push("/")
+        console.log('hi')
+        // history.push("/main")
+
     }
         
     const onFinish = values => {
@@ -292,10 +300,13 @@ export default function LoginForm() {
                 type="password"
                 />
             </Form.Item>
-
-            <Button onClick={handleSubmitSignup} type="primary" htmlType="submit" className="form-button">
-            Register
-            </Button>
+            {/* <Link to="/"> */}
+                <Button 
+                // component={Link} to={"/"} 
+                onClick={handleSubmitSignup} type="primary" htmlType="submit" className="form-button">
+                Register
+                </Button>
+            {/* </Link> */}
             <Row justify="center">
                 <a href=" " onClick={handleNewUser} >Already A User</a>
             </Row>
