@@ -72,7 +72,7 @@ function SuggestionCreateForm(props) {
                     <Form.Item>
                         <Button type="primary" htmlType="submit" className="form-button">
                             Add Suggestion!
-                    </Button>
+                        </Button>
                     </Form.Item>
                 </Form>
             </Row>
