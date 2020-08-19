@@ -3,15 +3,23 @@ import { Carousel } from 'antd';
 import CarouselContent from '../CarouselContent/CarouselContent';
 import "./map-carousel.css"
 
-
-
-
-
 export default function MapCarousel(props) {
-    console.log('props.maps', props.maps)
+    const { maps } = props;
+    let carouselItems;
+    if (maps.length > 0) {
+        carouselItems = maps.map(map => {
+            return <CarouselContent key={map._id} name={map.name} id={map._id} />
+        });
+    } else {
+        carouselItems = <CarouselContent name="Nothing to display" empty={true} />
+    }
+
     return (
-        <Carousel autoplay >
-            {props.maps.map(item => <CarouselContent key= {item._id} name={item.name} id={item._id} />)}
-        </Carousel>
+        <>
+            <h2>{props.header}</h2>
+            <Carousel autoplay >
+                {carouselItems}
+            </Carousel>
+        </>
     )
 }
