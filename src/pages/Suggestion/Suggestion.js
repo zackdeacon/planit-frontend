@@ -3,7 +3,7 @@ import { useParams, useHistory, useLocation } from "react-router-dom"
 import API from "../../utils/API";
 import NavBar from "../../components/NavBar/navbar";
 import "./suggestion.css"
-import SuggestionCreateForm from "../../components/SuggestionForm/suggestionForm"
+import SuggestionCreateForm from "../../components/suggestionForm/suggestionForm"
 
 function Suggestions() {
     const history = useHistory()
