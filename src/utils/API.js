@@ -8,8 +8,8 @@ export default {
   // * AUTHORIZATION
   signup: function (userData) {
     // userData: { username, password, email, name: {first, last}}
-    return axios.post(`${urlPrefix}/api/auth/signup`, userData, 
-    { withCredentials: true }
+    return axios.post(`${urlPrefix}/api/auth/signup`, userData,
+      { withCredentials: true }
     );
   },
   login: function (loginData) {
@@ -62,6 +62,9 @@ export default {
   getAllSuggestions: function () {
     return axios.get(`${urlPrefix}/api/suggestions`);
   },
+  getSuggestionsForMap: function (mapId) {
+    return axios.get(`${urlPrefix}/api/suggestions/map/${mapId}`);
+  },
   postNewSuggestion: function (suggestionData) {
     // suggestionData: { userId, mapId, title, category, description, link, cost }
     // Note: link and cost keys are optional in above object
@@ -71,6 +74,10 @@ export default {
   deleteSuggestion: function (suggestion) {
     // suggestion: { id }
     return axios.post(`${urlPrefix}/api/suggestions/delete`, suggestion);
+  },
+  // saves a vote for a suggestion
+  saveVote: function(suggestion){
+    return axios.post(`${urlPrefix}/api/suggestions/vote`, suggestion, {withCredentials: true})
   },
 
   // * CHATS COLLECTION

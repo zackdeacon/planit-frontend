@@ -5,7 +5,10 @@ const contentStyle = {
     color: '#black',
     lineHeight: '160px',
     textAlign: 'center',
-    background: '#6eb0b4',
+    background: 'rgba(255, 255, 255, 0.287)',
+    fontSize: "24px",
+    border: "solid",
+    borderColor: "#736557"
   };
 
 export default function CarouselContent(props) {

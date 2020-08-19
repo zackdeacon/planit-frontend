@@ -2,9 +2,6 @@
     padding-top: 20%;
 }
 
-.background-wrapper {
-    background-color: rgba(255, 255, 255, 0.822);
-}
 .ant-card-head {
     display: flex;
     justify-content: center;
@@ -12,16 +9,49 @@
     background-color: #6c8e98;
 }
 
+.ant-card {
+    margin: 10px;
+}
+
 .ant-card-head-title {
 color: black !important;
 }
 
 .card-column{
-    display: flex;
-    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.287);
+    padding: 10px;
 }
 
 .card-content {
     display: flex;
     justify-content: left;
+}
+
+.user-info {
+    font-size: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 600px) {
+    .site-card-wrapper  {
+        padding-top: 30%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .user-info {
+        font-size: 20px;
+    }
+}
+@media only screen and (max-width: 650px) {
+    .user-info {
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .user-info {
+        font-size: 12px;
+    }
 }
