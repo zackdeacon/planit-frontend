@@ -41,6 +41,12 @@ width: 90%;
 color: white;
 }
 
+.userName {
+    color: #c0c4c4;
+    font-size: xx-small;
+    display: flex;
+    justify-content: flex-end;
+}
 .send-btn:hover {
     background-color: #4d534a;
     color: white
