@@ -1,8 +1,16 @@
 import React from 'react';
-import { Row, Col, Form, Input, Button } from 'antd';
+import { Row, Col, Form, Input, Button, Select } from 'antd';
 import "./suggestionForm.css"
 
+
 function SuggestionCreateForm(props) {
+    const Option = Select.Option;
+    // function handleChange(value) {
+    //     console.log(`selected ${value}`);
+    //   }
+    //   console.log(props.formData)
+      
+    
     return (
         <div>
             <div className="cart-buffer"></div>
@@ -27,6 +35,40 @@ function SuggestionCreateForm(props) {
 
                     <Form.Item
                         rules={[{ required: true, message: 'Please enter a category!' }]}>
+                        {/* <Select 
+                            onChange={props.handleChangeSelect}
+                            // value={props.formData.category}
+                            placeholder="Choose a Category"
+                            // defaultValue={props.formData.category}
+                            >
+                            <Option 
+                            value="Accomodation"
+                            // name="category"
+                            // type="text"
+                            >Accomodation
+                            </Option>
+                            <Option 
+                            value="Food"
+                            // name="category"
+                            // type="text"
+                            >Food
+                            </Option>
+                            <Option 
+                            value="Flights"
+                            // name="category"
+                            // type="text"
+                            >Flights
+                            </Option>
+                            <Option 
+                            value="Entertainment"
+                            // name="category"
+                            // type="text"
+                            >Entertainment
+                            </Option>
+                            
+                            
+                            
+                        </Select> */}
                         <Input
                             name="category"
                             type="text"
