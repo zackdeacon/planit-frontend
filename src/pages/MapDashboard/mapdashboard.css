@@ -1,0 +1,42 @@
+.dash-background{
+    background-image: url("../../images/charlotte-noelle-unsplash.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    /* height: 100%; */
+    height: 100vh;
+}
+
+.dash-filter-background{
+    background-color: rgba(0, 0, 0, 0.472);
+    /* height: 100%; */
+    height: 100vh;
+}
+
+/* Dashboard/Map title */
+.dash-title{
+    position: absolute;
+    z-index:0;
+    top:10vh;
+    color:white;
+    text-shadow: 2px 2px 5px black;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 30px 0px 30px 0px;
+    text-align: center;
+}
+
+.top-buffer{
+padding-top: 25vh;
+overflow: scroll;
+}
+
+@media only screen and (max-width: 500px) {
+.top-buffer{
+    margin-top: 10vh;
+}
+.mid-col-buffer{
+    margin:50px;
+}
+}

@@ -1,0 +1,73 @@
+/* Dashboard/Map title */
+.dash-title{
+   color:white;
+   text-shadow: 2px 2px 5px black;
+   font-size: 40px;
+   font-weight: bold;
+   margin: 30px 0px 30px 0px;
+   text-align: center;
+ }
+ 
+ /* Wrapper of Entire Dashboard */
+ /* .dash-wrapper{
+   overflow: scroll;
+ } */
+ 
+   /* My media queries */
+   @media only screen and (max-width: 750px) {
+     .card-container{
+         padding-top: 10px;
+         width: 100vw;
+         height: 70vh;
+     }
+   }
+   @media only screen and (max-width: 662px) {
+     .ant-typography{
+         font-size: 250%;
+           }
+   }
+   @media only screen and (max-width: 470px) {
+     .ant-typography{
+         font-size: 200%;
+           }
+   }
+   @media only screen and (max-width: 378px) {
+     .ant-typography{
+         font-size: 175%;
+           }
+   }
+   @media only screen and (max-width: 330px) {
+     .ant-typography{
+         font-size: 150%;
+           }
+   }
+   @media only screen and (max-width: 284px) {
+     .ant-typography{
+         font-size: 125%;
+           }
+   }
+ 
+ .columnTitle {
+    color: white;
+    display: flex;
+    justify-content: center;
+ }
+
+ .RenderCardDiv {
+    height: 350px;
+    border: inset #987b55;
+    overflow: auto;
+    overflow-x: hidden;
+    /* overflow-y: hidden; */
+ }
+
+ .transparentBackground {
+    background-color:rgba(255, 255, 255, 0.287);
+    border-radius: 20px;
+    padding: 20px;
+ }
+
+.setCardHeight {
+   height: 275px;
+   overflow: auto;
+}

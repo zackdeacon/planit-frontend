@@ -6,6 +6,13 @@
     z-index:1;
 }
 
+/* Text Logo */
+.txt-logo-div{
+   position: absolute;
+   left:50%;
+   z-index:1;
+}
+
 /* Hamburger Styling */
 .menu-btn{
     position: relative;
@@ -67,3 +74,8 @@
     color: white;
 }
 
+.login-btn{
+    position: relative;
+    top: 4px;
+    padding-right: 15px;
+}

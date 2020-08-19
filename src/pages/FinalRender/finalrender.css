@@ -1,0 +1,29 @@
+.render-background{
+    background-image: url("../../images/andrew-neel-unsplash.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    height: 100vh;
+}
+
+.render-filter-background{
+    background-color: rgba(0, 0, 0, 0.472);
+    height: 100vh;
+}
+
+@media only screen and (max-width:577px){
+    .render-background{
+        height: 100%;
+    }
+    .render-filter-background{
+        height: 100%;
+    }
+}
+
+.map-link{
+    color: white;
+}
+.map-link:hover{
+    color: #6eb0b4;
+}

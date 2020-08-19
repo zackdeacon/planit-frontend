@@ -1,0 +1,120 @@
+
+/* STYLING FOR TABS COMPONENTS */
+
+  /* text color of tab button */
+ .ant-tabs-tab-btn{
+    color: #ffffff !important;
+    text-shadow: 1px 1px 5px black;
+  }
+
+  /* adds border radius to entire tab container */
+  .ant-tabs-tabpane{
+    border-radius: 0px 10px 10px 10px;
+  }
+
+  /* Below is ant-design copy pasta css*/
+  .card-container > .ant-tabs-card .ant-tabs-content {
+    background-color: rgba(255, 255, 255, 0.287);
+    border-radius: 0px 10px 10px 10px;
+    margin-top: -16px;
+    overflow: scroll;
+  }
+  .card-container > .ant-tabs-card .ant-tabs-content > .ant-tabs-tabpane {
+    padding: 16px;
+    height: 55vh;
+  }
+  .card-container > .ant-tabs-card > .ant-tabs-nav::before {
+    display: none;
+  }
+  .card-container > .ant-tabs-card .ant-tabs-tab,
+  [data-theme='compact'] .card-container > .ant-tabs-card .ant-tabs-tab {
+    border-color: transparent;
+    background: transparent;
+  }
+  .card-container > .ant-tabs-card .ant-tabs-tab-active,
+  [data-theme='compact'] .card-container > .ant-tabs-card .ant-tabs-tab-active {
+    /* background:#6c8e98; */
+    background: rgba(255, 255, 255, 0.287);
+  }
+
+  /* My media queries */
+  @media only screen and (max-width: 574px) {
+    .card-container{
+        padding-top: 10px;
+        width: 100vw;
+        height: 70vh;
+    }
+  }
+  @media only screen and (max-width: 662px) {
+    .ant-typography{
+        font-size: 250%;
+          }
+  }
+  @media only screen and (max-width: 470px) {
+    .ant-typography{
+        font-size: 200%;
+          }
+  }
+  @media only screen and (max-width: 378px) {
+    .ant-typography{
+        font-size: 175%;
+          }
+  }
+  @media only screen and (max-width: 330px) {
+    .ant-typography{
+        font-size: 150%;
+          }
+  }
+  @media only screen and (max-width: 284px) {
+    .ant-typography{
+        font-size: 125%;
+          }
+  }
+
+  .ant-tabs-tab-btn{
+    font-weight: bolder;
+    font-size: large;
+  }
+
+  .add-sug-row {
+    padding-top: 20px;
+    width: 100%;
+  }
+
+  .add-sug-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #576d65;
+    width: 90%;
+    border: none;
+    height: 50px;
+    border-radius: 10px;
+    color: white;
+    font-size: 17px;
+    padding-bottom: 0;
+  }
+
+  .itin-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4d534a;
+    width: 90%;
+    border: none;
+    height: 50px;
+    border-radius: 10px;
+    color: white;
+    font-size: 17px;
+    padding-bottom: 0;
+  }
+
+  .itin-btn:hover{
+    background-color: #576d65;
+    color: white
+  }
+
+  .add-sug-btn:hover{
+    background-color: #4d534a;
+    color: white
+  }

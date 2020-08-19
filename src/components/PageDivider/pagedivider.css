@@ -1,0 +1,53 @@
+.light-blue{
+    position: relative;
+    bottom: 50px;
+    background-color: #6eb0b4;
+    width: 100vw;
+    height: 200px;
+    border-radius: 20px 20px 0px 0px ;
+}
+.dark-blue{
+    position: relative;
+    top:200px;
+    background-color:#3b5e66;
+    width: 100vw;
+    height: 200px;
+    border-radius: 0px 0px 20px 20px;
+}
+
+/* Scroll Icon */
+/* .arrow{
+    position: absolute;
+    top:18px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.arrow span{
+    display: block;
+    width: 23px;
+    height: 23px;
+    border-bottom: 3px solid #3b5e66;
+    border-right: 3px solid #3b5e66;
+    transform: rotate(45deg);
+    margin: -15px;
+    animation: animate 2s infinite;
+}
+.arrow span:nth-child(2){
+    animation-delay: -0.2s;
+}
+.arrow span:nth-child(3){
+    animation-delay: -0.4s;
+}
+@keyframes animate {
+    0%{
+        opacity: 0;
+        transform: rotate(45deg) translate(-5px,-5px);
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: rotate(45deg) translate(5px,5px);
+    }
+} */
