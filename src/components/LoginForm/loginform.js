@@ -41,6 +41,7 @@ export default function LoginForm() {
             })
         })
         // history.push("/one/id/:userId")
+        history.push("/user")
     };
 
     //HANDLE NEW USER 
