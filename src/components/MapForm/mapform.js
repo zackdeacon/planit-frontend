@@ -21,9 +21,8 @@ const formItemLayoutWithOutLabel = {
     },
 };
 
-
-function MapCreateForm(props) {
-    return (
+function MapCreateForm(props){
+    return(
         <div className="cart-background">
             <div className="cart-buffer"></div>
             <Row justify="center">

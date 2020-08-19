@@ -7,7 +7,6 @@ import Chat from '../../components/Chat/chat'
 import API from '../../utils/API'
 import './mapdashboard.css'
 
-
 export default function MapDashboard(props) {
     const [board, setBoard] = useState({
         name: ""

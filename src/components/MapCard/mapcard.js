@@ -1,5 +1,5 @@
+import { Link, useParams} from "react-router-dom"
 import React, { useEffect, useState } from 'react'
-import { useParams } from "react-router-dom";
 import SuggestionCard from "../SuggestionCard/SuggestionCard"
 import { Tabs, Button, Row} from 'antd';
 import "./mapcard.css"
@@ -14,6 +14,7 @@ export default function MapCard(props) {
   // console.log(props);
   
   const { id } = useParams()
+
 
   useEffect(() => {
     API.getSuggestionsForMap(id).then(res => {
@@ -37,6 +38,7 @@ export default function MapCard(props) {
    </TabPane>);
   }
 
+
   const suggestion = {
     _id:"1", 
     title:"AirBnb house", 
@@ -54,7 +56,15 @@ export default function MapCard(props) {
             {tabsArr.map(item => { return item })}
           </Tabs>
           <Row className="add-sug-row" justify="center">
-              <Button className="add-sug-btn" href="/addsuggestion">Add Suggestion</Button>
+            <Link>
+              to={{
+                pathname: "/addsuggestion",
+                state: { 
+                  // pass down information about the map
+                }
+                }}
+                <Button className="add-sug-btn" href="/addsuggestion">Add Suggestion</Button>
+            </Link>
           </Row>
         </div>
       </div>

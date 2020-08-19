@@ -75,6 +75,10 @@ export default {
     // suggestion: { id }
     return axios.post(`${urlPrefix}/api/suggestions/delete`, suggestion);
   },
+  // saves a vote for a suggestion
+  saveVote: function(suggestion){
+    return axios.post(`${urlPrefix}/api/suggestions/vote`, suggestion, {withCredentials: true})
+  },
 
   // * CHATS COLLECTION
   getAllChats: function () {
