@@ -1,11 +1,15 @@
+
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Button } from 'antd';
+import {useHistory} from "react-router-dom";
 import {Link} from 'react-scroll';
 import API from "../../utils/API";
 import 'antd/dist/antd.css';
 import "./navbar.css"
 
 export default function Navbar(props) {
+    const history = useHistory();
+
     const [menuBtn, setMenuBtn] = useState({
         menuOpen: false,
         menuClass: "menu-btn",
@@ -35,6 +39,7 @@ export default function Navbar(props) {
     }
 
     const logOut = () => {
+        history.push("/")
         API.logout().then(req => {
             console.log("You have been launched out of PLANiT!");
         })
