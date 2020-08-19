@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useHistory, useLocation} from "react-router-dom"
+import {useParams, useHistory, useLocation} from "react-router-dom"
 import API from "../../utils/API";
 import NavBar from "../../components/NavBar/navbar";
 import "./suggestion.css"
@@ -10,18 +10,21 @@ function Suggestions() {
 
     let data = useLocation()
     console.log("this is data", data)
-    
+
+    const {id} = useParams()
+    const subSugBtn = `/dashboard/${id}`
+
     //set book component initial state
     const [suggestions, setSuggestions] = useState([])
 
     //initialize form object state
     const [formObject, setFormObject]=useState({
+        mapId:id,
         title: "",
         category: "",
         description: "",
         cost: "",
-        link: "",
-        // destinations:""
+        link: ""
     })
     //load all maps, store them with setMaps
     useEffect(()=>{
@@ -51,18 +54,17 @@ function Suggestions() {
         API.postNewSuggestion(formObject).then(data=>{
             console.log("here is your new suggestion", data)
             loadSuggestions();
-            setFormObject({
+            setFormObject({...formObject,
                 title: "",
                 category: "",
                 description: "",
-                startDate: "",
-                endDate: "",
-                // destinations: "" 
+                cost: "",
+                link: "",
             })
-            history.push("/dashboard")
+            
+        }).then ((data) => {
+            history.push(subSugBtn)
         })
-        
-        console.log("submit function", event.target)
     }
   
     

@@ -20,3 +20,10 @@
         height: 100%;
     }
 }
+
+.map-link{
+    color: white;
+}
+.map-link:hover{
+    color: #6eb0b4;
+}

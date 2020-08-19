@@ -68,7 +68,7 @@ export default {
   postNewSuggestion: function (suggestionData) {
     // suggestionData: { userId, mapId, title, category, description, link, cost }
     // Note: link and cost keys are optional in above object
-    return axios.post(`${urlPrefix}/api/suggestions/new`, suggestionData, { withCredentials: true });
+    return axios.post(`${urlPrefix}/api/suggestions/new/:id`, suggestionData, { withCredentials: true });
   },
   // Saves a suggestion to the database
   deleteSuggestion: function (suggestion) {
