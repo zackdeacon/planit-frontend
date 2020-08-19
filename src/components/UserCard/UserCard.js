@@ -13,13 +13,11 @@ export default function UserCard(props) {
                     <Col span={12} className="card-column" >
                         <Card title="Your PLANiT" bordered={true}>
                             <div className="card-content">
-                            <p className="user-info">Username: 
-                            {/* {props.user.username} */}
+                            <p className="user-info">Username: {props.user.username}
                                 </p>
                                 </div>
                                 <div className="card-content">
-                                <p className="user-info">Email: 
-                                {/* {props.user.email} */}
+                                <p className="user-info">Email: {props.user.email}
                                 </p>
                                 </div>
                                 <div className="card-content">

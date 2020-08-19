@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Row, Col } from "antd";
+import { Row, Button } from "antd";
 import styled from "styled-components";
 import io from "socket.io-client";
 import API from "../../utils/API"
@@ -28,34 +28,22 @@ import "./chat.css"
 //   margin-top: 25px;
 // `;
 
-// const TextArea = styled.textarea`
-//   width: 98%;
-//   height: 100px;
-//   border-radius: 10px;
-//   margin-top: 10px;
-//   padding-left: 10px;
-//   padding-top: 10px;
-//   font-size: 17px;
-//   background-color: transparent;
-//   border: 1px solid lightgray;
-//   outline: none;
-//   color: lightgray;
-//   letter-spacing: 1px;
-//   line-height: 20px;
-//   ::placeholder {
-//     color: lightgray;
-//   }
-// `;
-
-const Button = styled.button`
-  background-color: #576d65;
-  width: 100%;
-  border: none;
-  height: 50px;
-  border-radius: 10px;
-  color: white;
-  font-size: 17px;
+const TextArea = styled.textarea`
+width: 100%;
+height: 100px;
+border-radius: 10px;
+margin-top: 10px;
+padding-left: 10px;
+padding-top: 10px;
+font-size: 17px;
+background-color: rgba(255, 255, 255, 0.466);
+border: 3px inset #987b55;
+outline: none;
+color: white;
+letter-spacing: 1px;
+line-height: 20px;
 `;
+
 
 const Form = styled.form`
   width: 400px;
@@ -110,7 +98,7 @@ const Chat = () => {
   const socketRef = useRef();
 
   useEffect(() => {
-    socketRef.current = io.connect("/");
+    socketRef.current = io.connect();
 
     updateMessages();
 
@@ -183,8 +171,10 @@ const Chat = () => {
         </div>
 
         <Form onSubmit={sendMessage}>
-          <textArea className="textArea" value={message} onChange={handleChange} placeholder="Say something..." />
-          <Button>Send</Button>
+          <TextArea className="text-area" value={message} onChange={handleChange} placeholder="Say something..." />
+          <Row justify="center">
+            <Button className="send-btn">Send</Button>
+          </Row> 
         </Form>
       </Row>
     </div>

@@ -1,10 +1,9 @@
-body{
+.dash-background{
     background-image: url("../../images/charlotte-noelle-unsplash.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: cover;
-
 }
 
 .dash-filter-background{

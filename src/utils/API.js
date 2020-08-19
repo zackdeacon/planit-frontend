@@ -8,8 +8,8 @@ export default {
   // * AUTHORIZATION
   signup: function (userData) {
     // userData: { username, password, email, name: {first, last}}
-    return axios.post(`${urlPrefix}/api/auth/signup`, userData, 
-    { withCredentials: true }
+    return axios.post(`${urlPrefix}/api/auth/signup`, userData,
+      { withCredentials: true }
     );
   },
   login: function (loginData) {
@@ -61,6 +61,9 @@ export default {
   // * SUGGESTIONS COLLECTION
   getAllSuggestions: function () {
     return axios.get(`${urlPrefix}/api/suggestions`);
+  },
+  getSuggestionsForMap: function (mapId) {
+    return axios.get(`${urlPrefix}/api/suggestions/map/${mapId}`);
   },
   postNewSuggestion: function (suggestionData) {
     // suggestionData: { userId, mapId, title, category, description, link, cost }

@@ -1,5 +1,18 @@
 .cart-background{
     background-image: url("../../images/andrew-neel-unsplash.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    height: 110vh;
+}
+
+
+/* background-attachment: fixed;
+background-repeat: no-repeat;
+background-position: 50% 50%;
+background-size: cover; */
+
     /* position: fixed;
     top: 50%;
     left: 50%;
@@ -9,9 +22,3 @@
     height: auto;
     z-index: -100;
     transform: translate(-50%, -50%); */
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: cover; 
-    height: 110vh;
-}

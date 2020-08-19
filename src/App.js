@@ -24,7 +24,7 @@ function App() {
           <Route exact path="/createmap">
             <Cartographer />
           </Route>
-          <Route exact path="/dashboard">
+          <Route exact path="/dashboard/:id">
             <MapDashboard />
           </Route>
           <Route exact path="/addsuggestion">
