@@ -31,6 +31,10 @@ function Suggestions() {
         console.log("input change function", event.target)
     }
 
+    function handleInputChangeSelect(value){
+        setFormObject({...formObject,category:(value)})
+    }
+
     //handleFormSubmit function to add formObject to Database
     function handleFormSubmit(event) {
         // event.preventDefault();
@@ -49,6 +53,7 @@ function Suggestions() {
                 formData={formObject}
                 handleChange={handleInputChange}
                 handleSave={handleFormSubmit}
+                handleChangeSelect={handleInputChangeSelect}
             />
         </div>
     )

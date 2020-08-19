@@ -97,7 +97,7 @@ export default {
   },
   // saves a vote for a suggestion
   saveVote: function (suggestion) {
-    return axios.post(`${urlPrefix}/api/suggestions/vote`, suggestion, { withCredentials: true })
+    return axios.post(`${urlPrefix}/api/suggestions/vote/:suggestionId`, suggestion, { withCredentials: true })
   },
 
   // * CHATS COLLECTION
