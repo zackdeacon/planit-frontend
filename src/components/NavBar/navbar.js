@@ -67,9 +67,9 @@ export default function Navbar(props) {
         <div className="txt-logo-div">
             <Row>    
                 <Col>
-                <a href="/">
-                    <img src={props.logo} alt="text logo" style={{width:`${props.width}`, marginLeft:`${props.left}`, marginTop:`${props.top}`}}/>
-                </a>
+                    <a href="/">
+                        <img src={props.logo} alt="text logo" style={{width:`${props.width}`, marginLeft:`${props.left}`, marginTop:`${props.top}`}}/>
+                    </a>
                 </Col>
             </Row>
         </div>

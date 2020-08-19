@@ -21,7 +21,7 @@ export default function SuggestionCard(props) {
   
   return (
     <>
-      <Col xl={{span: 6}} md={{ span: 12 }} >
+      <Col xl={{span: 12}} md={{ span: 12 }} >
         
         <Card className="sug-card-container" type="inner"
         title={props.suggestions.title.toUpperCase()} extra={

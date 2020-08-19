@@ -5,7 +5,7 @@ import FinalRenderCard from '../../components/FinalRenderCard/FinalRenderCard'
 import './finalrender.css'
 import API from '../../utils/API'
 
-export default function FinalRender() {
+export default function FinalRender(props) {
 
     const [state, setstate] = useState()
 
@@ -21,7 +21,7 @@ export default function FinalRender() {
             <div className="render-filter-background">
                 <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px"/>
                 <Row justify= "center">
-                    <div className="dash-title">Bachelor Trip: New Orleans</div>
+                    <div className="dash-title"><a className="map-link" href=" ">Bachelor Trip: New Orleans</a></div>
                 </Row>
                 <div className="top-buffer"></div>
                 <FinalRenderCard />

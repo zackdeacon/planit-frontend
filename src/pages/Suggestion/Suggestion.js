@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {useParams, useHistory} from "react-router-dom";
 import API from "../../utils/API";
 import NavBar from "../../components/NavBar/navbar";
 import "./suggestion.css"
@@ -6,6 +7,11 @@ import SuggestionCreateForm from "../../components/SuggestionForm/suggestionForm
 
 function Suggestions() {
     
+    const history = useHistory()
+
+    const {id} = useParams()
+    const subSugBtn = `/dashboard/${id}`
+
     //set book component initial state
     const [suggestions, setSuggestions] = useState([])
 
@@ -14,8 +20,6 @@ function Suggestions() {
         title: "",
         category: "",
         description: "",
-        startDate: "",
-        endDate: "",
         destinations:""
     })
     //load all maps, store them with setMaps
@@ -50,11 +54,10 @@ function Suggestions() {
                 title: "",
                 category: "",
                 description: "",
-                startDate: "",
-                endDate: "",
                 destinations: "" 
             })
         })
+        history.push(subSugBtn)
         console.log("submit function", event.target)
     }
   
