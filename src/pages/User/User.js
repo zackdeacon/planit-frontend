@@ -30,7 +30,7 @@ export default function User() {
 
     return (
         <div className="user-background">
-            <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
+            <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
             <UserCard userData={userData} />
         </div>
     )

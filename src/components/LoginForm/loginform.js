@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
 import { Row, Form, Input, Button, } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import "./loginform.css"
 import API from '../../utils/API';
+import "../../pages/User/User"
 
 export default function LoginForm() {
     const [newUser, setNewUser] = useState({
@@ -33,7 +34,7 @@ export default function LoginForm() {
         e.preventDefault();
         API.login(formObjectLogin).then(data => {
             console.log("logged in as", data)
-            history.push("/user");
+            history.push("/user")
         })
     };
 
@@ -53,12 +54,15 @@ export default function LoginForm() {
                 regForm: "register-form hide"
             })
         }
+
     };
 
     //SIGNUP FUNCTIONALITY
     const [formObjectSignup, setFormObjectSignup] = useState({
-        firstName: "",
-        lastName: "",
+        name: {
+            first: "",
+            last: ""
+        },
         email: "",
         username: "",
         password: "",
@@ -67,22 +71,21 @@ export default function LoginForm() {
 
     function handleInputSignup(event) {
         const { name, value } = event.target;
-        setFormObjectSignup({ ...formObjectSignup, [name]: value })
+        if (name === "first" || name === "last") {
+            let nameCopy = { first: formObjectSignup.name.first, last: formObjectSignup.name.last }
+            nameCopy[name] = value;
+            setFormObjectSignup({ ...formObjectSignup, name: nameCopy })
+        } else {
+            setFormObjectSignup({ ...formObjectSignup, [name]: value })
+        }
+        console.log(formObjectSignup);
     }
 
     function handleSubmitSignup(e) {
-        // e.preventDefault();
         API.signup(formObjectSignup).then(data => {
             console.log("you are a new user", data)
-            setFormObjectSignup({
-                firstName: "",
-                lastName: "",
-                email: "",
-                username: "",
-                password: "",
-                confirm: ""
-            })
-        })
+            history.push("/user")
+        });
     }
 
     const onFinish = values => {
@@ -103,7 +106,6 @@ export default function LoginForm() {
                         onFinish={onFinish}
                     >
                         <div className="form-title">LET'S PLANiT</div>
-
                         <Form.Item
                             name="username"
                             rules={[{ required: true, message: 'Please input your Username!' }]}>
@@ -131,7 +133,7 @@ export default function LoginForm() {
                         <Form.Item>
                             <Button onClick={handleSubmitLogin} type="primary" htmlType="submit" className="form-button">
                                 Log in
-                </Button>
+                            </Button>
                             <Row justify="center">
                                 <a href=" " onClick={handleNewUser}>New User Sign Up</a>
                             </Row>
@@ -150,7 +152,7 @@ export default function LoginForm() {
 
                         <Form.Item
                             className="first-name"
-                            name="firstName"
+                            name="first"
                             label="First Name"
                             rules={[
                                 {
@@ -160,16 +162,16 @@ export default function LoginForm() {
                             ]}
                         >
                             <Input
-                                value={formObjectSignup.firstName}
+                                value={formObjectSignup.name.first}
                                 onChange={handleInputSignup}
-                                name="firstName"
+                                name="first"
                                 type="text"
                             />
                         </Form.Item>
 
                         <Form.Item
                             className="last-name"
-                            name="lastName"
+                            name="last"
                             label="Last Name"
                             rules={[
                                 {
@@ -179,9 +181,9 @@ export default function LoginForm() {
                             ]}
                         >
                             <Input
-                                value={formObjectSignup.lastName}
+                                value={formObjectSignup.name.last}
                                 onChange={handleInputSignup}
-                                name="lastName"
+                                name="last"
                                 type="text"
                             />
                         </Form.Item>
@@ -207,7 +209,6 @@ export default function LoginForm() {
                                 type="email"
                             />
                         </Form.Item>
-
                         <Form.Item
                             name="username"
                             label="Username"
@@ -275,7 +276,7 @@ export default function LoginForm() {
 
                         <Button onClick={handleSubmitSignup} type="primary" htmlType="submit" className="form-button">
                             Register
-            </Button>
+                        </Button>
                         <Row justify="center">
                             <a href=" " onClick={handleNewUser} >Already A User</a>
                         </Row>

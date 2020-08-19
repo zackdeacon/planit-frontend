@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom"
 import API from "../../utils/API";
 import NavBar from "../../components/NavBar/navbar";
 import "./suggestion.css"
 import SuggestionCreateForm from "../../components/SuggestionForm/suggestionForm"
 
 function Suggestions() {
-    let history = useHistory();
+    const history = useHistory()
+
+    let data = useLocation()
+    console.log("this is data", data)
+
+    const { id } = useParams()
+    const subSugBtn = `/dashboard/${id}`
 
     //initialize form object state
     const [formObject, setFormObject] = useState({
+        mapId: id,
         title: "",
         category: "",
         description: "",
-        startDate: "",
-        endDate: "",
-        destinations: ""
+        cost: "",
+        link: ""
     })
 
     //hanldeInputChange function to update objectForm State
@@ -28,16 +34,16 @@ function Suggestions() {
     //handleFormSubmit function to add formObject to Database
     function handleFormSubmit(event) {
         // event.preventDefault();
-        API.postNewSuggestion(formObject).then(response => {
-            console.log("here is your new suggestion", response)
-            history.push(`dashboard/${response.data.mapId}`);
+        API.postNewSuggestion(formObject).then(data => {
+            console.log("here is your new suggestion", data)
+            history.push(subSugBtn)
         })
     }
 
 
     return (
         <div className="suggestion-background">
-            <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
+            <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
             {/* form with controlled inputs */}
             <SuggestionCreateForm
                 formData={formObject}

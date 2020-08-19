@@ -27,10 +27,10 @@ function App() {
           <Route exact path="/dashboard/:id">
             <MapDashboard />
           </Route>
-          <Route exact path="/addsuggestion">
+          <Route exact path="/addsuggestion/:id">
             <Suggestions />
           </Route>
-          <Route exact path="/itinerary">
+          <Route exact path="/itinerary/:id">
             <FinalRender />
           </Route>
           <Route exact path="/chat">

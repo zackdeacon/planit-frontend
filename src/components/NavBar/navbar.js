@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
 import { Row, Col, Button } from 'antd';
+import { useHistory } from "react-router-dom";
 import { Link } from 'react-scroll';
 import API from "../../utils/API";
 import 'antd/dist/antd.css';
 import "./navbar.css"
 
 export default function Navbar(props) {
+    const history = useHistory();
+
     const [menuBtn, setMenuBtn] = useState({
         menuOpen: false,
         menuClass: "menu-btn",
@@ -14,7 +16,6 @@ export default function Navbar(props) {
     })
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    let history = useHistory();
 
     useEffect(() => {
         checkIfUser()
@@ -37,6 +38,7 @@ export default function Navbar(props) {
     }
 
     const logOut = () => {
+        history.push("/")
         API.logout().then(req => {
             console.log("You have been launched out of PLANiT!");
             history.push("/");
@@ -48,22 +50,11 @@ export default function Navbar(props) {
             console.log(res);
             if (!res.data.user) {
                 setIsLoggedIn(false)
-                // setUseLink(<Link activeClass="active" to="loginform" spy={true} smooth={true} offset={+500} duration={1000} className="nav-btns"><span className="login-btn">Login</span></Link>)
-                // console.log(useLink);
-                // useLink
             } else {
                 setIsLoggedIn(true)
-                // setUseLink(<Button type="text" onClick={logOut} className="nav-btns">Log Out</Button>)
-                // console.log(useLink);
-                // useLink
             }
         })
     }
-
-    // let loggedInBtn;
-    // if (isLoggedIn) {
-    //     loggedInBtn = <Button type="text" onClick={logOut} className="nav-btns">Log Out</Button>
-    // } else { loggedInBtn = <Link activeClass="active" to="loginform" spy={true} smooth={true} offset={+500} duration={1000} className="nav-btns"><span className="login-btn">Login</span></Link>}
 
     return (
         <>
@@ -75,6 +66,18 @@ export default function Navbar(props) {
                         </a>
                     </Col>
                 </Row>
+            </div>
+            <div className="wrapper">
+                <Row justify="end">
+                    <Col className={menuBtn.menuClass} onClick={handleHamburgerClick}>
+                        <div className="menu-btn_burger"></div>
+                    </Col>
+                </Row>
+                <Col className={menuBtn.linksClass}>
+                    <Row justify="end">
+                        <Button type="text" href="/user" className="nav-btns">Account</Button>
+                    </Row>
+                </Col>
             </div>
             <div className="wrapper">
                 <Row justify="end">
