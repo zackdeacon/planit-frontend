@@ -45,6 +45,10 @@ export default function Navbar(props) {
         })
     }
 
+    const login = () =>{
+        history.push("/")
+    }
+
     const checkIfUser = () => {
         API.getSessionData().then(res => {
             console.log(res);
@@ -87,14 +91,22 @@ export default function Navbar(props) {
                 </Row>
                 <Col className={menuBtn.linksClass}>
                     <Row justify="end">
+                        {isLoggedIn? 
                         <Button type="text" href="/user" className="nav-btns">Account</Button>
+                        : 
+                        <Button disabled></Button>}
                     </Row>
                     <Row justify="end">
-                        <Button type="text" href="/createmap" className="nav-btns">New Map</Button>
-                    </Row>
-                    <Row justify="end">
-                        {isLoggedIn ? <Button type="text" onClick={logOut} className="nav-btns">Log Out</Button> : <Link activeClass="active" to="loginform" spy={true} smooth={true} offset={+500} duration={1000} className="nav-btns"><span className="login-btn">Login</span></Link>}
+                        {isLoggedIn? <Button type="text" onClick={logOut} href="/"className="nav-btns">Log Out</Button> : <Link 
+                        onClick={login} 
+                        activeClass="active" to="loginform" spy={true} smooth={true} offset={+500} duration={1000} className="nav-btns"><span className="login-btn">Login</span></Link>}
                         {/* <Link activeClass="active" to="loginform" spy={true} smooth={true} offset={+500} duration={1000} className="nav-btns"><span className="login-btn">Login</span></Link> */}
+                    </Row>
+                    <Row justify="end">
+                        {isLoggedIn? 
+                        <Button type="text" href="/createmap" className="nav-btns">New Map</Button> 
+                        : 
+                        <Button disabled></Button>}                        
                     </Row>
                 </Col>
             </div>
