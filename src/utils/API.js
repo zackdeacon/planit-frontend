@@ -1,5 +1,5 @@
 import axios from "axios";
-const urlPrefix = "http://localhost:8080";
+const urlPrefix = "https://planitserver.herokuapp.com";
 
 // ** Functions that take an object have the structure and keys of that 
 // ** object laid out in a comment within!
