@@ -9,12 +9,12 @@ import "./home.css"
 export default function Home() {
     return (
         <>
-        <Navbar logo="./assets/logos/txt.png" width="120px" left="-60px" top="28px"/>
-        <LandingContent />
-        <PageDivider />
-        <UXI />
-        <PageDivider />
-        <LoginForm />
+            <Navbar logo="/assets/logos/txt.png" width="120px" left="-60px" top="28px" />
+            <LandingContent />
+            <PageDivider />
+            <UXI />
+            <PageDivider />
+            <LoginForm />
         </>
     )
 }

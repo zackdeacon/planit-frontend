@@ -68,7 +68,7 @@ export default {
   postNewSuggestion: function (suggestionData) {
     // suggestionData: { userId, mapId, title, category, description, link, cost }
     // Note: link and cost keys are optional in above object
-    return axios.post(`${urlPrefix}/api/suggestions/new/:id`, suggestionData, { withCredentials: true });
+    return axios.post(`${urlPrefix}/api/suggestions/new`, suggestionData, { withCredentials: true });
   },
   // Saves a suggestion to the database
   deleteSuggestion: function (suggestion) {
@@ -76,8 +76,8 @@ export default {
     return axios.post(`${urlPrefix}/api/suggestions/delete`, suggestion);
   },
   // saves a vote for a suggestion
-  saveVote: function(suggestion){
-    return axios.post(`${urlPrefix}/api/suggestions/vote`, suggestion, {withCredentials: true})
+  saveVote: function (suggestion) {
+    return axios.post(`${urlPrefix}/api/suggestions/vote`, suggestion, { withCredentials: true })
   },
 
   // * CHATS COLLECTION

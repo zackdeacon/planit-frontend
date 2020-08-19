@@ -13,13 +13,14 @@
     margin: 10px;
 }
 
-.ant-card-head-title {
-color: black !important;
+.ant-card-head-title{
+    color: white;
 }
 
 .card-column{
     background-color: rgba(255, 255, 255, 0.287);
     padding: 10px;
+    border-radius: 5px;
 }
 
 .card-content {
@@ -32,6 +33,7 @@ color: black !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
 }
 
 @media only screen and (max-width: 600px) {

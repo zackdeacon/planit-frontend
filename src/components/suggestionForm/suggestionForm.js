@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Form, Input, Button, Select } from 'antd';
+import { Row, Form, Input, Button, Select } from 'antd';
 import "./suggestionForm.css"
 
 
