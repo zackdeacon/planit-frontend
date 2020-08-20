@@ -156,6 +156,11 @@ export default function SuggestionCard(props) {
           visible={modal.visible}
           onOk={switchModal}
           onCancel={switchModal}
+          footer={[
+            <Button key="back" onClick={switchModal}>
+              Got it!
+            </Button>
+          ]}
         >
           <Row justify="center">
             <Card className="modsug-card-container" type="inner"
