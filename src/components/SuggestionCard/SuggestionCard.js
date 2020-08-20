@@ -6,34 +6,94 @@ import { LikeTwoTone, DislikeTwoTone, ArrowUpOutlined, ArrowDownOutlined } from 
 import 'antd/dist/antd.css';
 import API from "../../utils/API";
 import "./suggestioncard.css"
+import { useParams } from 'react-router-dom';
 
 export default function SuggestionCard(props) {
-  const [count, setCount]=useState(0)
+  //VOTES
+  //state of number of votes
+  const [upVote, setUpVote]=useState(true)
+  const [downVote, setDownVote]=useState(false)
 
-  const [upVote, setUpVote]=useState()
-  const [downVote, setDownVote]=useState()
+  //state of display of voters
+  const [displayUpVote, setDisplayUpVote] = useState()
+  const [displayDownVote, setDisplayDownVote] = useState()
+  
+  //state of percent of voters
+  const [percentageVotes, setPercentageVotes] = useState(0)
 
-  const handleIncrement = ()=>{
-    setCount(prevCount=>prevCount+1)
+  //state of like btn clicked
+  // const [isClicked, setIsClicked] = useState(false);
+  
+  //create array of votes
+  const arr = props.suggestions.votes
+  let i;
+  const arrUpVotes = []
+  const arrDownVotes = []
+  const allVotes = []
+
+  for (i=0; i<arr.length; i++){
+    const voteVal = arr[i].vote  
+    allVotes.push(voteVal) 
+    if(voteVal===true){
+      arrUpVotes.push(voteVal)
+    } else {
+      arrDownVotes.push(voteVal)
+    }
+  }
+
+  //number of votes in array
+  const numUpVotes = arrUpVotes.length;
+  const numDownVotes = arrDownVotes.length;
+  const numAllVotes = allVotes.length;
+
+  //upvote logic
+  const handleIncrement =()=> {
     setUpVote(true)
-    API.saveVote(upVote)
+    setDisplayUpVote(numUpVotes)
+    console.log("what would show up votes", displayUpVote)
+    // setIsClicked(true)
+    const voteUpObj = {
+      vote:upVote
+    }
+    API.saveVote(voteUpObj,props.suggestions._id)
     .then(vote=>{
-      console.log("here is the likes count",vote)
-      // setCount(res.data)
-    })
-    .catch(err=>console.log(err))
-  }
-  const handleDecrement = ()=>{
-    setCount(prevCount=>prevCount-1)
-    setDownVote(false)
-    API.saveVote(downVote)
-    .then(vote=>{
-            console.log("here is the likes count",vote)
-      // setCount(res.data)
     })
     .catch(err=>console.log(err))
   }
 
+  //down vote logic
+  const handleDecrement = ()=>{
+    setDownVote(false)
+    setDisplayDownVote(numDownVotes)
+    console.log("what would show down votes", displayDownVote)
+    // setIsClicked(true)
+    const voteDownOjb ={
+      vote: downVote
+    }
+    API.saveVote(voteDownOjb, props.suggestions._id)
+    .then(vote=>{
+    })
+    .catch(err=>console.log(err))
+  }
+
+  //percentage of guests voted
+  const {id} = useParams()
+  useEffect(()=>{
+    API.getMapById(id).then(res=>{
+      const guestArr = res.data.guests
+      console.log("guest array", guestArr)
+      const numGuests = guestArr.length
+      console.log("number of guests", numGuests)
+      let ratio = numAllVotes/numGuests
+      console.log("ratio", ratio)
+      let percent = ratio*100
+      setPercentageVotes(percent)
+      console.log(percentageVotes)
+    })
+  })
+
+  
+  //MODAL
   const [modal, setModal] = useState({
     visible: false 
   })
@@ -43,7 +103,7 @@ export default function SuggestionCard(props) {
       visible: !modal.visible,
     });
   };
-  
+
   return (
     <>
       <Col xl={{span: 12}} md={{ span: 12 }} >
@@ -53,7 +113,11 @@ export default function SuggestionCard(props) {
             // adding up and downvote buttons
             <>
             <Tooltip>
-              <Button onClick={handleIncrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
+              {/* {isClicked?  */}
+              {/* <Button  disabled className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />  */}
+               {/* :  */}
+               <Button onClick={handleIncrement}className="vote-btn" shape="circle" style={{ margin:"5px" }} icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
+               {/* } */}
             </Tooltip>
             <Tooltip>
               <Button onClick={handleDecrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<DislikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px", position:"relative", top:"3px" }} />} size="large" />
@@ -108,7 +172,7 @@ export default function SuggestionCard(props) {
                             '0%': '#945440',
                             '100%': '#6eb0b4',
                         }}
-                        percent={75}
+                        percent={percentageVotes}
                         status="active"
                     />
                 </Col>
@@ -117,13 +181,13 @@ export default function SuggestionCard(props) {
                     <h4>Standing</h4>
                     <Statistic
                         title="Upvotes"
-                        value={11}
+                        value={numUpVotes}
                         valueStyle={{ color: '#6eb0b4' }}
                         prefix={<ArrowUpOutlined />}
                     />
                     <Statistic
                         title="Downvotes"
-                        value={4}
+                        value={numDownVotes}
                         valueStyle={{ color: '#945440' }}
                         prefix={<ArrowDownOutlined />}
                     />

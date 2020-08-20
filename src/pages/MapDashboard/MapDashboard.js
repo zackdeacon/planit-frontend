@@ -92,7 +92,7 @@ export default function MapDashboard(props) {
                     <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
 
                     <Row justify="center">
-                        <div className="dash-title"><Link onClick={switchModal}>{board.name}</Link></div>
+                        <div className="dash-title"><Link onClick={switchModal}>{board.name.toUpperCase()}</Link></div>
                     </Row>
 
                     <div className="top-buffer">
@@ -109,7 +109,7 @@ export default function MapDashboard(props) {
                 </div>
             </div>
             <Modal
-                title={board.name}
+                title={board.name.toUpperCase()}
                 visible={modal.visible}
                 onOk={handleOk}
                 onCancel={handleCancel}
@@ -129,31 +129,4 @@ export default function MapDashboard(props) {
             </Modal>
         </>
     )
-    // return (
-    //     <>
-    //         <div className="dash-background">
-    //             <div className="dash-filter-background">
-    //                 <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
-
-    //                 <Row justify="center">
-    //                     <div className="dash-title">{board.name}</div>
-    //                     <div className="dash-sub-title"> created by: {board.creator}</div>
-    //                 </Row>
-
-    //                 <div className="top-buffer">
-    //                     <Row justify="space-around">
-    //                         <Col lg={{ span: 14 }} sm={{ span: 13 }} xs={{ span: 24 }}>
-    //                             <MapCard categories={categories} />
-    //                         </Col>
-    //                         <div className="mid-col-buffer"></div>
-    //                         <Col lg={{ span: 9 }} sm={{ span: 10 }} xs={{ span: 24 }}>
-    //                             <Chat />
-    //                         </Col>
-    //                     </Row>
-    //                 </div>
-    //             </div>
-    //         </div>
-
-    //     </>
-    // )
 }
