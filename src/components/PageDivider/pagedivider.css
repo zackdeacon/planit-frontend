@@ -1,18 +1,28 @@
-.light-blue{
-    position: relative;
-    bottom: 50px;
-    background-color: #6eb0b4;
-    width: 100vw;
-    height: 200px;
-    border-radius: 20px 20px 0px 0px ;
+
+.divider-filter{
+    background-color: rgba(0, 0, 0, 0.666);
 }
-.dark-blue{
-    position: relative;
-    top:200px;
-    background-color:#3b5e66;
-    width: 100vw;
+.light-blue{
+    /* position: relative; */
+    /* bottom: 50px; */
+    background-color: #6eb0b4;
+    width: 100%;
     height: 200px;
     border-radius: 0px 0px 20px 20px;
+}
+.dark-blue{
+    /* position: relative; */
+    /* top:200px; */
+    background-color:#3b5e66;
+    width: 100%;
+    height: 200px;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.divider-logo{
+    margin: 20px 0px 20px 0px;
+    width:30vh;
+    height:30vh
 }
 
 /* Scroll Icon */
