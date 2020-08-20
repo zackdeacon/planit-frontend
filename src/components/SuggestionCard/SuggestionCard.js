@@ -22,7 +22,7 @@ export default function SuggestionCard(props) {
   const [percentageVotes, setPercentageVotes] = useState(0)
 
   //state of like btn clicked
-  // const [isClicked, setIsClicked] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   useEffect(()=>{
     const arr = props.suggestions.votes
@@ -47,29 +47,39 @@ export default function SuggestionCard(props) {
   //up vote btn
   const handleIncrement =()=> {
     setUpVote(true)
-    setDisplayUpVote(displayUpVote+1)
-    // setIsClicked(true)
+    setIsClicked(true)
     const voteUpObj = {
       vote:upVote
     }
     API.saveVote(voteUpObj,props.suggestions._id)
     .then(vote=>{
+      setDisplayUpVote(displayUpVote+1)
+      setIsClicked(false)
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+      alert ("already voted")
+      console.log(err)
+      setIsClicked(false)
+    })
   }
 
   //down vote btn
   const handleDecrement = ()=>{
     setDownVote(false)
-    setDisplayDownVote(displayDownVote+1)
-    // setIsClicked(true)
+    setIsClicked(true)
     const voteDownOjb ={
       vote: downVote
     }
     API.saveVote(voteDownOjb, props.suggestions._id)
     .then(vote=>{
+      setDisplayDownVote(displayDownVote+1)
+
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+      alert ("already voted")
+      console.log(err)
+      setIsClicked(false)
+    })
   }
 
   //percentage of guests voted
@@ -132,7 +142,7 @@ export default function SuggestionCard(props) {
               {/* {isClicked?  */}
               {/* <Button  disabled className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />  */}
                {/* :  */}
-               <Button onClick={handleIncrement}className="vote-btn" shape="circle" style={{ margin:"5px" }} icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
+               <Button disabled={isClicked} onClick={handleIncrement}className="vote-btn" shape="circle" style={{ margin:"5px" }} icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
                {/* } */}
             </Tooltip>
             <Tooltip>
