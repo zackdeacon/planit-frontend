@@ -51,15 +51,6 @@ export default function MapCard(props) {
           </Row>
           <Row className="add-sug-row" justify="center">
             <Button className="itin-btn" href={itinBtn} data-map-id={id}>Itinerary</Button>
-            {/* <Link>
-              to={{
-                pathname: "/addsuggestion",
-                state: { 
-                  // pass down information about the map
-                }
-                }}
-                <Button className="add-sug-btn" href="/addsuggestion">Add Suggestion</Button>
-            </Link> */}
           </Row>
         </div>
       </div>
