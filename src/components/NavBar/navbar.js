@@ -71,6 +71,9 @@ export default function Navbar(props) {
                     </Col>
                 </Row>
             </div>
+            {/* <div className=>
+            {isLoggedIn? <h1>hi</h1> : null}
+            </div> */}
             <div className="wrapper">
                 <Row justify="end">
                     <Col className={menuBtn.menuClass} onClick={handleHamburgerClick}>

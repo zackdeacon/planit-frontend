@@ -70,7 +70,11 @@ export default function MapDashboard(props) {
         }).catch(err => console.log('err', err))
     }, [])
 
-
+//    const array =[true, false, true];
+//    const newArray = array.map((value)=> 
+//         <li>{value}</li>
+//    )
+    // console.log("new array",newArray)
     return (
         <>
             <div className="dash-background">
@@ -79,6 +83,8 @@ export default function MapDashboard(props) {
 
                     <Row justify="center">
                         <div className="dash-title"><Link onClick={switchModal}>{board.name.toUpperCase()}</Link></div>
+                        {/* <div className="dash-sub-title"><ul>{newArray}</ul></div> */}
+                    
                     </Row>
 
                     <div className="top-buffer">
