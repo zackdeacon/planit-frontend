@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from 'react'
-import { Row, Col, Card, Button, Tooltip, Modal, Progress, Statistic} from 'antd'
+import { Row, Col, Card, Button, Tooltip, Modal, Progress, Statistic, Form, Input} from 'antd'
 import { LikeTwoTone, DislikeTwoTone, ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons"
 // import DashMod from '../../components/DashModule/dashmod'
 import 'antd/dist/antd.css';
@@ -50,7 +50,7 @@ export default function SuggestionCard(props) {
   const handleIncrement =()=> {
     setUpVote(true)
     setDisplayUpVote(numUpVotes)
-    console.log("what would show up votes", displayUpVote)
+    // console.log("what would show up votes", displayUpVote)
     // setIsClicked(true)
     const voteUpObj = {
       vote:upVote
@@ -65,7 +65,7 @@ export default function SuggestionCard(props) {
   const handleDecrement = ()=>{
     setDownVote(false)
     setDisplayDownVote(numDownVotes)
-    console.log("what would show down votes", displayDownVote)
+    // console.log("what would show down votes", displayDownVote)
     // setIsClicked(true)
     const voteDownOjb ={
       vote: downVote
@@ -81,14 +81,14 @@ export default function SuggestionCard(props) {
   useEffect(()=>{
     API.getMapById(id).then(res=>{
       const guestArr = res.data.guests
-      console.log("guest array", guestArr)
+      // console.log("guest array", guestArr)
       const numGuests = guestArr.length
-      console.log("number of guests", numGuests)
+      // console.log("number of guests", numGuests)
       let ratio = numAllVotes/numGuests
-      console.log("ratio", ratio)
+      // console.log("ratio", ratio)
       let percent = ratio*100
       setPercentageVotes(percent)
-      console.log(percentageVotes)
+      // console.log(percentageVotes)
     })
   })
 
@@ -103,6 +103,29 @@ export default function SuggestionCard(props) {
       visible: !modal.visible,
     });
   };
+
+  //COMMENT 
+  const [form] = Form.useForm();
+
+  const [commentObj, setCommentObj] = useState({
+    message: ""
+  })
+
+  function commentInputChange (event) {
+    const {name,value} = event.target
+    setCommentObj({...commentObj, [name]:value})
+  }
+
+  function commentSubmit (){
+    API.saveComment(commentObj, props.suggestions._id)
+    .then(message=>{
+    })
+    .catch(err=>console.log(err))
+    setCommentObj({
+      message: ""
+    })
+  }
+  
 
   return (
     <>
@@ -147,10 +170,10 @@ export default function SuggestionCard(props) {
                     // adding up and downvote buttons
                     <>
                     <Tooltip>
-                    <Button className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
+                    <Button onClick={handleIncrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
                     </Tooltip>
                     <Tooltip>
-                    <Button className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<DislikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px", position:"relative", top:"3px" }} />} size="large" />
+                    <Button onClick={handleDecrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<DislikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px", position:"relative", top:"3px" }} />} size="large" />
                     </Tooltip>
                     </>
                 }
@@ -195,6 +218,31 @@ export default function SuggestionCard(props) {
 
                 <Col className="mod-elements" sm={{span:6}} xs={{span:24}}>
                     <h4>Comments</h4>
+                    <Form
+                      form={form}
+                      name="basic"
+                      initialValues={{ remember: true }}
+                      // onFinish={commentSubmit}
+                      layout="vertical"
+                      // onFinishFailed={onFinishFailed}
+                    >
+                      <Form.Item 
+                        label="comment"
+                        rules={[
+                          { required: true, message: 'Please input your username!' }
+                        ]}
+                        >
+                        <Input.TextArea 
+                          value={commentObj.message}
+                          onChange={commentInputChange}
+                          name="message"
+                          type="text"
+                        />
+                      </Form.Item>
+                      <Form.Item >
+                        <Button onClick={commentSubmit} type="primary">Submit</Button>
+                      </Form.Item>
+                    </Form>
                 </Col>
             </Row>
       </Modal>

@@ -1,5 +1,7 @@
 import axios from "axios";
-const urlPrefix = "http://localhost:8080";
+// const urlPrefix = "https://planitserver.herokuapp.com";
+export const urlPrefix = "http://localhost:8080";
+
 
 // ** Functions that take an object have the structure and keys of that 
 // ** object laid out in a comment within!
@@ -95,8 +97,12 @@ export default {
     return axios.post(`${urlPrefix}/api/suggestions/delete`, suggestion);
   },
   // saves a vote for a suggestion
-  saveVote: function (suggestion,sugId) {
-    return axios.post(`${urlPrefix}/api/suggestions/vote/${sugId}`, suggestion, { withCredentials: true })
+  saveVote: function (vote,sugId) {
+    return axios.post(`${urlPrefix}/api/suggestions/vote/${sugId}`, vote, { withCredentials: true })
+  },
+  // saves a vote for a suggestion
+  saveComment: function (comment,sugId) {
+    return axios.post(`${urlPrefix}/api/suggestions/comment/${sugId}`, comment, { withCredentials: true })
   },
 
   // * CHATS COLLECTION
