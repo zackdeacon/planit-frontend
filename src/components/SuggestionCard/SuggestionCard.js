@@ -9,7 +9,7 @@ import "./suggestioncard.css"
 import { useParams } from 'react-router-dom';
 
 export default function SuggestionCard(props) {
-
+  //VOTES
   const [upVote, setUpVote]=useState(true)
   const [downVote, setDownVote]=useState(false)
   
@@ -37,35 +37,20 @@ export default function SuggestionCard(props) {
     window.location.reload()
   }
 
-  const [modal, setModal] = useState({
-    visible: false 
+  const [displayUpVote, setDisplayUpVote] = useState({
+    count: "0"
   })
 
-  const switchModal = () => {
-    setModal({
-      visible: !modal.visible,
-    });
-  };
-
-  const {id} = useParams()
-  let arrGuests;
-  useEffect(()=>{
-    API.getMapById(id).then(res=>{
-      console.log("map data",res.data.guests)
-      const guestArr = res.data.guests
-      // arrGuests.push(guestArr)
-      arrGuests = guestArr
-      console.log("guest array", arrGuests)
-      
-
-    })
+  const [displayDownVote, setDisplayDownVote] = useState({
+    count: "0"
   })
-  console.log("array of guests",arrGuests)
-  // const numGuests = arrGuests.length
-  // console.log("number of guests", numGuests)
-    
+
+  const [percentageVotes, setPercentageVotes] = useState(0)
+
+  
+  
   const arr = props.suggestions.votes
-  console.log("vote  array",arr)
+  // console.log("vote  array",arr)
   let i;
   const arrUpVotes = []
   const arrDownVotes = []
@@ -78,7 +63,7 @@ export default function SuggestionCard(props) {
         arrUpVotes.push(voteVal)
       } else {
         arrDownVotes.push(voteVal)
-        console.log("down votes array",arrDownVotes)
+        // console.log("down votes array",arrDownVotes)
       }
     }
       
@@ -90,12 +75,32 @@ export default function SuggestionCard(props) {
 
   const numAllVotes = allVotes.length;
   // console.log("new length all",numAllVotes)
+  const {id} = useParams()
+  useEffect(()=>{
+    API.getMapById(id).then(res=>{
+      const guestArr = res.data.guests
+      console.log("guest array", guestArr)
+      const numGuests = guestArr.length
+      console.log("number of guests", numGuests)
+      let apple = numAllVotes/numGuests
+      console.log("percentage", apple)
+      setPercentageVotes(apple)
+      console.log(percentageVotes)
+    })
+  })
 
   
 
-  // const percentVoters = numAllVotes/numGuests
-  // console.log("percentage", percentVoters)
-  
+  //MODAL
+  const [modal, setModal] = useState({
+    visible: false 
+  })
+
+  const switchModal = () => {
+    setModal({
+      visible: !modal.visible,
+    });
+  };
 
   return (
     <>
@@ -161,7 +166,7 @@ export default function SuggestionCard(props) {
                             '0%': '#945440',
                             '100%': '#6eb0b4',
                         }}
-                        percent={75}
+                        percent={percentageVotes}
                         status="active"
                     />
                 </Col>
@@ -191,3 +196,23 @@ export default function SuggestionCard(props) {
     </>
   )
 }
+
+
+// mapGuestArr = guestArr
+  // const pan = mapGuestArr
+  //  mapGuestArr.push(guestArr)
+    // let mapGuestArr;
+
+    //  console.log("aray fo guests", mapGuestArr)
+  // console.log("array of guests", mapGuestArr)
+  // let v;
+  // for (v=0; v<mapGuestArr.length; v++){
+  //   const yes = mapGuestArr[v]
+  //   console.log("yes",yes)
+  // }
+  // const thing = mapGuestArr[0]
+  // console.log("map guest arr",thing)
+
+  // const handleVoteUpChange = (num) =>{
+  //   setDisplayUpVote({...displayUpVote, count:(numUpVotes) })
+  // }
