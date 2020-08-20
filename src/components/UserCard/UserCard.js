@@ -53,12 +53,12 @@ export default function UserCard(props) {
                                     <Button onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98"}} icon={<SettingTwoTone twoToneColor="#576d65" />} />
                                 </Row>
                             </Card>
-                            <MapCarousel header="My Trips:" maps={userData.createdMaps} />
-                            <MapCarousel header="Trip Member On:" maps={userData.guestMaps} />
-                            <MapCarousel header="Invitations:" maps={userData.invitations} />
+                            <MapCarousel header="My Planning Maps:" maps={userData.createdMaps} />
+                            <MapCarousel header="Collaborating On:" maps={userData.guestMaps} />
+                            <MapCarousel header="Pending Invitations:" maps={userData.invitations} />
                         </Col>
                     </Row>
-                </div>
+                </div> 
             </div>
 
             <Modal
