@@ -35,7 +35,7 @@ export default function FinalRender(props) {
                 <div className="render-filter-background">
                     <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
                     <Row justify="center">
-                        <div className="dash-title"><a className="map-link" href=" ">Bachelor Trip: New Orleans</a></div>
+                        <div className="dash-title"><a className="map-link" href=" ">{board.name}</a></div>
                     </Row>
                     <div className="top-buffer"></div>
                     <FinalRenderCard />
