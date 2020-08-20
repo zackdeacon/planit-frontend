@@ -10,13 +10,18 @@ import "./suggestioncard.css"
 export default function SuggestionCard(props) {
   const [count, setCount]=useState(0)
 
-  const [upVote, setUpVote]=useState()
+  const [upVote, setUpVote]=useState(true)
   const [downVote, setDownVote]=useState()
 
-  const handleIncrement = ()=>{
+  
+  const handleIncrement =()=> {
+    console.log(props.suggestions);
     setCount(prevCount=>prevCount+1)
-    setUpVote(true)
-    API.saveVote(upVote)
+     setUpVote(true)
+    const voteObject = {
+      vote:upVote
+    }
+    API.saveVote(voteObject,props.suggestions._id)
     .then(vote=>{
       console.log("here is the likes count",vote)
       // setCount(res.data)
