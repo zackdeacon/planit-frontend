@@ -116,7 +116,10 @@ const Chat = () => {
   const socketRef = useRef();
 
   useEffect(() => {
-    socketRef.current = io.connect("http://127.0.0.1:8080");
+    socketRef.current = io.connect(
+      // "http://127.0.0.1:8080"
+      "https://planitserver.herokuapp.com"
+      );
 
     updateMessages();
 

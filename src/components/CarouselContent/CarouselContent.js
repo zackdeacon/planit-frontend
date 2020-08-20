@@ -100,15 +100,7 @@ export default function CarouselContent(props) {
                 okButtonProps={{ disabled: false }}
                 cancelButtonProps={{ disabled: false }}
                 >
-                  <Row justify="space-around" align="middle">
-                    <Col xs={{span:8}}>
-                      <input
-                      name="name"
-                      value={formObject.name}
-                      onChange={handleChange}
-                      placeholder="Guest's Name"
-                      />
-                    </Col>
+                  <Row justify="center" align="middle">
                     <Col xs={{span:8}}>
                       <input
                       name="email"
