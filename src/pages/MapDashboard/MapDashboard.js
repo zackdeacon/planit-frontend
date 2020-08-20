@@ -40,12 +40,11 @@ export default function MapDashboard(props) {
         }
     })
     const [categories, setCategories] = useState([])
-    const [suggestions, setSuggestions] = useState([])
+
 
     const { id } = useParams()
 
     useEffect(() => {
-        // API.getMapById(req.params.id)
         API.getMapById(id).then(res => {
             console.log(res.data.name);
             const mapName = res.data.name;
@@ -68,20 +67,7 @@ export default function MapDashboard(props) {
                 }
             })
             setCategories(categoriesArr)
-            console.log(categoriesArr);
         }).catch(err => console.log('err', err))
-    }, [])
-
-    useEffect(() => {
-        API.getSuggestionsForMap(id).then(res => {
-            // console.log('res', res.data)
-            const suggestionArr = res.data.map(suggestion => {
-                return suggestion
-            })
-            setSuggestions(suggestionArr)
-            console.log(suggestionArr);
-        })
-            .catch(err => console.log('err', err))
     }, [])
 
 
