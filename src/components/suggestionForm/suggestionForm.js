@@ -1,8 +1,16 @@
 import React from 'react';
-import { Row, Form, Input, Button } from 'antd';
+import { Row, Form, Input, Button, Select } from 'antd';
 import "./suggestionForm.css"
 
+
 function SuggestionCreateForm(props) {
+    const Option = Select.Option;
+    // function handleChange(value) {
+    //     console.log(`selected ${value}`);
+    //   }
+    //   console.log(props.formData)
+      
+    
     return (
         <div>
             <div className="cart-buffer"></div>
@@ -27,13 +35,28 @@ function SuggestionCreateForm(props) {
 
                     <Form.Item
                         rules={[{ required: true, message: 'Please enter a category!' }]}>
-                        <Input
+                        <Select 
+                            onChange={props.handleChangeSelect}
+                            placeholder="Choose a Category"
                             name="category"
-                            type="text"
-                            value={props.formData.category}
-                            onChange={props.handleChange}
-                            placeholder="Pick A Category"
-                        />
+                            >
+                            <Option 
+                            value="Accomodation"
+                            >Accomodation
+                            </Option>
+                            <Option 
+                            value="Food"
+                            >Food
+                            </Option>
+                            <Option 
+                            value="Flights"
+                            >Flights
+                            </Option>
+                            <Option 
+                            value="Entertainment"
+                            >Entertainment
+                            </Option>
+                        </Select>
                     </Form.Item>
 
                     <Form.Item
