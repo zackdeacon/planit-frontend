@@ -76,20 +76,6 @@ export default function SuggestionCard(props) {
     .catch(err=>console.log(err))
   }
 
-
-  //set display in modal
-  // function handleNumchange(value){
-  //   setDisplayUpVote({...displayUpVote, dis: (value)})
-  //   console.log("what would show up votes", displayUpVote)
-  //   setDisplayDownVote(numDownVotes)
-  //   console.log("what would show down votes", displayDownVote)
-  // }
-  // //set display in modal
-  // useEffect(()=>{
-    
-    
-  // })
-
   //percentage of guests voted
   const {id} = useParams()
   useEffect(()=>{
