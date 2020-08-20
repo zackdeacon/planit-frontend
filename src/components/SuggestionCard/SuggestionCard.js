@@ -111,7 +111,6 @@ export default function SuggestionCard(props) {
   };
 
   const [commentObj, setCommentObj] = useState({
-    userId: id,
     message: ""
   })
 
@@ -234,9 +233,9 @@ export default function SuggestionCard(props) {
                         ]}
                         >
                         <Input.TextArea 
-                          // value={}
-                          // onChange={}
-                          // name={}
+                          value={commentObj.message}
+                          onChange={commentInputChange}
+                          name="message"
                           type="text"
                         />
                       </Form.Item>
