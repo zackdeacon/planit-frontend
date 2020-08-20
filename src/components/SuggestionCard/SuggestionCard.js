@@ -10,45 +10,21 @@ import { useParams } from 'react-router-dom';
 
 export default function SuggestionCard(props) {
   //VOTES
+  //state of number of votes
   const [upVote, setUpVote]=useState(true)
   const [downVote, setDownVote]=useState(false)
+
+  //state of display of voters
+  const [displayUpVote, setDisplayUpVote] = useState()
+  const [displayDownVote, setDisplayDownVote] = useState()
   
-  const handleIncrement =()=> {
-    setUpVote(true)
-    const voteUpObj = {
-      vote:upVote
-    }
-    API.saveVote(voteUpObj,props.suggestions._id)
-    .then(vote=>{
-    })
-    .catch(err=>console.log(err))
-    window.location.reload()
-
-  }
-  const handleDecrement = ()=>{
-    setDownVote(false)
-    const voteDownOjb ={
-      vote: downVote
-    }
-    API.saveVote(voteDownOjb, props.suggestions._id)
-    .then(vote=>{
-    })
-    .catch(err=>console.log(err))
-    window.location.reload()
-  }
-
-  const [displayUpVote, setDisplayUpVote] = useState({
-    count: "0"
-  })
-
-  const [displayDownVote, setDisplayDownVote] = useState({
-    count: "0"
-  })
-
   //state of percent of voters
   const [percentageVotes, setPercentageVotes] = useState(0)
 
-  //type of vote logic
+  //state of like btn clicked
+  // const [isClicked, setIsClicked] = useState(false);
+  
+  //create array of votes
   const arr = props.suggestions.votes
   let i;
   const arrUpVotes = []
@@ -64,14 +40,57 @@ export default function SuggestionCard(props) {
       arrDownVotes.push(voteVal)
     }
   }
-      
-  const numUpVotes = arrUpVotes.length;
-  
-  const numDownVotes = arrDownVotes.length;
 
+  //number of votes in array
+  const numUpVotes = arrUpVotes.length;
+  const numDownVotes = arrDownVotes.length;
   const numAllVotes = allVotes.length;
 
-  //percentage of people voted
+  //upvote logic
+  const handleIncrement =()=> {
+    setUpVote(true)
+    setDisplayUpVote(numUpVotes)
+    console.log("what would show up votes", displayUpVote)
+    // setIsClicked(true)
+    const voteUpObj = {
+      vote:upVote
+    }
+    API.saveVote(voteUpObj,props.suggestions._id)
+    .then(vote=>{
+    })
+    .catch(err=>console.log(err))
+  }
+
+  //down vote logic
+  const handleDecrement = ()=>{
+    setDownVote(false)
+    setDisplayDownVote(numDownVotes)
+    console.log("what would show down votes", displayDownVote)
+    // setIsClicked(true)
+    const voteDownOjb ={
+      vote: downVote
+    }
+    API.saveVote(voteDownOjb, props.suggestions._id)
+    .then(vote=>{
+    })
+    .catch(err=>console.log(err))
+  }
+
+
+  //set display in modal
+  // function handleNumchange(value){
+  //   setDisplayUpVote({...displayUpVote, dis: (value)})
+  //   console.log("what would show up votes", displayUpVote)
+  //   setDisplayDownVote(numDownVotes)
+  //   console.log("what would show down votes", displayDownVote)
+  // }
+  // //set display in modal
+  // useEffect(()=>{
+    
+    
+  // })
+
+  //percentage of guests voted
   const {id} = useParams()
   useEffect(()=>{
     API.getMapById(id).then(res=>{
@@ -108,7 +127,11 @@ export default function SuggestionCard(props) {
             // adding up and downvote buttons
             <>
             <Tooltip>
-              <Button onClick={handleIncrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
+              {/* {isClicked?  */}
+              {/* <Button  disabled className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />  */}
+               {/* :  */}
+               <Button onClick={handleIncrement}className="vote-btn" shape="circle" style={{ margin:"5px" }} icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
+               {/* } */}
             </Tooltip>
             <Tooltip>
               <Button onClick={handleDecrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<DislikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px", position:"relative", top:"3px" }} />} size="large" />
@@ -193,23 +216,3 @@ export default function SuggestionCard(props) {
     </>
   )
 }
-
-
-// mapGuestArr = guestArr
-  // const pan = mapGuestArr
-  //  mapGuestArr.push(guestArr)
-    // let mapGuestArr;
-
-    //  console.log("aray fo guests", mapGuestArr)
-  // console.log("array of guests", mapGuestArr)
-  // let v;
-  // for (v=0; v<mapGuestArr.length; v++){
-  //   const yes = mapGuestArr[v]
-  //   console.log("yes",yes)
-  // }
-  // const thing = mapGuestArr[0]
-  // console.log("map guest arr",thing)
-
-  // const handleVoteUpChange = (num) =>{
-  //   setDisplayUpVote({...displayUpVote, count:(numUpVotes) })
-  // }
