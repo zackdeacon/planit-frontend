@@ -21,6 +21,8 @@ export default function SuggestionCard(props) {
     .then(vote=>{
     })
     .catch(err=>console.log(err))
+    window.location.reload()
+
   }
   const handleDecrement = ()=>{
     setDownVote(false)
@@ -31,6 +33,7 @@ export default function SuggestionCard(props) {
     .then(vote=>{
     })
     .catch(err=>console.log(err))
+    window.location.reload()
   }
 
   const [modal, setModal] = useState({
@@ -42,19 +45,22 @@ export default function SuggestionCard(props) {
       visible: !modal.visible,
     });
   };
+
+  
     
   const arr = props.suggestions.votes
   console.log("vote  array",arr)
   let i;
   const arrUpVotes = []
   const arrDownVotes = []
+  const allVotes = []
 
     for (i=0; i<arr.length; i++){
-      const voteVal = arr[i].vote      
+      const voteVal = arr[i].vote  
+      allVotes.push(voteVal) 
+
       if(voteVal===true){
         arrUpVotes.push(voteVal)
-        const length = arrUpVotes.length
-        console.log(length)
       } else {
         arrDownVotes.push(voteVal)
         console.log("down votes array",arrDownVotes)
@@ -67,10 +73,7 @@ export default function SuggestionCard(props) {
   const numDownVotes = arrDownVotes.length;
   console.log("new length",numDownVotes)
   
-    
-  
-
-
+  // const percentVoters = votes/guests
 
   return (
     <>
