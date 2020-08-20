@@ -95,6 +95,8 @@ const guestList = guestArr.map((name) => name)
 
                     <Row justify="center">
                         <div className="dash-title"><Link onClick={switchModal}>{board.name.toUpperCase()}</Link></div>
+                        {/* <div className="dash-sub-title"><ul>{newArray}</ul></div> */}
+                    
                     </Row>
 
                     <div className="top-buffer">
