@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Row } from "antd";
 import styled from "styled-components";
 import io from "socket.io-client";
-import API from "../../utils/API"
+import API, {urlPrefix} from "../../utils/API"
 import "./chat.css"
 import { useParams } from "react-router-dom";
 
@@ -116,7 +116,7 @@ const Chat = () => {
   const socketRef = useRef();
 
   useEffect(() => {
-    socketRef.current = io.connect();
+    socketRef.current = io.connect("http://127.0.0.1:8080");
 
     updateMessages();
 
@@ -146,10 +146,14 @@ const Chat = () => {
       mapId: id,
       message: message,
     };
-    setMessage("");
-    API.postNewChat(chatData);
-    socketRef.current.emit("new message");
-    updateMessages();
+    API.postNewChat(chatData).then((data)=>{
+      // console.log(data)
+      setMessage("");
+      socketRef.current.emit("new message");
+      updateMessages();  
+    }).catch((err)=>{
+      console.log(err)
+    })
   }
 
   function handleChange(e) {
