@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from 'react'
-import { Row, Col, Card, Button, Tooltip, Modal, Progress, Statistic} from 'antd'
+import { Row, Col, Card, Button, Tooltip, Modal, Progress, Statistic, Form, Input} from 'antd'
 import { LikeTwoTone, DislikeTwoTone, ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons"
 // import DashMod from '../../components/DashModule/dashmod'
 import 'antd/dist/antd.css';
@@ -104,6 +104,30 @@ export default function SuggestionCard(props) {
     });
   };
 
+  //COMMENT 
+  const [form] = Form.useForm();
+
+  const onFinish = values => {
+  };
+
+  const [commentObj, setCommentObj] = useState({
+    userId: id,
+    message: ""
+  })
+
+  function commentInputChange (event) {
+    const {name,value} = event.target
+    setCommentObj({...commentObj, [name]:value})
+  }
+
+  function commentSubmit (){
+    API.postNewComment(commentObj, props.suggestions._id)
+    .then(message=>{
+    })
+    .catch(err=>console.log(err))
+  }
+  
+
   return (
     <>
       <Col xl={{span: 12}} md={{ span: 12 }} >
@@ -195,6 +219,31 @@ export default function SuggestionCard(props) {
 
                 <Col className="mod-elements" sm={{span:6}} xs={{span:24}}>
                     <h4>Comments</h4>
+                    <Form
+                      form={form}
+                      name="basic"
+                      initialValues={{ remember: true }}
+                      onFinish={onFinish}
+                      layout="vertical"
+                      // onFinishFailed={onFinishFailed}
+                    >
+                      <Form.Item 
+                        label="comment"
+                        rules={[
+                          { required: true, message: 'Please input your username!' }
+                        ]}
+                        >
+                        <Input.TextArea 
+                          // value={}
+                          // onChange={}
+                          // name={}
+                          type="text"
+                        />
+                      </Form.Item>
+                      <Form.Item >
+                        <Button type="primary">Submit</Button>
+                      </Form.Item>
+                    </Form>
                 </Col>
             </Row>
       </Modal>
