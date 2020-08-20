@@ -45,36 +45,33 @@ export default function SuggestionCard(props) {
     count: "0"
   })
 
+  //state of percent of voters
   const [percentageVotes, setPercentageVotes] = useState(0)
 
-  
-  
+  //type of vote logic
   const arr = props.suggestions.votes
-  // console.log("vote  array",arr)
   let i;
   const arrUpVotes = []
   const arrDownVotes = []
   const allVotes = []
 
-    for (i=0; i<arr.length; i++){
-      const voteVal = arr[i].vote  
-      allVotes.push(voteVal) 
-      if(voteVal===true){
-        arrUpVotes.push(voteVal)
-      } else {
-        arrDownVotes.push(voteVal)
-        // console.log("down votes array",arrDownVotes)
-      }
+  for (i=0; i<arr.length; i++){
+    const voteVal = arr[i].vote  
+    allVotes.push(voteVal) 
+    if(voteVal===true){
+      arrUpVotes.push(voteVal)
+    } else {
+      arrDownVotes.push(voteVal)
     }
+  }
       
   const numUpVotes = arrUpVotes.length;
-  // console.log("new length",numUpVotes)
   
   const numDownVotes = arrDownVotes.length;
-  // console.log("new length",numDownVotes)
 
   const numAllVotes = allVotes.length;
-  // console.log("new length all",numAllVotes)
+
+  //percentage of people voted
   const {id} = useParams()
   useEffect(()=>{
     API.getMapById(id).then(res=>{
@@ -82,15 +79,15 @@ export default function SuggestionCard(props) {
       console.log("guest array", guestArr)
       const numGuests = guestArr.length
       console.log("number of guests", numGuests)
-      let apple = numAllVotes/numGuests
-      console.log("percentage", apple)
-      setPercentageVotes(apple)
+      let ratio = numAllVotes/numGuests
+      console.log("ratio", ratio)
+      let percent = ratio*100
+      setPercentageVotes(percent)
       console.log(percentageVotes)
     })
   })
 
   
-
   //MODAL
   const [modal, setModal] = useState({
     visible: false 
