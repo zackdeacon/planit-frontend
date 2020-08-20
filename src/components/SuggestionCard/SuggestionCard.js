@@ -43,39 +43,29 @@ export default function SuggestionCard(props) {
     });
   };
     
-  
-  // const numberUpVotes = props.suggestions.votes[0].vote
-  // const arr = [false, true, false, false]
   const arr = props.suggestions.votes
   console.log("vote  array",arr)
   let i;
-  let j;
-  const arrayVotes = []
-  let length; 
- 
-    for (i=0; i<arr.length; i++){
-      const yesVote = arr[i].vote
-      console.log(yesVote)
-      
-      // for(j=0; j<yesVote.length; j++){
-        arrayVotes.push(yesVote)
-        const length = arrayVotes.length
-        console.log(length)
-      //   console.log("array of votes", arrayVotes)
-      // }s
-      
-  
-      // if (yesVote===true){
-      //   arrayofYesVotes.push(false)
-      //   // console.log("number of yes votes", yesVote)
-      //   console.log("array of yes votes", arrayofYesVotes)
-      }
+  const arrUpVotes = []
+  const arrDownVotes = []
 
-      // if(yesVote===true){
-      // const howManyYesVotes = yesVote.length
+    for (i=0; i<arr.length; i++){
+      const voteVal = arr[i].vote      
+      if(voteVal===true){
+        arrUpVotes.push(voteVal)
+        const length = arrUpVotes.length
+        console.log(length)
+      } else {
+        arrDownVotes.push(voteVal)
+        console.log("down votes array",arrDownVotes)
+      }
+    }
       
-  const newLength = arrayVotes.length;
-  console.log("new length",newLength)
+  const numUpVotes = arrUpVotes.length;
+  console.log("new length",numUpVotes)
+  
+  const numDownVotes = arrDownVotes.length;
+  console.log("new length",numDownVotes)
   
     
   
@@ -155,13 +145,13 @@ export default function SuggestionCard(props) {
                     <h4>Standing</h4>
                     <Statistic
                         title="Upvotes"
-                        value={newLength}
+                        value={numUpVotes}
                         valueStyle={{ color: '#6eb0b4' }}
                         prefix={<ArrowUpOutlined />}
                     />
                     <Statistic
                         title="Downvotes"
-                        value={4}
+                        value={numDownVotes}
                         valueStyle={{ color: '#945440' }}
                         prefix={<ArrowDownOutlined />}
                     />
