@@ -26,7 +26,7 @@ export default function LoginForm() {
     function handleInputLogin(event) {
         const { name, value } = event.target;
         setFormObjectLogin({ ...formObjectLogin, [name]: value })
-        console.log("input change function", event.target)
+        // console.log("input change function", event.target)
 
     }
 
@@ -78,18 +78,20 @@ export default function LoginForm() {
         } else {
             setFormObjectSignup({ ...formObjectSignup, [name]: value })
         }
-        console.log(formObjectSignup);
+        // console.log(formObjectSignup);
     }
 
     function handleSubmitSignup(e) {
         API.signup(formObjectSignup).then(data => {
-            console.log("you are a new user", data)
+            // console.log("you are a new user", data)
             history.push("/user")
+        }).catch(function (err) {
+            alert("Username already taken, please try a different username.")
         });
     }
 
     const onFinish = values => {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
     };
 
     return (

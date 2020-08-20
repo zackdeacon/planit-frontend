@@ -29,9 +29,10 @@ export default function User() {
     }, []);
 
     return (
-        <div className="user-background">
-            <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
-            <UserCard userData={userData} />
-        </div>
+        <>
+        <img src="./assets/images/glenn-carstens-unsplash.jpg" className="bg" />
+        <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
+        <UserCard userData={userData} />
+        </>
     )
 }
