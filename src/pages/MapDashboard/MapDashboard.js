@@ -129,31 +129,4 @@ export default function MapDashboard(props) {
             </Modal>
         </>
     )
-    // return (
-    //     <>
-    //         <div className="dash-background">
-    //             <div className="dash-filter-background">
-    //                 <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
-
-    //                 <Row justify="center">
-    //                     <div className="dash-title">{board.name}</div>
-    //                     <div className="dash-sub-title"> created by: {board.creator}</div>
-    //                 </Row>
-
-    //                 <div className="top-buffer">
-    //                     <Row justify="space-around">
-    //                         <Col lg={{ span: 14 }} sm={{ span: 13 }} xs={{ span: 24 }}>
-    //                             <MapCard categories={categories} />
-    //                         </Col>
-    //                         <div className="mid-col-buffer"></div>
-    //                         <Col lg={{ span: 9 }} sm={{ span: 10 }} xs={{ span: 24 }}>
-    //                             <Chat />
-    //                         </Col>
-    //                     </Row>
-    //                 </div>
-    //             </div>
-    //         </div>
-
-    //     </>
-    // )
 }

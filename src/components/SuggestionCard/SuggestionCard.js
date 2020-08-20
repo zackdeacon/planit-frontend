@@ -6,6 +6,7 @@ import { LikeTwoTone, DislikeTwoTone, ArrowUpOutlined, ArrowDownOutlined } from 
 import 'antd/dist/antd.css';
 import API from "../../utils/API";
 import "./suggestioncard.css"
+import { useParams } from 'react-router-dom';
 
 export default function SuggestionCard(props) {
 
@@ -46,7 +47,22 @@ export default function SuggestionCard(props) {
     });
   };
 
-  
+  const {id} = useParams()
+  let arrGuests;
+  useEffect(()=>{
+    API.getMapById(id).then(res=>{
+      console.log("map data",res.data.guests)
+      const guestArr = res.data.guests
+      // arrGuests.push(guestArr)
+      arrGuests = guestArr
+      console.log("guest array", arrGuests)
+      
+
+    })
+  })
+  console.log("array of guests",arrGuests)
+  // const numGuests = arrGuests.length
+  // console.log("number of guests", numGuests)
     
   const arr = props.suggestions.votes
   console.log("vote  array",arr)
@@ -58,7 +74,6 @@ export default function SuggestionCard(props) {
     for (i=0; i<arr.length; i++){
       const voteVal = arr[i].vote  
       allVotes.push(voteVal) 
-
       if(voteVal===true){
         arrUpVotes.push(voteVal)
       } else {
@@ -68,12 +83,19 @@ export default function SuggestionCard(props) {
     }
       
   const numUpVotes = arrUpVotes.length;
-  console.log("new length",numUpVotes)
+  // console.log("new length",numUpVotes)
   
   const numDownVotes = arrDownVotes.length;
-  console.log("new length",numDownVotes)
+  // console.log("new length",numDownVotes)
+
+  const numAllVotes = allVotes.length;
+  // console.log("new length all",numAllVotes)
+
   
-  // const percentVoters = votes/guests
+
+  // const percentVoters = numAllVotes/numGuests
+  // console.log("percentage", percentVoters)
+  
 
   return (
     <>
