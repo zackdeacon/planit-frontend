@@ -107,9 +107,6 @@ export default function SuggestionCard(props) {
   //COMMENT 
   const [form] = Form.useForm();
 
-  const onFinish = values => {
-  };
-
   const [commentObj, setCommentObj] = useState({
     message: ""
   })
@@ -120,10 +117,13 @@ export default function SuggestionCard(props) {
   }
 
   function commentSubmit (){
-    API.postNewComment(commentObj, props.suggestions._id)
+    API.saveComment(commentObj, props.suggestions._id)
     .then(message=>{
     })
     .catch(err=>console.log(err))
+    setCommentObj({
+      message: ""
+    })
   }
   
 
@@ -222,7 +222,7 @@ export default function SuggestionCard(props) {
                       form={form}
                       name="basic"
                       initialValues={{ remember: true }}
-                      onFinish={onFinish}
+                      // onFinish={commentSubmit}
                       layout="vertical"
                       // onFinishFailed={onFinishFailed}
                     >
@@ -240,7 +240,7 @@ export default function SuggestionCard(props) {
                         />
                       </Form.Item>
                       <Form.Item >
-                        <Button type="primary">Submit</Button>
+                        <Button onClick={commentSubmit} type="primary">Submit</Button>
                       </Form.Item>
                     </Form>
                 </Col>
