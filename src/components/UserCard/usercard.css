@@ -1,5 +1,5 @@
 .site-card-wrapper  {
-    padding-top: 20%;
+    padding-top: 150px;
 }
 
 .ant-card-head {
@@ -36,6 +36,10 @@
     text-align: center;
 }
 
+h2{
+    color: #414141;
+}
+
 @media only screen and (max-width: 600px) {
     .site-card-wrapper  {
         padding-top: 30%;
@@ -56,4 +60,25 @@
     .user-info {
         font-size: 12px;
     }
+}
+
+/* Modal Styling */
+
+.ant-modal-title{
+    color: #595959;
+}
+
+.ant-btn-primary{
+    background-color: #3b5e66;
+    border: 1px solid #6eb0b4;
+}
+.ant-btn-primary:hover{
+    background-color: #6eb0b4;
+    border: 1px solid #3b5e66;
+    color: white !important;
+}
+
+.ant-btn:hover{
+    border: 1px solid #3b5e66;
+    color: #6eb0b4;
 }

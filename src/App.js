@@ -7,6 +7,7 @@ import MapDashboard from './pages/MapDashboard/MapDashboard';
 import Suggestions from "./pages/Suggestion/Suggestion";
 import FinalRender from "./pages/FinalRender/FinalRender";
 import Chat from "./components/Chat/chat";
+import AddGuest from "./pages/AddGuest/AddGuest";
 // import NoMatch from "./pages/NoMatch/NoMatch";
 import './App.css';
 

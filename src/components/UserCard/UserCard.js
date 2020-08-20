@@ -1,10 +1,17 @@
 import React, {useState} from 'react';
+import { useHistory } from "react-router-dom";
 import { Card, Col, Row, Button, Modal } from 'antd';
-import { SettingTwoTone } from '@ant-design/icons';
-import "./usercard.css"
+import { SettingTwoTone, ApiFilled } from '@ant-design/icons';
 import MapCarousel from '../MapCarousel/MapCarousel';
+import API from "../../utils/API"
+import "./usercard.css"
 
 export default function UserCard(props) {
+
+    const { userData } = props;
+    console.log(userData);
+
+    let history = useHistory();
 
     const [modal, setModal] = useState({
         visible: false 
@@ -16,16 +23,20 @@ export default function UserCard(props) {
         });
     };
 
-
-    const { userData } = props;
-    console.log(userData);
+    const deleteAccount = () => {
+        const id = userData._id
+        API.deleteUser(id).then(res => {
+            console.log("User deleted");
+            history.push("/")
+        })
+    }
 
     return (
         <>
             <div className="site-card-wrapper">
                 <div className="background-wrapper">
                     <Row justify="center">
-                        <Col span={12} className="card-column" >
+                        <Col lg={{span:12}} md={{span:18}} sm={{span:20}} className="card-column" >
                             <Card title="YOUR PLANiT" bordered={true}>
                                 <Row justify="center">
                                   <Col xs={{span:12}}>
@@ -39,7 +50,7 @@ export default function UserCard(props) {
                                     <p className="user-info"><strong>Email:</strong> {userData.email}</p>
                                 </div>
                                 <Row justify="end">
-                                    <Button onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98", paddingTop:"6px" }} icon={<SettingTwoTone twoToneColor="#576d65" />} />
+                                    <Button onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98"}} icon={<SettingTwoTone twoToneColor="#576d65" />} />
                                 </Row>
                             </Card>
                             <MapCarousel header="My Trips:" maps={userData.createdMaps} />
@@ -58,7 +69,11 @@ export default function UserCard(props) {
                 okButtonProps={{ disabled: false }}
                 cancelButtonProps={{ disabled: false }}
                 >
-
+                <Row justify="center">
+                    <Button onClick={deleteAccount} type="primary" danger>
+                        Delete Account
+                    </Button>
+                </Row>
             </Modal>
         </>
     )
