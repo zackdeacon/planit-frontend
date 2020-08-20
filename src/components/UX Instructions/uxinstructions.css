@@ -1,8 +1,11 @@
 /* UX Styling */
 
-.ux-filter{
+.ux-filter-align{
     background-color: rgba(0, 0, 0, 0.433);
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .ux-container{
     background-image: url("../../images/glenn-carstens-unsplash.jpg");
@@ -12,14 +15,7 @@
     background-size: cover; 
     height: 100vh;
 }
-.buffer{
-    height: 25%;
-}
-@media screen and (max-width:400px){
-    .buffer{
-        height:16%;
-    }
-}
+
 .ux-container .ux-text{
     color:white;
     text-shadow: 2px 2px 5px black;
@@ -28,10 +24,35 @@
     margin: 50px 0px 50px 0px;
     text-align: center;
 }
+
 .ux-container p{
     color:white;
     text-shadow: 2px 2px 5px black;
     font-size: 20px;
     font-weight: 300;
     margin: 0;
+}
+
+.top-ux-inst{
+    position: relative;
+    bottom:25vh
+}
+
+.bottom-ux-inst{
+    position: relative;
+    top:25vh
+}
+
+@media only screen and (max-width: 1032px){
+    .top-ux-inst{
+        position: relative;
+        bottom:0;
+        width: 100%;
+    }
+    
+    .bottom-ux-inst{
+        position: relative;
+        top:0;
+        width: 100%;
+    }
 }
