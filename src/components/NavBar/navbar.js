@@ -77,11 +77,6 @@ export default function Navbar(props) {
                         <div className="menu-btn_burger"></div>
                     </Col>
                 </Row>
-                {/* <Col className={menuBtn.linksClass}>
-                    <Row justify="end">
-                        <Button type="text" href="/user" className="nav-btns">Account</Button>
-                    </Row>
-                </Col> */}
             </div>
             <div className="wrapper">
                 <Row justify="end">
