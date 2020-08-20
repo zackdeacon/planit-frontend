@@ -8,36 +8,27 @@ import API from "../../utils/API";
 import "./suggestioncard.css"
 
 export default function SuggestionCard(props) {
-  const [count, setCount]=useState(0)
 
   const [upVote, setUpVote]=useState(true)
   const [downVote, setDownVote]=useState(false)
-
   
   const handleIncrement =()=> {
-    console.log(props.suggestions);
-    setCount(prevCount=>prevCount+1)
     setUpVote(true)
     const voteUpObj = {
       vote:upVote
     }
     API.saveVote(voteUpObj,props.suggestions._id)
     .then(vote=>{
-      console.log("here is the likes count",vote)
-      // setCount(res.data)
     })
     .catch(err=>console.log(err))
   }
   const handleDecrement = ()=>{
-    setCount(prevCount=>prevCount-1)
     setDownVote(false)
     const voteDownOjb ={
       vote: downVote
     }
     API.saveVote(voteDownOjb, props.suggestions._id)
     .then(vote=>{
-            console.log("here is the likes count",vote)
-      // setCount(res.data)
     })
     .catch(err=>console.log(err))
   }
