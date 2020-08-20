@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Row, Button } from "antd";
+import { Row } from "antd";
 import styled from "styled-components";
 import io from "socket.io-client";
 import API from "../../utils/API"
@@ -45,6 +45,8 @@ letter-spacing: 1px;
 line-height: 20px;
 `;
 
+const Button = styled.button`
+`;
 
 const Form = styled.form`
   width: 400px;
@@ -137,17 +139,17 @@ const Chat = () => {
     const chats = await getCurrentMessages();
     setMessages(chats)
   };
-  console.log(userData)
   function sendMessage(e) {
     e.preventDefault();
     const chatData = {
-      userId: TEST_USER_ID,
+      userId: userData.id,
       mapId: id,
       message: message,
     };
     setMessage("");
     API.postNewChat(chatData);
     socketRef.current.emit("new message");
+    updateMessages();
   }
 
   function handleChange(e) {
@@ -156,6 +158,7 @@ const Chat = () => {
 
 
   //Code to keep above this line 
+  console.log(messages)
 
   return (
     <>
@@ -167,14 +170,15 @@ const Chat = () => {
         <Row justify="center">
           <div className="chat-box">
             {messages.map((message, index) => {
-              // console.log(message);
-              if (message.userId === TEST_USER_ID) {
+              // console.log(userData.id);
+              // console.log(message.user._id);
+              if (message.user._id === userData.id) {
                 return (
                   <MyRow key={index}>
                     <MyMessage>
                       {message.message}
                       <span className="userName">
-                        {userData.username}
+                        {message.user.name.first}
                       </span>
                     </MyMessage>
                   </MyRow>
@@ -184,7 +188,9 @@ const Chat = () => {
                 <PartnerRow key={index}>
                   <PartnerMessage>
                     {message.message}
-                    {/* {message.name} */}
+                    <span className="userName">
+                        {message.user.name.first}
+                      </span>
                   </PartnerMessage>
                 </PartnerRow>
               )

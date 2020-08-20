@@ -1,6 +1,6 @@
 import axios from "axios";
-let urlPrefix = "http://localhost:8080"
-// "https://planitserver.herokuapp.com";
+// const urlPrefix = "https://planitserver.herokuapp.com";
+const urlPrefix = "http://localhost:8080";
 
 // ** Functions that take an object have the structure and keys of that 
 // ** object laid out in a comment within!
@@ -36,6 +36,24 @@ export default {
     // username is type String
     return axios.get(`${urlPrefix}/api/users/one/username/${username}`);
   },
+  changeName: function (name) {
+    // name: { first, last }
+    // Note: leaving a field empty will result in only one updating
+    return axios.put(`${urlPrefix}/api/users/change/name`, name, { withCredentials: true });
+  },
+  changeEmail: function (email) {
+    // name: { first, last }
+    // Note: leaving a field empty will result in only one updating
+    return axios.put(`${urlPrefix}/api/users/change/email`, email, { withCredentials: true });
+  },
+  acceptMapInvitiation: function (mapId) {
+    // mapId is an id of type string
+    return axios.put(`${urlPrefix}/api/users/invitation/accept`, mapId, { withCredentials: true });
+  },
+  declineMapInvitiation: function (mapId) {
+    // mapId is an id of type string
+    return axios.put(`${urlPrefix}/api/users/invitation/decline`, mapId, { withCredentials: true });
+  },
   deleteUser: function (user) {
     // user: { id }
     return axios.delete(`${urlPrefix}/api/users/delete`, user);
@@ -52,6 +70,7 @@ export default {
   postNewMap: function (mapData) {
     // mapData: { name, creatorId, dates: {start, end}, destinations }
     // Note: dates and destinations keys are optional in above object
+    mapData.dates = { start: mapData.startDate, end: mapData.endDate };
     return axios.post(`${urlPrefix}/api/maps/new`, mapData, { withCredentials: true });
   },
   deleteMap: function (map) {
@@ -78,7 +97,7 @@ export default {
   },
   // saves a vote for a suggestion
   saveVote: function (suggestion) {
-    return axios.post(`${urlPrefix}/api/suggestions/vote`, suggestion, { withCredentials: true })
+    return axios.post(`${urlPrefix}/api/suggestions/vote/:suggestionId`, suggestion, { withCredentials: true })
   },
 
   // * CHATS COLLECTION
