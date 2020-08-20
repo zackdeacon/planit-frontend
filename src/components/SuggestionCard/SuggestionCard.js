@@ -125,7 +125,8 @@ export default function SuggestionCard(props) {
       message: ""
     })
   }
-  
+  console.log('props', props)
+ const sugNameUserName= `${props.suggestions.title.toUpperCase()} recommended by ${props.suggestions.userId.name.first} ${props.suggestions.userId.name.last}`
 
   return (
     <>
@@ -159,7 +160,7 @@ export default function SuggestionCard(props) {
       </Col>
 
       <Modal
-          title={props.suggestions.title.toUpperCase()}
+          title={sugNameUserName}
           visible={modal.visible}
           onOk={switchModal}
           onCancel={switchModal}
