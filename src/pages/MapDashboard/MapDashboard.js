@@ -92,7 +92,7 @@ export default function MapDashboard(props) {
                     <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
 
                     <Row justify="center">
-                        <div className="dash-title"><Link onClick={switchModal}>{board.name}</Link></div>
+                        <div className="dash-title"><Link onClick={switchModal}>{board.name.toUpperCase()}</Link></div>
                     </Row>
 
                     <div className="top-buffer">
@@ -109,7 +109,7 @@ export default function MapDashboard(props) {
                 </div>
             </div>
             <Modal
-                title={board.name}
+                title={board.name.toUpperCase()}
                 visible={modal.visible}
                 onOk={handleOk}
                 onCancel={handleCancel}

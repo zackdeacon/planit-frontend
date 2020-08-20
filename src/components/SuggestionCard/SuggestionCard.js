@@ -42,7 +42,46 @@ export default function SuggestionCard(props) {
       visible: !modal.visible,
     });
   };
+    
   
+  // const numberUpVotes = props.suggestions.votes[0].vote
+  // const arr = [false, true, false, false]
+  const arr = props.suggestions.votes
+  console.log("vote  array",arr)
+  let i;
+  let j;
+  const arrayVotes = []
+  let length; 
+ 
+    for (i=0; i<arr.length; i++){
+      const yesVote = arr[i].vote
+      console.log(yesVote)
+      
+      // for(j=0; j<yesVote.length; j++){
+        arrayVotes.push(yesVote)
+        const length = arrayVotes.length
+        console.log(length)
+      //   console.log("array of votes", arrayVotes)
+      // }s
+      
+  
+      // if (yesVote===true){
+      //   arrayofYesVotes.push(false)
+      //   // console.log("number of yes votes", yesVote)
+      //   console.log("array of yes votes", arrayofYesVotes)
+      }
+
+      // if(yesVote===true){
+      // const howManyYesVotes = yesVote.length
+      
+  const newLength = arrayVotes.length;
+  console.log("new length",newLength)
+  
+    
+  
+
+
+
   return (
     <>
       <Col xl={{span: 12}} md={{ span: 12 }} >
@@ -116,7 +155,7 @@ export default function SuggestionCard(props) {
                     <h4>Standing</h4>
                     <Statistic
                         title="Upvotes"
-                        value={11}
+                        value={newLength}
                         valueStyle={{ color: '#6eb0b4' }}
                         prefix={<ArrowUpOutlined />}
                     />
