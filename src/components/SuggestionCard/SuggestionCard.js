@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from 'react'
-import { Row, Col, Card, Button, Tooltip, Modal, Progress, Statistic, Form, Input} from 'antd'
+import { Row, Col, Card, Button, Tooltip, Modal, Progress, Statistic, Form, Input, message} from 'antd'
 import { LikeTwoTone, DislikeTwoTone, ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons"
 // import DashMod from '../../components/DashModule/dashmod'
 import 'antd/dist/antd.css';
@@ -9,7 +9,6 @@ import "./suggestioncard.css"
 import { useParams } from 'react-router-dom';
 
 export default function SuggestionCard(props) {
-  //VOTES
   //state of number of votes
   const [upVote, setUpVote]=useState(true)
   const [downVote, setDownVote]=useState(false)
@@ -23,6 +22,72 @@ export default function SuggestionCard(props) {
 
   //state of like btn clicked
   const [isClicked, setIsClicked] = useState(false);
+
+  //modal
+  const [modal, setModal] = useState({
+    visible: false 
+  })
+
+  //form
+  const [form] = Form.useForm();
+
+  //comments
+  const [commentObj, setCommentObj] = useState({
+    message: ""
+  })
+
+
+  const {id} = useParams()
+
+  //up vote btn
+  const handleIncrement =()=> {
+    setUpVote(true)
+    // setIsClicked(true)
+    const voteUpObj = {
+      vote:upVote
+    }
+    API.saveVote(voteUpObj,props.suggestions._id)
+    .then(vote=>{
+      setDisplayUpVote(displayUpVote+1)
+      setIsClicked(false)
+      message.success('Thanks for the like!', 3); 
+    })
+    .catch(err=>{
+      message.error('Sorry! You already voted', 3); 
+      console.log(err)
+      setIsClicked(false)
+    })
+  }
+
+  //down vote btn
+  const handleDecrement = ()=>{
+    setDownVote(false)
+    setIsClicked(true)
+    const voteDownOjb ={
+      vote: downVote
+    }
+    API.saveVote(voteDownOjb, props.suggestions._id)
+    .then(vote=>{
+      message.success('Thanks for the like!', 3);
+      setDisplayDownVote(displayDownVote+1)
+    })
+    .catch(err=>{
+      message.error('Sorry! You already voted', 3);      
+      console.log(err)
+      setIsClicked(false)
+    })
+  }
+
+  //percentage of guests voted
+  useEffect(()=>{
+    API.getMapById(id).then(res=>{
+      const guestArr = res.data.guests
+      const numGuests = guestArr.length
+      let ratio = (displayDownVote+displayUpVote)/(numGuests+1)
+      let percent = Math.floor(ratio*100)
+      setPercentageVotes(percent)
+    })
+  })
 
   useEffect(()=>{
     const arr = props.suggestions.votes
@@ -42,77 +107,11 @@ export default function SuggestionCard(props) {
     setDisplayDownVote(arrDownVotes.length) ;
   }, [])
 
-  
-
-  //up vote btn
-  const handleIncrement =()=> {
-    setUpVote(true)
-    setIsClicked(true)
-    const voteUpObj = {
-      vote:upVote
-    }
-    API.saveVote(voteUpObj,props.suggestions._id)
-    .then(vote=>{
-      setDisplayUpVote(displayUpVote+1)
-      setIsClicked(false)
-    })
-    .catch(err=>{
-      alert ("already voted")
-      console.log(err)
-      setIsClicked(false)
-    })
-  }
-
-  //down vote btn
-  const handleDecrement = ()=>{
-    setDownVote(false)
-    setIsClicked(true)
-    const voteDownOjb ={
-      vote: downVote
-    }
-    API.saveVote(voteDownOjb, props.suggestions._id)
-    .then(vote=>{
-      setDisplayDownVote(displayDownVote+1)
-
-    })
-    .catch(err=>{
-      alert ("already voted")
-      console.log(err)
-      setIsClicked(false)
-    })
-  }
-
-  //percentage of guests voted
-  const {id} = useParams()
-  useEffect(()=>{
-    API.getMapById(id).then(res=>{
-      const guestArr = res.data.guests
-      const numGuests = guestArr.length
-      let ratio = (displayDownVote+displayUpVote)/numGuests
-      let percent = ratio*100
-      setPercentageVotes(percent)
-    })
-  })
-
-
-  //MODAL
-  const [modal, setModal] = useState({
-    visible: false 
-  })
-
   const switchModal = () => {
     setModal({
       visible: !modal.visible,
     });
   };
-
-
-  //COMMENT 
-  const [form] = Form.useForm();
-
-  const [commentObj, setCommentObj] = useState({
-    message: ""
-  })
 
   function commentInputChange (event) {
     const {name,value} = event.target
@@ -128,17 +127,18 @@ export default function SuggestionCard(props) {
       message: ""
     })
   }
-  console.log('props', props)
- const sugNameUserName= `${props.suggestions.title.toUpperCase()} recommended by ${props.suggestions.userId.name.first} ${props.suggestions.userId.name.last}`
+  
+  const sugNameUserName= `${props.suggestions.title.toUpperCase()} recommended by ${props.suggestions.userId.name.first} ${props.suggestions.userId.name.last}`
+  console.log('props.comments', props.comments)
 
- const peach = []
- props.suggestions.comments.map(apple=>{
-   peach.push(<Card style={{width:300}}>
- ​
-     <p>{apple.message}</p>
-   </Card>)
-   
- })
+  const peach = []
+  props.suggestions.comments.map(apple=>{
+    peach.push(<Card style={{width:300}}>
+  ​
+      <p>{apple.message}</p>
+    </Card>)
+    
+  })
  
 
   return (
@@ -149,14 +149,14 @@ export default function SuggestionCard(props) {
         title={props.suggestions.title.toUpperCase()} extra={
             // adding up and downvote buttons
             <>
-            <Tooltip>
+            <Tooltip title="up vote">
               {/* {isClicked?  */}
               {/* <Button  disabled className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />  */}
                {/* :  */}
-               <Button disabled={isClicked} onClick={handleIncrement}className="vote-btn" shape="circle" style={{ margin:"5px" }} icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
+               <Button  onClick={handleIncrement}className="vote-btn" shape="circle" style={{ margin:"5px" }} icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
                {/* } */}
             </Tooltip>
-            <Tooltip>
+            <Tooltip title="down vote">
               <Button onClick={handleDecrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<DislikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px", position:"relative", top:"3px" }} />} size="large" />
             </Tooltip>
             </>
@@ -188,10 +188,10 @@ export default function SuggestionCard(props) {
                 title={props.suggestions.title.toUpperCase()} extra={
                     // adding up and downvote buttons
                     <>
-                    <Tooltip>
+                    <Tooltip title="up vote">
                     <Button onClick={handleIncrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
                     </Tooltip>
-                    <Tooltip>
+                    <Tooltip title="down vote">
                     <Button onClick={handleDecrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<DislikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px", position:"relative", top:"3px" }} />} size="large" />
                     </Tooltip>
                     </>

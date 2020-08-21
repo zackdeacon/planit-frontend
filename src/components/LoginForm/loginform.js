@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-scroll';
-import { Row, Form, Input, Button, } from 'antd';
+import { Row, Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import API from '../../utils/API';
 import Aos from 'aos'
@@ -40,6 +40,8 @@ export default function LoginForm() {
         e.preventDefault();
         API.login(formObjectLogin).then(data => {
             history.push("/user")
+        }).catch(err =>{
+            message.error("Please check username or password",2)
         })
     };
 
@@ -91,7 +93,7 @@ export default function LoginForm() {
             // console.log("you are a new user", data)
             history.push("/user")
         }).catch(function (err) {
-            alert("Username already taken, please try a different username.")
+            message.error("Username already taken, please try a different username.", 2)
         });
     }
 

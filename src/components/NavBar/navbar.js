@@ -17,9 +17,30 @@ export default function Navbar(props) {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    const [userData, setUserData] = useState ({
+        username:"",
+        name: {
+            first: "",
+            last: ""
+        }
+    })
+
     useEffect(() => {
         checkIfUser()
     }, [])
+
+    useEffect(() => {
+        API.getSessionData().then((results) => {
+            const sessionUser = results.data.user;
+            API.getUserById(sessionUser.id).then((user) => {
+                setUserData(user.data);
+                // console.log('userData', userData)
+            })
+        }).catch((err) => {
+            console.log('err', err)
+        })
+    }, []);
+    // console.log('user', props.userData)
 
     const handleHamburgerClick = () => {
         if (!menuBtn.menuOpen) {
@@ -70,9 +91,13 @@ export default function Navbar(props) {
                     </Col>
                 </Row>
             </div>
-            {/* <div className=>
-            {isLoggedIn? <h1>hi</h1> : null}
-            </div> */}
+            <div className="wrapper-name">
+                <Row justify="start">
+                    <Col >
+                        {isLoggedIn? <h1 className="welcome">Welcome, {userData.name.first}</h1> : null}
+                    </Col>
+                </Row>
+            </div>
             <div className="wrapper">
                 <Row justify="end">
                     <Col className={menuBtn.menuClass} onClick={handleHamburgerClick}>

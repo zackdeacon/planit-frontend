@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from "react-router-dom";
-import { Row, Col, Button, Modal, } from 'antd'
+import { Row, Col, Button, Modal, Tooltip  } from 'antd'
 import NavBar from '../../components/NavBar/navbar'
 import MapCard from '../../components/MapCard/mapcard'
 import Chat from '../../components/Chat/chat'
@@ -46,7 +46,7 @@ export default function MapDashboard(props) {
 
     useEffect(() => {
         API.getMapById(id).then(res => {
-            console.log(res.data.name);
+            // console.log(res.data.name);
             const mapName = res.data.name;
             const mapCreator = res.data.creator;
             const mapDestinations = res.data.destinations;
@@ -95,8 +95,11 @@ const guestList = guestArr.map((name) => name)
                     <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
 
                     <Row justify="center">
-                        <div className="dash-title"><Link className="make-white" onClick={switchModal}>{board.name.toUpperCase()}</Link></div>
-                        {/* <div className="dash-sub-title"><ul>{newArray}</ul></div> */}
+                        <div className="dash-title">
+                            <Tooltip title="map details">
+                                <Link className="make-white" onClick={switchModal}>{board.name.toUpperCase()}</Link>
+                            </Tooltip>
+                        </div>
                     </Row>
 
                     <div className="top-buffer">
