@@ -1,132 +1,97 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
-import {Row, Col, Modal} from 'antd';
-import {UserAddOutlined} from '@ant-design/icons';
-
-
-const contentStyle = {
-  height: '160px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#6C8E98',
-  fontSize: "24px",
-  border: "solid",
-  borderColor: "#fff"
-};
-
-const linkStyle = {
-  color: "inherit",
-  textDecoration: "inherit",
-}
-
-const addUserStyle = {
-  position:"relative",
-  bottom: "55px"
-}
-
+import { Row, Col, Modal } from 'antd';
+import { UserAddOutlined } from '@ant-design/icons';
+import './carouselcontent.css';
+import API from '../../utils/API';
 
 export default function CarouselContent(props) {
-  const history = useHistory();
-
   const [modal, setModal] = useState({
-    visible: false 
-  })
-  
-  const [confirmed, setConfirmed] = useState({
-    visible: false 
+    visible: false
   })
 
-  const [formObject, setFormObject] = useState({
-    name:"",
-    email:""
-  })
+  const [guestEmail, setGuestEmail] = useState("")
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormObject({
-      [name]: value
-    });
+    console.log(e.target.value);
+    setGuestEmail(e.target.value);
   }
-  
+
   const switchModal = () => {
-    setModal({
-        visible: !modal.visible,
-    });
-  };
-
-  const sayConfirmed = () => {
-    setConfirmed({
-        visible: !confirmed.visible,
-    });
-  };
-
-  const clearModals = () => {
     setModal({
       visible: !modal.visible,
     });
-    setConfirmed({
-      visible: !confirmed.visible,
+  };
+
+  function success(message) {
+    Modal.success({
+      content: message,
     });
   }
-  
-  const addGuests = () => {
 
-    // add API route
-
-    
-    // .then(res =>{
-      console.log("Guests added");
-      sayConfirmed()
-    // })
+  function error(message) {
+    Modal.error({
+      content: message,
+    });
   }
-  
+
+
+  const addGuests = () => {
+    // add API route
+    API.inviteNewGuest({
+      mapId: props.id,
+      guestEmail: guestEmail,
+    }).then(({ data }) => {
+      console.log(data);
+      if (data.successful) {
+        switchModal();
+        success(`Invitation sent to ${data.newGuest}!`);
+      } else {
+        switchModal();
+        error(`${data.newGuest} has already been invited.`);
+      }
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
   return (
     <div>
       {props.empty ? (
-        <h3 style={contentStyle}>{props.name}</h3>
+        <div className="carouselContent"><h3>{props.name}</h3></div>
       ) : (
           <>
-            <h3 style={contentStyle}>
-              <Link style={linkStyle} to={`/dashboard/${props.id}`}>{props.name}</Link>
-              <Row justify="center" style={addUserStyle}>
-                <UserAddOutlined onClick={switchModal}/>
-
-                <Modal
-                title={`Invite Guest: ${props.name}`}
-                visible={modal.visible}
-                onOk={addGuests}
-                onCancel={switchModal}
-                okButtonProps={{ disabled: false }}
-                cancelButtonProps={{ disabled: false }}
-                >
-                  <Row justify="center" align="middle">
-                    <Col xs={{span:8}}>
-                      <input
-                      name="email"
-                      value={formObject.email}
-                      onChange={handleChange}
-                      placeholder="Guest's Email"
-                      />
-                    </Col>
-                  </Row>
-                
+            <div className="carouselContent">
+              <Link className="carouselMapLink" to={`/dashboard/${props.id}`}>{props.name}</Link>
+              {props.editable ?
+                <>
+                  <UserAddOutlined className="carouselAddUser" onClick={switchModal} />
                   <Modal
-                  title={`Confirmed!`}
-                  visible={confirmed.visible}
-                  onOk={clearModals}
-                  onCancel={clearModals}
-                  okButtonProps={{ disabled: false }}
-                  cancelButtonProps={{ disabled: false }}
+                    title={`Invite Guest: ${props.name}`}
+                    visible={modal.visible}
+                    onOk={addGuests}
+                    onCancel={switchModal}
+                    okButtonProps={{ disabled: false }}
+                    cancelButtonProps={{ disabled: false }}
                   >
-                    Guest Has Been Added.
+                    <Row justify="center" align="middle">
+                      <Col xs={{ span: 8 }}>
+                        <input
+                          name="email"
+                          value={guestEmail.email}
+                          onChange={handleChange}
+                          placeholder="Guest's Email"
+                        />
+                      </Col>
+                    </Row>
                   </Modal>
-                </Modal>
-              </Row >
-            </h3>
+                </>
+                : ""
+              }
+            </div>
           </>
         )
       }
-    </div>
+    </div >
   )
 }

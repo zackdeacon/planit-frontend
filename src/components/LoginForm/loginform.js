@@ -26,14 +26,12 @@ export default function LoginForm() {
     function handleInputLogin(event) {
         const { name, value } = event.target;
         setFormObjectLogin({ ...formObjectLogin, [name]: value })
-        // console.log("input change function", event.target)
 
     }
 
     const handleSubmitLogin = (e) => {
         e.preventDefault();
         API.login(formObjectLogin).then(data => {
-            console.log("logged in as", data)
             history.push("/user")
         })
     };
