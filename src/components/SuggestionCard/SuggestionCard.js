@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from 'react'
-import { Row, Col, Card, Button, Tooltip, Modal, Progress, Statistic, Form, Input} from 'antd'
+import { Row, Col, Card, Button, Tooltip, Modal, Progress, Statistic, Form, Input, message} from 'antd'
 import { LikeTwoTone, DislikeTwoTone, ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons"
 // import DashMod from '../../components/DashModule/dashmod'
 import 'antd/dist/antd.css';
@@ -9,7 +9,6 @@ import "./suggestioncard.css"
 import { useParams } from 'react-router-dom';
 
 export default function SuggestionCard(props) {
-  //VOTES
   //state of number of votes
   const [upVote, setUpVote]=useState(true)
   const [downVote, setDownVote]=useState(false)
@@ -23,6 +22,21 @@ export default function SuggestionCard(props) {
 
   //state of like btn clicked
   const [isClicked, setIsClicked] = useState(false);
+
+  //modal
+  const [modal, setModal] = useState({
+    visible: false 
+  })
+
+  //form
+  const [form] = Form.useForm();
+
+  //comments
+  const [commentObj, setCommentObj] = useState({
+    message: ""
+  })
+
+  const {id} = useParams()
 
   useEffect(()=>{
     const arr = props.suggestions.votes
@@ -42,8 +56,6 @@ export default function SuggestionCard(props) {
     setDisplayDownVote(arrDownVotes.length) ;
   }, [])
 
-  
-
   //up vote btn
   const handleIncrement =()=> {
     setUpVote(true)
@@ -55,9 +67,10 @@ export default function SuggestionCard(props) {
     .then(vote=>{
       setDisplayUpVote(displayUpVote+1)
       setIsClicked(false)
+      message.success('Thanks for the like!', 3); 
     })
     .catch(err=>{
-      alert ("already voted")
+      message.error('Sorry! You already voted', 3); 
       console.log(err)
       setIsClicked(false)
     })
@@ -72,18 +85,17 @@ export default function SuggestionCard(props) {
     }
     API.saveVote(voteDownOjb, props.suggestions._id)
     .then(vote=>{
+      message.success('Thanks for the like!', 3);
       setDisplayDownVote(displayDownVote+1)
-
     })
     .catch(err=>{
-      alert ("already voted")
+      message.error('Sorry! You already voted', 3);      
       console.log(err)
       setIsClicked(false)
     })
   }
 
   //percentage of guests voted
-  const {id} = useParams()
   useEffect(()=>{
     API.getMapById(id).then(res=>{
       const guestArr = res.data.guests
@@ -94,25 +106,17 @@ export default function SuggestionCard(props) {
     })
   })
 
-
-  //MODAL
-  const [modal, setModal] = useState({
-    visible: false 
-  })
-
+  useEffect(() => {
+    API.getCommentsForSuggestion(id).then(res=>{
+      console.log("id", id)
+    })
+  }, [])
+ 
   const switchModal = () => {
     setModal({
       visible: !modal.visible,
     });
   };
-
-
-  //COMMENT 
-  const [form] = Form.useForm();
-
-  const [commentObj, setCommentObj] = useState({
-    message: ""
-  })
 
   function commentInputChange (event) {
     const {name,value} = event.target
@@ -132,6 +136,7 @@ export default function SuggestionCard(props) {
 
   return (
     <>
+     
       <Col xl={{span: 12}} md={{ span: 12 }} >
         
         <Card className="sug-card-container" type="inner"
