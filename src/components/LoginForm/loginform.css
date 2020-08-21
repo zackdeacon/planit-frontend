@@ -88,9 +88,9 @@ Form a:hover{
     height: 30px;
     border-bottom: 3px solid white;
     border-right: 3px solid white;
-    transform: rotate(-135deg);
+    transform: rotate(-134deg);
     margin: -15px;
-    animation: animate 2s infinite;
+    animation: animate 2.8s infinite;
 }
 .arrow span:nth-child(2){
     animation-delay: -0.2s;
