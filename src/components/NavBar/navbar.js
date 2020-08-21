@@ -92,7 +92,7 @@ export default function Navbar(props) {
                     </Col>
                 </Row>
             </div>
-            <div >
+            <div className="wrapper-name">
                 <Row justify="start">
                     <Col >
                         {isLoggedIn? <h1 className="welcome">Welcome, {userData.name.first}</h1> : null}

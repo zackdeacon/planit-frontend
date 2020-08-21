@@ -5,6 +5,13 @@
     right: 0;
     z-index:1;
 }
+/* Absolute Wrapper */
+.wrapper-name{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index:1;
+}
 
 /* Text Logo */
 .txt-logo-div{
