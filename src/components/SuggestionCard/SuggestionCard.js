@@ -59,7 +59,7 @@ export default function SuggestionCard(props) {
   //up vote btn
   const handleIncrement =()=> {
     setUpVote(true)
-    setIsClicked(true)
+    // setIsClicked(true)
     const voteUpObj = {
       vote:upVote
     }
@@ -100,8 +100,8 @@ export default function SuggestionCard(props) {
     API.getMapById(id).then(res=>{
       const guestArr = res.data.guests
       const numGuests = guestArr.length
-      let ratio = (displayDownVote+displayUpVote)/numGuests
-      let percent = ratio*100
+      let ratio = (displayDownVote+displayUpVote)/(numGuests+1)
+      let percent = Math.floor(ratio*100)
       setPercentageVotes(percent)
     })
   })
@@ -143,14 +143,14 @@ export default function SuggestionCard(props) {
         title={props.suggestions.title.toUpperCase()} extra={
             // adding up and downvote buttons
             <>
-            <Tooltip>
+            <Tooltip title="vote yes">
               {/* {isClicked?  */}
               {/* <Button  disabled className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />  */}
                {/* :  */}
                <Button disabled={isClicked} onClick={handleIncrement}className="vote-btn" shape="circle" style={{ margin:"5px" }} icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
                {/* } */}
             </Tooltip>
-            <Tooltip>
+            <Tooltip title="vote no">
               <Button onClick={handleDecrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<DislikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px", position:"relative", top:"3px" }} />} size="large" />
             </Tooltip>
             </>
@@ -182,10 +182,10 @@ export default function SuggestionCard(props) {
                 title={props.suggestions.title.toUpperCase()} extra={
                     // adding up and downvote buttons
                     <>
-                    <Tooltip>
+                    <Tooltip title="vote yes">
                     <Button onClick={handleIncrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
                     </Tooltip>
-                    <Tooltip>
+                    <Tooltip title="vote no">
                     <Button onClick={handleDecrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<DislikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px", position:"relative", top:"3px" }} />} size="large" />
                     </Tooltip>
                     </>
