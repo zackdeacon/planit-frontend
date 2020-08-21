@@ -31,7 +31,8 @@ export default function FinalRender(props) {
     
     return (
         <>
-            <div className="render-background">
+            {/* <div className="render-background"> */}
+            <img src="/assets/images/andrew-neel-unsplash.jpg" className="render-background" />
                 <div className="render-filter-background">
                     <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
                     <Row justify="center">
@@ -39,10 +40,10 @@ export default function FinalRender(props) {
                             <Link className="map-link" to={`/dashboard/${id}`}>{board.name}</Link>
                             </div>
                     </Row>
-                    <div className="top-buffer"></div>
+                    {/* <div className="top-buffer"></div> */}
                     <FinalRenderCard />
                 </div>
-            </div>
+            {/* </div> */}
         </>
     )
 }

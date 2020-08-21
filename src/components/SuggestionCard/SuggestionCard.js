@@ -151,20 +151,29 @@ export default function SuggestionCard(props) {
  const sugNameUserName= `${props.suggestions.title.toUpperCase()} recommended by ${props.suggestions.userId.name.first} ${props.suggestions.userId.name.last}`
 console.log('props.comments', props.comments)
 
-const peach = []
-props.comments.map(apple=>{
-  peach.push(<Card style={{width:300}}>
+// const peach = []
+// props.comments.map(apple=>{
+//   peach.push(<Card style={{width:300}}>
 
-    < p>{apple.message}</p>
-  </Card>)
+//     < p>{apple.message}</p>
+//   </Card>)
   
-})
+// })
 
+
+ const peach = []
+ props.suggestions.comments.map(apple=>{
+   peach.push(<Card style={{width:300}}>
+ ​
+     <p>{apple.message}</p>
+   </Card>)
+   
+ })
+ 
 
   return (
     <>
-     
-      <Col xl={{span: 12}} md={{ span: 12 }} >
+      <Col xxl={{span: 8}} xl={{span: 11}} lg={{ span: 13 }} align="middle">
         
         <Card className="sug-card-container" type="inner"
         title={props.suggestions.title.toUpperCase()} extra={
@@ -187,8 +196,8 @@ props.comments.map(apple=>{
           <a href={props.suggestions.link} target="_blank" rel="noopener noreferrer" style={{color: "#6c8e98"}}>Link to Suggestion</a>
           <p style={{marginTop:"14px", marginBottom:"13px"}}><strong style={{color:"#3b5e66"}}>Cost Est:</strong> $ {props.suggestions.cost}</p>
           <p className="description-text"><strong style={{color:"#3b5e66"}}>Description:</strong> {props.suggestions.description}</p>
-          <Row justify="center">
-            <button onClick={switchModal} style={{color: "#3b5e66"}}>Read More</button >
+          <Row justify="center" style={{paddingTop:"15px"}}>
+            <Button className="vote-btn" onClick={switchModal} style={{borderRadius:"5px"}}>Read More</Button >
           </Row>
         </Card>
       </Col>
@@ -285,14 +294,10 @@ props.comments.map(apple=>{
                     </Form>
                     <Row>
                       <Row>
-                        
                         {peach.map(item=>{return item})}
-                        
-                        
-                      </Row>
-                        {/* {arrayArray.map(apple=>{return apple})} */}
-                        
+                      </Row>                        
                     </Row>
+
                 </Col>
             </Row>
       </Modal>

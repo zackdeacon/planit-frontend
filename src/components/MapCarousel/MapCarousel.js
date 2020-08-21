@@ -4,14 +4,14 @@ import CarouselContent from '../CarouselContent/CarouselContent';
 import "./map-carousel.css"
 
 export default function MapCarousel(props) {
-    const { maps } = props;
+    const { maps, editable } = props;
     let carouselItems;
     if (maps.length > 0) {
         carouselItems = maps.map(map => {
-            return <CarouselContent key={map._id} name={map.name} id={map._id} />
+            return <CarouselContent key={map._id} name={map.name} id={map._id} editable={editable} />
         });
     } else {
-        carouselItems = <CarouselContent name="Nothing to display" empty={true} />
+        carouselItems = <CarouselContent name="None to display" empty={true} editable={editable} />
     }
 
     return (

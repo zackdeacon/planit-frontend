@@ -31,8 +31,10 @@ export default function User() {
     return (
         <>
         <img src="./assets/images/glenn-carstens-unsplash.jpg" className="bg" />
+        <div className="dark-filter">
         <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
-        <UserCard userData={userData} />
+        <UserCard userData={userData} setUserData={setUserData}/>
+        </div>
         </>
     )
 }

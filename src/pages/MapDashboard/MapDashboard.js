@@ -89,31 +89,32 @@ const guestList = guestArr.map((name) => name)
 
     return (
         <>
-            <div className="dash-background">
+            {/* <div className="dash-background"> */}
+            <img src="/assets/images/charlotte-noelle-unsplash.jpg" className="dashboard-bg" />
                 <div className="dash-filter-background">
                     <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
 
                     <Row justify="center">
                         <div className="dash-title">
-                            <Tooltip title = "view map details">
-                                <Link onClick={switchModal}>{board.name.toUpperCase()}</Link>
+                            <Tooltip title="map details">
+                                <Link className="make-white" onClick={switchModal}>{board.name.toUpperCase()}</Link>
                             </Tooltip>
                         </div>
                     </Row>
 
                     <div className="top-buffer">
                         <Row justify="space-around">
-                            <Col lg={{ span: 14 }} sm={{ span: 13 }} xs={{ span: 24 }}>
+                            <Col lg={{ span: 14 }} sm={{ span: 24 }} xs={{ span: 24 }}>
                                 <MapCard categories={categories} />
                             </Col>
                             <div className="mid-col-buffer"></div>
-                            <Col lg={{ span: 9 }} sm={{ span: 10 }} xs={{ span: 24 }}>
+                            <Col lg={{ span: 9 }} sm={{ span: 18 }} xs={{ span: 24 }}>
                                 <Chat />
                             </Col>
                         </Row>
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
             <Modal
                 title={board.name.toUpperCase()}
                 visible={modal.visible}
