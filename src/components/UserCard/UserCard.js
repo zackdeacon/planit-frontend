@@ -7,14 +7,6 @@ import MapCarousel from '../MapCarousel/MapCarousel';
 import API from "../../utils/API"
 import "./usercard.css"
 
-const inviteDiv = {
-    height: '160px',
-    color: '#fff',
-    background: '#6C8E98',
-    border: "solid",
-    borderColor: "#fff"
-};
-
 export default function UserCard(props) {
 
     const { userData, setUserData } = props;
@@ -85,16 +77,12 @@ export default function UserCard(props) {
                                     <Button onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98" }} icon={<SettingTwoTone twoToneColor="#576d65" />} />
                                 </Row>
                             </Card>
-                            <MapCarousel header="My Trips:" maps={userData.createdMaps} />
-                            <MapCarousel header="Trip Member On:" maps={userData.guestMaps} />
-                            {/* 
-                                https://codesandbox.io/s/lq5zq?file=/index.js:2009-2885
-                                https://ant.design/components/list/
-                            */}
+                            <MapCarousel header="My Trips:" maps={userData.createdMaps} editable={true} />
+                            <MapCarousel header="Trip Member On:" maps={userData.guestMaps} editable={false} />
                             {userData.invitations.length > 0 ?
                                 <>
                                     <h2>Pending Invitations: </h2>
-                                    <div style={inviteDiv}>
+                                    <div className="inviteDiv">
                                         <List
                                             className="demo-loadmore-list"
                                             itemLayout="horizontal"
@@ -105,11 +93,11 @@ export default function UserCard(props) {
                                                         <a onClick={() => handleAccept({ index, mapId: invite._id })}>Accept</a>,
                                                         <a onClick={() => handleDecline(index)}>Decline</a>
                                                     ]}
-                                                    style={{ margin: "5px 2% 5px 2%", backgroundColor: "#fff", padding: "12px 6px 12px 6px", borderRadius: "10px" }}
+                                                    style={{ margin: "10px 2% 10px 2%", backgroundColor: "#fff", padding: "12px 6px 12px 6px", borderRadius: "10px" }}
                                                 >
                                                     <List.Item.Meta
                                                         avatar={
-                                                            <Avatar size="large" style={{ marginTop: "2px" }} icon={<MailOutlined />} />
+                                                            <Avatar size="large" style={{ marginTop: "2px", backgroundColor: "#3b5e66", }} icon={<MailOutlined />} />
                                                         }
                                                         title={invite.name}
                                                         description={`From: ${invite.creator}`}

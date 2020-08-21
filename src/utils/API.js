@@ -47,9 +47,9 @@ export default {
     // Note: leaving first or last empty will result in only one updating
     return axios.put(`${urlPrefix}/api/users/change/password`, passwords, { withCredentials: true });
   },
-  acceptMapInvitiation: function (data) {
+  acceptMapInvitiation: function (acceptData) {
     // index the index of the invite to remove
-    return axios.put(`${urlPrefix}/api/users/invitation/accept`, data, { withCredentials: true });
+    return axios.put(`${urlPrefix}/api/users/invitation/accept`, acceptData, { withCredentials: true });
   },
   declineMapInvitiation: function (index) {
     // index the index of the invite to remove
@@ -73,6 +73,10 @@ export default {
     // Note: dates and destinations keys are optional in above object
     mapData.dates = { start: mapData.startDate, end: mapData.endDate };
     return axios.post(`${urlPrefix}/api/maps/new`, mapData, { withCredentials: true });
+  },
+  inviteNewGuest: function (inviteData) {
+    // inviteData: { mapId, guestEmail }
+    return axios.put(`${urlPrefix}/api/maps/invite`, inviteData);
   },
   deleteMap: function (map) {
     // map: { id }
