@@ -9,6 +9,7 @@ const { TabPane } = Tabs;
 
 export default function MapCard(props) {
   const [suggestions, setSuggestions] = useState([])
+  const [commentsDb, setCommentsDb] = useState([])
 
   const { id } = useParams()
 
@@ -24,13 +25,34 @@ export default function MapCard(props) {
       .catch(err => console.log('err', err))
   }, [])
 
+  useEffect(() => {
+    console.log("==============")
+    console.log(suggestions.length)
+    if(suggestions.length){
+
+    
+    API.getCommentsForSuggestion(suggestions[0]._id).then(res=>{
+      // console.log("here it is",props.suggestions._id)
+      console.log(res.data)
+      console.log("joejojoejojeojeojeojeojeojeojeoejo")
+      const arrayOfComments = res.data.map(comm=>{
+        return comm  
+      })
+      setCommentsDb(arrayOfComments)
+      // return cardItems
+      })   
+    .catch(err=> console.log("err", err))}
+  },[suggestions])
+  // console.log('suggestions', suggestions[0]._id
+  
+
   const tabsArr = [];
 
   for (let i = 0; i < props.categories.length; i++) {
     tabsArr.push(
       <TabPane tab={props.categories[i]} key={i} suggestions={props.suggestions}>
         <Row>
-          {suggestions.map(sug => props.categories[i] === sug.category ? <SuggestionCard key={sug._id} suggestions={sug} /> : null)}
+          {suggestions.map(sug => props.categories[i] === sug.category ? <SuggestionCard key={sug._id} suggestions={sug} comments={commentsDb}/> : null)}
         </Row>
       </TabPane>);
   }

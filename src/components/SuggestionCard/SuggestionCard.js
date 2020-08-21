@@ -36,7 +36,6 @@ export default function SuggestionCard(props) {
     message: ""
   })
 
-  const [commentsDb, setCommentsDb] = useState([])
 
   const {id} = useParams()
 
@@ -109,33 +108,25 @@ export default function SuggestionCard(props) {
   })
 
 
-  // useEffect(() => {
-  //   API.getCommentsForSuggestion(props.suggestions._id).then(res=>{
-  //     const arrayOfComments = res.data
-  //     // const thing = res.data
-  //     // console.log("get comments for suggestion", thing)
-  //     // return thing
-  //     const commentArr = res.data.map(comment =>{
-  //       <Card >
-  //         <p>this is the comment:{comment}</p>
-  //       </Card>
-  //       // return comment
-  //     })
-  //     setCommentsDb(commentArr)
-  //     console.log("comment array",commentsDb)
-  //   })
-  //   .catch(err=> console.log("err", err))
-  // }, [])
-
-  // const arrayOfComments = []
-  // for(let i=0; i<props.comments.length; i++){
-  //   arrayOfComments.push(
-  //     <Card>
-  //         {comments.map(com =>)}
-  //     </Card>
-  //   )
-  // }
  
+
+ const arrayArray = [];
+ 
+  // for(let i =0; i<commentsDb.length; i++){
+      
+  //   arrayArray.push(<Row>
+      
+  //     <Card style={{width:300}}>
+  //       <p>{commentsDb[i]}</p>
+  //     </Card>
+    
+    
+  // </Row>)
+    
+  // }
+
+  
+
   const switchModal = () => {
     setModal({
       visible: !modal.visible,
@@ -156,8 +147,19 @@ export default function SuggestionCard(props) {
       message: ""
     })
   }
-  console.log('props', props)
+  
  const sugNameUserName= `${props.suggestions.title.toUpperCase()} recommended by ${props.suggestions.userId.name.first} ${props.suggestions.userId.name.last}`
+console.log('props.comments', props.comments)
+
+const peach = []
+props.comments.map(apple=>{
+  peach.push(<Card style={{width:300}}>
+
+    < p>{apple.message}</p>
+  </Card>)
+  
+})
+
 
   return (
     <>
@@ -282,9 +284,14 @@ export default function SuggestionCard(props) {
                       </Form.Item>
                     </Form>
                     <Row>
-                      <Card style={{width:300}}>
-                        <p>hello:{commentsDb}</p>
-                      </Card> 
+                      <Row>
+                        
+                        {peach.map(item=>{return item})}
+                        
+                        
+                      </Row>
+                        {/* {arrayArray.map(apple=>{return apple})} */}
+                        
                     </Row>
                 </Col>
             </Row>
