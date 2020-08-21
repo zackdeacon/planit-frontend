@@ -109,19 +109,23 @@ export default function SuggestionCard(props) {
   })
 
 
-  useEffect(() => {
-    API.getCommentsForSuggestion(props.suggestions._id).then(res=>{
-      const thing = res.data
-      console.log("get comments for suggestion", thing)
-      // return thing
-      // const commentArr = res.map(comment =>{
-      //   return comment
-      // })
-      // setCommentsDb(commentArr)
-      // console.log("comment array",commentsDb)
-    })
-    .catch(err=> console.log("err", err))
-  }, [])
+  // useEffect(() => {
+  //   API.getCommentsForSuggestion(props.suggestions._id).then(res=>{
+  //     const arrayOfComments = res.data
+  //     // const thing = res.data
+  //     // console.log("get comments for suggestion", thing)
+  //     // return thing
+  //     const commentArr = res.data.map(comment =>{
+  //       <Card >
+  //         <p>this is the comment:{comment}</p>
+  //       </Card>
+  //       // return comment
+  //     })
+  //     setCommentsDb(commentArr)
+  //     console.log("comment array",commentsDb)
+  //   })
+  //   .catch(err=> console.log("err", err))
+  // }, [])
 
   // const arrayOfComments = []
   // for(let i=0; i<props.comments.length; i++){

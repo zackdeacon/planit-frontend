@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useHistory } from "react-router-dom";
-import { Card, Col, Row, Button, Modal } from 'antd';
+import { Card, Col, Row, Button, Modal, Tooltip } from 'antd';
 import { SettingTwoTone, ApiFilled } from '@ant-design/icons';
 import MapCarousel from '../MapCarousel/MapCarousel';
 import API from "../../utils/API"
@@ -50,7 +50,9 @@ export default function UserCard(props) {
                                     <p className="user-info"><strong>Email:</strong> {userData.email}</p>
                                 </div>
                                 <Row justify="end">
-                                    <Button onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98"}} icon={<SettingTwoTone twoToneColor="#576d65" />} />
+                                    <Tooltip title="Modify Account">
+                                        <Button onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98"}} icon={<SettingTwoTone twoToneColor="#576d65" />} />
+                                    </Tooltip>
                                 </Row>
                             </Card>
                             <MapCarousel header="My Planning Maps:" maps={userData.createdMaps} />

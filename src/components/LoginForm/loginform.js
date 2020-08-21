@@ -36,7 +36,7 @@ export default function LoginForm() {
             console.log("logged in as", data)
             history.push("/user")
         }).catch(err =>{
-            message.error("Please check username or password",3)
+            message.error("Please check username or password",2)
         })
     };
 
@@ -88,7 +88,7 @@ export default function LoginForm() {
             // console.log("you are a new user", data)
             history.push("/user")
         }).catch(function (err) {
-            message.error("Username already taken, please try a different username.", 3)
+            message.error("Username already taken, please try a different username.", 2)
         });
     }
 
