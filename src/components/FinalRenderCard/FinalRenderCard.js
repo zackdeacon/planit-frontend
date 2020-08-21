@@ -28,7 +28,7 @@ export default function FinalRenderCard(props) {
   for (let i = 0; i < suggestions.length; i++) {
     if (suggestions[i].category === "Accomodation") {
       accomodationArr.push(<CardColumns key={suggestions[i]._id} suggestions={suggestions[i]} />)
-    } else if (suggestions[i].category === "Flight") {
+    } else if (suggestions[i].category === "Flights") {
       flightArr.push(<CardColumns key={suggestions[i]._id} suggestions={suggestions[i]} />)
     } else if (suggestions[i].category === "Food") {
       foodArr.push(<CardColumns key={suggestions[i]._id} suggestions={suggestions[i]} />)
@@ -94,7 +94,9 @@ export default function FinalRenderCard(props) {
     }
   })
 
-  console.log('foodArr', foodArr)
+  const singleAccomodation = [...accomodationArr].shift();
+
+  const singleFlight = [...flightArr].shift();
 
 
   return (
@@ -105,13 +107,13 @@ export default function FinalRenderCard(props) {
             <Col text="center" sm={{ span: 6 }}>
               <h1 className="columnTitle">Accomodation</h1>
               <div className="RenderCardDiv">
-                {accomodationArr.map(item => { return item })}
+                {singleAccomodation}
               </div>
             </Col>
             <Col text="center" sm={{ span: 6 }}>
               <h1 className="columnTitle">Flights</h1>
               <div className="RenderCardDiv">
-                {flightArr.map(item => { return item })}
+                {singleFlight}
               </div>
             </Col>
             <Col text="center" sm={{ span: 6 }}>
@@ -121,7 +123,7 @@ export default function FinalRenderCard(props) {
               </div>
             </Col>
             <Col text="center" sm={{ span: 6 }}>
-              <h1 className="columnTitle">entertainmentArr</h1>
+              <h1 className="columnTitle">Entertainment</h1>
               <div className="RenderCardDiv">
                 {entertainmentArr.map(item => { return item })}
               </div>
