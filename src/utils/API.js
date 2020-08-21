@@ -105,7 +105,7 @@ export default {
     return axios.post(`${urlPrefix}/api/suggestions/comment/${sugId}`, comment, { withCredentials: true })
   },
   getCommentsForSuggestion: function (sugId) {
-    return axios.post(`${urlPrefix}/api/suggestions/comments/${sugId}`, { withCredentials: true })
+    return axios.get(`${urlPrefix}/api/suggestions/comments/${sugId}`)
   },
 
 

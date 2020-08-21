@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
-import { Row, Form, Input, Button, } from 'antd';
+import { Row, Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import "./loginform.css"
 import API from '../../utils/API';
@@ -35,6 +35,8 @@ export default function LoginForm() {
         API.login(formObjectLogin).then(data => {
             console.log("logged in as", data)
             history.push("/user")
+        }).catch(err =>{
+            message.error("Please check username or password",3)
         })
     };
 
@@ -86,7 +88,7 @@ export default function LoginForm() {
             // console.log("you are a new user", data)
             history.push("/user")
         }).catch(function (err) {
-            alert("Username already taken, please try a different username.")
+            message.error("Username already taken, please try a different username.", 3)
         });
     }
 

@@ -36,6 +36,8 @@ export default function SuggestionCard(props) {
     message: ""
   })
 
+  const [commentsDb, setCommentsDb] = useState([])
+
   const {id} = useParams()
 
   useEffect(()=>{
@@ -106,11 +108,29 @@ export default function SuggestionCard(props) {
     })
   })
 
+
   useEffect(() => {
-    API.getCommentsForSuggestion(id).then(res=>{
-      console.log("id", id)
+    API.getCommentsForSuggestion(props.suggestions._id).then(res=>{
+      const thing = res.data
+      console.log("get comments for suggestion", thing)
+      // return thing
+      // const commentArr = res.map(comment =>{
+      //   return comment
+      // })
+      // setCommentsDb(commentArr)
+      // console.log("comment array",commentsDb)
     })
+    .catch(err=> console.log("err", err))
   }, [])
+
+  // const arrayOfComments = []
+  // for(let i=0; i<props.comments.length; i++){
+  //   arrayOfComments.push(
+  //     <Card>
+  //         {comments.map(com =>)}
+  //     </Card>
+  //   )
+  // }
  
   const switchModal = () => {
     setModal({
@@ -147,7 +167,7 @@ export default function SuggestionCard(props) {
               {/* {isClicked?  */}
               {/* <Button  disabled className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />  */}
                {/* :  */}
-               <Button disabled={isClicked} onClick={handleIncrement}className="vote-btn" shape="circle" style={{ margin:"5px" }} icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
+               <Button  onClick={handleIncrement}className="vote-btn" shape="circle" style={{ margin:"5px" }} icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
                {/* } */}
             </Tooltip>
             <Tooltip title="vote no">
@@ -256,6 +276,11 @@ export default function SuggestionCard(props) {
                         <Button onClick={commentSubmit} type="primary">Submit</Button>
                       </Form.Item>
                     </Form>
+                    <Row>
+                      <Card style={{width:300}}>
+                        <p>hello:{commentsDb}</p>
+                      </Card> 
+                    </Row>
                 </Col>
             </Row>
       </Modal>

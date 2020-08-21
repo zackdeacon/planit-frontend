@@ -46,7 +46,7 @@ export default function MapDashboard(props) {
 
     useEffect(() => {
         API.getMapById(id).then(res => {
-            console.log(res.data.name);
+            // console.log(res.data.name);
             const mapName = res.data.name;
             const mapCreator = res.data.creator;
             const mapDestinations = res.data.destinations;
