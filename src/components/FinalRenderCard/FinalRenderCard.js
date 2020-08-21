@@ -101,7 +101,7 @@ export default function FinalRenderCard(props) {
 
   return (
     <>
-      <div className="mapcard-top-buffer">
+      <div className="itin-wrapper">
         <div className="transparentBackground">
           <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col text="center" sm={{ span: 6 }}>
@@ -134,4 +134,3 @@ export default function FinalRenderCard(props) {
     </>
   )
 }
-

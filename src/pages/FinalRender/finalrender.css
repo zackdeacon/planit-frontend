@@ -1,4 +1,4 @@
-.render-background{
+/* .render-background{
     background-image: url("../../images/andrew-neel-unsplash.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -19,7 +19,47 @@
     .render-filter-background{
         height: 100%;
     }
-}
+} */
+
+.render-background {
+    /* Set rules to fill background */
+    min-width: 100%;
+    height: auto;
+    /* min-width: 1024px; */
+      
+    /* Set up proportionate scaling */
+    width: auto;
+    /* height: 100%; */
+      
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  @media screen and (min-width: 1636px) { 
+    img.bg {
+      width: 100vw;
+      height: auto;
+    }
+  }
+
+.render-filter-background{
+  background-color: rgba(0, 0, 0, 0.397);
+
+  /* Set rules to fill background */
+  min-height: 100vh;
+  /* min-width: 1024px; */
+    
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: 100%;
+    
+  /* Set up positioning */
+  position: relative;
+  top: 0;
+  left: 0;
+  }
 
 .map-link{
     color: white;
