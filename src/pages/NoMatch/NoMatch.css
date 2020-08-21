@@ -1,0 +1,23 @@
+.ErrorLogo {
+    max-height: 125px;
+    max-width: 125px;
+    display: flex;
+    justify-content: center;
+}
+
+.ErrorLogoDiv {
+    display: flex;
+    justify-content: center;
+}
+
+body {
+background-color: rgba(0, 0, 0, 0.507);
+}
+
+.ant-result-subtitle, .ant-result-title {
+    color: white;
+}
+
+.nomatchBuffer {
+    height: 75px;
+}
