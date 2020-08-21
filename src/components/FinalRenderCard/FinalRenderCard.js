@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from "react-router-dom"
-import { Row } from 'antd'
+import { Row, Col } from 'antd'
 import "./FinalRenderCard.css"
 import API from '../../utils/API'
 import CardColumns from "../FinalRenderColumns/CardColumns"
@@ -38,19 +38,98 @@ export default function FinalRenderCard(props) {
   }
 
 
-    return (
-      <>
-        <div className="mapcard-top-buffer">
-          <div className="transparentBackground">
-            <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-              {accomodationArr.map(item => { return item })}
-              {flightArr.map(item => { return item })}
-              {foodArr.map(item => { return item })}
-              {entertainmentArr.map(item => { return item })}
-            </Row>
-          </div>
+  accomodationArr.sort(function (a, b) {
+    let aUpvotes = a.props.suggestions.votes.filter(vote => vote.vote).length
+    let aDownVotes = a.props.suggestions.votes.filter(vote => !vote.vote).length
+
+    let bUpvotes = b.props.suggestions.votes.filter(vote => vote.vote).length
+    let bDownVotes = b.props.suggestions.votes.filter(vote => !vote.vote).length
+
+    if ((aUpvotes - aDownVotes) > (bUpvotes - bDownVotes)) {
+      return -1
+    } else {
+      return 1
+    }
+  })
+
+  flightArr.sort(function (a, b) {
+    let aUpvotes = a.props.suggestions.votes.filter(vote => vote.vote).length
+    let aDownVotes = a.props.suggestions.votes.filter(vote => !vote.vote).length
+
+    let bUpvotes = b.props.suggestions.votes.filter(vote => vote.vote).length
+    let bDownVotes = b.props.suggestions.votes.filter(vote => !vote.vote).length
+
+    if ((aUpvotes - aDownVotes) > (bUpvotes - bDownVotes)) {
+      return -1
+    } else {
+      return 1
+    }
+  })
+
+  foodArr.sort(function (a, b) {
+    let aUpvotes = a.props.suggestions.votes.filter(vote => vote.vote).length
+    let aDownVotes = a.props.suggestions.votes.filter(vote => !vote.vote).length
+
+    let bUpvotes = b.props.suggestions.votes.filter(vote => vote.vote).length
+    let bDownVotes = b.props.suggestions.votes.filter(vote => !vote.vote).length
+
+    if ((aUpvotes - aDownVotes) > (bUpvotes - bDownVotes)) {
+      return -1
+    } else {
+      return 1
+    }
+  })
+
+  entertainmentArr.sort(function (a, b) {
+    let aUpvotes = a.props.suggestions.votes.filter(vote => vote.vote).length
+    let aDownVotes = a.props.suggestions.votes.filter(vote => !vote.vote).length
+
+    let bUpvotes = b.props.suggestions.votes.filter(vote => vote.vote).length
+    let bDownVotes = b.props.suggestions.votes.filter(vote => !vote.vote).length
+
+    if ((aUpvotes - aDownVotes) > (bUpvotes - bDownVotes)) {
+      return -1
+    } else {
+      return 1
+    }
+  })
+
+  console.log('foodArr', foodArr)
+
+
+  return (
+    <>
+      <div className="mapcard-top-buffer">
+        <div className="transparentBackground">
+          <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+            <Col text="center" sm={{ span: 6 }}>
+              <h1 className="columnTitle">Accomodation</h1>
+              <div className="RenderCardDiv">
+                {accomodationArr.map(item => { return item })}
+              </div>
+            </Col>
+            <Col text="center" sm={{ span: 6 }}>
+              <h1 className="columnTitle">Flights</h1>
+              <div className="RenderCardDiv">
+                {flightArr.map(item => { return item })}
+              </div>
+            </Col>
+            <Col text="center" sm={{ span: 6 }}>
+              <h1 className="columnTitle">Food</h1>
+              <div className="RenderCardDiv">
+                {foodArr.map(item => { return item })}
+              </div>
+            </Col>
+            <Col text="center" sm={{ span: 6 }}>
+              <h1 className="columnTitle">entertainmentArr</h1>
+              <div className="RenderCardDiv">
+                {entertainmentArr.map(item => { return item })}
+              </div>
+            </Col>
+          </Row>
         </div>
-      </>
-    )
-  }
+      </div>
+    </>
+  )
+}
 

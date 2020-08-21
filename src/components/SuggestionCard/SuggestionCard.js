@@ -15,65 +15,71 @@ export default function SuggestionCard(props) {
   const [downVote, setDownVote]=useState(false)
 
   //state of display of voters
-  const [displayUpVote, setDisplayUpVote] = useState()
-  const [displayDownVote, setDisplayDownVote] = useState()
+  const [displayUpVote, setDisplayUpVote] = useState(0)
+  const [displayDownVote, setDisplayDownVote] = useState(0)
   
   //state of percent of voters
   const [percentageVotes, setPercentageVotes] = useState(0)
 
   //state of like btn clicked
-  // const [isClicked, setIsClicked] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+
+  useEffect(()=>{
+    const arr = props.suggestions.votes
+    let i;
+    const arrUpVotes = []
+    const arrDownVotes = []
   
-  //create array of votes
-  const arr = props.suggestions.votes
-  let i;
-  const arrUpVotes = []
-  const arrDownVotes = []
-  const allVotes = []
-
-  for (i=0; i<arr.length; i++){
-    const voteVal = arr[i].vote  
-    allVotes.push(voteVal) 
-    if(voteVal===true){
-      arrUpVotes.push(voteVal)
-    } else {
-      arrDownVotes.push(voteVal)
+    for (i=0; i<arr.length; i++){
+      const voteVal = arr[i].vote  
+      if(voteVal===true){
+        arrUpVotes.push(voteVal)
+      } else {
+        arrDownVotes.push(voteVal)
+      }
     }
-  }
+    setDisplayUpVote(arrUpVotes.length) ;
+    setDisplayDownVote(arrDownVotes.length) ;
+  }, [])
 
-  //number of votes in array
-  const numUpVotes = arrUpVotes.length;
-  const numDownVotes = arrDownVotes.length;
-  const numAllVotes = allVotes.length;
+  
 
-  //upvote logic
+  //up vote btn
   const handleIncrement =()=> {
     setUpVote(true)
-    setDisplayUpVote(numUpVotes)
-    // console.log("what would show up votes", displayUpVote)
-    // setIsClicked(true)
+    setIsClicked(true)
     const voteUpObj = {
       vote:upVote
     }
     API.saveVote(voteUpObj,props.suggestions._id)
     .then(vote=>{
+      setDisplayUpVote(displayUpVote+1)
+      setIsClicked(false)
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+      alert ("already voted")
+      console.log(err)
+      setIsClicked(false)
+    })
   }
 
-  //down vote logic
+  //down vote btn
   const handleDecrement = ()=>{
     setDownVote(false)
-    setDisplayDownVote(numDownVotes)
-    // console.log("what would show down votes", displayDownVote)
-    // setIsClicked(true)
+    setIsClicked(true)
     const voteDownOjb ={
       vote: downVote
     }
     API.saveVote(voteDownOjb, props.suggestions._id)
     .then(vote=>{
+      setDisplayDownVote(displayDownVote+1)
+
     })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+      alert ("already voted")
+      console.log(err)
+      setIsClicked(false)
+    })
   }
 
   //percentage of guests voted
@@ -81,18 +87,14 @@ export default function SuggestionCard(props) {
   useEffect(()=>{
     API.getMapById(id).then(res=>{
       const guestArr = res.data.guests
-      // console.log("guest array", guestArr)
       const numGuests = guestArr.length
-      // console.log("number of guests", numGuests)
-      let ratio = numAllVotes/numGuests
-      // console.log("ratio", ratio)
+      let ratio = (displayDownVote+displayUpVote)/numGuests
       let percent = ratio*100
       setPercentageVotes(percent)
-      // console.log(percentageVotes)
     })
   })
 
-  
+
   //MODAL
   const [modal, setModal] = useState({
     visible: false 
@@ -103,6 +105,7 @@ export default function SuggestionCard(props) {
       visible: !modal.visible,
     });
   };
+
 
   //COMMENT 
   const [form] = Form.useForm();
@@ -125,7 +128,8 @@ export default function SuggestionCard(props) {
       message: ""
     })
   }
-  
+  console.log('props', props)
+ const sugNameUserName= `${props.suggestions.title.toUpperCase()} recommended by ${props.suggestions.userId.name.first} ${props.suggestions.userId.name.last}`
 
   return (
     <>
@@ -139,7 +143,7 @@ export default function SuggestionCard(props) {
               {/* {isClicked?  */}
               {/* <Button  disabled className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />  */}
                {/* :  */}
-               <Button onClick={handleIncrement}className="vote-btn" shape="circle" style={{ margin:"5px" }} icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
+               <Button disabled={isClicked} onClick={handleIncrement}className="vote-btn" shape="circle" style={{ margin:"5px" }} icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
                {/* } */}
             </Tooltip>
             <Tooltip>
@@ -159,10 +163,15 @@ export default function SuggestionCard(props) {
       </Col>
 
       <Modal
-          title={props.suggestions.title.toUpperCase()}
+          title={sugNameUserName}
           visible={modal.visible}
           onOk={switchModal}
           onCancel={switchModal}
+          footer={[
+            <Button key="back" onClick={switchModal}>
+              Got it!
+            </Button>
+          ]}
         >
           <Row justify="center">
             <Card className="modsug-card-container" type="inner"
@@ -204,13 +213,13 @@ export default function SuggestionCard(props) {
                     <h4>Standing</h4>
                     <Statistic
                         title="Upvotes"
-                        value={numUpVotes}
+                        value={displayUpVote}
                         valueStyle={{ color: '#6eb0b4' }}
                         prefix={<ArrowUpOutlined />}
                     />
                     <Statistic
                         title="Downvotes"
-                        value={numDownVotes}
+                        value={displayDownVote}
                         valueStyle={{ color: '#945440' }}
                         prefix={<ArrowDownOutlined />}
                     />

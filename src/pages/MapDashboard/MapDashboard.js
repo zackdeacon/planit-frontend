@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from "react-router-dom";
-import { Row, Col, Button, Modal,  } from 'antd'
+import { Row, Col, Button, Modal, } from 'antd'
 import NavBar from '../../components/NavBar/navbar'
 import MapCard from '../../components/MapCard/mapcard'
 import Chat from '../../components/Chat/chat'
@@ -18,13 +18,13 @@ export default function MapDashboard(props) {
         });
     };
 
-    const handleOk =()=>{
+    const handleOk = () => {
         setModal({
             visible: false
         })
     }
 
-    const handleCancel =()=>{
+    const handleCancel = () => {
         setModal({
             visible: false
         })
@@ -70,6 +70,22 @@ export default function MapDashboard(props) {
         }).catch(err => console.log('err', err))
     }, [])
 
+    const boardDestination = board.destinations
+    const destinationArr = []
+for (let i = 0; i < boardDestination.length; i++) {
+    destinationArr.push(<li>{boardDestination[i]}</li>)
+}
+const destinationList = destinationArr.map((name) => name)
+
+
+
+    const boardguests = board.guests
+    const guestArr = []
+for (let i = 0; i < boardguests.length; i++) {
+    guestArr.push(<li>{boardguests[i]}</li>)
+}
+const guestList = guestArr.map((name) => name)
+
 
     return (
         <>
@@ -79,6 +95,8 @@ export default function MapDashboard(props) {
 
                     <Row justify="center">
                         <div className="dash-title"><Link onClick={switchModal}>{board.name.toUpperCase()}</Link></div>
+                        {/* <div className="dash-sub-title"><ul>{newArray}</ul></div> */}
+                    
                     </Row>
 
                     <div className="top-buffer">
@@ -102,16 +120,16 @@ export default function MapDashboard(props) {
                 okButtonProps={{ disabled: false }}
                 footer={[
                     <Button key="back" onClick={handleOk}>
-                      Got it!
+                        Got it!
                     </Button>
-                  ]}
-                >
-                    <p>created by: {board.creator}</p>
-                    <p>destination: {board.destinations}</p>
-                    <p>guests: {board.guests}</p>
-                    <p>start date: {board.dates.start}</p>
-                    <p>end date: {board.dates.end}</p>
-                    
+                ]}
+            >
+                <p>Created by: {board.creator}</p>
+                <p>Destination: </p> <ul>{destinationList}</ul>
+                <p>Guests: </p> <ul>{guestList}</ul>
+                <p>Start date: {board.dates.start}</p>
+                <p>End date: {board.dates.end}</p>
+
             </Modal>
         </>
     )
