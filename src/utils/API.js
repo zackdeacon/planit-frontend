@@ -124,5 +124,11 @@ export default {
   deleteChat: function (chat) {
     // chat: { id }
     return axios.post(`${urlPrefix}/api/chats/delete`, chat);
+  },
+
+  // * EMAIL ROUTES
+  sendFinalRender: function (renderData) {
+    // renderData: { mapId, email }
+    return axios.post(`${urlPrefix}/api/email/send/map/render`, renderData);
   }
 };
