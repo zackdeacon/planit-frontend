@@ -6,6 +6,7 @@ import API, {urlPrefix} from "../../utils/API"
 import "./chat.css"
 import { useParams } from "react-router-dom";
 
+
 //Components and styling taken from example of Youtube
 
 // const Page = styled.div`
@@ -112,8 +113,8 @@ const Chat = () => {
 
   useEffect(() => {
     socketRef.current = io.connect(
-      // "http://127.0.0.1:8080"
-      "https://planitserver.herokuapp.com"
+      "http://127.0.0.1:8080"
+      // "https://planitserver.herokuapp.com"
       );
 
     updateMessages();
@@ -137,6 +138,13 @@ const Chat = () => {
     const chats = await getCurrentMessages();
     setMessages(chats)
   };
+
+  const scrollTo = (ref) => {
+    if (ref /* + other conditions */) {
+      ref.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   function sendMessage(e) {
     e.preventDefault();
     const chatData = {
@@ -148,7 +156,7 @@ const Chat = () => {
       // console.log(data)
       setMessage("");
       socketRef.current.emit("new message");
-      updateMessages();  
+      updateMessages(); 
     }).catch((err)=>{
       console.log(err)
     })
@@ -157,7 +165,6 @@ const Chat = () => {
   function handleChange(e) {
     setMessage(e.target.value);
   }
-
 
   //Code to keep above this line 
   console.log(messages)
@@ -170,14 +177,14 @@ const Chat = () => {
         </Row>
 
         <Row justify="center">
-          <Col className="chat-box">
+          <Col className="chat-box" id="chat-box">
             {messages.map((message, index) => {
               // console.log(userData.id);
               // console.log(message.user._id);
               if (message.user._id === userData.id) {
                 return (
                   <MyRow key={index}>
-                    <MyMessage>
+                    <MyMessage ref={scrollTo}>
                       {message.message}
                       <span className="userName">
                         {message.user.name.first}
@@ -188,7 +195,7 @@ const Chat = () => {
               }
               return (
                 <PartnerRow key={index}>
-                  <PartnerMessage>
+                  <PartnerMessage ref={scrollTo}>
                     {message.message}
                     <span className="userName">
                         {message.user.name.first}

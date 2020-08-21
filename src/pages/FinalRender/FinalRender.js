@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Row } from 'antd'
 import NavBar from '../../components/NavBar/navbar'
 import FinalRenderCard from '../../components/FinalRenderCard/FinalRenderCard'
@@ -36,7 +36,9 @@ export default function FinalRender(props) {
                 <div className="render-filter-background">
                     <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
                     <Row justify="center">
-                        <div className="dash-title"><a className="map-link" href=" ">{board.name}</a></div>
+                        <div className="dash-title">
+                            <Link className="map-link" to={`/dashboard/${id}`}>{board.name}</Link>
+                            </div>
                     </Row>
                     {/* <div className="top-buffer"></div> */}
                     <FinalRenderCard />
