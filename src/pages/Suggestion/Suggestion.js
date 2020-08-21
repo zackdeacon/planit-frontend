@@ -49,6 +49,7 @@ function Suggestions() {
         <div className="suggestion-background">
             <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
             {/* form with controlled inputs */}
+            <div className="sug-buffer"></div>
             <SuggestionCreateForm
                 formData={formObject}
                 handleChange={handleInputChange}

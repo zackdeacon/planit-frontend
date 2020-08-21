@@ -68,6 +68,10 @@
     color: transparent;
 }
 
+.nav-btns:hover{
+    border:none !important;
+}
+
 .nav-links.open .nav-btns {
     transform: translateY(-5px);
     z-index:0;
@@ -77,5 +81,5 @@
 .login-btn{
     position: relative;
     top: 4px;
-    padding-right: 15px;
+    padding-right: 20px;
 }

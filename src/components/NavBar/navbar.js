@@ -86,9 +86,9 @@ export default function Navbar(props) {
                 </Row>
                 <Col className={menuBtn.linksClass}>
                 <Row justify="end">
-                        {isLoggedIn? <Button type="text" onClick={logOut} href="/"className="nav-btns">Log Out</Button> : <Link 
-                        onClick={login} 
-                        activeClass="active" to="loginform" spy={true} smooth={true} offset={+500} duration={1000} className="nav-btns"><span className="login-btn">Login</span></Link>}
+                        {isLoggedIn? 
+                        <Button type="text" onClick={logOut} href="/"className="nav-btns">Log Out</Button> 
+                        : <Link onClick={login} activeClass="active" to="loginform" spy={true} smooth={false} offset={+500} duration={1000} className="nav-btns"><span className="login-btn">Login</span></Link>}
                     </Row>
                
                     <Row justify="end">

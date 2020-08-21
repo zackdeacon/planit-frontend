@@ -1,6 +1,6 @@
 import axios from "axios";
-const urlPrefix = "https://planitserver.herokuapp.com";
-// export const urlPrefix = "http://localhost:8080";
+// const urlPrefix = "https://planitserver.herokuapp.com";
+const urlPrefix = "http://localhost:8080";
 
 
 // ** Functions that take an object have the structure and keys of that 
@@ -55,9 +55,9 @@ export default {
     // mapId is an id of type string
     return axios.put(`${urlPrefix}/api/users/invitation/decline`, mapId, { withCredentials: true });
   },
-  deleteUser: function (user) {
+  deleteUser: function (userId) {
     // user: { id }
-    return axios.delete(`${urlPrefix}/api/users/delete`, user);
+    return axios.delete(`${urlPrefix}/api/users/delete/${userId}`);
   },
 
   // * MAPS COLLECTION

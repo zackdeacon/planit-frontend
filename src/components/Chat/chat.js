@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Row } from "antd";
+import { Row, Col } from "antd";
 import styled from "styled-components";
 import io from "socket.io-client";
 import API, {urlPrefix} from "../../utils/API"
@@ -90,11 +90,6 @@ const PartnerMessage = styled.div`
 
 //Code to keep below this line 
 
-
-
-
-
-
 // const TEST_MAP_ID = id;
 const TEST_USER_ID = "5f3c2a5b7d3f2d25dab2becc";
 
@@ -175,7 +170,7 @@ const Chat = () => {
         </Row>
 
         <Row justify="center">
-          <div className="chat-box">
+          <Col className="chat-box">
             {messages.map((message, index) => {
               // console.log(userData.id);
               // console.log(message.user._id);
@@ -202,8 +197,10 @@ const Chat = () => {
                 </PartnerRow>
               )
             })}
-          </div>
-
+          </Col>
+        </Row>
+          
+        <Row justify="center">
           <Form onSubmit={sendMessage}>
             <Row justify="center">
               <TextArea className="text-area" value={message} onChange={handleChange} placeholder="Say something..." />
@@ -215,6 +212,15 @@ const Chat = () => {
         </Row>
       </div>
     </>
+
+  )
+}
+
+
+
+export default Chat;
+
+
 
     //Components and styling taken from example of Youtube
     // <Page>
@@ -246,12 +252,3 @@ const Chat = () => {
     // </Form>
     // </Page>
     //Components and styling taken from example of Youtube
-
-  )
-}
-
-
-
-export default Chat;
-
-

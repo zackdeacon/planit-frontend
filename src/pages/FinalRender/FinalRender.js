@@ -31,16 +31,17 @@ export default function FinalRender(props) {
     
     return (
         <>
-            <div className="render-background">
+            {/* <div className="render-background"> */}
+            <img src="/assets/images/andrew-neel-unsplash.jpg" className="render-background" />
                 <div className="render-filter-background">
                     <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
                     <Row justify="center">
                         <div className="dash-title"><a className="map-link" href=" ">{board.name}</a></div>
                     </Row>
-                    <div className="top-buffer"></div>
+                    {/* <div className="top-buffer"></div> */}
                     <FinalRenderCard />
                 </div>
-            </div>
+            {/* </div> */}
         </>
     )
 }

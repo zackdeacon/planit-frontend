@@ -1,6 +1,6 @@
 
 .divider-filter{
-    background-color: rgba(0, 0, 0, 0.666);
+    background-color: rgba(0, 0, 0, 0.493);
 }
 .light-blue{
     /* position: relative; */
@@ -21,8 +21,7 @@
 
 .divider-logo{
     margin: 20px 0px 20px 0px;
-    width:30vh;
-    height:30vh
+    height:50vh
 }
 
 /* Scroll Icon */
