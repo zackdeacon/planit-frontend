@@ -78,8 +78,8 @@ export default function UserCard(props) {
                                     <p className="user-info"><strong>Email:</strong> {userData.email}</p>
                                 </div>
                                 <Row justify="end">
-                                    <Tooltip title="Modify Account">
-                                        <Button onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98"}} icon={<SettingTwoTone twoToneColor="#576d65" />} />
+                                    <Tooltip title="modify account">
+                                    <Button onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98" }} icon={<SettingTwoTone twoToneColor="#576d65" />} />
                                     </Tooltip>
                                 </Row>
                             </Card>

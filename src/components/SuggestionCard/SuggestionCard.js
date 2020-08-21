@@ -39,24 +39,6 @@ export default function SuggestionCard(props) {
 
   const {id} = useParams()
 
-  useEffect(()=>{
-    const arr = props.suggestions.votes
-    let i;
-    const arrUpVotes = []
-    const arrDownVotes = []
-  
-    for (i=0; i<arr.length; i++){
-      const voteVal = arr[i].vote  
-      if(voteVal===true){
-        arrUpVotes.push(voteVal)
-      } else {
-        arrDownVotes.push(voteVal)
-      }
-    }
-    setDisplayUpVote(arrUpVotes.length) ;
-    setDisplayDownVote(arrDownVotes.length) ;
-  }, [])
-
   //up vote btn
   const handleIncrement =()=> {
     setUpVote(true)
@@ -107,25 +89,23 @@ export default function SuggestionCard(props) {
     })
   })
 
-
- 
-
- const arrayArray = [];
- 
-  // for(let i =0; i<commentsDb.length; i++){
-      
-  //   arrayArray.push(<Row>
-      
-  //     <Card style={{width:300}}>
-  //       <p>{commentsDb[i]}</p>
-  //     </Card>
-    
-    
-  // </Row>)
-    
-  // }
-
+  useEffect(()=>{
+    const arr = props.suggestions.votes
+    let i;
+    const arrUpVotes = []
+    const arrDownVotes = []
   
+    for (i=0; i<arr.length; i++){
+      const voteVal = arr[i].vote  
+      if(voteVal===true){
+        arrUpVotes.push(voteVal)
+      } else {
+        arrDownVotes.push(voteVal)
+      }
+    }
+    setDisplayUpVote(arrUpVotes.length) ;
+    setDisplayDownVote(arrDownVotes.length) ;
+  }, [])
 
   const switchModal = () => {
     setModal({
@@ -148,27 +128,17 @@ export default function SuggestionCard(props) {
     })
   }
   
- const sugNameUserName= `${props.suggestions.title.toUpperCase()} recommended by ${props.suggestions.userId.name.first} ${props.suggestions.userId.name.last}`
-console.log('props.comments', props.comments)
+  const sugNameUserName= `${props.suggestions.title.toUpperCase()} recommended by ${props.suggestions.userId.name.first} ${props.suggestions.userId.name.last}`
+  console.log('props.comments', props.comments)
 
-// const peach = []
-// props.comments.map(apple=>{
-//   peach.push(<Card style={{width:300}}>
-
-//     < p>{apple.message}</p>
-//   </Card>)
-  
-// })
-
-
- const peach = []
- props.suggestions.comments.map(apple=>{
-   peach.push(<Card style={{width:300}}>
- ​
-     <p>{apple.message}</p>
-   </Card>)
-   
- })
+  const peach = []
+  props.suggestions.comments.map(apple=>{
+    peach.push(<Card style={{width:300}}>
+  ​
+      <p>{apple.message}</p>
+    </Card>)
+    
+  })
  
 
   return (
@@ -179,14 +149,14 @@ console.log('props.comments', props.comments)
         title={props.suggestions.title.toUpperCase()} extra={
             // adding up and downvote buttons
             <>
-            <Tooltip title="vote yes">
+            <Tooltip title="up vote">
               {/* {isClicked?  */}
               {/* <Button  disabled className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />  */}
                {/* :  */}
                <Button  onClick={handleIncrement}className="vote-btn" shape="circle" style={{ margin:"5px" }} icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
                {/* } */}
             </Tooltip>
-            <Tooltip title="vote no">
+            <Tooltip title="down vote">
               <Button onClick={handleDecrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<DislikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px", position:"relative", top:"3px" }} />} size="large" />
             </Tooltip>
             </>
@@ -218,10 +188,10 @@ console.log('props.comments', props.comments)
                 title={props.suggestions.title.toUpperCase()} extra={
                     // adding up and downvote buttons
                     <>
-                    <Tooltip title="vote yes">
+                    <Tooltip title="up vote">
                     <Button onClick={handleIncrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
                     </Tooltip>
-                    <Tooltip title="vote no">
+                    <Tooltip title="down vote">
                     <Button onClick={handleDecrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<DislikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px", position:"relative", top:"3px" }} />} size="large" />
                     </Tooltip>
                     </>
