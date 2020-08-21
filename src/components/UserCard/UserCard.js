@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
-import { Card, Col, Row, Button, Modal } from 'antd';
+import { Card, Col, Row, Button, Modal, List, Avatar } from 'antd';
+import { MailOutlined } from '@ant-design/icons';
 import { SettingTwoTone, ApiFilled } from '@ant-design/icons';
 import MapCarousel from '../MapCarousel/MapCarousel';
 import API from "../../utils/API"
 import "./usercard.css"
+
+const inviteDiv = {
+    height: '160px',
+    color: '#fff',
+    background: '#6C8E98',
+    border: "solid",
+    borderColor: "#fff"
+};
 
 export default function UserCard(props) {
 
@@ -29,6 +38,20 @@ export default function UserCard(props) {
             console.log("User deleted");
             history.push("/")
         })
+    }
+
+    const handleAccept = (mapId) => {
+        console.log("accepted: ", mapId);
+        API.acceptMapInvitiation(mapId).then(res => {
+            console.log(res)
+        });
+    }
+
+    const handleDecline = (mapId) => {
+        console.log("declined: ", mapId);
+        API.declineMapInvitiation(mapId).then(res => {
+            console.log(res)
+        });
     }
 
     return (
@@ -58,25 +81,32 @@ export default function UserCard(props) {
                             {/* 
                                 https://codesandbox.io/s/lq5zq?file=/index.js:2009-2885
                                 https://ant.design/components/list/
-                             */}
-                            <List
-                                className="demo-loadmore-list"
-                                loading={initLoading}
-                                itemLayout="horizontal"
-                                dataSource={userData.invitations}
-                                renderItem={invite => (
-                                    <List.Item
-                                        actions={[<a key="list-loadmore-accept">Accept</a>, <a key="list-loadmore-decline">Decline</a>]}
-                                    >
-                                        <Skeleton avatar title={false} active>
+                            */}
+                            <h2>Pending Invitations: </h2>
+                            <div style={inviteDiv}>
+                                <List
+                                    className="demo-loadmore-list"
+                                    itemLayout="horizontal"
+                                    dataSource={userData.invitations}
+                                    renderItem={(invite) => (
+                                        <List.Item
+                                            actions={[
+                                                <a onClick={() => handleAccept(invite._id)}>Accept</a>,
+                                                <a onClick={() => handleDecline(invite._id)}>Decline</a>
+                                            ]}
+                                            style={{ margin: "5px 2% 5px 2%", backgroundColor: "#fff", padding: "12px 6px 12px 6px", borderRadius: "10px" }}
+                                        >
                                             <List.Item.Meta
-                                                title={<a href="https://ant.design">{invite.creator}</a>}
-                                                description={invite.name}
+                                                avatar={
+                                                    <Avatar size="large" style={{ marginTop: "2px" }} icon={<MailOutlined />} />
+                                                }
+                                                title={invite.name}
+                                                description={`From: ${invite.creator}`}
                                             />
-                                        </Skeleton>
-                                    </List.Item>
-                                )}
-                            />
+                                        </List.Item>
+                                    )}
+                                />
+                            </div>
                         </Col>
                     </Row>
                 </div>
