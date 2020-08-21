@@ -31,8 +31,8 @@ function MapCreateForm(props){
                     className="map-form"
                     onFinish={props.handleSave}
                 >
-                    <div className="cart-title">THE CARTOGRAPHER</div>
-                    <div className="form-subtitle">Create Your Planning Map</div>
+                    <Row justify="center" className="cart-title">THE CARTOGRAPHER</Row>
+                    <div className="form-subtitle"><strong>Create Your Planning Map</strong></div>
 
                     <Form.Item rules={[{ required: true, message: 'Please input your trip name!' }]}>
                         <Input

@@ -55,9 +55,9 @@ export default {
     // index the index of the invite to remove
     return axios.put(`${urlPrefix}/api/users/invitation/decline`, index, { withCredentials: true });
   },
-  deleteUser: function (user) {
+  deleteUser: function (userId) {
     // user: { id }
-    return axios.delete(`${urlPrefix}/api/users/delete`, user);
+    return axios.delete(`${urlPrefix}/api/users/delete/${userId}`);
   },
 
   // * MAPS COLLECTION
@@ -107,6 +107,9 @@ export default {
   // saves a vote for a suggestion
   saveComment: function (comment, sugId) {
     return axios.post(`${urlPrefix}/api/suggestions/comment/${sugId}`, comment, { withCredentials: true })
+  },
+  getCommentsForSuggestion: function (sugId) {
+    return axios.get(`${urlPrefix}/api/suggestions/comments/${sugId}`)
   },
 
   // * CHATS COLLECTION

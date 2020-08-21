@@ -55,6 +55,7 @@ function Maps() {
 
     return (
         <>
+            <div className="dark-filter">
             <NavBar logo="./assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
             {/* form with controlled inputs */}
             <MapCreateForm
@@ -63,6 +64,7 @@ function Maps() {
                 handleSave={handleFormSubmit}
                 removeGuest={removeGuest}
             />
+            </div>
         </>
     )
 }

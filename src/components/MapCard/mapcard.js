@@ -9,7 +9,7 @@ const { TabPane } = Tabs;
 
 export default function MapCard(props) {
   const [suggestions, setSuggestions] = useState([])
-
+  // const [commentsDb, setCommentsDb] = useState([])
   const { id } = useParams()
 
 
@@ -24,12 +24,30 @@ export default function MapCard(props) {
       .catch(err => console.log('err', err))
   }, [])
 
+
+  // useEffect(() => {
+  //   if(suggestions.length){
+  //   API.getCommentsForSuggestion(suggestions[0]._id).then(res=>{
+  //     // console.log("here it is",props.suggestions._id)
+  //     console.log(res.data)
+  //     const arrayOfComments = res.data.map(comm=>{
+  //       return comm  
+  //     })
+  //     setCommentsDb(arrayOfComments)
+  //     // return cardItems
+  //     })   
+  //   .catch(err=> console.log("err", err))}
+  // },[suggestions])
+
+
+
+
   const tabsArr = [];
 
   for (let i = 0; i < props.categories.length; i++) {
     tabsArr.push(
       <TabPane tab={props.categories[i]} key={i} suggestions={props.suggestions}>
-        <Row>
+        <Row justify="center">
           {suggestions.map(sug => props.categories[i] === sug.category ? <SuggestionCard key={sug._id} suggestions={sug} /> : null)}
         </Row>
       </TabPane>);
@@ -40,8 +58,7 @@ export default function MapCard(props) {
 
   return (
     <>
-      <div className="mapcard-wrapper">
-
+      {/* <div className="mapcard-wrapper"> */}
         <div className="card-container">
           <Tabs type="card">
             {tabsArr.map(item => { return item })}
@@ -53,7 +70,7 @@ export default function MapCard(props) {
             <Button className="itin-btn" href={itinBtn} data-map-id={id}>Itinerary</Button>
           </Row>
         </div>
-      </div>
+      {/* </div> */}
     </>
   )
 }

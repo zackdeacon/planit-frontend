@@ -1,5 +1,7 @@
 .sug-card-container{
    max-height: 300px;
+   width: 300px;
+   text-align: start;
    overflow: scroll;
 }
 
@@ -9,13 +11,14 @@
 }
 
 .vote-btn{
-   background: #6c8e98;
+   background: #6eb0b4;
+   color: white;
    border-color: white;
 }
 
 .vote-btn:hover{
    background: white;
-   border-color: #6c8e98 solid;
+   color: #6c8e98 ;
 }
 
 .description-text{
@@ -40,7 +43,7 @@
    position: relative;
    top: 10%;
    left: 45%;
-   background-color: rgb(226, 223, 219);
+   background-color: #e2dfdb;
    border: darkgray outset;
    border-radius: 10px;
    margin-left: 0%;
