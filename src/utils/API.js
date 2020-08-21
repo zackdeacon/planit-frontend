@@ -108,6 +108,9 @@ export default {
   saveComment: function (comment, sugId) {
     return axios.post(`${urlPrefix}/api/suggestions/comment/${sugId}`, comment, { withCredentials: true })
   },
+  getCommentsForSuggestion: function (sugId) {
+    return axios.get(`${urlPrefix}/api/suggestions/comments/${sugId}`)
+  },
 
   // * CHATS COLLECTION
   getAllChats: function () {
@@ -124,5 +127,11 @@ export default {
   deleteChat: function (chat) {
     // chat: { id }
     return axios.post(`${urlPrefix}/api/chats/delete`, chat);
+  },
+
+  // * EMAIL ROUTES
+  sendFinalRender: function (renderData) {
+    // renderData: { mapId, email }
+    return axios.post(`${urlPrefix}/api/email/send/map/render`, renderData);
   }
 };

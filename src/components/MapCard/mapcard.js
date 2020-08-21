@@ -9,7 +9,7 @@ const { TabPane } = Tabs;
 
 export default function MapCard(props) {
   const [suggestions, setSuggestions] = useState([])
-
+  // const [commentsDb, setCommentsDb] = useState([])
   const { id } = useParams()
 
 
@@ -23,6 +23,24 @@ export default function MapCard(props) {
     })
       .catch(err => console.log('err', err))
   }, [])
+
+
+  // useEffect(() => {
+  //   if(suggestions.length){
+  //   API.getCommentsForSuggestion(suggestions[0]._id).then(res=>{
+  //     // console.log("here it is",props.suggestions._id)
+  //     console.log(res.data)
+  //     const arrayOfComments = res.data.map(comm=>{
+  //       return comm  
+  //     })
+  //     setCommentsDb(arrayOfComments)
+  //     // return cardItems
+  //     })   
+  //   .catch(err=> console.log("err", err))}
+  // },[suggestions])
+
+
+
 
   const tabsArr = [];
 

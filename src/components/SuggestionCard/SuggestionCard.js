@@ -131,6 +131,16 @@ export default function SuggestionCard(props) {
   console.log('props', props)
  const sugNameUserName= `${props.suggestions.title.toUpperCase()} recommended by ${props.suggestions.userId.name.first} ${props.suggestions.userId.name.last}`
 
+ const peach = []
+ props.suggestions.comments.map(apple=>{
+   peach.push(<Card style={{width:300}}>
+ ​
+     <p>{apple.message}</p>
+   </Card>)
+   
+ })
+ 
+
   return (
     <>
       <Col xxl={{span: 8}} xl={{span: 11}} lg={{ span: 13 }} align="middle">
@@ -252,6 +262,12 @@ export default function SuggestionCard(props) {
                         <Button onClick={commentSubmit} type="primary">Submit</Button>
                       </Form.Item>
                     </Form>
+                    <Row>
+                      <Row>
+                        {peach.map(item=>{return item})}
+                      </Row>                        
+                    </Row>
+
                 </Col>
             </Row>
       </Modal>
