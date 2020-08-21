@@ -11,7 +11,7 @@ export default function MapCarousel(props) {
             return <CarouselContent key={map._id} name={map.name} id={map._id} />
         });
     } else {
-        carouselItems = <CarouselContent name="Nothing to display" empty={true} />
+        carouselItems = <CarouselContent name="None to display" empty={true} />
     }
 
     return (

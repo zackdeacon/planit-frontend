@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { Card, Col, Row, Button, Modal, List, Avatar } from 'antd';
 import { MailOutlined } from '@ant-design/icons';
-import { SettingTwoTone, ApiFilled } from '@ant-design/icons';
+import { SettingTwoTone } from '@ant-design/icons';
 import MapCarousel from '../MapCarousel/MapCarousel';
 import API from "../../utils/API"
 import "./usercard.css"
@@ -17,8 +17,7 @@ const inviteDiv = {
 
 export default function UserCard(props) {
 
-    const { userData } = props;
-    console.log(userData);
+    const { userData, setUserData } = props;
 
     let history = useHistory();
 
@@ -40,18 +39,28 @@ export default function UserCard(props) {
         })
     }
 
-    const handleAccept = (mapId) => {
-        console.log("accepted: ", mapId);
-        API.acceptMapInvitiation(mapId).then(res => {
-            console.log(res)
-        });
+    const handleAccept = (data) => {
+        API.acceptMapInvitiation(data).then(res => {
+            API.getUserById(userData._id).then(user => {
+                setUserData(user.data);
+            }).catch(err => {
+                console.log("err", err);
+            })
+        }).catch(err => {
+            console.log("err", err);
+        })
     }
 
-    const handleDecline = (mapId) => {
-        console.log("declined: ", mapId);
-        API.declineMapInvitiation(mapId).then(res => {
-            console.log(res)
-        });
+    const handleDecline = (index) => {
+        API.declineMapInvitiation(index).then(res => {
+            API.getUserById(userData._id).then(user => {
+                setUserData(user.data);
+            }).catch(err => {
+                console.log("err", err);
+            })
+        }).catch(err => {
+            console.log("err", err);
+        })
     }
 
     return (
@@ -82,31 +91,36 @@ export default function UserCard(props) {
                                 https://codesandbox.io/s/lq5zq?file=/index.js:2009-2885
                                 https://ant.design/components/list/
                             */}
-                            <h2>Pending Invitations: </h2>
-                            <div style={inviteDiv}>
-                                <List
-                                    className="demo-loadmore-list"
-                                    itemLayout="horizontal"
-                                    dataSource={userData.invitations}
-                                    renderItem={(invite) => (
-                                        <List.Item
-                                            actions={[
-                                                <a onClick={() => handleAccept(invite._id)}>Accept</a>,
-                                                <a onClick={() => handleDecline(invite._id)}>Decline</a>
-                                            ]}
-                                            style={{ margin: "5px 2% 5px 2%", backgroundColor: "#fff", padding: "12px 6px 12px 6px", borderRadius: "10px" }}
-                                        >
-                                            <List.Item.Meta
-                                                avatar={
-                                                    <Avatar size="large" style={{ marginTop: "2px" }} icon={<MailOutlined />} />
-                                                }
-                                                title={invite.name}
-                                                description={`From: ${invite.creator}`}
-                                            />
-                                        </List.Item>
-                                    )}
-                                />
-                            </div>
+                            {userData.invitations.length > 0 ?
+                                <>
+                                    <h2>Pending Invitations: </h2>
+                                    <div style={inviteDiv}>
+                                        <List
+                                            className="demo-loadmore-list"
+                                            itemLayout="horizontal"
+                                            dataSource={userData.invitations}
+                                            renderItem={(invite, index) => (
+                                                <List.Item
+                                                    actions={[
+                                                        <a onClick={() => handleAccept({ index, mapId: invite._id })}>Accept</a>,
+                                                        <a onClick={() => handleDecline(index)}>Decline</a>
+                                                    ]}
+                                                    style={{ margin: "5px 2% 5px 2%", backgroundColor: "#fff", padding: "12px 6px 12px 6px", borderRadius: "10px" }}
+                                                >
+                                                    <List.Item.Meta
+                                                        avatar={
+                                                            <Avatar size="large" style={{ marginTop: "2px" }} icon={<MailOutlined />} />
+                                                        }
+                                                        title={invite.name}
+                                                        description={`From: ${invite.creator}`}
+                                                    />
+                                                </List.Item>
+                                            )}
+                                        />
+                                    </div>
+                                </> :
+                                <MapCarousel header="Pending Invitations:" maps={[]} />
+                            }
                         </Col>
                     </Row>
                 </div>

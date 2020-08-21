@@ -47,13 +47,13 @@ export default {
     // Note: leaving first or last empty will result in only one updating
     return axios.put(`${urlPrefix}/api/users/change/password`, passwords, { withCredentials: true });
   },
-  acceptMapInvitiation: function (mapId) {
-    // mapId is an id of type string
-    return axios.put(`${urlPrefix}/api/users/invitation/accept`, mapId, { withCredentials: true });
+  acceptMapInvitiation: function (data) {
+    // index the index of the invite to remove
+    return axios.put(`${urlPrefix}/api/users/invitation/accept`, data, { withCredentials: true });
   },
-  declineMapInvitiation: function (mapId) {
-    // mapId is an id of type string
-    return axios.put(`${urlPrefix}/api/users/invitation/decline`, mapId, { withCredentials: true });
+  declineMapInvitiation: function (index) {
+    // index the index of the invite to remove
+    return axios.put(`${urlPrefix}/api/users/invitation/decline`, index, { withCredentials: true });
   },
   deleteUser: function (user) {
     // user: { id }
