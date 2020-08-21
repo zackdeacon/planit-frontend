@@ -19,11 +19,13 @@
   color: inherit;
   text-decoration: inherit;
   transition: all .2s ease-in-out;
+  text-shadow: transparent;
 }
 
 .carouselMapLink:hover {
   cursor: pointer;
   color: #ffffff;
+  text-shadow: 0 0px 15px rgba(255, 255, 255, 0.561);
 }
 
 .carouselAddUser {
@@ -31,10 +33,12 @@
   top: 15px;
   right: 15px;
   transition: all .2s ease-in-out;
-  color: #F2F1EF;
+  color: #f2f1efc2;
+  border-radius: 50%;
 }
 
 .carouselAddUser:hover {
   cursor: pointer;
   color: #ffffff;
+  
 }

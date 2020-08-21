@@ -1,17 +1,52 @@
-.dash-background{
+/* .dash-background{
     background-image: url("../../images/charlotte-noelle-unsplash.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: cover;
-    /* height: 100%; */
     height: 100vh;
+} */
+
+.dashboard-bg{
+    /* Set rules to fill background */
+    min-width: 100%;
+    height: auto;
+    /* min-width: 1024px; */
+      
+    /* Set up proportionate scaling */
+    width: auto;
+    /* height: 100%; */
+      
+    /* Set up positioning */
+    position: fixed;
+    top: -500px;
+    left: -300px;
+}
+
+@media screen and (max-width: 375px) { 
+    .dashboard-bg {
+        position: fixed;
+        top: -800px;
+        left: -1000px;
+    }
 }
 
 .dash-filter-background{
-    background-color: rgba(0, 0, 0, 0.472);
-    /* height: 100%; */
-    height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  /* Set rules to fill background */
+  min-height: 100vh;
+  /* min-width: 1024px; */
+    
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: 100%;
+    
+  /* Set up positioning */
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 /* Dashboard/Map title */
@@ -26,6 +61,13 @@
     margin: 30px 0px 30px 0px;
     text-align: center;
 }
+.make-white{
+    color: white;
+}
+.make-white:hover{
+    color: #6eb0b4;
+}
+
 .dash-sub-title{
     position: absolute;
     z-index:0;
@@ -40,7 +82,7 @@
 
 .top-buffer{
 padding-top: 25vh;
-overflow: scroll;
+overflow: auto;
 }
 
 @media only screen and (max-width: 500px) {

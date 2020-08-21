@@ -47,8 +47,8 @@ export default function MapCard(props) {
   for (let i = 0; i < props.categories.length; i++) {
     tabsArr.push(
       <TabPane tab={props.categories[i]} key={i} suggestions={props.suggestions}>
-        <Row>
-          {suggestions.map(sug => props.categories[i] === sug.category ? <SuggestionCard key={sug._id} suggestions={sug}/> : null)}
+        <Row justify="center">
+          {suggestions.map(sug => props.categories[i] === sug.category ? <SuggestionCard key={sug._id} suggestions={sug} /> : null)}
         </Row>
       </TabPane>);
   }
@@ -58,8 +58,7 @@ export default function MapCard(props) {
 
   return (
     <>
-      <div className="mapcard-wrapper">
-
+      {/* <div className="mapcard-wrapper"> */}
         <div className="card-container">
           <Tabs type="card">
             {tabsArr.map(item => { return item })}
@@ -71,7 +70,7 @@ export default function MapCard(props) {
             <Button className="itin-btn" href={itinBtn} data-map-id={id}>Itinerary</Button>
           </Row>
         </div>
-      </div>
+      {/* </div> */}
     </>
   )
 }

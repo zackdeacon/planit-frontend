@@ -23,12 +23,16 @@ export default function UserCard(props) {
         });
     };
 
+    
     const deleteAccount = () => {
+
         const id = userData._id
+
         API.deleteUser(id).then(res => {
-            console.log("User deleted");
+            console.log("Delete Btn Clicked");
             history.push("/")
         })
+
     }
 
     const handleAccept = (data) => {
