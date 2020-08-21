@@ -141,3 +141,47 @@ transform: translate(-50%, -50%);
         top:70px;
     }
 }
+
+/* Scroll Icon */
+.center-end-arrow-lc{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+}
+.arrow-lc{
+    position: relative;
+    bottom: 25px;
+    transform: translate(-50%,-50%);
+}
+.arrow-lc span{
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-bottom: 3px solid white;
+    border-right: 3px solid white;
+    transform: rotate(45deg);
+    margin: -15px;
+    animation: animateUX 2.8s infinite;
+}
+.arrow-lc span:nth-child(2){
+    animation-delay: -0.2s;
+}
+.arrow-lc span:nth-child(3){
+    animation-delay: -0.4s;
+}
+@keyframes animateUX {
+    0%{
+        opacity: 0;
+        transform: rotate(45deg) translate(-5px,-5px);
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: rotate(45deg) translate(5px,5px);
+    }
+}
