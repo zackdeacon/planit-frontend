@@ -85,10 +85,31 @@
 .mod-elements{
    text-align: center;
 }
-.mod-elements h4{
+.mod-elements h3{
    margin-top: 20px;
    margin-bottom: 20px;
    font-weight: bolder;
    color: #3b5e66;
 }
 
+.comments-container{
+   width: 100%;
+   height: 200px;
+   background-color: #d4f5fa;
+   border: 2px inset white;
+   border-radius: 5px;
+   overflow: auto;
+   margin-bottom: 10px;
+}
+
+.sug-modal-submit{
+
+}
+
+.sug-modal-submit:hover{
+
+}
+
+.sug-modal-submit:focus{
+
+}
