@@ -95,21 +95,30 @@
 .comments-container{
    width: 100%;
    height: 200px;
-   background-color: #d4f5fa;
+   background-color: #6eb1b41c;
    border: 2px inset white;
    border-radius: 5px;
    overflow: auto;
    margin-bottom: 10px;
 }
 
-.sug-modal-submit{
+.comments-container p{
+   margin: 0px;
+}
 
+.sug-modal-submit{
+   background-color: #6eb0b4;
+   border: 1px solid #3b5e66;
 }
 
 .sug-modal-submit:hover{
+   background-color: #3b5e66;
+   border: 1px solid #6eb0b4;
+   color: white;
+}  
 
-}
-
-.sug-modal-submit:focus{
-
+.sug-modal-submit:focus, .sug-modal-submit:active{
+   background-color: white;
+   border: 1px solid #3b5e66; 
+   color: #6eb0b4 !important;
 }

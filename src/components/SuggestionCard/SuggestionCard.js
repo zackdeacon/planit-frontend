@@ -1,5 +1,5 @@
 
-import React, {useEffect, useState} from 'react'
+import React, {useRef, useEffect, useState} from 'react'
 import { Row, Col, Card, Button, Tooltip, Modal, Progress, Statistic, Form, Input, message} from 'antd'
 import { LikeTwoTone, DislikeTwoTone, ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons"
 // import DashMod from '../../components/DashModule/dashmod'
@@ -25,8 +25,7 @@ export default function SuggestionCard(props) {
 
   //modal
   const [modal, setModal] = useState({
-    visible: true 
-    // visible: false 
+    visible: false 
   })
 
   //form
@@ -40,6 +39,10 @@ export default function SuggestionCard(props) {
   // const [userData, setUserData] = useState({});
 
   const {id} = useParams()
+
+  // Sets Ref to keep latest submitted comment in view 
+  const bottomOfComments = useRef()
+  useEffect(() => bottomOfComments.current && bottomOfComments.current.scrollIntoView())
 
   //percentage of guests voted
   useEffect(()=>{
@@ -152,8 +155,8 @@ export default function SuggestionCard(props) {
     <Col xs={{span:24}} align="middle">
       <Card 
         size="small" 
-        title={userData.username} 
-        style={{width:"100%"}}
+        // title={userData.username} 
+        style={{width:"90%",borderRadius:"5px"}}
       >
         <p>
           {item.message} 
@@ -268,9 +271,10 @@ export default function SuggestionCard(props) {
                       layout="vertical"
                       // onFinishFailed={onFinishFailed}
                     >
-                      <div className="comments-container">
+                      <div className="comments-container" >
                         <Row justify="center">
                           {commentArr.map(item=>{return item})}
+                          <div ref={bottomOfComments}></div>
                         </Row>
                       </div>
 
@@ -284,6 +288,7 @@ export default function SuggestionCard(props) {
                           onChange={commentInputChange}
                           name="message"
                           type="text"
+                          className="comment-text-area"
                         />
                       </Form.Item>
                       <Form.Item >
