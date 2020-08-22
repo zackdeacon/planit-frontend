@@ -33,11 +33,47 @@ export default function SuggestionCard(props) {
 
   //comments
   const [commentObj, setCommentObj] = useState({
-    message: ""
+    message: "",
   })
 
+  const [userData, setUserData] = useState({});
 
   const {id} = useParams()
+
+  //percentage of guests voted
+  useEffect(()=>{
+    API.getMapById(id).then(res=>{
+      const guestArr = res.data.guests
+      const numGuests = guestArr.length
+      let ratio = (displayDownVote+displayUpVote)/(numGuests+1)
+      let percent = Math.floor(ratio*100)
+      setPercentageVotes(percent)
+    })
+  })
+
+  useEffect(()=>{
+    const arr = props.suggestions.votes
+    let i;
+    const arrUpVotes = []
+    const arrDownVotes = []
+  
+    for (i=0; i<arr.length; i++){
+      const voteVal = arr[i].vote  
+      if(voteVal===true){
+        arrUpVotes.push(voteVal)
+      } else {
+        arrDownVotes.push(voteVal)
+      }
+    }
+    setDisplayUpVote(arrUpVotes.length) ;
+    setDisplayDownVote(arrDownVotes.length) ;
+  }, [])
+
+  useEffect(() => {
+    API.getSessionData().then(res => {
+      setUserData(res.data.user);
+    }).catch(console.log)
+  }, [])
 
   //up vote btn
   const handleIncrement =()=> {
@@ -78,35 +114,6 @@ export default function SuggestionCard(props) {
     })
   }
 
-  //percentage of guests voted
-  useEffect(()=>{
-    API.getMapById(id).then(res=>{
-      const guestArr = res.data.guests
-      const numGuests = guestArr.length
-      let ratio = (displayDownVote+displayUpVote)/(numGuests+1)
-      let percent = Math.floor(ratio*100)
-      setPercentageVotes(percent)
-    })
-  })
-
-  useEffect(()=>{
-    const arr = props.suggestions.votes
-    let i;
-    const arrUpVotes = []
-    const arrDownVotes = []
-  
-    for (i=0; i<arr.length; i++){
-      const voteVal = arr[i].vote  
-      if(voteVal===true){
-        arrUpVotes.push(voteVal)
-      } else {
-        arrDownVotes.push(voteVal)
-      }
-    }
-    setDisplayUpVote(arrUpVotes.length) ;
-    setDisplayDownVote(arrDownVotes.length) ;
-  }, [])
-
   const switchModal = () => {
     setModal({
       visible: !modal.visible,
@@ -119,7 +126,6 @@ export default function SuggestionCard(props) {
   }
 
   function commentSubmit (){
-    
     API.saveComment(commentObj, props.suggestions._id)
     .then(message=>{
             console.log(message);
@@ -140,13 +146,19 @@ export default function SuggestionCard(props) {
 
   const commentArr = []
   props.suggestions.comments.map(item=>{
-    commentArr.push(<Card style={{width:300}}>
-  ​
-      <p>{item.message}</p>
+    commentArr.push(
+    <Card 
+      size="small" 
+      title={userData.username} 
+      style={{width:200}}
+    >
+      <p>
+        {item.message} 
+      </p>
     </Card>)
     
   })
- 
+ console.log('props.maps', props.maps)
 
   return (
     <>

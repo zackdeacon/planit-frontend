@@ -9,6 +9,7 @@ const { TabPane } = Tabs;
 
 export default function MapCard(props) {
   const [suggestions, setSuggestions] = useState([])
+  const [maps, setMaps] = useState([])
   const [commentsDb, setCommentsDb] = useState(false)
   const { id } = useParams()
 
@@ -23,7 +24,6 @@ export default function MapCard(props) {
     })
       .catch(err => console.log('err', err))
   }, [commentsDb])
-
 
   // useEffect(() => {
   //   if(suggestions.length){
