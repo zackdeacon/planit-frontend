@@ -25,19 +25,6 @@ export default function MapCard(props) {
       .catch(err => console.log('err', err))
   }, [commentsDb])
 
-  // useEffect(() => {
-  //   if(suggestions.length){
-  //   API.getCommentsForSuggestion(suggestions[0]._id).then(res=>{
-  //     // console.log("here it is",props.suggestions._id)
-  //     console.log(res.data)
-  //     const arrayOfComments = res.data.map(comm=>{
-  //       return comm  
-  //     })
-  //     setCommentsDb(arrayOfComments)
-  //     // return cardItems
-  //     })   
-  //   .catch(err=> console.log("err", err))}
-  // },[suggestions])
 
 
 
