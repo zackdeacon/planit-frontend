@@ -21,6 +21,17 @@
    color: #6c8e98 ;
 }
 
+.vote-btn:active{
+   background: white;
+   color: #6c8e98 ;
+}
+
+.vote-btn:focus{
+   background: white;
+   color: #6c8e98 ;
+   border-color: #6c8e98;
+}
+
 .description-text{
    white-space: nowrap;
    overflow: hidden;
