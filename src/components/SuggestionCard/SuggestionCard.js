@@ -119,8 +119,15 @@ export default function SuggestionCard(props) {
   }
 
   function commentSubmit (){
+    
     API.saveComment(commentObj, props.suggestions._id)
     .then(message=>{
+            console.log(message);
+            if(props.commentBoolean.commentsDb === true){
+              props.commentBoolean.setCommentsDb(false)
+            }else if (props.commentBoolean.commentsDb === false){
+              props.commentBoolean.setCommentsDb(true)
+            }
     })
     .catch(err=>console.log(err))
     setCommentObj({
@@ -131,11 +138,11 @@ export default function SuggestionCard(props) {
   const sugNameUserName= `${props.suggestions.title.toUpperCase()} recommended by ${props.suggestions.userId.name.first} ${props.suggestions.userId.name.last}`
   console.log('props.comments', props.comments)
 
-  const peach = []
-  props.suggestions.comments.map(apple=>{
-    peach.push(<Card style={{width:300}}>
+  const commentArr = []
+  props.suggestions.comments.map(item=>{
+    commentArr.push(<Card style={{width:300}}>
   ​
-      <p>{apple.message}</p>
+      <p>{item.message}</p>
     </Card>)
     
   })
@@ -264,7 +271,7 @@ export default function SuggestionCard(props) {
                     </Form>
                     <Row>
                       <Row>
-                        {peach.map(item=>{return item})}
+                        {commentArr.map(item=>{return item})}
                       </Row>                        
                     </Row>
 
