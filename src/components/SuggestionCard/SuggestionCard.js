@@ -36,7 +36,7 @@ export default function SuggestionCard(props) {
     message: "",
   })
 
-  const [userData, setUserData] = useState({});
+  // const [userData, setUserData] = useState({});
 
   const {id} = useParams()
 
@@ -69,11 +69,11 @@ export default function SuggestionCard(props) {
     setDisplayDownVote(arrDownVotes.length) ;
   }, [])
 
-  useEffect(() => {
-    API.getSessionData().then(res => {
-      setUserData(res.data.user);
-    }).catch(console.log)
-  }, [])
+  // useEffect(() => {
+  //   API.getSessionData().then(res => {
+  //     setUserData(res.data.user);
+  //   }).catch(console.log)
+  // }, [])
 
   //up vote btn
   const handleIncrement =()=> {
@@ -104,11 +104,11 @@ export default function SuggestionCard(props) {
     }
     API.saveVote(voteDownOjb, props.suggestions._id)
     .then(vote=>{
-      message.success('Thanks for the like!', 3);
+      message.success('Thanks for the like!', 2);
       setDisplayDownVote(displayDownVote+1)
     })
     .catch(err=>{
-      message.error('Sorry! You already voted', 3);      
+      message.error('Sorry! You already voted', 2);      
       console.log(err)
       setIsClicked(false)
     })
@@ -146,10 +146,11 @@ export default function SuggestionCard(props) {
 
   const commentArr = []
   props.suggestions.comments.map(item=>{
+    console.log('item.userId', item.userId)
     commentArr.push(
     <Card 
       size="small" 
-      title={userData.username} 
+      title={item.username} 
       style={{width:200}}
     >
       <p>
@@ -158,7 +159,7 @@ export default function SuggestionCard(props) {
     </Card>)
     
   })
- console.log('props.maps', props.maps)
+ 
 
   return (
     <>
@@ -168,14 +169,10 @@ export default function SuggestionCard(props) {
         title={props.suggestions.title.toUpperCase()} extra={
             // adding up and downvote buttons
             <>
-            <Tooltip title="up vote">
-              {/* {isClicked?  */}
-              {/* <Button  disabled className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />  */}
-               {/* :  */}
+            <Tooltip title="up vote" placement="topRight">
                <Button  onClick={handleIncrement}className="vote-btn" shape="circle" style={{ margin:"5px" }} icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
-               {/* } */}
             </Tooltip>
-            <Tooltip title="down vote">
+            <Tooltip title="down vote" placement="topRight">
               <Button onClick={handleDecrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<DislikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px", position:"relative", top:"3px" }} />} size="large" />
             </Tooltip>
             </>
@@ -207,10 +204,10 @@ export default function SuggestionCard(props) {
                 title={props.suggestions.title.toUpperCase()} extra={
                     // adding up and downvote buttons
                     <>
-                    <Tooltip title="up vote">
+                    <Tooltip title="up vote" placement="topRight">
                     <Button onClick={handleIncrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
                     </Tooltip>
-                    <Tooltip title="down vote">
+                    <Tooltip title="down vote" placement="topRight">
                     <Button onClick={handleDecrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<DislikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px", position:"relative", top:"3px" }} />} size="large" />
                     </Tooltip>
                     </>
