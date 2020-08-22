@@ -17,7 +17,7 @@ export default function LoginForm() {
     })
 
     useEffect(() => {
-        Aos.init({ duration: 1500  })
+        Aos.init()
     }, [])
 
     const [form] = Form.useForm();
@@ -109,7 +109,7 @@ export default function LoginForm() {
             <div className="form-container" id="loginform">
                 <Row justify="center" align="middle" className="form-filter">
 
-                    <Link activeClass="active" to="home-top" spy={true} smooth={false} offset={+500} duration={1000} className="arrow-div">
+                    <Link data-aos="fade" data-aos-delay='3000' activeClass="active" to="home-top" spy={true} smooth={false} offset={+500} duration={1000} className="arrow-div">
                         <div className="arrow">
                             <span></span>
                             <span></span>
@@ -125,6 +125,7 @@ export default function LoginForm() {
                         initialValues={{ remember: true }}
                         onFinish={onFinish}
                         data-aos="fade-up"
+                        data-aos-duration='1500'
                     >
                         <div className="form-title">LET'S PLANiT</div>
                         <Form.Item

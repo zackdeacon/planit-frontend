@@ -16,6 +16,13 @@ export default function LandingContent() {
             <video autoPlay="autoplay" loop="loop" muted className="vid">
                 <source src="./assets/video/PLANiT2.mp4" type="video/mp4" />
             </video>
+            <div data-aos="fade" data-aos-delay='3000' className="center-end-arrow-lc">
+                <div className="arrow-lc">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
             <div className="filter-div">
                 <Row justify="center" className="content" >
                     <Col md={{span: 6}} xs={{span: 8}} className="header-container">

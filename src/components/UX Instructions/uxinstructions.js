@@ -7,13 +7,21 @@ import "aos/dist/aos.css"
 export default function UXI() {
 
     useEffect(() => {
-        Aos.init({ duration: 3500,  })
+        Aos.init({ duration: 2000,  })
     }, [])
 
     return (
         <>
         <div className="ux-container">
-            <Row className="ux-filter-align">
+            <div className="ux-filter">
+                <div data-aos="fade" data-aos-delay='3000' className="center-end-arrow">
+                    <div className="arrow-ux">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            <Row className="ux-align">
                 <div className="top-ux-inst" >
                     <Col data-aos="fade-up" className="ux-text">CREATE A MAP
                         <p>Your trip's planning board</p>
@@ -28,8 +36,9 @@ export default function UXI() {
                     <Col className="ux-text">PLANiT TOGETHER
                         <p>Suggest & vote on plans</p>
                     </Col>
-                </div>
+                </div>   
             </Row>
+            </div>
         </div>
         </>
     )
