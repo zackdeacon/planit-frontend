@@ -96,7 +96,7 @@ const guestList = guestArr.map((name) => name)
 
                     <Row justify="center">
                         <div className="dash-title">
-                            <Tooltip title="map details">
+                            <Tooltip title="map details" placement="topRight">
                                 <Link className="make-white" onClick={switchModal}>{board.name.toUpperCase()}</Link>
                             </Tooltip>
                         </div>
