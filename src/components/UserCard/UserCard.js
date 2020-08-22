@@ -83,8 +83,8 @@ export default function UserCard(props) {
                                     <p className="user-info"><strong>Email:</strong> {userData.email}</p>
                                 </div>
                                 <Row justify="end">
-                                    <Tooltip title="modify account">
-                                    <Button onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98" }} icon={<SettingTwoTone twoToneColor="#576d65" />} />
+                                    <Tooltip title="modify account" placement="topRight">
+                                        <Button onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98" }} icon={<SettingTwoTone twoToneColor="#576d65" />} />
                                     </Tooltip>
                                 </Row>
                             </Card>
@@ -102,7 +102,7 @@ export default function UserCard(props) {
                                                 <List.Item
                                                     actions={[
                                                         <Popconfirm
-                                                        title="Accept invite?"
+                                                        title="Accept Invite?"
                                                         onConfirm={() =>handleAccept({ index, mapId: invite._id })}
                                                         onCancel={cancel}
                                                         okText="yes"
@@ -111,7 +111,7 @@ export default function UserCard(props) {
                                                            <a href="#">Accept</a> 
                                                         </Popconfirm>,
                                                         <Popconfirm
-                                                        title="Decline invite?"
+                                                        title="Decline Invite?"
                                                         onConfirm={() =>handleDecline(index)}
                                                         onCancel={cancel}
                                                         okText="yes"
