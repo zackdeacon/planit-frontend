@@ -15,32 +15,11 @@ export default function MapCard(props) {
 
   useEffect(() => {
     API.getSuggestionsForMap(id).then(res => {
-      const suggestionArr = res.data.map(suggestion => {
-        return suggestion
-      })
-      setSuggestions(suggestionArr)
-      console.log(suggestionArr);
+      const suggestionArr = res.data;
+      setSuggestions(suggestionArr);
     })
       .catch(err => console.log('err', err))
   }, [])
-
-
-  // useEffect(() => {
-  //   if(suggestions.length){
-  //   API.getCommentsForSuggestion(suggestions[0]._id).then(res=>{
-  //     // console.log("here it is",props.suggestions._id)
-  //     console.log(res.data)
-  //     const arrayOfComments = res.data.map(comm=>{
-  //       return comm  
-  //     })
-  //     setCommentsDb(arrayOfComments)
-  //     // return cardItems
-  //     })   
-  //   .catch(err=> console.log("err", err))}
-  // },[suggestions])
-
-
-
 
   const tabsArr = [];
 
@@ -59,17 +38,17 @@ export default function MapCard(props) {
   return (
     <>
       {/* <div className="mapcard-wrapper"> */}
-        <div className="card-container">
-          <Tabs type="card">
-            {tabsArr.map(item => { return item })}
-          </Tabs>
-          <Row className="add-sug-row" justify="center">
-            <Button className="add-sug-btn" href={addSugBtn} data-sug-map-id={id}> Add Suggestion</Button>
-          </Row>
-          <Row className="add-sug-row" justify="center">
-            <Button className="itin-btn" href={itinBtn} data-map-id={id}>Itinerary</Button>
-          </Row>
-        </div>
+      <div className="card-container">
+        <Tabs type="card">
+          {tabsArr.map(item => { return item })}
+        </Tabs>
+        <Row className="add-sug-row" justify="center">
+          <Button className="add-sug-btn" href={addSugBtn} data-sug-map-id={id}> Add Suggestion</Button>
+        </Row>
+        <Row className="add-sug-row" justify="center">
+          <Button className="itin-btn" href={itinBtn} data-map-id={id}>Itinerary</Button>
+        </Row>
+      </div>
       {/* </div> */}
     </>
   )

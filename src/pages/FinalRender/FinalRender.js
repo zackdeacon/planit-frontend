@@ -6,7 +6,7 @@ import FinalRenderCard from '../../components/FinalRenderCard/FinalRenderCard'
 import './finalrender.css'
 import API from '../../utils/API'
 
-export default function FinalRender(props) {
+export default function FinalRender() {
     const [categories, setCategories] = useState([])
     const [board, setBoard] = useState({
         name: ""
@@ -16,34 +16,27 @@ export default function FinalRender(props) {
     useEffect(() => {
         // API.getMapById(req.params.id)
         API.getMapById(id).then(res => {
-            console.log(res.data.name);
             const boardName = res.data.name;
-            const categoriesArr = res.data.suggestionCategories.map(item => {
-                return item
-            })
+            const categoriesArr = res.data.suggestionCategories;
             setBoard({
                 name: boardName
             })
             setCategories(categoriesArr)
-            // console.log(categoriesArr);
         }).catch(err => console.log('err', err))
     }, [])
-    
+
     return (
         <>
-            {/* <div className="render-background"> */}
             <img src="/assets/images/andrew-neel-unsplash.jpg" className="render-background" />
-                <div className="render-filter-background">
-                    <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
-                    <Row justify="center">
-                        <div className="dash-title">
-                            <Link className="map-link" to={`/dashboard/${id}`}>{board.name}</Link>
-                            </div>
-                    </Row>
-                    {/* <div className="top-buffer"></div> */}
-                    <FinalRenderCard />
-                </div>
-            {/* </div> */}
+            <div className="render-filter-background">
+                <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
+                <Row justify="center">
+                    <div className="dash-title">
+                        <Link className="map-link" to={`/dashboard/${id}`}>{board.name}</Link>
+                    </div>
+                </Row>
+                <FinalRenderCard categores={categories} />
+            </div>
         </>
     )
 }

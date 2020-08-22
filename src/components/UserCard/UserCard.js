@@ -23,13 +23,12 @@ export default function UserCard(props) {
         });
     };
 
-    
+
     const deleteAccount = () => {
-
         const id = userData._id
-
+        console.log("passed in", id)
         API.deleteUser(id).then(res => {
-            console.log("Delete Btn Clicked");
+            console.log("Delete Btn Clicked", res.data);
             history.push("/")
         })
 
@@ -79,7 +78,7 @@ export default function UserCard(props) {
                                 </div>
                                 <Row justify="end">
                                     <Tooltip title="modify account">
-                                    <Button onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98" }} icon={<SettingTwoTone twoToneColor="#576d65" />} />
+                                        <Button onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98" }} icon={<SettingTwoTone twoToneColor="#576d65" />} />
                                     </Tooltip>
                                 </Row>
                             </Card>

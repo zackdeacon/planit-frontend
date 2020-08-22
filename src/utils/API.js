@@ -56,8 +56,7 @@ export default {
     return axios.put(`${urlPrefix}/api/users/invitation/decline`, index, { withCredentials: true });
   },
   deleteUser: function (userId) {
-    // user: { id }
-    return axios.delete(`${urlPrefix}/api/users/delete/${userId}`);
+    return axios.delete(`${urlPrefix}/api/users/delete/${userId}`, { withCredentials: true });
   },
 
   // * MAPS COLLECTION
@@ -77,6 +76,14 @@ export default {
   inviteNewGuest: function (inviteData) {
     // inviteData: { mapId, guestEmail }
     return axios.put(`${urlPrefix}/api/maps/invite`, inviteData);
+  },
+  addSuggestionCategory: function (categoryData) {
+    // categoryData: { mapId, newCategory }
+    return axios.put(`${urlPrefix}/api/maps/categories/add`, categoryData);
+  },
+  removeSuggestionCategory: function (categoryData) {
+    // categoryData: { mapId, category }
+    return axios.put(`${urlPrefix}/api/maps/categories/remove`, categoryData);
   },
   deleteMap: function (map) {
     // map: { id }
