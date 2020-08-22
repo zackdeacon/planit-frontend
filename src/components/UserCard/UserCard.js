@@ -32,6 +32,7 @@ export default function UserCard(props) {
             console.log("Delete Btn Clicked");
             history.push("/")
         })
+        message.success("deleted",2)
 
     }
 
@@ -61,7 +62,7 @@ export default function UserCard(props) {
 
     function cancel(e) {
         console.log(e);
-        message.error('Click on No');
+        message.success('not deleted',2);
       }
 
     return (
@@ -151,9 +152,17 @@ export default function UserCard(props) {
                 cancelButtonProps={{ disabled: false }}
             >
                 <Row justify="center">
-                    <Button onClick={deleteAccount} type="primary" danger>
+                <Popconfirm
+                title="Delete Account?"
+                onConfirm={deleteAccount}
+                onCancel={cancel}
+                okText="yes"
+                cancelText="no"
+                >
+                    <Button type="primary" danger>
                         Delete Account
                     </Button>
+                </Popconfirm>
                 </Row>
             </Modal>
         </>
