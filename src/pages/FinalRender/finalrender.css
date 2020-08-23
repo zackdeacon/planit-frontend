@@ -21,6 +21,41 @@
     }
 } */
 
+.btn-buffer{
+  padding-top: 15px;
+}
+.btn-split{
+    background-color: #987b56;
+    width: 20%;
+    min-width: 200px;
+    border: none;
+    height: 50px;
+    border-radius: 10px;
+    color: white;
+    font-size: 17px;
+    padding-bottom: 0;
+}
+
+.submit-btn{
+    background-color: #987b56;
+    border: none;
+    height: 35px;
+    border-radius: 10px;
+    color: white;
+    font-size: 17px;
+    padding-bottom: 0;
+}
+
+.exit-btn{
+  background-color: #6c8e98;
+    border: none;
+    height: 35px;
+    border-radius: 10px;
+    color: white;
+    font-size: 17px;
+    padding-bottom: 0;
+}
+
 .render-background {
     /* Set rules to fill background */
     min-width: 100%;

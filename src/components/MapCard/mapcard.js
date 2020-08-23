@@ -9,7 +9,7 @@ const { TabPane } = Tabs;
 
 export default function MapCard(props) {
   const [suggestions, setSuggestions] = useState([])
-  // const [commentsDb, setCommentsDb] = useState([])
+  const [commentsDb, setCommentsDb] = useState(false)
   const { id } = useParams()
 
 
@@ -19,7 +19,7 @@ export default function MapCard(props) {
       setSuggestions(suggestionArr);
     })
       .catch(err => console.log('err', err))
-  }, [])
+  }, [commentsDb])
 
   const tabsArr = [];
 
@@ -27,7 +27,7 @@ export default function MapCard(props) {
     tabsArr.push(
       <TabPane tab={props.categories[i]} key={i} suggestions={props.suggestions}>
         <Row justify="center">
-          {suggestions.map(sug => props.categories[i] === sug.category ? <SuggestionCard key={sug._id} suggestions={sug} /> : null)}
+          {suggestions.map(sug => props.categories[i] === sug.category ? <SuggestionCard key={sug._id} commentBoolean={{ commentsDb, setCommentsDb }} suggestions={sug} /> : null)}
         </Row>
       </TabPane>);
   }

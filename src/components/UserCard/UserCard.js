@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
-import { Card, Col, Row, Button, Modal, List, Avatar, Tooltip } from 'antd';
+import { Card, Col, Row, Button, Modal, List, Avatar, Tooltip, Popconfirm, message } from 'antd';
 import { MailOutlined } from '@ant-design/icons';
 import { SettingTwoTone } from '@ant-design/icons';
 import MapCarousel from '../MapCarousel/MapCarousel';
@@ -31,6 +31,7 @@ export default function UserCard(props) {
             console.log("Delete Btn Clicked", res.data);
             history.push("/")
         })
+        message.success("deleted", 2)
 
     }
 
@@ -58,6 +59,11 @@ export default function UserCard(props) {
         })
     }
 
+    function cancel(e) {
+        console.log(e);
+        message.success('not deleted', 2);
+    }
+
     return (
         <>
             <div className="site-card-wrapper">
@@ -77,7 +83,7 @@ export default function UserCard(props) {
                                     <p className="user-info"><strong>Email:</strong> {userData.email}</p>
                                 </div>
                                 <Row justify="end">
-                                    <Tooltip title="modify account">
+                                    <Tooltip title="modify account" placement="topRight">
                                         <Button onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98" }} icon={<SettingTwoTone twoToneColor="#576d65" />} />
                                     </Tooltip>
                                 </Row>
@@ -95,11 +101,28 @@ export default function UserCard(props) {
                                             renderItem={(invite, index) => (
                                                 <List.Item
                                                     actions={[
-                                                        <a onClick={() => handleAccept({ index, mapId: invite._id })}>Accept</a>,
-                                                        <a onClick={() => handleDecline(index)}>Decline</a>
+                                                        <Popconfirm
+                                                            title="Accept Invite?"
+                                                            onConfirm={() => handleAccept({ index, mapId: invite._id })}
+                                                            onCancel={cancel}
+                                                            okText="yes"
+                                                            cancelText="no"
+                                                        >
+                                                            <a href="#">Accept</a>
+                                                        </Popconfirm>,
+                                                        <Popconfirm
+                                                            title="Decline Invite?"
+                                                            onConfirm={() => handleDecline(index)}
+                                                            onCancel={cancel}
+                                                            okText="yes"
+                                                            cancelText="no"
+                                                        >
+                                                            <a href="#">Decline</a>
+                                                        </Popconfirm>
                                                     ]}
                                                     style={{ margin: "10px 2% 10px 2%", backgroundColor: "#fff", padding: "12px 6px 12px 6px", borderRadius: "10px" }}
                                                 >
+
                                                     <List.Item.Meta
                                                         avatar={
                                                             <Avatar size="large" style={{ marginTop: "2px", backgroundColor: "#3b5e66", }} icon={<MailOutlined />} />
@@ -128,9 +151,17 @@ export default function UserCard(props) {
                 cancelButtonProps={{ disabled: false }}
             >
                 <Row justify="center">
-                    <Button onClick={deleteAccount} type="primary" danger>
-                        Delete Account
+                    <Popconfirm
+                        title="Delete Account?"
+                        onConfirm={deleteAccount}
+                        onCancel={cancel}
+                        okText="yes"
+                        cancelText="no"
+                    >
+                        <Button type="primary" danger>
+                            Delete Account
                     </Button>
+                    </Popconfirm>
                 </Row>
             </Modal>
         </>

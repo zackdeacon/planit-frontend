@@ -33,50 +33,12 @@ export default function SuggestionCard(props) {
 
   //comments
   const [commentObj, setCommentObj] = useState({
-    message: ""
+    message: "",
   })
 
+  // const [userData, setUserData] = useState({});
 
   const {id} = useParams()
-
-  //up vote btn
-  const handleIncrement =()=> {
-    setUpVote(true)
-    // setIsClicked(true)
-    const voteUpObj = {
-      vote:upVote
-    }
-    API.saveVote(voteUpObj,props.suggestions._id)
-    .then(vote=>{
-      setDisplayUpVote(displayUpVote+1)
-      setIsClicked(false)
-      message.success('Thanks for the like!', 3); 
-    })
-    .catch(err=>{
-      message.error('Sorry! You already voted', 3); 
-      console.log(err)
-      setIsClicked(false)
-    })
-  }
-
-  //down vote btn
-  const handleDecrement = ()=>{
-    setDownVote(false)
-    setIsClicked(true)
-    const voteDownOjb ={
-      vote: downVote
-    }
-    API.saveVote(voteDownOjb, props.suggestions._id)
-    .then(vote=>{
-      message.success('Thanks for the like!', 3);
-      setDisplayDownVote(displayDownVote+1)
-    })
-    .catch(err=>{
-      message.error('Sorry! You already voted', 3);      
-      console.log(err)
-      setIsClicked(false)
-    })
-  }
 
   //percentage of guests voted
   useEffect(()=>{
@@ -107,6 +69,51 @@ export default function SuggestionCard(props) {
     setDisplayDownVote(arrDownVotes.length) ;
   }, [])
 
+  // useEffect(() => {
+  //   API.getSessionData().then(res => {
+  //     setUserData(res.data.user);
+  //   }).catch(console.log)
+  // }, [])
+
+  //up vote btn
+  const handleIncrement =()=> {
+    setUpVote(true)
+    // setIsClicked(true)
+    const voteUpObj = {
+      vote:upVote
+    }
+    API.saveVote(voteUpObj,props.suggestions._id)
+    .then(vote=>{
+      setDisplayUpVote(displayUpVote+1)
+      setIsClicked(false)
+      message.success('Thanks for the like!', 3); 
+    })
+    .catch(err=>{
+      message.error('Sorry! You already voted', 3); 
+      console.log(err)
+      setIsClicked(false)
+    })
+  }
+
+  //down vote btn
+  const handleDecrement = ()=>{
+    setDownVote(false)
+    setIsClicked(true)
+    const voteDownOjb ={
+      vote: downVote
+    }
+    API.saveVote(voteDownOjb, props.suggestions._id)
+    .then(vote=>{
+      message.success('Thanks for the like!', 2);
+      setDisplayDownVote(displayDownVote+1)
+    })
+    .catch(err=>{
+      message.error('Sorry! You already voted', 2);      
+      console.log(err)
+      setIsClicked(false)
+    })
+  }
+
   const switchModal = () => {
     setModal({
       visible: !modal.visible,
@@ -121,6 +128,12 @@ export default function SuggestionCard(props) {
   function commentSubmit (){
     API.saveComment(commentObj, props.suggestions._id)
     .then(message=>{
+            console.log(message);
+            if(props.commentBoolean.commentsDb === true){
+              props.commentBoolean.setCommentsDb(false)
+            }else if (props.commentBoolean.commentsDb === false){
+              props.commentBoolean.setCommentsDb(true)
+            }
     })
     .catch(err=>console.log(err))
     setCommentObj({
@@ -131,11 +144,18 @@ export default function SuggestionCard(props) {
   const sugNameUserName= `${props.suggestions.title.toUpperCase()} recommended by ${props.suggestions.userId.name.first} ${props.suggestions.userId.name.last}`
   console.log('props.comments', props.comments)
 
-  const peach = []
-  props.suggestions.comments.map(apple=>{
-    peach.push(<Card style={{width:300}}>
-  ​
-      <p>{apple.message}</p>
+  const commentArr = []
+  props.suggestions.comments.map(item=>{
+    console.log('item.userId', item.userId)
+    commentArr.push(
+    <Card 
+      size="small" 
+      title={item.username} 
+      style={{width:200}}
+    >
+      <p>
+        {item.message} 
+      </p>
     </Card>)
     
   })
@@ -149,14 +169,10 @@ export default function SuggestionCard(props) {
         title={props.suggestions.title.toUpperCase()} extra={
             // adding up and downvote buttons
             <>
-            <Tooltip title="up vote">
-              {/* {isClicked?  */}
-              {/* <Button  disabled className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />  */}
-               {/* :  */}
+            <Tooltip title="up vote" placement="topRight">
                <Button  onClick={handleIncrement}className="vote-btn" shape="circle" style={{ margin:"5px" }} icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
-               {/* } */}
             </Tooltip>
-            <Tooltip title="down vote">
+            <Tooltip title="down vote" placement="topRight">
               <Button onClick={handleDecrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<DislikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px", position:"relative", top:"3px" }} />} size="large" />
             </Tooltip>
             </>
@@ -188,10 +204,10 @@ export default function SuggestionCard(props) {
                 title={props.suggestions.title.toUpperCase()} extra={
                     // adding up and downvote buttons
                     <>
-                    <Tooltip title="up vote">
+                    <Tooltip title="up vote" placement="topRight">
                     <Button onClick={handleIncrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<LikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px" }} />} size="large" />
                     </Tooltip>
-                    <Tooltip title="down vote">
+                    <Tooltip title="down vote" placement="topRight">
                     <Button onClick={handleDecrement} className="vote-btn" shape="circle" style={{ margin:"5px" }}icon={<DislikeTwoTone twoToneColor="#987b55" style={{ fontSize: "25px", position:"relative", top:"3px" }} />} size="large" />
                     </Tooltip>
                     </>
@@ -264,7 +280,7 @@ export default function SuggestionCard(props) {
                     </Form>
                     <Row>
                       <Row>
-                        {peach.map(item=>{return item})}
+                        {commentArr.map(item=>{return item})}
                       </Row>                        
                     </Row>
 
