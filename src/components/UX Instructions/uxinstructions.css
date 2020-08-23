@@ -1,11 +1,17 @@
 /* UX Styling */
 
-.ux-filter-align{
+.ux-filter{
     background-color: rgba(0, 0, 0, 0.433);
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.ux-align{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 .ux-container{
     background-image: url("../../images/glenn-carstens-unsplash.jpg");
@@ -54,5 +60,49 @@
         position: relative;
         top:0;
         width: 100%;
+    }
+}
+
+/* Scroll Icon */
+.center-end-arrow{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+}
+.arrow-ux{
+    position: relative;
+    bottom: 25px;
+    transform: translate(-50%,-50%);
+}
+.arrow-ux span{
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-bottom: 3px solid white;
+    border-right: 3px solid white;
+    transform: rotate(45deg);
+    margin: -15px;
+    animation: animateUX 2.8s infinite;
+}
+.arrow-ux span:nth-child(2){
+    animation-delay: -0.2s;
+}
+.arrow-ux span:nth-child(3){
+    animation-delay: -0.4s;
+}
+@keyframes animateUX {
+    0%{
+        opacity: 0;
+        transform: rotate(45deg) translate(-5px,-5px);
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: rotate(45deg) translate(5px,5px);
     }
 }

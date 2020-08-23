@@ -18,6 +18,7 @@ export default function User() {
     });
 
     useEffect(() => {
+        window.scrollTo(0,0)
         API.getSessionData().then((results) => {
             const sessionUser = results.data.user;
             API.getUserById(sessionUser.id).then((user) => {
@@ -31,8 +32,10 @@ export default function User() {
     return (
         <>
         <img src="./assets/images/glenn-carstens-unsplash.jpg" className="bg" />
+        <div className="dark-filter">
         <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
-        <UserCard userData={userData} />
+        <UserCard userData={userData} setUserData={setUserData}/>
+        </div>
         </>
     )
 }

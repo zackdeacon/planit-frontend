@@ -1,5 +1,7 @@
 .sug-card-container{
    max-height: 300px;
+   width: 300px;
+   text-align: start;
    overflow: scroll;
 }
 
@@ -9,13 +11,25 @@
 }
 
 .vote-btn{
-   background: #6c8e98;
+   background: #6eb0b4;
+   color: white;
    border-color: white;
 }
 
 .vote-btn:hover{
    background: white;
-   border-color: #6c8e98 solid;
+   color: #6c8e98 ;
+}
+
+.vote-btn:active{
+   background: white;
+   color: #6c8e98 ;
+}
+
+.vote-btn:focus{
+   background: white;
+   color: #6c8e98 ;
+   border-color: #6c8e98;
 }
 
 .description-text{
@@ -40,7 +54,7 @@
    position: relative;
    top: 10%;
    left: 45%;
-   background-color: rgb(226, 223, 219);
+   background-color: #e2dfdb;
    border: darkgray outset;
    border-radius: 10px;
    margin-left: 0%;
@@ -71,10 +85,40 @@
 .mod-elements{
    text-align: center;
 }
-.mod-elements h4{
+.mod-elements h3{
    margin-top: 20px;
    margin-bottom: 20px;
    font-weight: bolder;
    color: #3b5e66;
 }
 
+.comments-container{
+   width: 100%;
+   height: 200px;
+   background-color: #6eb1b41c;
+   border: 2px inset white;
+   border-radius: 5px;
+   overflow: auto;
+   margin-bottom: 10px;
+}
+
+.comments-container p{
+   margin: 0px;
+}
+
+.sug-modal-submit{
+   background-color: #6eb0b4;
+   border: 1px solid #3b5e66;
+}
+
+.sug-modal-submit:hover{
+   background-color: #3b5e66;
+   border: 1px solid #6eb0b4;
+   color: white;
+}  
+
+.sug-modal-submit:focus, .sug-modal-submit:active{
+   background-color: white;
+   border: 1px solid #3b5e66; 
+   color: #6eb0b4 !important;
+}

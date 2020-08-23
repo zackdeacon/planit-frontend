@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from "react-router-dom";
-import { Row, Col, Button, Modal, } from 'antd'
+import { Row, Col, Button, Modal, Tooltip  } from 'antd'
 import NavBar from '../../components/NavBar/navbar'
 import MapCard from '../../components/MapCard/mapcard'
 import Chat from '../../components/Chat/chat'
@@ -46,7 +46,7 @@ export default function MapDashboard(props) {
 
     useEffect(() => {
         API.getMapById(id).then(res => {
-            console.log(res.data.name);
+            // console.log(res.data.name);
             const mapName = res.data.name;
             const mapCreator = res.data.creator;
             const mapDestinations = res.data.destinations;
@@ -89,29 +89,32 @@ const guestList = guestArr.map((name) => name)
 
     return (
         <>
-            <div className="dash-background">
+            {/* <div className="dash-background"> */}
+            <img src="/assets/images/charlotte-noelle-unsplash.jpg" className="dashboard-bg" />
                 <div className="dash-filter-background">
                     <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
 
                     <Row justify="center">
-                        <div className="dash-title"><Link onClick={switchModal}>{board.name.toUpperCase()}</Link></div>
-                        {/* <div className="dash-sub-title"><ul>{newArray}</ul></div> */}
-                    
+                        <div className="dash-title">
+                            <Tooltip title="map details" placement="topRight">
+                                <Link className="make-white" onClick={switchModal}>{board.name.toUpperCase()}</Link>
+                            </Tooltip>
+                        </div>
                     </Row>
 
                     <div className="top-buffer">
                         <Row justify="space-around">
-                            <Col lg={{ span: 14 }} sm={{ span: 13 }} xs={{ span: 24 }}>
+                            <Col lg={{ span: 14 }} sm={{ span: 24 }} xs={{ span: 24 }}>
                                 <MapCard categories={categories} />
                             </Col>
                             <div className="mid-col-buffer"></div>
-                            <Col lg={{ span: 9 }} sm={{ span: 10 }} xs={{ span: 24 }}>
+                            <Col lg={{ span: 9 }} sm={{ span: 18 }} xs={{ span: 24 }}>
                                 <Chat />
                             </Col>
                         </Row>
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
             <Modal
                 title={board.name.toUpperCase()}
                 visible={modal.visible}

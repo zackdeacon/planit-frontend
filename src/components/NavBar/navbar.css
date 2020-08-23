@@ -5,6 +5,13 @@
     right: 0;
     z-index:1;
 }
+/* Absolute Wrapper */
+.wrapper-name{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index:1;
+}
 
 /* Text Logo */
 .txt-logo-div{
@@ -68,6 +75,10 @@
     color: transparent;
 }
 
+.nav-btns:hover{
+    border:none !important;
+}
+
 .nav-links.open .nav-btns {
     transform: translateY(-5px);
     z-index:0;
@@ -77,5 +88,22 @@
 .login-btn{
     position: relative;
     top: 4px;
-    padding-right: 15px;
+    padding-right: 20px;
+}
+
+/* welcome on sign in */
+.welcome{
+    font-size: 15px;
+    color: white;
+    position: relative;
+    padding-left: 15px;
+    top: 29px;
+    text-shadow: 2px 1px 5px black;
+}
+
+@media only screen and (max-width:650px){
+    .welcome{
+        font-size: 10px;
+        top: 34px;
+    }
 }
