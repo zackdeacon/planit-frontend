@@ -100,18 +100,6 @@ export default function MapDashboard(props) {
                 </Row>
 
                 <div className="top-buffer">
-                    <Row justify="space-around">
-                        <Col lg={{ span: 14 }} sm={{ span: 24 }} xs={{ span: 24 }}>
-                            <MapCard categories={categories} />
-                        </Col>
-                        <div className="mid-col-buffer"></div>
-                        <Col lg={{ span: 9 }} sm={{ span: 18 }} xs={{ span: 24 }}>
-                            <Chat />
-                        </Col>
-                    </Row>
-                </div>
-
-                <div className="top-buffer">
                     <Row justify="space-around" style={{ marginBottom: "50px", }}>
                         <Col lg={{ span: 14 }} sm={{ span: 24 }} xs={{ span: 24 }}>
                             <MapCard categories={categories} />
