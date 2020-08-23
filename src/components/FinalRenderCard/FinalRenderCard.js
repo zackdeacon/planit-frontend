@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from "react-router-dom"
-import { Row, Col } from 'antd'
+import { Row, Col, Button } from 'antd'
 import "./FinalRenderCard.css"
 import API from '../../utils/API'
 import CardColumns from "../FinalRenderColumns/CardColumns"
@@ -97,6 +97,13 @@ export default function FinalRenderCard(props) {
   console.log('foodArr', foodArr)
 
 
+  
+  function sendRenderEmail () {
+//attach route that will send the render email 
+}
+  
+
+
   return (
     <>
       <div className="mapcard-top-buffer">
@@ -127,6 +134,7 @@ export default function FinalRenderCard(props) {
               </div>
             </Col>
           </Row>
+          <Button onClick={sendRenderEmail} type="primary">Get your itinerary emailed!</Button>
         </div>
       </div>
     </>
