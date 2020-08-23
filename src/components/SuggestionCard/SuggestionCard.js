@@ -1,5 +1,5 @@
 
-import React, {useEffect, useState} from 'react'
+import React, {useRef, useEffect, useState} from 'react'
 import { Row, Col, Card, Button, Tooltip, Modal, Progress, Statistic, Form, Input, message} from 'antd'
 import { LikeTwoTone, DislikeTwoTone, ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons"
 // import DashMod from '../../components/DashModule/dashmod'
@@ -39,6 +39,10 @@ export default function SuggestionCard(props) {
   // const [userData, setUserData] = useState({});
 
   const {id} = useParams()
+
+  // Sets Ref to keep latest submitted comment in view 
+  const bottomOfComments = useRef()
+  useEffect(() => bottomOfComments.current && bottomOfComments.current.scrollIntoView())
 
   //percentage of guests voted
   useEffect(()=>{
@@ -141,30 +145,31 @@ export default function SuggestionCard(props) {
     })
   }
   
-  const sugNameUserName= `${props.suggestions.title.toUpperCase()} recommended by ${props.suggestions.userId.name.first} ${props.suggestions.userId.name.last}`
+  const sugNameUserName= `${props.suggestions.title.toUpperCase()} suggested by ${props.suggestions.userId.name.first} ${props.suggestions.userId.name.last}`
   console.log('props.comments', props.comments)
 
   const commentArr = []
   props.suggestions.comments.map(item=>{
     console.log('item.userId', item.userId)
     commentArr.push(
-    <Card 
-      size="small" 
-      title={item.username} 
-      style={{width:200}}
-    >
-      <p>
-        {item.message} 
-      </p>
-    </Card>)
-    
+    <Col xs={{span:24}} align="middle">
+      <Card 
+        size="small" 
+        // title={userData.username} 
+        style={{width:"90%",borderRadius:"5px"}}
+      >
+        <p>
+          {item.message} 
+        </p>
+      </Card>
+    </Col>
+    )
   })
  
 
   return (
     <>
       <Col xxl={{span: 8}} xl={{span: 11}} lg={{ span: 13 }} align="middle">
-        
         <Card className="sug-card-container" type="inner"
         title={props.suggestions.title.toUpperCase()} extra={
             // adding up and downvote buttons
@@ -187,6 +192,8 @@ export default function SuggestionCard(props) {
           </Row>
         </Card>
       </Col>
+
+      {/* SUGGESTION CARD MODAL */}
 
       <Modal
           title={sugNameUserName}
@@ -220,39 +227,42 @@ export default function SuggestionCard(props) {
             </Card>
             </Row>
             <hr/>
-            <br/>
             <Row justify="space-around">
-                <Col className="mod-elements" sm={{span:6}} xs={{span:24}}>
-                    <h4>Who Has Voted?</h4>
-                    <Progress
-                        type="circle"
-                        strokeColor={{
-                            '0%': '#945440',
-                            '100%': '#6eb0b4',
-                        }}
-                        percent={percentageVotes}
-                        status="active"
-                    />
-                </Col>
+              <Col className="mod-elements" xs={{span:12}}>
+                <br/>
+                  <h3>Who Has Voted?</h3>
+                  <Progress
+                      type="circle"
+                      strokeColor={{
+                          '0%': '#945440',
+                          '100%': '#6eb0b4',
+                      }}
+                      percent={percentageVotes}
+                      status="active"
+                  />
+              </Col>
 
-                <Col className="mod-elements" sm={{span:6}} xs={{span:24}}>
-                    <h4>Standing</h4>
-                    <Statistic
-                        title="Upvotes"
-                        value={displayUpVote}
-                        valueStyle={{ color: '#6eb0b4' }}
-                        prefix={<ArrowUpOutlined />}
-                    />
-                    <Statistic
-                        title="Downvotes"
-                        value={displayDownVote}
-                        valueStyle={{ color: '#945440' }}
-                        prefix={<ArrowDownOutlined />}
-                    />
-                </Col>
-
-                <Col className="mod-elements" sm={{span:6}} xs={{span:24}}>
-                    <h4>Comments</h4>
+              <Col className="mod-elements" sm={{span:12}} xs={{span:24}}>
+                <br/>
+                  <h3>Standings</h3>
+                  <Statistic
+                      title="Upvotes"
+                      value={displayUpVote}
+                      valueStyle={{ color: '#6eb0b4' }}
+                      prefix={<ArrowUpOutlined />}
+                  />
+                  <Statistic
+                      title="Downvotes"
+                      value={displayDownVote}
+                      valueStyle={{ color: '#945440' }}
+                      prefix={<ArrowDownOutlined />}
+                  />
+              </Col>
+            </Row>
+            <Row justify="center">
+                <Col className="mod-elements" xs={{span:24}}>
+                  <br/>
+                    <h3>Comments</h3>
                     <Form
                       form={form}
                       name="basic"
@@ -261,10 +271,16 @@ export default function SuggestionCard(props) {
                       layout="vertical"
                       // onFinishFailed={onFinishFailed}
                     >
+                      <div className="comments-container" >
+                        <Row justify="center">
+                          {commentArr.map(item=>{return item})}
+                          <div ref={bottomOfComments}></div>
+                        </Row>
+                      </div>
+
                       <Form.Item 
-                        label="comment"
                         rules={[
-                          { required: true, message: 'Please input your username!' }
+                          { required: true, message: 'Please input a comment!' }
                         ]}
                         >
                         <Input.TextArea 
@@ -272,20 +288,15 @@ export default function SuggestionCard(props) {
                           onChange={commentInputChange}
                           name="message"
                           type="text"
+                          className="comment-text-area"
                         />
                       </Form.Item>
                       <Form.Item >
-                        <Button onClick={commentSubmit} type="primary">Submit</Button>
+                        <Button onClick={commentSubmit} className="sug-modal-submit" type="primary">Submit</Button>
                       </Form.Item>
                     </Form>
-                    <Row>
-                      <Row>
-                        {commentArr.map(item=>{return item})}
-                      </Row>                        
-                    </Row>
-
                 </Col>
-            </Row>
+            </Row> 
       </Modal>
 
     </>
