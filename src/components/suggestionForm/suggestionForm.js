@@ -41,7 +41,7 @@ function SuggestionCreateForm(props) {
                             name="category"
                             >
                             <Option 
-                            value="Accomodation"
+                            value="Accommodation"
                             >Accomodation
                             </Option>
                             <Option 

@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from "react-router-dom";
-import { Row, Col, Button, Modal, Tooltip  } from 'antd'
+import { Row, Col, Button, Modal, Tooltip, Upload, message  } from 'antd'
+import { LoadingOutlined,PlusOutlined } from '@ant-design/icons';
 import NavBar from '../../components/NavBar/navbar'
 import MapCard from '../../components/MapCard/mapcard'
 import Chat from '../../components/Chat/chat'
 import API from '../../utils/API'
 import './mapdashboard.css'
+import Avatar from 'antd/lib/avatar/avatar';
+import PhotoUpload from '../../components/PhotoUpload/photoupload';
+
+
 
 export default function MapDashboard(props) {
     const [modal, setModal] = useState({
@@ -30,6 +35,7 @@ export default function MapDashboard(props) {
         })
     }
     const [board, setBoard] = useState({
+        id: "",
         name: "",
         creator: "",
         destinations: "",
@@ -41,12 +47,15 @@ export default function MapDashboard(props) {
     })
     const [categories, setCategories] = useState([])
 
-
+    
     const { id } = useParams()
+
 
     useEffect(() => {
         API.getMapById(id).then(res => {
             // console.log(res.data.name);
+            const mapId = res.data._id;
+            const mapImages = res.data.images
             const mapName = res.data.name;
             const mapCreator = res.data.creator;
             const mapDestinations = res.data.destinations;
@@ -57,6 +66,7 @@ export default function MapDashboard(props) {
                 return item
             })
             setBoard({
+                id: mapId,
                 name: mapName,
                 creator: mapCreator,
                 destinations: mapDestinations,
@@ -64,27 +74,30 @@ export default function MapDashboard(props) {
                 dates: {
                     start: mapStart,
                     end: mapEnd
-                }
+                },
+                images: mapImages
+                
             })
             setCategories(categoriesArr)
+           
         }).catch(err => console.log('err', err))
     }, [])
 
     const boardDestination = board.destinations
     const destinationArr = []
-for (let i = 0; i < boardDestination.length; i++) {
-    destinationArr.push(<li>{boardDestination[i]}</li>)
-}
-const destinationList = destinationArr.map((name) => name)
+    for (let i = 0; i < boardDestination.length; i++) {
+        destinationArr.push(<li>{boardDestination[i]}</li>)
+    }
+    const destinationList = destinationArr.map((name) => name)
 
 
 
     const boardguests = board.guests
     const guestArr = []
-for (let i = 0; i < boardguests.length; i++) {
-    guestArr.push(<li>{boardguests[i]}</li>)
-}
-const guestList = guestArr.map((name) => name)
+    for (let i = 0; i < boardguests.length; i++) {
+        guestArr.push(<li>{boardguests[i]}</li>)
+    }
+    const guestList = guestArr.map((name) => name)
 
 
     return (
@@ -112,6 +125,15 @@ const guestList = guestArr.map((name) => name)
                                 <Chat />
                             </Col>
                         </Row>
+                        <Row>
+                            <Col>
+                             <PhotoUpload  board={board}/>
+                            </Col>
+                            <Col>
+                                <Button > view pictures </Button>
+                            </Col>
+                            
+                        </Row>
                     </div>
                 </div>
             {/* </div> */}
@@ -134,6 +156,12 @@ const guestList = guestArr.map((name) => name)
                 <p>End date: {board.dates.end}</p>
 
             </Modal>
+            {/* <Modal
+                title={board.name.toUpperCase()}
+                visible
+            >
+
+            </Modal> */}
         </>
     )
 }
