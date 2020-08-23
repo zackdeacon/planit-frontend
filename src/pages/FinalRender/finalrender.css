@@ -102,3 +102,13 @@
 .map-link:hover{
     color: #6eb0b4;
 }
+
+/* Split Cost Buttons */
+.split-cost-exit{
+  background-color: #247175;
+  color: white
+}
+.split-cost-btn{
+  background-color: #6eb0b4;
+  color: white
+}
