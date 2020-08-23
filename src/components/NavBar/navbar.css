@@ -93,9 +93,17 @@
 
 /* welcome on sign in */
 .welcome{
-    font-size: 20px;
+    font-size: 15px;
     color: white;
     position: relative;
     padding-left: 15px;
-    top: 4px
+    top: 29px;
+    text-shadow: 2px 1px 5px black;
+}
+
+@media only screen and (max-width:650px){
+    .welcome{
+        font-size: 10px;
+        top: 34px;
+    }
 }
