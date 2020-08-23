@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Row, Col } from "antd";
 import styled from "styled-components";
 import io from "socket.io-client";
-import API, {urlPrefix} from "../../utils/API"
+import API, { urlPrefix } from "../../utils/API"
 import "./chat.css"
 import { useParams } from "react-router-dom";
 
@@ -115,7 +115,7 @@ const Chat = () => {
     socketRef.current = io.connect(
       "http://127.0.0.1:8080"
       // "https://planitserver.herokuapp.com"
-      );
+    );
 
     updateMessages();
 
@@ -152,12 +152,12 @@ const Chat = () => {
       mapId: id,
       message: message,
     };
-    API.postNewChat(chatData).then((data)=>{
+    API.postNewChat(chatData).then((data) => {
       // console.log(data)
       setMessage("");
       socketRef.current.emit("new message");
-      updateMessages(); 
-    }).catch((err)=>{
+      updateMessages();
+    }).catch((err) => {
       console.log(err)
     })
   }
@@ -165,9 +165,6 @@ const Chat = () => {
   function handleChange(e) {
     setMessage(e.target.value);
   }
-
-  //Code to keep above this line 
-  console.log(messages)
 
   return (
     <>
@@ -198,15 +195,15 @@ const Chat = () => {
                   <PartnerMessage ref={scrollTo}>
                     {message.message}
                     <span className="userName">
-                        {message.user.name.first}
-                      </span>
+                      {message.user.name.first}
+                    </span>
                   </PartnerMessage>
                 </PartnerRow>
               )
             })}
           </Col>
         </Row>
-          
+
         <Row justify="center">
           <Form onSubmit={sendMessage}>
             <Row justify="center">
