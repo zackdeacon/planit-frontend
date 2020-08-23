@@ -23,16 +23,15 @@ export default function UserCard(props) {
         });
     };
 
-    
+
     const deleteAccount = () => {
-
         const id = userData._id
-
+        console.log("passed in", id)
         API.deleteUser(id).then(res => {
-            console.log("Delete Btn Clicked");
+            console.log("Delete Btn Clicked", res.data);
             history.push("/")
         })
-        message.success("deleted",2)
+        message.success("deleted", 2)
 
     }
 
@@ -62,8 +61,8 @@ export default function UserCard(props) {
 
     function cancel(e) {
         console.log(e);
-        message.success('not deleted',2);
-      }
+        message.success('not deleted', 2);
+    }
 
     return (
         <>
@@ -103,27 +102,27 @@ export default function UserCard(props) {
                                                 <List.Item
                                                     actions={[
                                                         <Popconfirm
-                                                        title="Accept Invite?"
-                                                        onConfirm={() =>handleAccept({ index, mapId: invite._id })}
-                                                        onCancel={cancel}
-                                                        okText="yes"
-                                                        cancelText="no"
+                                                            title="Accept Invite?"
+                                                            onConfirm={() => handleAccept({ index, mapId: invite._id })}
+                                                            onCancel={cancel}
+                                                            okText="yes"
+                                                            cancelText="no"
                                                         >
-                                                           <a href="#">Accept</a> 
+                                                            <a href="#">Accept</a>
                                                         </Popconfirm>,
                                                         <Popconfirm
-                                                        title="Decline Invite?"
-                                                        onConfirm={() =>handleDecline(index)}
-                                                        onCancel={cancel}
-                                                        okText="yes"
-                                                        cancelText="no"
+                                                            title="Decline Invite?"
+                                                            onConfirm={() => handleDecline(index)}
+                                                            onCancel={cancel}
+                                                            okText="yes"
+                                                            cancelText="no"
                                                         >
-                                                           <a href="#">Decline</a> 
+                                                            <a href="#">Decline</a>
                                                         </Popconfirm>
                                                     ]}
                                                     style={{ margin: "10px 2% 10px 2%", backgroundColor: "#fff", padding: "12px 6px 12px 6px", borderRadius: "10px" }}
                                                 >
-                                        
+
                                                     <List.Item.Meta
                                                         avatar={
                                                             <Avatar size="large" style={{ marginTop: "2px", backgroundColor: "#3b5e66", }} icon={<MailOutlined />} />
@@ -152,17 +151,17 @@ export default function UserCard(props) {
                 cancelButtonProps={{ disabled: false }}
             >
                 <Row justify="center">
-                <Popconfirm
-                title="Delete Account?"
-                onConfirm={deleteAccount}
-                onCancel={cancel}
-                okText="yes"
-                cancelText="no"
-                >
-                    <Button type="primary" danger>
-                        Delete Account
+                    <Popconfirm
+                        title="Delete Account?"
+                        onConfirm={deleteAccount}
+                        onCancel={cancel}
+                        okText="yes"
+                        cancelText="no"
+                    >
+                        <Button type="primary" danger>
+                            Delete Account
                     </Button>
-                </Popconfirm>
+                    </Popconfirm>
                 </Row>
             </Modal>
         </>

@@ -8,10 +8,10 @@ export default function MapCarousel(props) {
     let carouselItems;
     if (maps.length > 0) {
         carouselItems = maps.map(map => {
-            return <CarouselContent key={map._id} name={map.name} id={map._id} editable={editable} />
+            return <CarouselContent key={map._id} name={map.name} id={map._id} categories={map.suggestionCategories} editable={editable} />
         });
     } else {
-        carouselItems = <CarouselContent name="None to display" empty={true} editable={editable} />
+        carouselItems = <CarouselContent name="None to display" categories={[]} empty={true} editable={editable} />
     }
 
     return (

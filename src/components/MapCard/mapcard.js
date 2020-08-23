@@ -9,38 +9,17 @@ const { TabPane } = Tabs;
 
 export default function MapCard(props) {
   const [suggestions, setSuggestions] = useState([])
-  const [maps, setMaps] = useState([])
   const [commentsDb, setCommentsDb] = useState(false)
   const { id } = useParams()
 
 
   useEffect(() => {
     API.getSuggestionsForMap(id).then(res => {
-      const suggestionArr = res.data.map(suggestion => {
-        return suggestion
-      })
-      setSuggestions(suggestionArr)
-      console.log(suggestionArr);
+      const suggestionArr = res.data;
+      setSuggestions(suggestionArr);
     })
       .catch(err => console.log('err', err))
   }, [commentsDb])
-
-  // useEffect(() => {
-  //   if(suggestions.length){
-  //   API.getCommentsForSuggestion(suggestions[0]._id).then(res=>{
-  //     // console.log("here it is",props.suggestions._id)
-  //     console.log(res.data)
-  //     const arrayOfComments = res.data.map(comm=>{
-  //       return comm  
-  //     })
-  //     setCommentsDb(arrayOfComments)
-  //     // return cardItems
-  //     })   
-  //   .catch(err=> console.log("err", err))}
-  // },[suggestions])
-
-
-
 
   const tabsArr = [];
 
@@ -48,7 +27,7 @@ export default function MapCard(props) {
     tabsArr.push(
       <TabPane tab={props.categories[i]} key={i} suggestions={props.suggestions}>
         <Row justify="center">
-          {suggestions.map(sug => props.categories[i] === sug.category ? <SuggestionCard key={sug._id} commentBoolean={{commentsDb,setCommentsDb}} suggestions={sug} /> : null)}
+          {suggestions.map(sug => props.categories[i] === sug.category ? <SuggestionCard key={sug._id} commentBoolean={{ commentsDb, setCommentsDb }} suggestions={sug} /> : null)}
         </Row>
       </TabPane>);
   }
@@ -59,17 +38,17 @@ export default function MapCard(props) {
   return (
     <>
       {/* <div className="mapcard-wrapper"> */}
-        <div className="card-container">
-          <Tabs type="card">
-            {tabsArr.map(item => { return item })}
-          </Tabs>
-          <Row className="add-sug-row" justify="center">
-            <Button className="add-sug-btn" href={addSugBtn} data-sug-map-id={id}> Add Suggestion</Button>
-          </Row>
-          <Row className="add-sug-row" justify="center">
-            <Button className="itin-btn" href={itinBtn} data-map-id={id}>Itinerary</Button>
-          </Row>
-        </div>
+      <div className="card-container">
+        <Tabs type="card">
+          {tabsArr.map(item => { return item })}
+        </Tabs>
+        <Row className="add-sug-row" justify="center">
+          <Button className="add-sug-btn" href={addSugBtn} data-sug-map-id={id}> Add Suggestion</Button>
+        </Row>
+        <Row className="add-sug-row" justify="center">
+          <Button className="itin-btn" href={itinBtn} data-map-id={id}>Itinerary</Button>
+        </Row>
+      </div>
       {/* </div> */}
     </>
   )
