@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from "react-router-dom"
-import { Row, Col, Button } from 'antd'
+import { Row, Col, Button, Popconfirm , message} from 'antd'
 import "./FinalRenderCard.css"
 import API from '../../utils/API'
 import CardColumns from "../FinalRenderColumns/CardColumns"
@@ -78,11 +78,16 @@ export default function FinalRenderCard() {
         mapId : id,
         email: "zackdeacon347@gmail.com"
     }
- API.sendFinalRender(renderData).then((data)=>{
- console.log("it worked!")
- })
+    API.sendFinalRender(renderData).then((data)=>{
+    console.log("it worked!")
+    })
+    message.success('Itinerary mailed to guests!', 2)
 }
   
+  function cancel(e) {
+    console.log(e);
+    message.success('Itinerary Not Sent', 2);
+  }
 
 
   return (
@@ -92,8 +97,18 @@ export default function FinalRenderCard() {
           <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             {categoryColumns}
           </Row>
-          <Button onClick={sendRenderEmail} type="primary">Get your itinerary emailed!</Button>
-        </div>
+          <Row justify="center">
+            <Popconfirm 
+            title="This will send a final itinerary to all guests. Proceed?"
+            onConfirm={sendRenderEmail}
+            onCancel={cancel}
+            okText="yes"
+            cancelText="no"
+            >
+              <Button type="primary">Get your itinerary emailed!</Button>
+          </Popconfirm>
+          </Row>
+       </div>
       </div>
     </>
   )
