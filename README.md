@@ -22,6 +22,7 @@
 
   ## Contact
   * Email: [teamplanitcartographers@gmail.com](mailto:teamplanitcartographers@gmail.com)
+  
   Feel free to email the team with any suggestions, questions, or comments with the subject line "RE: PLANiT". 
   Thank you and happy travels! 
 
