@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import React, { useEffect, useState } from 'react'
 import SuggestionCard from "../SuggestionCard/SuggestionCard"
 import { Tabs, Button, Row } from 'antd';
