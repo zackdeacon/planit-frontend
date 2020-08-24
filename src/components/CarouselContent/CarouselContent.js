@@ -95,13 +95,15 @@ export default function CarouselContent(props) {
     }
   }
 
+  const backColor = props.background
+
   return (
     <div>
       {props.empty ? (
-        <div className="carouselContent"><h3>{props.name}</h3></div>
+        <div className="carouselContent" style={{backgroundColor:backColor}}><h3>{props.name}</h3></div>
       ) : (
           <>
-            <div className="carouselContent">
+            <div className="carouselContent" style={{backgroundColor:backColor}}>
               <Link className="carouselMapLink" to={`/dashboard/${props.id}`}>{props.name}</Link>
               {props.editable ?
                 <>

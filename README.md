@@ -7,12 +7,16 @@
   ## Meet The Team
   Bryce Pingul 
   * GitHub: [Brycetp11](https://github.com/Brycetp11) 
+  
   Derek Watson 
   * GitHub: [derek-watson14](https://github.com/derek-watson14) 
+
   Nicole Remy
   * GitHub: [nicoleremy95](https://github.com/nicoleremy95)
+
   Vincent Varghese
   * GitHub: [VinAVarghese](https://github.com/VinAVarghese)
+
   Zack Deacon
   * GitHub: [zackdeacon](https://github.com/zackdeacon)
 

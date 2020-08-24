@@ -6,6 +6,10 @@ import MapCard from '../../components/MapCard/mapcard'
 import Chat from '../../components/Chat/chat'
 import API from '../../utils/API'
 import './mapdashboard.css'
+import Avatar from 'antd/lib/avatar/avatar';
+import PhotoUpload from '../../components/PhotoUpload/photoupload';
+
+
 
 export default function MapDashboard(props) {
     const [modal, setModal] = useState({
@@ -15,6 +19,7 @@ export default function MapDashboard(props) {
     const [categories, setCategories] = useState([]);
 
     const [board, setBoard] = useState({
+        id: "",
         name: "",
         creator: "",
         destinations: "",
@@ -27,9 +32,12 @@ export default function MapDashboard(props) {
 
     const { id } = useParams()
 
+
     useEffect(() => {
         API.getMapById(id).then(res => {
             // console.log(res.data.name);
+            const mapId = res.data._id;
+            const mapImages = res.data.images
             const mapName = res.data.name;
             const mapCreator = res.data.creator;
             const mapDestinations = res.data.destinations;
@@ -38,6 +46,7 @@ export default function MapDashboard(props) {
             const mapEnd = res.data.dates.end;
             const categoriesArr = res.data.suggestionCategories;
             setBoard({
+                id: mapId,
                 name: mapName,
                 creator: mapCreator,
                 destinations: mapDestinations,
@@ -45,9 +54,12 @@ export default function MapDashboard(props) {
                 dates: {
                     start: mapStart,
                     end: mapEnd
-                }
+                },
+                images: mapImages
+                
             })
             setCategories(categoriesArr)
+           
         }).catch(err => console.log('err', err))
     }, [])
 
@@ -109,6 +121,10 @@ export default function MapDashboard(props) {
                             <Chat />
                         </Col>
                     </Row>
+                    {/* <Row>
+                        <PhotoUpload board={board}/>
+                        <button>view pictures</button>
+                    </Row> */}
                 </div>
             </div>
             <Modal
@@ -130,6 +146,12 @@ export default function MapDashboard(props) {
                 <p>End date: {board.dates.end}</p>
 
             </Modal>
+            {/* <Modal
+                title={board.name.toUpperCase()}
+                visible
+            >
+
+            </Modal> */}
         </>
     )
 }

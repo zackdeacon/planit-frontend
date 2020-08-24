@@ -48,7 +48,7 @@ function SuggestionCreateForm(props) {
                             type="text"
                             value={props.formData.link}
                             onChange={props.handleChange}
-                            placeholder="Share A Link"
+                            placeholder="Add Link https://www.travel.com/"
                         />
                     </Form.Item>
 
@@ -59,7 +59,8 @@ function SuggestionCreateForm(props) {
                             type="text"
                             value={props.formData.cost}
                             onChange={props.handleChange}
-                            placeholder="Price Range?"
+                            prefix="$"
+                            placeholder="20"
                         />
                     </Form.Item>
 
