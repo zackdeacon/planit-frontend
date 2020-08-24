@@ -4,11 +4,13 @@ import { Row, Col, Button, Popconfirm , message} from 'antd'
 import "./FinalRenderCard.css"
 import API from '../../utils/API'
 import CardColumns from "../FinalRenderColumns/CardColumns"
+import { CloudTwoTone } from '@ant-design/icons'
 
 
 export default function FinalRenderCard() {
   const [suggestions, setSuggestions] = useState([]);
   const [categoryColumns, setCategoryColumns] = useState([]);
+  const [cost, setCost] = useState(0);
 
   const { id } = useParams()
 
@@ -19,6 +21,7 @@ export default function FinalRenderCard() {
     }).catch(err => console.log('err', err));
   }, []);
 
+  
   useEffect(() => {
     const newCategoryColumns = createCategoryColumns(suggestions);
     setCategoryColumns(newCategoryColumns);
@@ -88,6 +91,26 @@ export default function FinalRenderCard() {
     message.success('Itinerary Not Sent', 2);
   }
 
+  console.log('suggestions', suggestions)
+
+  useEffect(()=>{
+    let i;
+    let costArr=[]
+    for(i=0; i<suggestions.length; i++){
+      const costi = suggestions[i].cost
+      console.log('costi', costi)
+      costArr.push(costi)
+      
+    }
+    console.log('costArr', costArr)
+    // const array1 = [1, 2, 3, 4];
+    const reducer = (accumulator, currentValue) => 
+    accumulator + currentValue;
+    console.log('reducer', reducer)
+    // const newthing = costArr.reduce(reducer)
+    // setCost(newthing)
+    // console.log('cost', cost)
+  }, [suggestions])
 
   return (
     <>
