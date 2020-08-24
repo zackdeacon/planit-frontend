@@ -11,6 +11,7 @@
 
 .ant-card {
     margin: 10px;
+    background-color: rgba(255, 255, 255, 0.787);
 }
 
 .ant-card-head-title{
@@ -47,7 +48,7 @@ h2{
 .inviteDiv {
     height: 220px;
     color: #fff;
-    background: #6C8E98;
+    background: #9c9687;
     border: solid #fff;
     overflow-y: scroll;
     padding-top: 5px;
