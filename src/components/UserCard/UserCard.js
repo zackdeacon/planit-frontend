@@ -184,7 +184,7 @@ export default function UserCard(props) {
                                                             okText="yes"
                                                             cancelText="no"
                                                         >
-                                                            <a href="#">Accept</a>
+                                                            <a href=" ">Accept</a>
                                                         </Popconfirm>,
                                                         <Popconfirm
                                                             title="Decline Invite?"
@@ -193,7 +193,7 @@ export default function UserCard(props) {
                                                             okText="yes"
                                                             cancelText="no"
                                                         >
-                                                            <a href="#">Decline</a>
+                                                            <a href=" ">Decline</a>
                                                         </Popconfirm>
                                                     ]}
                                                     style={{ margin: "10px 2% 10px 2%", backgroundColor: "#fff", padding: "12px 6px 12px 6px", borderRadius: "10px" }}

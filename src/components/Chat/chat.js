@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Row, Col } from "antd";
 import styled from "styled-components";
 import io from "socket.io-client";
-import API, { urlPrefix } from "../../utils/API"
+import API from "../../utils/API"
 import "./chat.css"
 import { useParams } from "react-router-dom";
 
@@ -62,6 +62,7 @@ const MyRow = styled.div`
 
 const MyMessage = styled.div`
   width: 45%;
+  height: 100%;
   background-color: #6eb0b4;
   color: white;
   padding: 10px;
@@ -77,6 +78,7 @@ const PartnerRow = styled(MyRow)`
 
 const PartnerMessage = styled.div`
   width: 45%;
+  height: 100%;
   background-color: #3b5e66;
   color: White;
   border: 1px solid lightgray;

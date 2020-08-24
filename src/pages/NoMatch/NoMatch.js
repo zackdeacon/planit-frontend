@@ -14,7 +14,6 @@ export default function NoMatch() {
         function takeMeHome() {
           history.push("/");
         }
-        const phrase = `Hey friend, looks like you've travelled off the beaten path. {<br></br>} Please use the button below to begin your adventures again.`
     return (
         <>
         <div className="nomatchBuffer"></div>
