@@ -172,10 +172,10 @@ export default function LoginForm() {
                     >
                         <div className="form-title">LET'S PLANiT</div>
 
+                        
                         <Form.Item
                             className="first-name"
                             name="first"
-                            label="First Name"
                             rules={[
                                 {
                                     required: true,
@@ -188,13 +188,13 @@ export default function LoginForm() {
                                 onChange={handleInputSignup}
                                 name="first"
                                 type="text"
+                                placeholder="First Name"
                             />
                         </Form.Item>
 
                         <Form.Item
                             className="last-name"
                             name="last"
-                            label="Last Name"
                             rules={[
                                 {
                                     required: true,
@@ -207,12 +207,12 @@ export default function LoginForm() {
                                 onChange={handleInputSignup}
                                 name="last"
                                 type="text"
+                                placeholder="Last Name"
                             />
                         </Form.Item>
 
                         <Form.Item
                             name="email"
-                            label="E-mail"
                             rules={[
                                 {
                                     type: 'email',
@@ -229,11 +229,11 @@ export default function LoginForm() {
                                 onChange={handleInputSignup}
                                 name="email"
                                 type="email"
+                                placeholder="Email@gmail.com"
                             />
                         </Form.Item>
                         <Form.Item
                             name="username"
-                            label="Username"
                             rules={[
                                 {
                                     required: true,
@@ -246,12 +246,12 @@ export default function LoginForm() {
                                 onChange={handleInputSignup}
                                 name="username"
                                 type="text"
+                                placeholder="Username"
                             />
                         </Form.Item>
 
                         <Form.Item
                             name="password"
-                            label="Password"
                             rules={[
                                 {
                                     required: true,
@@ -265,12 +265,12 @@ export default function LoginForm() {
                                 onChange={handleInputSignup}
                                 name="password"
                                 type="password"
+                                placeholder="Password"
                             />
                         </Form.Item>
 
                         <Form.Item
                             name="confirm"
-                            label="Confirm Password"
                             dependencies={['password']}
                             hasFeedback
                             rules={[
@@ -293,6 +293,7 @@ export default function LoginForm() {
                                 onChange={handleInputSignup}
                                 name="confirm"
                                 type="password"
+                                placeholder="Confirm Password"
                             />
                         </Form.Item>
 

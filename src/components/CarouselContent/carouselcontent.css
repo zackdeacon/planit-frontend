@@ -30,8 +30,8 @@
 
 .carouselAddUser {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 20px;
+  right: 20px;
   transition: all .2s ease-in-out;
   color: #f2f1efc2;
   border-radius: 50%;
@@ -40,5 +40,18 @@
 .carouselAddUser:hover {
   cursor: pointer;
   color: #ffffff;
-  
+}
+
+.carouselEditCategories {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  transition: all .2s ease-in-out;
+  color: #f2f1efc2;
+  border-radius: 50%;
+}
+
+.carouselEditCategories:hover {
+  cursor: pointer;
+  color: #ffffff;
 }
