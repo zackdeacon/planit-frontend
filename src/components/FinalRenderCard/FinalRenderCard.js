@@ -73,7 +73,14 @@ export default function FinalRenderCard() {
 
   
   function sendRenderEmail () {
-//attach route that will send the render email 
+
+    const renderData = {
+        mapId : id,
+        email: "zackdeacon347@gmail.com"
+    }
+ API.sendFinalRender(renderData).then((data)=>{
+ console.log("it worked!")
+ })
 }
   
 
