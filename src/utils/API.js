@@ -42,10 +42,10 @@ export default {
     // Note: leaving first or last empty will result in only one updating
     return axios.put(`${urlPrefix}/api/users/change/name`, name, { withCredentials: true });
   },
-  changePassword: function (passwords) {
+  changePassword: function (passwordData) {
     // passwords: { oldPassword, newPassword }
     // Note: leaving first or last empty will result in only one updating
-    return axios.put(`${urlPrefix}/api/users/change/password`, passwords, { withCredentials: true });
+    return axios.put(`${urlPrefix}/api/users/change/password`, passwordData, { withCredentials: true });
   },
   acceptMapInvitiation: function (acceptData) {
     // index the index of the invite to remove
