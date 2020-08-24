@@ -5,7 +5,7 @@ import {
     Avatar, Tooltip, Popconfirm, message, Input, Form
 } from 'antd';
 import { MailOutlined } from '@ant-design/icons';
-import { SettingTwoTone } from '@ant-design/icons';
+import { SettingTwoTone, FileAddTwoTone } from '@ant-design/icons';
 import MapCarousel from '../MapCarousel/MapCarousel';
 import API from "../../utils/API"
 import "./usercard.css"
@@ -156,13 +156,16 @@ export default function UserCard(props) {
                                     <p className="user-info"><strong>Email:</strong> {userData.email}</p>
                                 </div>
                                 <Row justify="end">
+                                <Tooltip title="Add new Map" placement="topRight">
+                                        <Button className= "added-btns" href="/createmap" shape="circle" size="large" style={{ borderColor: "#6c8e98" }} icon={<FileAddTwoTone twoToneColor="#576d65" />} />
+                                    </Tooltip>
                                     <Tooltip title="modify account" placement="topRight">
-                                        <Button onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98" }} icon={<SettingTwoTone twoToneColor="#576d65" />} />
+                                        <Button className= "added-btns" onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98" }} icon={<SettingTwoTone twoToneColor="#576d65" />} />
                                     </Tooltip>
                                 </Row>
                             </Card>
-                            <MapCarousel header="My Trips:" maps={userData.createdMaps} editable={true} />
-                            <MapCarousel header="Trip Member On:" maps={userData.guestMaps} editable={false} />
+                            <MapCarousel header="My Planning Maps:" maps={userData.createdMaps} editable={true} background="#6C8E98" />
+                            <MapCarousel header="Collaborator On:" maps={userData.guestMaps} editable={false} background="#94a095"/>
                             {userData.invitations.length > 0 ?
                                 <>
                                     <h2>Pending Invitations: </h2>

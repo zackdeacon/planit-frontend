@@ -35,6 +35,12 @@
     font-size: 17px;
     padding-bottom: 0;
 }
+.btn-split:hover,.btn-split:focus{
+    background-color: #6c8e98;
+    color: white;
+    border: 1px solid white;
+}
+
 
 .submit-btn{
     background-color: #987b56;
@@ -101,4 +107,14 @@
 }
 .map-link:hover{
     color: #6eb0b4;
+}
+
+/* Split Cost Buttons */
+.split-cost-exit{
+  background-color: #247175;
+  color: white
+}
+.split-cost-btn{
+  background-color: #6eb0b4;
+  color: white
 }

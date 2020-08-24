@@ -76,7 +76,7 @@ export default function FinalRender() {
                     onOk={switchModal}
                     onCancel={switchModal}
                     footer={[
-                        <Button key="back" onClick={switchModal} className="exit-btn">
+                        <Button key="back" onClick={switchModal} className="split-cost-exit">
                             Got it!
                         </Button>
                     ]}
@@ -111,7 +111,7 @@ export default function FinalRender() {
                             />
                         </Form.Item>
                         <Form.Item >
-                            <Button onClick={handleCostSplit} htmlType="submit" className="submit-btn">
+                            <Button onClick={handleCostSplit} htmlType="submit" className="split-cost-btn">
                                 Split Cost
                             </Button>
                             <Row justify="center">
