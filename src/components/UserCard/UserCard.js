@@ -156,16 +156,16 @@ export default function UserCard(props) {
                                     <p className="user-info"><strong>Email:</strong> {userData.email}</p>
                                 </div>
                                 <Row justify="end">
-                                <Tooltip title="Add new Map" placement="topRight">
-                                        <Button className= "added-btns" href="/createmap" shape="circle" size="large" style={{ borderColor: "#6c8e98" }} icon={<FileAddTwoTone twoToneColor="#576d65" />} />
+                                    <Tooltip title="Add new map" placement="topRight">
+                                        <Button className="added-btns" href="/createmap" shape="circle" size="large" style={{ borderColor: "#6c8e98" }} icon={<FileAddTwoTone twoToneColor="#576d65" />} />
                                     </Tooltip>
-                                    <Tooltip title="modify account" placement="topRight">
-                                        <Button className= "added-btns" onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98" }} icon={<SettingTwoTone twoToneColor="#576d65" />} />
+                                    <Tooltip title="Modify account" placement="topRight">
+                                        <Button className="added-btns" onClick={switchModal} shape="circle" size="large" style={{ borderColor: "#6c8e98" }} icon={<SettingTwoTone twoToneColor="#576d65" />} />
                                     </Tooltip>
                                 </Row>
                             </Card>
                             <MapCarousel header="My Planning Maps:" maps={userData.createdMaps} editable={true} background="#6C8E98" />
-                            <MapCarousel header="Collaborator On:" maps={userData.guestMaps} editable={false} background="#94a095"/>
+                            <MapCarousel header="Collaborator On:" maps={userData.guestMaps} editable={false} background="#94a095" />
                             {userData.invitations.length > 0 ?
                                 <>
                                     <h2>Pending Invitations: </h2>
