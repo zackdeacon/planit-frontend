@@ -79,10 +79,9 @@ export default function FinalRenderCard() {
         email: "zackdeacon347@gmail.com"
     }
     API.sendFinalRender(renderData).then((data)=>{
-    console.log("it worked!")
-    })
-    message.success('Itinerary mailed to guests!', 2)
-}
+      data.send("emails sent")
+     }).catch(err => console.log('err', err)); 
+  }
   
   function cancel(e) {
     console.log(e);
@@ -105,7 +104,7 @@ export default function FinalRenderCard() {
             okText="yes"
             cancelText="no"
             >
-              <Button type="primary">Get your itinerary emailed!</Button>
+              <Button style={{marginTop:"20px", borderRadius:"10px", minWidth:"200px",  minHeight:"50px", fontSize:"17px"}} type="primary">Get your itinerary emailed!</Button>
           </Popconfirm>
           </Row>
        </div>

@@ -84,6 +84,8 @@ export default function Navbar(props) {
         })
     }
 
+;
+
     return (
         <>
             <div className="txt-logo-div">
@@ -98,6 +100,7 @@ export default function Navbar(props) {
             <div className="wrapper-name">
                 <Row justify="start">
                     <Col >
+                        {console.log(userData.name.first)}
                         {isLoggedIn ? <h1 className="welcome">Welcome, {userData.name.first}</h1> : null}
                     </Col>
                 </Row>
