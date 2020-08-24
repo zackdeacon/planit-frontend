@@ -91,8 +91,8 @@ export default function UserCard(props) {
                                     </Tooltip>
                                 </Row>
                             </Card>
-                            <MapCarousel header="My Planning Maps:" maps={userData.createdMaps} editable={true} />
-                            <MapCarousel header="Collaborator On:" maps={userData.guestMaps} editable={false} />
+                            <MapCarousel header="My Planning Maps:" maps={userData.createdMaps} editable={true} background="#6C8E98" />
+                            <MapCarousel header="Collaborator On:" maps={userData.guestMaps} editable={false} background="#94a095"/>
                             {userData.invitations.length > 0 ?
                                 <>
                                     <h2>Pending Invitations: </h2>
