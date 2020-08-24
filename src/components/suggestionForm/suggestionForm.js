@@ -59,7 +59,7 @@ function SuggestionCreateForm(props) {
                             type="text"
                             value={props.formData.cost}
                             onChange={props.handleChange}
-                            placeholder="Price Range?"
+                            placeholder="$"
                         />
                     </Form.Item>
 

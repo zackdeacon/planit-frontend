@@ -121,10 +121,10 @@ export default function MapDashboard(props) {
                             <Chat />
                         </Col>
                     </Row>
-                    <Row>
+                    {/* <Row>
                         <PhotoUpload board={board}/>
                         <button>view pictures</button>
-                    </Row>
+                    </Row> */}
                 </div>
             </div>
             <Modal
