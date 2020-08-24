@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from "react-router-dom"
-import { Row, Col, Button } from 'antd'
+import { Row, Col, Button, Popconfirm , message} from 'antd'
 import "./FinalRenderCard.css"
 import API from '../../utils/API'
 import CardColumns from "../FinalRenderColumns/CardColumns"
@@ -78,10 +78,17 @@ export default function FinalRenderCard() {
         mapId : id,
         email: "zackdeacon347@gmail.com"
     }
- API.sendFinalRender(renderData).then((data)=>{
-   data.send("emails sent")
-  }).catch(err => console.log('err', err)); 
-}
+    API.sendFinalRender(renderData).then((data)=>{
+      data.send("emails sent")
+     }).catch(err => console.log('err', err)); 
+  }
+  
+  function cancel(e) {
+    console.log(e);
+    message.success('Itinerary Not Sent', 2);
+  }
+
+
   return (
     <>
       <div className="itin-wrapper">
@@ -90,9 +97,17 @@ export default function FinalRenderCard() {
             {categoryColumns}
           </Row>
           <Row justify="center">
-            <Button style={{marginTop:"20px", borderRadius:"10px", minWidth:"200px",  minHeight:"50px", fontSize:"17px"}} onClick={sendRenderEmail} type="primary">Email Group Itinerary!</Button>
+            <Popconfirm 
+            title="This will send a final itinerary to all guests. Proceed?"
+            onConfirm={sendRenderEmail}
+            onCancel={cancel}
+            okText="yes"
+            cancelText="no"
+            >
+              <Button style={{marginTop:"20px", borderRadius:"10px", minWidth:"200px",  minHeight:"50px", fontSize:"17px"}} type="primary">Get your itinerary emailed!</Button>
+          </Popconfirm>
           </Row>
-        </div>
+       </div>
       </div>
     </>
   )
