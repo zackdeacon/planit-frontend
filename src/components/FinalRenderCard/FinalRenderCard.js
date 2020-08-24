@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from "react-router-dom"
-import { Row, Col } from 'antd'
+import { Row, Col, Button } from 'antd'
 import "./FinalRenderCard.css"
 import API from '../../utils/API'
 import CardColumns from "../FinalRenderColumns/CardColumns"
@@ -71,6 +71,20 @@ export default function FinalRenderCard() {
     })
   }
 
+  
+  function sendRenderEmail () {
+
+    const renderData = {
+        mapId : id,
+        email: "zackdeacon347@gmail.com"
+    }
+ API.sendFinalRender(renderData).then((data)=>{
+ console.log("it worked!")
+ })
+}
+  
+
+
   return (
     <>
       <div className="itin-wrapper">
@@ -78,6 +92,7 @@ export default function FinalRenderCard() {
           <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             {categoryColumns}
           </Row>
+          <Button onClick={sendRenderEmail} type="primary">Get your itinerary emailed!</Button>
         </div>
       </div>
     </>
