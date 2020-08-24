@@ -90,7 +90,7 @@ export default function SuggestionCard(props) {
     .then(vote=>{
       setDisplayUpVote(displayUpVote+1)
       setIsClicked(false)
-      message.success('Thanks for the like!', 3); 
+      message.success('Thanks for the vote!', 3); 
     })
     .catch(err=>{
       message.error('Sorry! You already voted', 3); 
@@ -108,7 +108,7 @@ export default function SuggestionCard(props) {
     }
     API.saveVote(voteDownOjb, props.suggestions._id)
     .then(vote=>{
-      message.success('Thanks for the like!', 2);
+      message.success('Thanks for the vote!', 2);
       setDisplayDownVote(displayDownVote+1)
     })
     .catch(err=>{
