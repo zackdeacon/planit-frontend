@@ -83,11 +83,11 @@ export default function CarouselContent(props) {
         if (data.successful) {
           switchGuestModal();
           setGuestEmail("");
-          success(`Invitation sent to ${data.newGuest}!`);
+          success(data.message);
         } else {
           switchGuestModal();
           setGuestEmail("");
-          error(`${data.newGuest} has already been invited.`);
+          error(data.message);
         }
       }).catch(err => {
         console.log(err);

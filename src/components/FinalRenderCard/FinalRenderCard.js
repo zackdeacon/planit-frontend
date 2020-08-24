@@ -79,12 +79,9 @@ export default function FinalRenderCard() {
         email: "zackdeacon347@gmail.com"
     }
  API.sendFinalRender(renderData).then((data)=>{
- console.log("it worked!")
- })
+   data.send("emails sent")
+  }).catch(err => console.log('err', err)); 
 }
-  
-
-
   return (
     <>
       <div className="itin-wrapper">
@@ -92,7 +89,9 @@ export default function FinalRenderCard() {
           <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             {categoryColumns}
           </Row>
-          <Button onClick={sendRenderEmail} type="primary">Get your itinerary emailed!</Button>
+          <Row justify="center">
+            <Button style={{marginTop:"20px", borderRadius:"10px", minWidth:"200px",  minHeight:"50px", fontSize:"17px"}} onClick={sendRenderEmail} type="primary">Email Group Itinerary!</Button>
+          </Row>
         </div>
       </div>
     </>
