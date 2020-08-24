@@ -113,8 +113,8 @@ const Chat = () => {
 
   useEffect(() => {
     socketRef.current = io.connect(
-      "http://127.0.0.1:8080"
-      // "https://planitserver.herokuapp.com"
+      // "http://127.0.0.1:8080"
+      "https://planitserver.herokuapp.com"
     );
 
     updateMessages();
