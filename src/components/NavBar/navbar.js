@@ -25,9 +25,9 @@ export default function Navbar(props) {
         }
     })
 
-    useEffect(() => {
-        setUserData({ ...userData, name: props.name })
-    }, [props.name])
+    // useEffect(() => {
+    //     setUserData({ ...userData, name: props.name })
+    // }, [props.name])
 
     useEffect(() => {
         checkIfUser()
