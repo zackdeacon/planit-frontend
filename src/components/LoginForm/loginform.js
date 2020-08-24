@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
-import { Row, Form, Input, Button, } from 'antd';
+import { Link } from 'react-scroll';
+import { Row, Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import "./loginform.css"
 import API from '../../utils/API';
+import Aos from 'aos'
+import "aos/dist/aos.css"
+import "./loginform.css"
 import "../../pages/User/User"
 
 export default function LoginForm() {
@@ -12,6 +15,10 @@ export default function LoginForm() {
         loginForm: "login-form show",
         regForm: "register-form hide",
     })
+
+    useEffect(() => {
+        Aos.init()
+    }, [])
 
     const [form] = Form.useForm();
     let history = useHistory();
@@ -26,15 +33,15 @@ export default function LoginForm() {
     function handleInputLogin(event) {
         const { name, value } = event.target;
         setFormObjectLogin({ ...formObjectLogin, [name]: value })
-        // console.log("input change function", event.target)
 
     }
 
     const handleSubmitLogin = (e) => {
         e.preventDefault();
         API.login(formObjectLogin).then(data => {
-            console.log("logged in as", data)
             history.push("/user")
+        }).catch(err =>{
+            message.error("Please check username or password",2)
         })
     };
 
@@ -52,9 +59,9 @@ export default function LoginForm() {
                 status: false,
                 loginForm: "login-form show",
                 regForm: "register-form hide"
-            })
+            });
+            window.location.reload(true);
         }
-
     };
 
     //SIGNUP FUNCTIONALITY
@@ -86,7 +93,7 @@ export default function LoginForm() {
             // console.log("you are a new user", data)
             history.push("/user")
         }).catch(function (err) {
-            alert("Username already taken, please try a different username.")
+            message.error("Username already taken, please try a different username.", 2)
         });
     }
 
@@ -96,9 +103,20 @@ export default function LoginForm() {
 
     return (
         <>
+
+
             {/* login form */}
             <div className="form-container" id="loginform">
                 <Row justify="center" align="middle" className="form-filter">
+
+                    <Link data-aos="fade" data-aos-delay='3000' activeClass="active" to="home-top" spy={true} smooth={false} offset={+500} duration={1000} className="arrow-div">
+                        <div className="arrow">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </Link>
+                
                     <div className="form-buffer"></div>
                     {/* Login Form */}
                     <Form
@@ -106,6 +124,8 @@ export default function LoginForm() {
                         className={newUser.loginForm}
                         initialValues={{ remember: true }}
                         onFinish={onFinish}
+                        data-aos="fade-up"
+                        data-aos-duration='1500'
                     >
                         <div className="form-title">LET'S PLANiT</div>
                         <Form.Item
@@ -152,10 +172,10 @@ export default function LoginForm() {
                     >
                         <div className="form-title">LET'S PLANiT</div>
 
+                        
                         <Form.Item
                             className="first-name"
                             name="first"
-                            label="First Name"
                             rules={[
                                 {
                                     required: true,
@@ -168,13 +188,13 @@ export default function LoginForm() {
                                 onChange={handleInputSignup}
                                 name="first"
                                 type="text"
+                                placeholder="First Name"
                             />
                         </Form.Item>
 
                         <Form.Item
                             className="last-name"
                             name="last"
-                            label="Last Name"
                             rules={[
                                 {
                                     required: true,
@@ -187,12 +207,12 @@ export default function LoginForm() {
                                 onChange={handleInputSignup}
                                 name="last"
                                 type="text"
+                                placeholder="Last Name"
                             />
                         </Form.Item>
 
                         <Form.Item
                             name="email"
-                            label="E-mail"
                             rules={[
                                 {
                                     type: 'email',
@@ -209,11 +229,11 @@ export default function LoginForm() {
                                 onChange={handleInputSignup}
                                 name="email"
                                 type="email"
+                                placeholder="Email@gmail.com"
                             />
                         </Form.Item>
                         <Form.Item
                             name="username"
-                            label="Username"
                             rules={[
                                 {
                                     required: true,
@@ -226,12 +246,12 @@ export default function LoginForm() {
                                 onChange={handleInputSignup}
                                 name="username"
                                 type="text"
+                                placeholder="Username"
                             />
                         </Form.Item>
 
                         <Form.Item
                             name="password"
-                            label="Password"
                             rules={[
                                 {
                                     required: true,
@@ -245,12 +265,12 @@ export default function LoginForm() {
                                 onChange={handleInputSignup}
                                 name="password"
                                 type="password"
+                                placeholder="Password"
                             />
                         </Form.Item>
 
                         <Form.Item
                             name="confirm"
-                            label="Confirm Password"
                             dependencies={['password']}
                             hasFeedback
                             rules={[
@@ -273,6 +293,7 @@ export default function LoginForm() {
                                 onChange={handleInputSignup}
                                 name="confirm"
                                 type="password"
+                                placeholder="Confirm Password"
                             />
                         </Form.Item>
 

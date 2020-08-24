@@ -7,14 +7,28 @@ import LoginForm from '../../components/LoginForm/loginform'
 import "./home.css"
 
 export default function Home() {
+
+    
     return (
         <>
+
             <Navbar logo="/assets/logos/txt.png" width="120px" left="-60px" top="28px" />
-            <LandingContent />
+
+            <section>
+                <LandingContent />
+            </section>
+
             <PageDivider />
-            <UXI />
+
+            <section>
+                <UXI />
+            </section>
+
             <PageDivider />
-            <LoginForm />
+
+            <section>
+                <LoginForm />
+            </section>
         </>
     )
 }

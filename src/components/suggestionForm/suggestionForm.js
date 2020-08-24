@@ -5,12 +5,7 @@ import "./suggestionForm.css"
 
 function SuggestionCreateForm(props) {
     const Option = Select.Option;
-    // function handleChange(value) {
-    //     console.log(`selected ${value}`);
-    //   }
-    //   console.log(props.formData)
-      
-    
+
     return (
         <div>
             <div className="cart-buffer"></div>
@@ -35,27 +30,14 @@ function SuggestionCreateForm(props) {
 
                     <Form.Item
                         rules={[{ required: true, message: 'Please enter a category!' }]}>
-                        <Select 
+                        <Select
                             onChange={props.handleChangeSelect}
                             placeholder="Choose a Category"
                             name="category"
-                            >
-                            <Option 
-                            value="Accomodation"
-                            >Accomodation
-                            </Option>
-                            <Option 
-                            value="Food"
-                            >Food
-                            </Option>
-                            <Option 
-                            value="Flights"
-                            >Flights
-                            </Option>
-                            <Option 
-                            value="Entertainment"
-                            >Entertainment
-                            </Option>
+                        >
+                            {props.categories.map((cat, index) => {
+                                return <Option key={index} value={cat}>{cat}</Option>
+                            })}
                         </Select>
                     </Form.Item>
 
@@ -66,7 +48,7 @@ function SuggestionCreateForm(props) {
                             type="text"
                             value={props.formData.link}
                             onChange={props.handleChange}
-                            placeholder="Share A Link"
+                            placeholder="Add Link https://www.travel.com/"
                         />
                     </Form.Item>
 
@@ -77,7 +59,8 @@ function SuggestionCreateForm(props) {
                             type="text"
                             value={props.formData.cost}
                             onChange={props.handleChange}
-                            placeholder="Price Range?"
+                            prefix="$"
+                            placeholder="20"
                         />
                     </Form.Item>
 

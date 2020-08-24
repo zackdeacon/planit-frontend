@@ -1,4 +1,4 @@
-.render-background{
+/* .render-background{
     background-image: url("../../images/andrew-neel-unsplash.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -19,11 +19,102 @@
     .render-filter-background{
         height: 100%;
     }
+} */
+
+.btn-buffer{
+  padding-top: 15px;
 }
+.btn-split{
+    background-color: #987b56;
+    width: 20%;
+    min-width: 200px;
+    border: none;
+    height: 50px;
+    border-radius: 10px;
+    color: white;
+    font-size: 17px;
+    padding-bottom: 0;
+}
+.btn-split:hover,.btn-split:focus{
+    background-color: #6c8e98;
+    color: white;
+    border: 1px solid white;
+}
+
+
+.submit-btn{
+    background-color: #987b56;
+    border: none;
+    height: 35px;
+    border-radius: 10px;
+    color: white;
+    font-size: 17px;
+    padding-bottom: 0;
+}
+
+.exit-btn{
+  background-color: #6c8e98;
+    border: none;
+    height: 35px;
+    border-radius: 10px;
+    color: white;
+    font-size: 17px;
+    padding-bottom: 0;
+}
+
+.render-background {
+    /* Set rules to fill background */
+    min-width: 100%;
+    height: auto;
+    /* min-width: 1024px; */
+      
+    /* Set up proportionate scaling */
+    width: auto;
+    /* height: 100%; */
+      
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  @media screen and (min-width: 1636px) { 
+    img.bg {
+      width: 100vw;
+      height: auto;
+    }
+  }
+
+.render-filter-background{
+  background-color: rgba(0, 0, 0, 0.397);
+
+  /* Set rules to fill background */
+  min-height: 100vh;
+  /* min-width: 1024px; */
+    
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: 100%;
+    
+  /* Set up positioning */
+  position: relative;
+  top: 0;
+  left: 0;
+  }
 
 .map-link{
     color: white;
 }
 .map-link:hover{
     color: #6eb0b4;
+}
+
+/* Split Cost Buttons */
+.split-cost-exit{
+  background-color: #247175;
+  color: white
+}
+.split-cost-btn{
+  background-color: #6eb0b4;
+  color: white
 }

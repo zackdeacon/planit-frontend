@@ -1,0 +1,56 @@
+.carouselContent {
+  height: 200px;
+  color: #F2F1EF;
+  line-height: 200px;
+  text-align: center;
+  font-size: 24px;
+  border: solid #fff;
+  position: relative;
+}
+
+.carouselContent h3 {
+  font-size: 24px;
+  color: #F2F1EF;
+  font-weight: 400;
+}
+
+.carouselMapLink {
+  color: inherit;
+  text-decoration: inherit;
+  transition: all .2s ease-in-out;
+  text-shadow: transparent;
+}
+
+.carouselMapLink:hover {
+  cursor: pointer;
+  color: #ffffff;
+  text-shadow: 0 0px 15px rgba(255, 255, 255, 0.561);
+}
+
+.carouselAddUser {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transition: all .2s ease-in-out;
+  color: #f2f1efc2;
+  border-radius: 50%;
+}
+
+.carouselAddUser:hover {
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.carouselEditCategories {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  transition: all .2s ease-in-out;
+  color: #f2f1efc2;
+  border-radius: 50%;
+}
+
+.carouselEditCategories:hover {
+  cursor: pointer;
+  color: #ffffff;
+}

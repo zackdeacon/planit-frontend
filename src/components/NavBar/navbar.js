@@ -17,9 +17,34 @@ export default function Navbar(props) {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    const [userData, setUserData] = useState({
+        username: "",
+        name: {
+            first: "",
+            last: ""
+        }
+    })
+
+    // useEffect(() => {
+    //     setUserData({ ...userData, name: props.name })
+    // }, [props.name])
+
     useEffect(() => {
         checkIfUser()
     }, [])
+
+    useEffect(() => {
+        API.getSessionData().then((results) => {
+            const sessionUser = results.data.user;
+            API.getUserById(sessionUser.id).then((user) => {
+                setUserData(user.data);
+                // console.log('userData', userData)
+            })
+        }).catch((err) => {
+            console.log('err', err)
+        })
+    }, []);
+    // console.log('user', props.userData)
 
     const handleHamburgerClick = () => {
         if (!menuBtn.menuOpen) {
@@ -45,13 +70,12 @@ export default function Navbar(props) {
         })
     }
 
-    const login = () =>{
+    const login = () => {
         history.push("/")
     }
 
     const checkIfUser = () => {
         API.getSessionData().then(res => {
-            console.log(res);
             if (!res.data.user) {
                 setIsLoggedIn(false)
             } else {
@@ -59,6 +83,8 @@ export default function Navbar(props) {
             }
         })
     }
+
+;
 
     return (
         <>
@@ -68,6 +94,14 @@ export default function Navbar(props) {
                         <a href="/">
                             <img src={props.logo} alt="text logo" style={{ width: `${props.width}`, marginLeft: `${props.left}`, marginTop: `${props.top}` }} />
                         </a>
+                    </Col>
+                </Row>
+            </div>
+            <div className="wrapper-name">
+                <Row justify="start">
+                    <Col >
+                        {console.log(userData.name.first)}
+                        {isLoggedIn ? <h1 className="welcome">Welcome, {userData.name.first}</h1> : null}
                     </Col>
                 </Row>
             </div>
@@ -85,25 +119,25 @@ export default function Navbar(props) {
                     </Col>
                 </Row>
                 <Col className={menuBtn.linksClass}>
-                <Row justify="end">
-                        {isLoggedIn? <Button type="text" onClick={logOut} href="/"className="nav-btns">Log Out</Button> : <Link 
-                        onClick={login} 
-                        activeClass="active" to="loginform" spy={true} smooth={true} offset={+500} duration={1000} className="nav-btns"><span className="login-btn">Login</span></Link>}
+                    <Row justify="end">
+                        {isLoggedIn ?
+                            <Button type="text" onClick={logOut} href="/" className="nav-btns">Log Out</Button>
+                            : <Link onClick={login} activeClass="active" to="loginform" spy={true} smooth={false} offset={+500} duration={1000} className="nav-btns"><span className="login-btn">Login</span></Link>}
                     </Row>
-               
+
                     <Row justify="end">
-                        {isLoggedIn?
-                        <Button type="text" href="/user" className="nav-btns">Account</Button>
-                        : 
-                        <Button disabled></Button>} 
-                    </Row>  
-                       
-                    
+                        {isLoggedIn ?
+                            <Button type="text" href="/user" className="nav-btns">Account</Button>
+                            :
+                            <Button disabled></Button>}
+                    </Row>
+
+
                     <Row justify="end">
-                        {isLoggedIn? 
-                        <Button type="text" href="/createmap" className="nav-btns">New Map</Button> 
-                        : 
-                        <Button disabled></Button>}                        
+                        {isLoggedIn ?
+                            <Button type="text" href="/createmap" className="nav-btns">New Map</Button>
+                            :
+                            <Button disabled></Button>}
                     </Row>
                 </Col>
             </div>

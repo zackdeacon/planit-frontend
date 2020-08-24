@@ -1,6 +1,6 @@
 
 .divider-filter{
-    background-color: rgba(0, 0, 0, 0.666);
+    background-color: rgba(0, 0, 0, 0.493);
 }
 .light-blue{
     /* position: relative; */
@@ -21,43 +21,6 @@
 
 .divider-logo{
     margin: 20px 0px 20px 0px;
-    width:30vh;
-    height:30vh
+    height:50vh
 }
 
-/* Scroll Icon */
-/* .arrow{
-    position: absolute;
-    top:18px;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-.arrow span{
-    display: block;
-    width: 23px;
-    height: 23px;
-    border-bottom: 3px solid #3b5e66;
-    border-right: 3px solid #3b5e66;
-    transform: rotate(45deg);
-    margin: -15px;
-    animation: animate 2s infinite;
-}
-.arrow span:nth-child(2){
-    animation-delay: -0.2s;
-}
-.arrow span:nth-child(3){
-    animation-delay: -0.4s;
-}
-@keyframes animate {
-    0%{
-        opacity: 0;
-        transform: rotate(45deg) translate(-5px,-5px);
-    }
-    50%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 0;
-        transform: rotate(45deg) translate(5px,5px);
-    }
-} */

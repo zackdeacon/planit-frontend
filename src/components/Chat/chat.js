@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Row } from "antd";
+import { Row, Col } from "antd";
 import styled from "styled-components";
 import io from "socket.io-client";
-import API, {urlPrefix} from "../../utils/API"
+import API, { urlPrefix } from "../../utils/API"
 import "./chat.css"
 import { useParams } from "react-router-dom";
+
 
 //Components and styling taken from example of Youtube
 
@@ -90,11 +91,6 @@ const PartnerMessage = styled.div`
 
 //Code to keep below this line 
 
-
-
-
-
-
 // const TEST_MAP_ID = id;
 const TEST_USER_ID = "5f3c2a5b7d3f2d25dab2becc";
 
@@ -119,7 +115,7 @@ const Chat = () => {
     socketRef.current = io.connect(
       // "http://127.0.0.1:8080"
       "https://planitserver.herokuapp.com"
-      );
+    );
 
     updateMessages();
 
@@ -142,6 +138,13 @@ const Chat = () => {
     const chats = await getCurrentMessages();
     setMessages(chats)
   };
+
+  const scrollTo = (ref) => {
+    if (ref /* + other conditions */) {
+      ref.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   function sendMessage(e) {
     e.preventDefault();
     const chatData = {
@@ -149,12 +152,12 @@ const Chat = () => {
       mapId: id,
       message: message,
     };
-    API.postNewChat(chatData).then((data)=>{
+    API.postNewChat(chatData).then((data) => {
       // console.log(data)
       setMessage("");
       socketRef.current.emit("new message");
-      updateMessages();  
-    }).catch((err)=>{
+      updateMessages();
+    }).catch((err) => {
       console.log(err)
     })
   }
@@ -162,10 +165,6 @@ const Chat = () => {
   function handleChange(e) {
     setMessage(e.target.value);
   }
-
-
-  //Code to keep above this line 
-  console.log(messages)
 
   return (
     <>
@@ -175,14 +174,14 @@ const Chat = () => {
         </Row>
 
         <Row justify="center">
-          <div className="chat-box">
+          <Col className="chat-box" id="chat-box">
             {messages.map((message, index) => {
               // console.log(userData.id);
               // console.log(message.user._id);
               if (message.user._id === userData.id) {
                 return (
                   <MyRow key={index}>
-                    <MyMessage>
+                    <MyMessage ref={scrollTo}>
                       {message.message}
                       <span className="userName">
                         {message.user.name.first}
@@ -193,17 +192,19 @@ const Chat = () => {
               }
               return (
                 <PartnerRow key={index}>
-                  <PartnerMessage>
+                  <PartnerMessage ref={scrollTo}>
                     {message.message}
                     <span className="userName">
-                        {message.user.name.first}
-                      </span>
+                      {message.user.name.first}
+                    </span>
                   </PartnerMessage>
                 </PartnerRow>
               )
             })}
-          </div>
+          </Col>
+        </Row>
 
+        <Row justify="center">
           <Form onSubmit={sendMessage}>
             <Row justify="center">
               <TextArea className="text-area" value={message} onChange={handleChange} placeholder="Say something..." />
@@ -215,6 +216,15 @@ const Chat = () => {
         </Row>
       </div>
     </>
+
+  )
+}
+
+
+
+export default Chat;
+
+
 
     //Components and styling taken from example of Youtube
     // <Page>
@@ -246,12 +256,3 @@ const Chat = () => {
     // </Form>
     // </Page>
     //Components and styling taken from example of Youtube
-
-  )
-}
-
-
-
-export default Chat;
-
-

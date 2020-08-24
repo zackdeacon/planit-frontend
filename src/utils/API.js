@@ -1,6 +1,6 @@
 import axios from "axios";
 const urlPrefix = "https://planitserver.herokuapp.com";
-// export const urlPrefix = "http://localhost:8080";
+// const urlPrefix = "http://localhost:8080";
 
 
 // ** Functions that take an object have the structure and keys of that 
@@ -39,25 +39,24 @@ export default {
   },
   changeName: function (name) {
     // name: { first, last }
-    // Note: leaving a field empty will result in only one updating
+    // Note: leaving first or last empty will result in only one updating
     return axios.put(`${urlPrefix}/api/users/change/name`, name, { withCredentials: true });
   },
-  changeEmail: function (email) {
-    // name: { first, last }
-    // Note: leaving a field empty will result in only one updating
-    return axios.put(`${urlPrefix}/api/users/change/email`, email, { withCredentials: true });
+  changePassword: function (passwordData) {
+    // passwords: { oldPassword, newPassword }
+    // Note: leaving first or last empty will result in only one updating
+    return axios.put(`${urlPrefix}/api/users/change/password`, passwordData, { withCredentials: true });
   },
-  acceptMapInvitiation: function (mapId) {
-    // mapId is an id of type string
-    return axios.put(`${urlPrefix}/api/users/invitation/accept`, mapId, { withCredentials: true });
+  acceptMapInvitiation: function (acceptData) {
+    // index the index of the invite to remove
+    return axios.put(`${urlPrefix}/api/users/invitation/accept`, acceptData, { withCredentials: true });
   },
-  declineMapInvitiation: function (mapId) {
-    // mapId is an id of type string
-    return axios.put(`${urlPrefix}/api/users/invitation/decline`, mapId, { withCredentials: true });
+  declineMapInvitiation: function (index) {
+    // index the index of the invite to remove
+    return axios.put(`${urlPrefix}/api/users/invitation/decline`, index, { withCredentials: true });
   },
-  deleteUser: function (user) {
-    // user: { id }
-    return axios.delete(`${urlPrefix}/api/users/delete`, user);
+  deleteUser: function (userId) {
+    return axios.delete(`${urlPrefix}/api/users/delete/${userId}`, { withCredentials: true });
   },
 
   // * MAPS COLLECTION
@@ -74,9 +73,24 @@ export default {
     mapData.dates = { start: mapData.startDate, end: mapData.endDate };
     return axios.post(`${urlPrefix}/api/maps/new`, mapData, { withCredentials: true });
   },
+  inviteNewGuest: function (inviteData) {
+    // inviteData: { mapId, guestEmail }
+    return axios.put(`${urlPrefix}/api/maps/invite`, inviteData);
+  },
+  addSuggestionCategory: function (categoryData) {
+    // categoryData: { mapId, newCategory }
+    return axios.put(`${urlPrefix}/api/maps/categories/add`, categoryData);
+  },
+  removeSuggestionCategory: function (categoryData) {
+    // categoryData: { mapId, category }
+    return axios.put(`${urlPrefix}/api/maps/categories/remove`, categoryData);
+  },
   deleteMap: function (map) {
     // map: { id }
     return axios.delete(`${urlPrefix}/api/maps/delete`, map);
+  },
+  postNewImage: function(image, mapId){
+    return axios.post(`${urlPrefix}/api/maps/images/new/${mapId}`, image, { withCredentials: true })
   },
 
   // * SUGGESTIONS COLLECTION
@@ -97,12 +111,15 @@ export default {
     return axios.post(`${urlPrefix}/api/suggestions/delete`, suggestion);
   },
   // saves a vote for a suggestion
-  saveVote: function (vote,sugId) {
+  saveVote: function (vote, sugId) {
     return axios.post(`${urlPrefix}/api/suggestions/vote/${sugId}`, vote, { withCredentials: true })
   },
   // saves a vote for a suggestion
-  saveComment: function (comment,sugId) {
+  saveComment: function (comment, sugId) {
     return axios.post(`${urlPrefix}/api/suggestions/comment/${sugId}`, comment, { withCredentials: true })
+  },
+  getCommentsForSuggestion: function (sugId) {
+    return axios.get(`${urlPrefix}/api/suggestions/comments/${sugId}`)
   },
 
   // * CHATS COLLECTION
@@ -120,5 +137,11 @@ export default {
   deleteChat: function (chat) {
     // chat: { id }
     return axios.post(`${urlPrefix}/api/chats/delete`, chat);
+  },
+
+  // * EMAIL ROUTES
+  sendFinalRender: function (renderData) {
+    // renderData: { mapId, email }
+    return axios.post(`${urlPrefix}/api/email/send/map/render`, renderData);
   }
 };
