@@ -17,13 +17,17 @@ export default function Navbar(props) {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const [userData, setUserData] = useState ({
-        username:"",
+    const [userData, setUserData] = useState({
+        username: "",
         name: {
             first: "",
             last: ""
         }
     })
+
+    useEffect(() => {
+        setUserData({ ...userData, name: props.name })
+    }, [props.name])
 
     useEffect(() => {
         checkIfUser()
@@ -94,7 +98,7 @@ export default function Navbar(props) {
             <div className="wrapper-name">
                 <Row justify="start">
                     <Col >
-                        {isLoggedIn? <h1 className="welcome">Welcome, {userData.name.first}</h1> : null}
+                        {isLoggedIn ? <h1 className="welcome">Welcome, {userData.name.first}</h1> : null}
                     </Col>
                 </Row>
             </div>
@@ -112,10 +116,10 @@ export default function Navbar(props) {
                     </Col>
                 </Row>
                 <Col className={menuBtn.linksClass}>
-                <Row justify="end">
-                        {isLoggedIn? 
-                        <Button type="text" onClick={logOut} href="/"className="nav-btns">Log Out</Button> 
-                        : <Link onClick={login} activeClass="active" to="loginform" spy={true} smooth={false} offset={+500} duration={1000} className="nav-btns"><span className="login-btn">Login</span></Link>}
+                    <Row justify="end">
+                        {isLoggedIn ?
+                            <Button type="text" onClick={logOut} href="/" className="nav-btns">Log Out</Button>
+                            : <Link onClick={login} activeClass="active" to="loginform" spy={true} smooth={false} offset={+500} duration={1000} className="nav-btns"><span className="login-btn">Login</span></Link>}
                     </Row>
 
                     <Row justify="end">

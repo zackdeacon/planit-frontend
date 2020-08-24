@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { Row, Col, Modal, List, Input, Button } from 'antd';
+import { Row, Col, Modal, List, Input, Button, Tooltip } from 'antd';
 import { UserAddOutlined, FolderOutlined, PlusOutlined, DeleteFilled } from '@ant-design/icons';
 import './carouselcontent.css';
 import API from '../../utils/API';
@@ -100,14 +100,16 @@ export default function CarouselContent(props) {
   return (
     <div>
       {props.empty ? (
-        <div className="carouselContent" style={{backgroundColor:backColor}}><h3>{props.name}</h3></div>
+        <div className="carouselContent" style={{ backgroundColor: backColor }}><h3>{props.name}</h3></div>
       ) : (
           <>
-            <div className="carouselContent" style={{backgroundColor:backColor}}>
+            <div className="carouselContent" style={{ backgroundColor: backColor }}>
               <Link className="carouselMapLink" to={`/dashboard/${props.id}`}>{props.name}</Link>
               {props.editable ?
                 <>
-                  <UserAddOutlined className="carouselAddUser" onClick={switchGuestModal} />
+                  <Tooltip title="Add guests" placement="topRight">
+                    <UserAddOutlined className="carouselAddUser" onClick={switchGuestModal} />
+                  </Tooltip>
                   <Modal
                     title={`Invite Guest: ${props.name}`}
                     visible={guestModal.visible}
@@ -128,9 +130,11 @@ export default function CarouselContent(props) {
                     </Row>
                   </Modal>
 
-                  <FolderOutlined onClick={switchCategoryModal} className="carouselEditCategories" />
+                  <Tooltip title="Modify suggestion categories" placement="topRight">
+                    <FolderOutlined onClick={switchCategoryModal} className="carouselEditCategories" />
+                  </Tooltip>
                   <Modal
-                    title={`New Category: ${props.name}`}
+                    title={`Suggestion categories: ${props.name}`}
                     visible={categoryModal.visible}
                     onOk={switchCategoryModal}
                     onCancel={switchCategoryModal}
