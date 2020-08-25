@@ -2,7 +2,6 @@
 import React, {useRef, useEffect, useState} from 'react'
 import { Row, Col, Card, Button, Tooltip, Modal, Progress, Statistic, Form, Input, message} from 'antd'
 import { LikeTwoTone, DislikeTwoTone, ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons"
-// import DashMod from '../../components/DashModule/dashmod'
 import 'antd/dist/antd.css';
 import API from "../../utils/API";
 import "./suggestioncard.css"
@@ -298,7 +297,6 @@ export default function SuggestionCard(props) {
                 </Col>
             </Row> 
       </Modal>
-
     </>
   )
 }

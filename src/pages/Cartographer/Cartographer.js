@@ -50,7 +50,6 @@ function Maps() {
             console.log("here is your new map", response)
             history.push(`/dashboard/${response.data._id}`)
         })
-        // console.log("submit function", event.target)
     }
 
     return (

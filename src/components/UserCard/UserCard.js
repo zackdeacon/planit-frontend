@@ -33,13 +33,6 @@ export default function UserCard(props) {
         newRepeat: "",
     })
 
-    // const [loading, setLoading] = useState({
-    //     confirmLoading: true,
-    //     visible: false,
-
-    // })
-
-
     useEffect(() => {
         setNames({
             first: props.userData.name.first,
@@ -108,7 +101,7 @@ export default function UserCard(props) {
         const id = userData._id
         console.log("passed in", id)
         API.deleteUser(id).then(res => {
-            console.log("Delete Btn Clicked", res.data);
+            // console.log("Delete Btn Clicked", res.data);
             history.push("/")
         })
         message.success("Account deleted", 2)
@@ -125,10 +118,6 @@ export default function UserCard(props) {
         }).catch(err => {
             console.log("err", err);
         })
-        // setLoading({
-        //     visibile: false,
-        //     confirmLoading:false
-        // }, 2000)
     }
 
     const handleDecline = (index) => {

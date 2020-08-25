@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react"
-import { Upload, message, Modal, Button, Row } from 'antd';
+import React, {useState} from "react"
+import {message, Modal, Button, Row } from 'antd';
 import API from "../../utils/API";
-import { useParams } from "react-router-dom";
 import './photoupload.css'
 
 
@@ -20,24 +19,35 @@ export default function PhotoUpload(props) {
         data.append("file", files[0])
         data.append("upload_preset", "planitimages")
         setLoading(true)
-        const res = await fetch("https://api.cloudinary.com/v1_1/dphsou5mr/image/upload", {
+        const res = await fetch(
+            "https://api.cloudinary.com/v1_1/dphsou5mr/image/upload"
+            // process.env.CLOUDINARY_URL
+            , 
+            {
             method: "POST",
             body: data
+        }).catch(err=>{
+            console.log('err', err)
+            message.error("This Photo could not be Uploaded", 3)
         })
 
         const file = await res.json()
-        console.log('file.url', file.url)
+        // console.log('file.url', file.url)
         
         setImage(file.secure_url)
         setLoading(false)
         const imgObj = {
             images: file.secure_url
         }
-        console.log('imgObj', imgObj)
-        console.log('props.board.id', props.board.id)
+        // console.log('imgObj', imgObj)
+        // console.log('props.board.id', props.board.id)
         API.postNewImage(imgObj, props.board.id)
         .then(img=>{
-        console.log('img', img)        
+        // console.log('img', img)        
+        })
+        .catch(err=>{
+            console.log('err', err)
+            
         })
     }
 

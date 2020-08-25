@@ -65,7 +65,7 @@ export default function Navbar(props) {
     const logOut = () => {
         history.push("/")
         API.logout().then(req => {
-            console.log("You have been launched out of PLANiT!");
+            // console.log("You have been launched out of PLANiT!");
             history.push("/");
         })
     }
@@ -100,7 +100,7 @@ export default function Navbar(props) {
             <div className="wrapper-name">
                 <Row justify="start">
                     <Col >
-                        {console.log(userData.name.first)}
+                        {/* {console.log(userData.name.first)} */}
                         {isLoggedIn ? <h1 className="welcome">Welcome, {userData.name.first}</h1> : null}
                     </Col>
                 </Row>

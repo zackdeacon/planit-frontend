@@ -84,6 +84,7 @@ export default function FinalRenderCard() {
     API.sendFinalRender(renderData).then((data)=>{
       data.send("emails sent")
      }).catch(err => console.log('err', err)); 
+    message.success('Itinerary Sent!', 2)
   }
   
   function cancel(e) {
