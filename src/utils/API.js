@@ -92,6 +92,9 @@ export default {
   postNewImage: function(images, mapId){
     return axios.post(`${urlPrefix}/api/maps/images/new/${mapId}`, images, { withCredentials: true })
   },
+  getAllImages: function(mapId){
+    return axios.get(`${urlPrefix}/api/maps/images/${mapId}`)
+  },
 
   // * SUGGESTIONS COLLECTION
   getAllSuggestions: function () {
