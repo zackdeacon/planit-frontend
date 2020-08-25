@@ -89,8 +89,11 @@ export default {
     // map: { id }
     return axios.delete(`${urlPrefix}/api/maps/delete`, map);
   },
-  postNewImage: function(image, mapId){
-    return axios.post(`${urlPrefix}/api/maps/images/new/${mapId}`, image, { withCredentials: true })
+  postNewImage: function(images, mapId){
+    return axios.post(`${urlPrefix}/api/maps/images/new/${mapId}`, images, { withCredentials: true })
+  },
+  getAllImages: function(mapId){
+    return axios.get(`${urlPrefix}/api/maps/images/${mapId}`)
   },
 
   // * SUGGESTIONS COLLECTION
