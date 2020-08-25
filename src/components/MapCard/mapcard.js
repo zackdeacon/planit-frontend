@@ -4,6 +4,7 @@ import SuggestionCard from "../SuggestionCard/SuggestionCard"
 import { Tabs, Button, Row } from 'antd';
 import "./mapcard.css"
 import API from '../../utils/API'
+import PhotoUpload from "../PhotoUpload/photoupload"
 
 const { TabPane } = Tabs;
 
@@ -46,8 +47,12 @@ export default function MapCard(props) {
           <Button className="add-sug-btn" href={addSugBtn} data-sug-map-id={id}> Add Suggestion</Button>
         </Row>
         <Row className="add-sug-row" justify="center">
-          <Button className="itin-btn" href={itinBtn} data-map-id={id}>Itinerary</Button>
+          {suggestions.length>0? <Button className="itin-btn" href={itinBtn} data-map-id={id}>Itinerary</Button> : null}
         </Row>
+       
+          <PhotoUpload  board={props.board}/>
+ 
+
       </div>
       {/* </div> */}
     </>

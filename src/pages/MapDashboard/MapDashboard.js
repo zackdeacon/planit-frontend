@@ -114,17 +114,13 @@ export default function MapDashboard(props) {
                 <div className="top-buffer">
                     <Row justify="space-around" style={{ marginBottom: "50px", }}>
                         <Col lg={{ span: 14 }} sm={{ span: 24 }} xs={{ span: 24 }}>
-                            <MapCard categories={categories} />
+                            <MapCard categories={categories} board={board}/>
                         </Col>
                         <div className="mid-col-buffer"></div>
                         <Col lg={{ span: 9 }} sm={{ span: 18 }} xs={{ span: 24 }}>
                             <Chat />
                         </Col>
                     </Row>
-                    {/* <Row>
-                        <PhotoUpload board={board}/>
-                        <button>view pictures</button>
-                    </Row> */}
                 </div>
             </div>
             <Modal
@@ -146,12 +142,6 @@ export default function MapDashboard(props) {
                 <p>End date: {board.dates.end}</p>
 
             </Modal>
-            {/* <Modal
-                title={board.name.toUpperCase()}
-                visible
-            >
-
-            </Modal> */}
         </>
     )
 }

@@ -33,6 +33,13 @@ export default function UserCard(props) {
         newRepeat: "",
     })
 
+    // const [loading, setLoading] = useState({
+    //     confirmLoading: true,
+    //     visible: false,
+
+    // })
+
+
     useEffect(() => {
         setNames({
             first: props.userData.name.first,
@@ -118,6 +125,10 @@ export default function UserCard(props) {
         }).catch(err => {
             console.log("err", err);
         })
+        // setLoading({
+        //     visibile: false,
+        //     confirmLoading:false
+        // }, 2000)
     }
 
     const handleDecline = (index) => {

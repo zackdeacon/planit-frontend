@@ -22,6 +22,10 @@
     overflow: auto;
 }
 
+@media only screen and (max-width:750px){
+    .chat-container{margin-top: 20vh;}
+}
+
 .chat-box{
     display: flex;
     flex-direction: column;
