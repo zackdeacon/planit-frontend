@@ -33,18 +33,18 @@ export default function Navbar(props) {
         checkIfUser()
     }, [])
 
-    useEffect(() => {
-        API.getSessionData().then((results) => {
-            const sessionUser = results.data.user || {};
-            console.log('sessionUser', sessionUser);
-            console.log('results', results);
-            API.getUserById(sessionUser.id).then((user) => {
-                setUserData(user.data);
-            })
-        }).catch((err) => {
-            console.log('err', err)
-        })
-    }, []);
+    // useEffect(() => {
+    //     API.getSessionData().then((results) => {
+    //         const sessionUser = results.data.user || {};
+    //         console.log('sessionUser', sessionUser);
+    //         console.log('results', results);
+    //         API.getUserById(sessionUser.id).then((user) => {
+    //             setUserData(user.data);
+    //         })
+    //     }).catch((err) => {
+    //         console.log('err', err)
+    //     })
+    // }, []);
     // console.log('user', props.userData)
 
     const handleHamburgerClick = () => {

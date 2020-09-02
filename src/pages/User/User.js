@@ -20,7 +20,7 @@ export default function User() {
     useEffect(() => {
         window.scrollTo(0, 0)
         API.getSessionData().then((results) => {
-            const sessionUser = results.data.user;
+            const sessionUser = results.data.user || {};
             API.getUserById(sessionUser.id).then((user) => {
                 setUserData(user.data);
             })
