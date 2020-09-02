@@ -35,7 +35,7 @@ export default function Navbar(props) {
 
     useEffect(() => {
         API.getSessionData().then((results) => {
-            const sessionUser = results.data.user;
+            const sessionUser = results.data.user || {};
             console.log('sessionUser', sessionUser);
             console.log('results', results);
             API.getUserById(sessionUser.id).then((user) => {
