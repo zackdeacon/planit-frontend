@@ -36,11 +36,10 @@ export default function Navbar(props) {
     useEffect(() => {
         API.getSessionData().then((results) => {
             const sessionUser = results.data.user;
+            console.log('sessionUser', sessionUser);
+            console.log('results', results);
             API.getUserById(sessionUser.id).then((user) => {
                 setUserData(user.data);
-                console.log('userData', userData);
-                console.log('sessionUser', sessionUser);
-                console.log('results', results);
             })
         }).catch((err) => {
             console.log('err', err)
