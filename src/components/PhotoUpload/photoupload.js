@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react"
-import {message, Modal, Button, Row } from 'antd';
+import {message, Modal, Button, Row, Upload } from 'antd';
+// import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import API from "../../utils/API";
 import './photoupload.css'
 import { useParams } from "react-router-dom";
@@ -11,7 +12,6 @@ export default function PhotoUpload(props) {
     const [modal, setModal] = useState({
         visible: false
     })
-    // console.log('props.board.id', props.board.id)
 
     const uploadImage = async e =>{
         const files = e.target.files
@@ -66,7 +66,10 @@ export default function PhotoUpload(props) {
     imageArr.map(item=>{
         console.log('item', item)
         arrayTest.push(
-            <img src={item}/>
+            <img 
+            src={item}
+            className="trip-images"
+            />
         )
     })
     const switchModal = () => {
@@ -99,17 +102,22 @@ export default function PhotoUpload(props) {
                 title="Images"
                 onOk={handleOk}
                 onCancel={handleCancel}
+                footer={[
+                    <Button key="back" onClick={handleOk}>
+                        Got it!
+                    </Button>
+                ]}
             >
                 <input 
                     type="file" 
                     name="file" 
                     placeholder="upload input"
                     onChange={uploadImage}
-                    ></input>
+                ></input>
                     {loading? (
                         <h3>loading...</h3>
                     ): (
-                        <img src={image} style={{width:"300px"}}/>
+                        <img src={image} style={{width:"450px"}}/>
                     )}
                     {arrayTest.map(item=>{return item})}
             </Modal>
@@ -120,3 +128,14 @@ export default function PhotoUpload(props) {
 
 
 
+//ant design image upload 
+{/* <Upload 
+        type="file" 
+        name="avatar" 
+        listType="picture-card"
+        className="avatar-uploader"
+        placeholder="upload input"
+        onChange={uploadImage}
+    ></Upload>
+        {loading ? <LoadingOutlined /> : <PlusOutlined />} */}
+        {/* {arrayTest.map(item=>{return item})} */}
