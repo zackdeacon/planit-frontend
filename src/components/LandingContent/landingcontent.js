@@ -16,6 +16,7 @@ export default function LandingContent() {
             <video autoPlay="autoplay" loop="loop" muted className="vid">
                 <source src="./assets/video/PLANiT2.mp4" type="video/mp4" />
             </video>
+            <div className="still-image"></div>
             <div data-aos="fade" data-aos-delay='3000' className="center-end-arrow-lc">
                 <div className="arrow-lc">
                     <span></span>
