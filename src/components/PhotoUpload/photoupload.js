@@ -1,17 +1,17 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import {message, Modal, Button, Row } from 'antd';
 import API from "../../utils/API";
 import './photoupload.css'
-
+import { useParams } from "react-router-dom";
 
 export default function PhotoUpload(props) {
     const [loading, setLoading] = useState(false)
     const [image,setImage] = useState("")
-    // const [imageArr, setImageArr] = useState([])
+    const [imageArr, setImageArr] = useState([])
     const [modal, setModal] = useState({
         visible: false
     })
-    console.log('props.board.id', props.board.id)
+    // console.log('props.board.id', props.board.id)
 
     const uploadImage = async e =>{
         const files = e.target.files
@@ -21,7 +21,6 @@ export default function PhotoUpload(props) {
         setLoading(true)
         const res = await fetch(
             "https://api.cloudinary.com/v1_1/dphsou5mr/image/upload"
-            // process.env.CLOUDINARY_URL
             , 
             {
             method: "POST",
@@ -51,6 +50,25 @@ export default function PhotoUpload(props) {
         })
     }
 
+    const {id} = useParams()
+    console.log('id', id)
+
+    useEffect(()=>{
+        API.getAllImagesForMap(id).then(res=>{
+            const imageArray = res.data
+            setImageArr(imageArray)
+        }).catch(err=>console.log("err",err))
+    }, [image])
+
+    console.log('imageArr', imageArr)
+
+    const arrayTest = [];
+    imageArr.map(item=>{
+        console.log('item', item)
+        arrayTest.push(
+            <img src={item}/>
+        )
+    })
     const switchModal = () => {
         setModal({
             visible: !modal.visible,
@@ -93,7 +111,7 @@ export default function PhotoUpload(props) {
                     ): (
                         <img src={image} style={{width:"300px"}}/>
                     )}
-                     <img src={props.board.images} style={{width:"300px"}}/>
+                    {arrayTest.map(item=>{return item})}
             </Modal>
         
         </div>

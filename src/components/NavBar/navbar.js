@@ -38,7 +38,7 @@ export default function Navbar(props) {
             const sessionUser = results.data.user;
             API.getUserById(sessionUser.id).then((user) => {
                 setUserData(user.data);
-                // console.log('userData', userData)
+                
             })
         }).catch((err) => {
             console.log('err', err)
