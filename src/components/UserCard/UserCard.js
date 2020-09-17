@@ -21,7 +21,7 @@ export default function UserCard(props) {
     })
 
     const [loading, setLoading] = useState(false)
-    const [image,setImage] = useState("")
+    const [image, setImage] = useState("")
 
     const [nameForm] = Form.useForm();
     const [names, setNames] = useState({
@@ -51,7 +51,7 @@ export default function UserCard(props) {
         });
     };
 
-    const uploadImage = async e =>{
+    const uploadImage = async e => {
         const files = e.target.files
         const data = new FormData()
         data.append("file", files[0])
@@ -59,18 +59,18 @@ export default function UserCard(props) {
         setLoading(true)
         const res = await fetch(
             "https://api.cloudinary.com/v1_1/dphsou5mr/image/upload"
-            , 
+            ,
             {
-            method: "POST",
-            body: data
-        }).catch(err=>{
-            console.log('err', err)
-            message.error("This Photo could not be Uploaded", 3)
-        })
+                method: "POST",
+                body: data
+            }).catch(err => {
+                console.log('err', err)
+                message.error("This Photo could not be Uploaded", 3)
+            })
 
         const file = await res.json()
         // console.log('file.url', file.url)
-        
+
         setImage(file.secure_url)
         setLoading(false)
         const imgObj = {
@@ -79,13 +79,13 @@ export default function UserCard(props) {
         // console.log('imgObj', imgObj)
         // console.log('props.board.id', props.board.id)
         API.addProfilePicture(imgObj, props.userData._id)
-        .then(img=>{
-        // console.log('img', img)        
-        })
-        .catch(err=>{
-            console.log('err', err)
-            
-        })
+            .then(img => {
+                // console.log('img', img)        
+            })
+            .catch(err => {
+                console.log('err', err)
+
+            })
     }
 
     console.log('props.userData._id', props.userData._id)
@@ -188,7 +188,11 @@ export default function UserCard(props) {
                             <Card title="YOUR PLANiT" bordered={true}>
                                 <Row justify="center">
                                     <Col xs={{ span: 12 }} id="user-header">
-                                        <img id="profile-picture-usercard" src={userData.image}/> <p className="user-info"><strong>{userData.name.first} {userData.name.last}</strong></p>
+                                        <img
+                                            id="profile-picture-usercard"
+                                            src={userData.image.length > 0 ? userData.image[userData.image.length - 1] : `https://ui-avatars.com/api/?name=${userData.name.first}+${userData.name.last}`}
+                                        />
+                                        <p className="user-info"><strong>{userData.name.first} {userData.name.last}</strong></p>
                                     </Col>
                                 </Row>
                                 <div className="card-content">
@@ -267,24 +271,24 @@ export default function UserCard(props) {
                 cancelText="Close"
                 okButtonProps={{ style: { display: 'none' } }}
             >
-                <Row justify="left" gutter={[16,16]}>
+                <Row justify="left" gutter={[16, 16]}>
                     <Col span={24}>
-                            <Divider orientation="left">Add Profile Picture</Divider>
-                            <input
-                                type="file" 
-                                name="file" 
-                                placeholder="upload input"
-                                onChange={uploadImage}
-                            ></input>
-                                {loading? (
-                                    <h3>loading...</h3>
-                                ): (
-                                    <img src={image} style={{width:"450px"}}/>
-                                )}
-                                <img src={userData.image} style={{width:"450px"}}/>
-                                
-
-                           
+                        <Divider orientation="left">Edit Profile Picture</Divider>
+                        <input
+                            type="file"
+                            name="file"
+                            placeholder="upload input"
+                            onChange={uploadImage}
+                        ></input>
+                        {loading ? (
+                            <h3>loading...</h3>
+                        ) : (
+                                <img src={image} style={{ width: "450px" }} />
+                            )}
+                        {userData.image.length > 0
+                            ? <img src={userData.image[userData.image.length - 1]} style={{ width: "450px" }} />
+                            : null
+                        }
                     </Col>
                 </Row>
                 <Row justify="left" gutter={[16, 16]}>

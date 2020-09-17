@@ -15,6 +15,7 @@ export default function User() {
         createdMaps: [],
         guestMaps: [],
         invitations: [],
+        image: [],
     });
 
     useEffect(() => {
