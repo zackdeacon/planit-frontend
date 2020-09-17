@@ -101,7 +101,12 @@ export default function Navbar(props) {
                 <Row justify="start">
                     <Col >
                         {/* {console.log(userData.name.first)} */}
-                        {isLoggedIn ? <h1 className="welcome">Welcome, {userData.name.first}</h1> : null}
+                        {isLoggedIn ? 
+                        <div>
+                        <h1 className="welcome">Welcome, {userData.name.first}</h1>
+                        <img className="profile-picture-navbar" src={userData.image}/>
+                        </div>
+                        : null}
                     </Col>
                 </Row>
             </div>

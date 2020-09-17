@@ -40,7 +40,9 @@ export default function PhotoUpload(props) {
         }
         // console.log('imgObj', imgObj)
         // console.log('props.board.id', props.board.id)
-        API.postNewImage(imgObj, props.board.id)
+        API.postNewImage(imgObj, props.board.id
+            // userId
+            )
         .then(img=>{
         // console.log('img', img)        
         })
