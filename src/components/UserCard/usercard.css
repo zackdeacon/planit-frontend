@@ -46,6 +46,17 @@
     text-align: center;
 }
 
+/* #user-header{
+    border-color: #6c8e98;
+    border-width: 10px;
+} */
+
+#profile-picture-usercard{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%
+}
+
 h2{
     /* color: #414141; */
     color: White;

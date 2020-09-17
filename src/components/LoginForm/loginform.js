@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-scroll';
 import { Row, Form, Input, Button, message } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons'
+import { UserOutlined, LockOutlined, DashboardFilled } from '@ant-design/icons'
 import API from '../../utils/API';
 import Aos from 'aos'
 import "aos/dist/aos.css"
@@ -15,6 +15,7 @@ export default function LoginForm() {
         loginForm: "login-form show",
         regForm: "register-form hide",
     })
+
 
     useEffect(() => {
         Aos.init()
@@ -100,6 +101,7 @@ export default function LoginForm() {
     const onFinish = values => {
         // console.log('Received values of form: ', values);
     };
+
 
     return (
         <>
