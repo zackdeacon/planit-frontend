@@ -7,6 +7,7 @@ import MapDashboard from './pages/MapDashboard/MapDashboard';
 import Suggestions from "./pages/Suggestion/Suggestion";
 import FinalRender from "./pages/FinalRender/FinalRender";
 import Chat from "./components/Chat/chat";
+import Loading from "./components/Loading/loading";
 import NoMatch from "./pages/NoMatch/NoMatch";
 import './App.css';
 
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route exact path="/chat">
             <Chat />
+          </Route>
+          <Route exact path="/loading">
+            <Loading />
           </Route>
           <Route path="*">
             <NoMatch />
