@@ -8,27 +8,39 @@ import "./landingcontent.css"
 export default function LandingContent() {
 
     const [loading, setLoading] = useState(true);
+    const [width, setWidth] = useState(window.innerWidth);
 
-    const [isPhone, setIsPhone] = useState(false);
-
+// Function runs when video is finished loading
     const onLoadedData = () => {
-        setLoading(false);
-        setIsPhone(false);
+        let timeleft = 1
+        let countdown = setInterval(() => {
+            if (timeleft === 0){
+                setLoading(false);
+                clearInterval(countdown)
+                console.log("if");
+            } else {
+                timeleft = timeleft - 1;
+                console.log("else");
+            }
+            console.log(timeleft);
+        }, 1000);
     };
 
+// Function sets the width state according to vw
     const checkWidth = () => {
-        // function to check phone width and setIsPhone true or false 
+        setWidth(window.innerWidth);
     };
 
+// useEffect that sets animation duration and listens for vw change
     useEffect(() => {
-        Aos.init({ duration: 1000 })
+        Aos.init({ duration: 1000 });
+        window.addEventListener('resize', checkWidth);
     }, [])
 
     return (
         <>
         <div className="vid-container" id="home-top">
-            <Loading display={loading} phone={isPhone} /> 
-            <div className="still-image"></div> 
+
             <video autoPlay="autoplay" loop="loop" muted className="vid" onLoadedData={onLoadedData} style={{ opacity: loading ? 0 : 1 }}>
                 <source src="./assets/video/PLANiT2.mp4" type="video/mp4" />
             </video>
@@ -54,6 +66,10 @@ export default function LandingContent() {
                     </Col>
                 </Row>
             </div>
+
+            <Loading display={loading} width={width} /> 
+            
+            <div className="still-image"></div> 
         </div>
         </>
     )

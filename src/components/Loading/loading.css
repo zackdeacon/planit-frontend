@@ -4,7 +4,7 @@
     width: 100vw;
     background-color: rgb(34, 34, 34);
     z-index: 1;
-    transition: all .8s ease-in-out;
+    transition: all .9s ease-in-out;
 }
 
 .loading-logo{
