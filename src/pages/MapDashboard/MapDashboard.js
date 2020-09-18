@@ -6,8 +6,7 @@ import MapCard from '../../components/MapCard/mapcard'
 import Chat from '../../components/Chat/chat'
 import API from '../../utils/API'
 import './mapdashboard.css'
-import Avatar from 'antd/lib/avatar/avatar';
-import PhotoUpload from '../../components/PhotoUpload/photoupload';
+
 
 
 

@@ -37,6 +37,9 @@ export default {
     // username is type String
     return axios.get(`${urlPrefix}/api/users/one/username/${username}`);
   },
+  addProfilePicture: function (image, userId) {
+    return axios.post(`${urlPrefix}/api/users/picture/${userId}`, image, { withCredentials: true })
+  },
   changeName: function (name) {
     // name: { first, last }
     // Note: leaving first or last empty will result in only one updating
@@ -89,10 +92,10 @@ export default {
     // map: { id }
     return axios.delete(`${urlPrefix}/api/maps/delete`, map);
   },
-  postNewImage: function(images, mapId){
+  postNewImage: function (images, mapId) {
     return axios.post(`${urlPrefix}/api/maps/images/new/${mapId}`, images, { withCredentials: true })
   },
-  getAllImages: function(mapId){
+  getAllImagesForMap: function (mapId) {
     return axios.get(`${urlPrefix}/api/maps/images/${mapId}`)
   },
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from "react-router-dom";
 import { Row, Modal, Button, Form, Input } from 'antd'
-import Aos from "aos"
 import NavBar from '../../components/NavBar/navbar'
 import FinalRenderCard from '../../components/FinalRenderCard/FinalRenderCard'
 import './finalrender.css'
