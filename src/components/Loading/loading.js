@@ -1,9 +1,10 @@
-import React from 'react';
+import userEvent from '@testing-library/user-event';
+import React, {useState, useEffect} from 'react';
 import "./loading.css";
 
 export default function Loading(props) {
 
-    // opacity: props.display ? 1 : 0, display: props.phone ? "block" : "none" 
+    const [className, setClassName] = useState("loading-div")
 
     const setLoadingStyle = () => {
         if (props.width > 499) { 
@@ -13,8 +14,23 @@ export default function Loading(props) {
         }
     }
 
+    const displayNone = () => {
+        let timeleft = 3
+        let countdown = setInterval(() => {
+            if (timeleft === 0){
+                setClassName("disappear")
+            } else {
+                timeleft = timeleft - 1;
+            }
+        }, 1000);
+    }
+
+    useEffect(() => {
+        displayNone()
+    }, [])
+
     return (
-        <div className="loading-div" style={setLoadingStyle()}>
+        <div className={className} style={setLoadingStyle()}>
             <img className="loading-logo" src="./assets/logos/logo.png" alt="logo"/>
             <img className="loading-text" src="./assets/logos/txt.png" alt="logo-text"/>
         </div>

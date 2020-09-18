@@ -17,12 +17,9 @@ export default function LandingContent() {
             if (timeleft === 0){
                 setLoading(false);
                 clearInterval(countdown)
-                console.log("if");
             } else {
                 timeleft = timeleft - 1;
-                console.log("else");
             }
-            console.log(timeleft);
         }, 1000);
     };
 
