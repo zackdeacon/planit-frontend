@@ -22,12 +22,9 @@ export default function Navbar(props) {
         name: {
             first: "",
             last: ""
-        }
+        },
+        image: [],
     })
-
-    // useEffect(() => {
-    //     setUserData({ ...userData, name: props.name })
-    // }, [props.name])
 
     useEffect(() => {
         checkIfUser()
@@ -38,7 +35,6 @@ export default function Navbar(props) {
             const sessionUser = results.data.user;
             API.getUserById(sessionUser.id).then((user) => {
                 setUserData(user.data);
-                
             })
         }).catch((err) => {
             console.log('err', err)
@@ -84,7 +80,7 @@ export default function Navbar(props) {
         })
     }
 
-;
+        ;
 
     return (
         <>
@@ -101,12 +97,14 @@ export default function Navbar(props) {
                 <Row justify="start">
                     <Col >
                         {/* {console.log(userData.name.first)} */}
-                        {isLoggedIn ? 
-                        <div>
-                        <h1 className="welcome">Welcome, {userData.name.first}</h1>
-                        <img className="profile-picture-navbar" src={userData.image}/>
-                        </div>
-                        : null}
+                        {isLoggedIn ?
+                            <Row className="navUserContainer">
+                                <img
+                                    className="profile-picture-navbar"
+                                    src={userData.image.length > 0 ? userData.image[userData.image.length - 1] : `https://ui-avatars.com/api/?name=${userData.name.first}+${userData.name.last}`} />
+                                <h1 className="welcome">{userData.name.first} {userData.name.last}</h1>
+                            </Row>
+                            : null}
                     </Col>
                 </Row>
             </div>
