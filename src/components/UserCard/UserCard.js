@@ -274,21 +274,25 @@ export default function UserCard(props) {
                 <Row justify="left" gutter={[16, 16]}>
                     <Col span={24}>
                         <Divider orientation="left">Edit Profile Picture</Divider>
-                        <input
-                            type="file"
-                            name="file"
-                            placeholder="upload input"
-                            onChange={uploadImage}
-                        ></input>
-                        {loading ? (
-                            <h3>loading...</h3>
-                        ) : (
-                                <img src={image} style={{ width: "450px" }} />
-                            )}
-                        {userData.image.length > 0
-                            ? <img src={userData.image[userData.image.length - 1]} style={{ width: "450px" }} />
-                            : null
-                        }
+                        <Row justify="center">
+                            <Col span={20}>
+                                <input
+                                    type="file"
+                                    name="file"
+                                    placeholder="upload input"
+                                    onChange={uploadImage}
+                                ></input>
+                                {loading ? (
+                                    <h3>loading...</h3>
+                                ) : (
+                                        <img src={image} style={{ width: "100%" }} />
+                                    )}
+                                {userData.image.length > 0
+                                    ? <img src={userData.image[userData.image.length - 1]} style={{ width: "100%" }} />
+                                    : null
+                                }
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
                 <Row justify="left" gutter={[16, 16]}>

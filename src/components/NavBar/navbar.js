@@ -102,7 +102,7 @@ export default function Navbar(props) {
                                 <img
                                     className="profile-picture-navbar"
                                     src={userData.image.length > 0 ? userData.image[userData.image.length - 1] : `https://ui-avatars.com/api/?name=${userData.name.first}+${userData.name.last}`} />
-                                <h1 className="welcome">{userData.name.first} {userData.name.last}</h1>
+                                <h1 className="user-name">{userData.name.first} {userData.name.last}</h1>
                             </Row>
                             : null}
                     </Col>

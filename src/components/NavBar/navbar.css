@@ -97,16 +97,18 @@
     margin-left: 5px;
 }
 
-.welcome{
+.user-name{
     font-size: 15px;
     color: white;
     position: relative;
     padding-left: 10px;
-    top: 9px;
+    top: 25px;
     text-shadow: 2px 1px 5px black;
 }
 
 .profile-picture-navbar{
+    position: relative;
+    top: 14px;
     margin: 5px 0px 0px 10px;
     width: 35px;
     height: 35px;
@@ -114,8 +116,7 @@
 }
 
 @media only screen and (max-width:650px){
-    .welcome{
-        font-size: 10px;
-        top: 34px;
+    .user-name{
+        display: none
     }
 }

@@ -1,8 +1,8 @@
-.photo-button{
+.photo-button, .photo-button:focus{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #b0aa9e;
+  background-color: #643c36;
   width: 40%;
   min-width: 300px;
   border: none;
@@ -13,12 +13,17 @@
   padding-bottom: 0;
 }
 
+.photo-button:hover{
+  background-color: #6eb0b4;
+  border: white 1px solid;
+  color: white
+}
+
 .photo-row {
   padding-top: 20px;
   width: 100%;
 }
 
 .trip-images{
-  max-width: 450px;
-  margin: 10px
+  max-width: 100%;
 }

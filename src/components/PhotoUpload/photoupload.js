@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import {message, Modal, Button, Row, Upload } from 'antd';
+import {message, Modal, Button, Row, Col, Upload } from 'antd';
 // import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import API from "../../utils/API";
 import './photoupload.css'
@@ -94,14 +94,14 @@ export default function PhotoUpload(props) {
     return (
         <div>
             <Row className="photo-row" justify="center">
-            <Button
-                className="photo-button"
-                onClick={switchModal}
-            >Upload Photos</Button>
+                <Button
+                    className="photo-button"
+                    onClick={switchModal}
+                >Upload Photos</Button>
             </Row>
             <Modal
                 visible={modal.visible}
-                title="Images"
+                title="Upload Trip Photos"
                 onOk={handleOk}
                 onCancel={handleCancel}
                 footer={[
@@ -119,9 +119,13 @@ export default function PhotoUpload(props) {
                     {loading? (
                         <h3>loading...</h3>
                     ): (
-                        <img src={image} style={{width:"450px"}}/>
+                        <img src={image} style={{width:"100%"}}/>
                     )}
-                    {arrayTest.map(item=>{return item})}
+                    <hr/>
+                    <h1 style={{textAlign: "center", color:"grey"}}>Photo Gallery</h1>
+                    <Row gutter="1" align="middle" justify="center">
+                        {arrayTest.map((item)=>{return <Col span={6}> {item} </Col>})}
+                    </Row>
             </Modal>
         
         </div>
