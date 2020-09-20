@@ -32,10 +32,19 @@
     width: 100%;
     background-color: #4d534a;
     border: #576d65;
+    margin-bottom: 10px;
 }
 .form-button:hover {
     background-color: #576d65;
     border: #4d534a;
+}
+.change-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.change-form-container p {
+    margin: 0px 0px 2px 0px;
 }
 
 @media only screen and (max-width:575px){
@@ -51,11 +60,11 @@
 }
 
 /* Login Form Styling */
-Form a{
+Form p{
     color: white;
     margin-top: 5px;
 }
-Form a:hover{
+Form p:hover{
     color: #576d65;
     cursor: pointer;
 }
