@@ -18,7 +18,8 @@ export default function Loading(props) {
         let timeleft = 3
         let countdown = setInterval(() => {
             if (timeleft === 0){
-                setClassName("disappear")
+                setClassName("disappear");
+                clearInterval(countdown);
             } else {
                 timeleft = timeleft - 1;
             }
