@@ -46,9 +46,12 @@ export default {
     return axios.put(`${urlPrefix}/api/users/change/name`, name, { withCredentials: true });
   },
   changePassword: function (passwordData) {
-    // passwords: { oldPassword, newPassword }
-    // Note: leaving first or last empty will result in only one updating
+    // passwordData: { oldPassword, newPassword }
     return axios.put(`${urlPrefix}/api/users/change/password`, passwordData, { withCredentials: true });
+  },
+  resetPassword: function (userId) {
+    console.log(userId)
+    return axios.put(`${urlPrefix}/api/users/reset/password`, { userId }, { withCredentials: true });
   },
   acceptMapInvitiation: function (acceptData) {
     // index the index of the invite to remove
