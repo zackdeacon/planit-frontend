@@ -49,12 +49,8 @@ export default function MapCard(props) {
         <Row className="add-sug-row" justify="center">
           {suggestions.length>0? <Button className="itin-btn" href={itinBtn} data-map-id={id}>Itinerary</Button> : null}
         </Row>
-       
-          <PhotoUpload  board={props.board}/>
- 
-
+        <PhotoUpload  board={props.board}/>
       </div>
-      {/* </div> */}
     </>
   )
 }

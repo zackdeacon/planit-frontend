@@ -16,6 +16,17 @@ video.vid {
     z-index: -100;
     transform: translate(-50%, -50%);
 }
+
+.still-image { 
+    background-image: url("../../images/mountain.png");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover; 
+    height: 100vh;
+    position: relative;
+    z-index: -101;
+}
   
 /* Darkening Filter/Content Container Div */
 .filter-div {
@@ -40,29 +51,17 @@ z-index: -100;
 transform: translate(-50%, -50%);
 }
 
-/* Adjusting Vid & Content Container Divs for Large Screens & Phone Landscape Mode */
-/* @media screen and (min-width: 1875px) {
-    .vid-container {
-        width: 100vw;
-    }
-    .vid {
-        width: 100vw;
-    }
-    .filter-div {
-        width: 100vw;
+/* Switching to Still Image for Mobile */
+@media screen and (min-width: 500px) {
+    .still-image{
+        display: none;
     }
 }
-@media screen and (width: 812px) and (height: 375px) {
-    .vid-container {
-        width: 100vw;
+@media screen and (max-width: 500px) {
+    video.vid {
+        display: none;
     }
-    .vid {
-        width: 100vw;
-    }
-    .filter-div {
-        width: 100vw;
-    }
-} */
+}
 
 /* Content Over Vid Divs */
 .content {
