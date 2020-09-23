@@ -15,19 +15,23 @@ export default function Loading(props) {
     }
 
     const displayNone = () => {
-        let timeleft = 3
+        if (props.display === true) {
+        } else {
+        let timeleft = 1
         let countdown = setInterval(() => {
-            if (timeleft === 0){
-                setClassName("disappear")
-            } else {
-                timeleft = timeleft - 1;
-            }
-        }, 1000);
+                if (timeleft === 0){
+                    setClassName("disappear");
+                    clearInterval(countdown);
+                } else {
+                    timeleft = timeleft - 1;
+                }
+            }, 500);
+        }
     }
 
     useEffect(() => {
         displayNone()
-    }, [])
+    }, [props.display])
 
     return (
         <div className={className} style={setLoadingStyle()}>
