@@ -114,10 +114,12 @@
 
   .itin-btn:hover{
     background-color: #6eb0b4;
+    border: white 1px solid;
     color: white
   }
 
   .add-sug-btn:hover{
     background-color: #6eb0b4;
+    border: white 1px solid;
     color: white
   }

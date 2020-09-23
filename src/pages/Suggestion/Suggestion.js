@@ -43,7 +43,7 @@ function Suggestions() {
 
     function handleFormSubmit() {
         API.postNewSuggestion(formObject).then(data => {
-            console.log("here is your new suggestion", data)
+            // console.log("here is your new suggestion", data)
             history.push(mapDashboard)
         })
     }

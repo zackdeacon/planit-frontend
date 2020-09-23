@@ -15,6 +15,7 @@ export default function User() {
         createdMaps: [],
         guestMaps: [],
         invitations: [],
+        image: [],
     });
 
     useEffect(() => {
@@ -33,7 +34,7 @@ export default function User() {
         <>
             <img src="./assets/images/glenn-carstens-unsplash.jpg" className="bg" />
             <div className="dark-filter">
-                <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" name={userData.name} />
+                <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" userData={userData} />
                 <UserCard userData={userData} setUserData={setUserData} />
             </div>
         </>

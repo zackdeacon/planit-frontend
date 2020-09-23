@@ -1,20 +1,29 @@
+.photo-button, .photo-button:focus{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #643c36;
+  width: 40%;
+  min-width: 300px;
+  border: none;
+  height: 50px;
+  border-radius: 10px;
+  color: white;
+  font-size: 17px;
+  padding-bottom: 0;
+}
 
-  .photo-button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #b0aa9e;
-    width: 40%;
-    min-width: 300px;
-    border: none;
-    height: 50px;
-    border-radius: 10px;
-    color: white;
-    font-size: 17px;
-    padding-bottom: 0;
-  }
+.photo-button:hover{
+  background-color: #6eb0b4;
+  border: white 1px solid;
+  color: white
+}
 
-  .photo-row {
-    padding-top: 20px;
-    width: 100%;
-  }
+.photo-row {
+  padding-top: 20px;
+  width: 100%;
+}
+
+.trip-images{
+  max-width: 100%;
+}
