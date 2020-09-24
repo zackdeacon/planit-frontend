@@ -69,26 +69,20 @@ export default function UserCard(props) {
             })
 
         const file = await res.json()
-        // console.log('file.url', file.url)
 
         setImage(file.secure_url)
         setLoading(false)
         const imgObj = {
             image: file.secure_url
         }
-        // console.log('imgObj', imgObj)
-        // console.log('props.board.id', props.board.id)
         API.addProfilePicture(imgObj, props.userData._id)
-            .then(img => {
-                // console.log('img', img)        
+            .then(img => {    
             })
             .catch(err => {
                 console.log('err', err)
 
             })
     }
-
-    console.log('props.userData._id', props.userData._id)
 
     const updatePasswords = (event) => {
         const { name, value } = event.target;
@@ -143,7 +137,6 @@ export default function UserCard(props) {
         const id = userData._id
         console.log("passed in", id)
         API.deleteUser(id).then(res => {
-            // console.log("Delete Btn Clicked", res.data);
             history.push("/")
         })
         message.success("Account deleted", 2)
@@ -189,6 +182,7 @@ export default function UserCard(props) {
                                 <Row justify="center">
                                     <Col xs={{ span: 12 }} id="user-header">
                                         <img
+                                            alt="profile-pic"
                                             id="profile-picture-usercard"
                                             src={userData.image.length > 0 ? userData.image[userData.image.length - 1] : `https://ui-avatars.com/api/?name=${userData.name.first}+${userData.name.last}`}
                                         />
@@ -285,10 +279,10 @@ export default function UserCard(props) {
                                 {loading ? (
                                     <h3>loading...</h3>
                                 ) : (
-                                        <img src={image} style={{ width: "100%" }} />
+                                        <img alt="" src={image} style={{ width: "100%" }} />
                                     )}
                                 {userData.image.length > 0
-                                    ? <img src={userData.image[userData.image.length - 1]} style={{ width: "100%" }} />
+                                    ? <img alt="user-pic" src={userData.image[userData.image.length - 1]} style={{ width: "100%" }} />
                                     : null
                                 }
                             </Col>

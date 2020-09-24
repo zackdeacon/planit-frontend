@@ -30,9 +30,6 @@ video.vid {
   
 /* Darkening Filter/Content Container Div */
 .filter-div {
-/* position: absolute;
-top: 0;
-height: 100vh; */
 display: flex;
 justify-content: center;
 align-items: center;

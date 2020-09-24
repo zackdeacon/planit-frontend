@@ -85,9 +85,8 @@ export default function LoginForm() {
         API.getUserByUsername(resetForm.username).then(user => {
             console.log(user);
             const userId = user.data._id;
-            API.resetPassword(userId).then(data => {
-                console.log(data);
-                message.success("An email has been sent with instructions to reset your password.");
+            API.resetPassword(userId).then(({data}) => {
+                message.success(`An email has been sent to ${data.email} with instructions to reset your password.`);
             }).catch(err => {
                 console.log(err);
             })
@@ -118,7 +117,6 @@ export default function LoginForm() {
         } else {
             setFormObjectSignup({ ...formObjectSignup, [name]: value })
         }
-        // console.log(formObjectSignup);
     }
 
     function handleSubmitSignup(e) {
@@ -148,8 +146,6 @@ export default function LoginForm() {
                     name="normal_login"
                     className={newUser.loginForm}
                     initialValues={{ remember: true }}
-                // data-aos="fade-up"
-                // data-aos-duration='1500'
                 >
                     <div className="form-title">LET'S PLANiT</div>
                     <Form.Item

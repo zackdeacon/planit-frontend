@@ -9,27 +9,6 @@ import { useParams } from "react-router-dom";
 
 //Components and styling taken from example of Youtube
 
-// const Page = styled.div`
-//   display: flex;
-//   height: 100%
-//   width: 100%
-//   align-items: center;
-//   background-color: #46516e;
-//   flex-direction: column;
-// `;
-
-// const Container = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   height: 100%;
-//   overflow: auto;
-//   width: 400px;
-//   border: 1px solid lightgray;
-//   border-radius: 10px;
-//   padding-bottom: 10px;
-//   margin-top: 25px;
-// `;
-
 const TextArea = styled.textarea`
 width: 90%;
 height: 100px;
@@ -155,7 +134,6 @@ const Chat = () => {
       message: message,
     };
     API.postNewChat(chatData).then((data) => {
-      // console.log(data)
       setMessage("");
       socketRef.current.emit("new message");
       updateMessages();
@@ -178,8 +156,6 @@ const Chat = () => {
         <Row justify="center">
           <Col className="chat-box" id="chat-box">
             {messages.map((message, index) => {
-              // console.log(userData.id);
-              // console.log(message.user._id);
               if (message.user._id === userData.id) {
                 return (
                   <MyRow key={index}>
@@ -225,36 +201,3 @@ const Chat = () => {
 
 
 export default Chat;
-
-
-
-    //Components and styling taken from example of Youtube
-    // <Page>
-    // <Container>
-    //   {messages.map((message, index) => {
-    //     if (message.id === yourID) {
-    //       return (
-    //         <MyRow key={index}>
-    //           <MyMessage>
-    //             {message.message}
-    //             {/* {message.name} */}
-    //           </MyMessage>
-    //         </MyRow>
-    //       )
-    //     }
-    //     return (
-    //       <PartnerRow key={index}>
-    //         <PartnerMessage>
-    //           {message.message}
-    //           {/* {message.name} */}
-    //         </PartnerMessage>
-    //       </PartnerRow>
-    //     )
-    //   })}
-    // </Container>
-    // <Form onSubmit={sendMessage}>
-    //   <TextArea value={message} onChange={handleChange} placeholder="Say something..." />
-    //   <Button>Send</Button>
-    // </Form>
-    // </Page>
-    //Components and styling taken from example of Youtube

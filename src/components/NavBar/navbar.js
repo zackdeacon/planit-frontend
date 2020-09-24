@@ -40,7 +40,6 @@ export default function Navbar(props) {
             console.log('err', err)
         })
     }, []);
-    // console.log('user', props.userData)
 
     const handleHamburgerClick = () => {
         if (!menuBtn.menuOpen) {
@@ -61,7 +60,6 @@ export default function Navbar(props) {
     const logOut = () => {
         history.push("/")
         API.logout().then(req => {
-            // console.log("You have been launched out of PLANiT!");
             history.push("/");
         })
     }
@@ -96,11 +94,11 @@ export default function Navbar(props) {
             <div className="wrapper-name">
                 <Row justify="start">
                     <Col >
-                        {/* {console.log(userData.name.first)} */}
                         {isLoggedIn ?
                             <Row className="navUserContainer">
                                 <img
                                     className="profile-picture-navbar"
+                                    alt="profile-pic"
                                     src={userData.image.length > 0 ? userData.image[userData.image.length - 1] : `https://ui-avatars.com/api/?name=${userData.name.first}+${userData.name.last}`} />
                                 <h1 className="user-name">{userData.name.first} {userData.name.last}</h1>
                             </Row>
