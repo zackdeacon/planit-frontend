@@ -98,7 +98,7 @@ export default function MapDashboard(props) {
 
     return (
         <>
-            <img src="/assets/images/charlotte-noelle-unsplash.jpg" className="dashboard-bg" />
+            <img src="/assets/images/charlotte-noelle-unsplash.jpg" className="dashboard-bg" alt="background-image"/>
             <div className="dash-filter-background">
                 <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
 
