@@ -5,7 +5,6 @@
 .ant-card-head {
     display: flex;
     justify-content: center;
-    /* background-color:rgb(152, 123, 85); */
     background-color: #6c8e98;
 }
 
@@ -61,7 +60,6 @@
 }
 
 h2{
-    /* color: #414141; */
     color: White;
     padding-top: 10px;
 }

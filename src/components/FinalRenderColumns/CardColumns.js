@@ -1,11 +1,9 @@
 import React from 'react'
-import { Card, Col } from 'antd'
+import { Card } from 'antd'
 
 
 export default function CardColumns(props) {
-  console.log('props', props.suggestions)
   
- 
   return (
     <>
         <Card className="setCardHeight" type="inner" title={props.suggestions.title}

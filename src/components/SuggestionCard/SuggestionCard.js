@@ -35,8 +35,6 @@ export default function SuggestionCard(props) {
     message: "",
   })
 
-  // const [userData, setUserData] = useState({});
-
   const {id} = useParams()
 
   // Sets Ref to keep latest submitted comment in view 
@@ -52,7 +50,7 @@ export default function SuggestionCard(props) {
       let percent = Math.floor(ratio*100)
       setPercentageVotes(percent)
     })
-  })
+  }, [displayDownVote, displayUpVote, id]);
 
   useEffect(()=>{
     const arr = props.suggestions.votes
@@ -70,18 +68,11 @@ export default function SuggestionCard(props) {
     }
     setDisplayUpVote(arrUpVotes.length) ;
     setDisplayDownVote(arrDownVotes.length) ;
-  }, [])
-
-  // useEffect(() => {
-  //   API.getSessionData().then(res => {
-  //     setUserData(res.data.user);
-  //   }).catch(console.log)
-  // }, [])
+  }, [props.suggestions.votes])
 
   //up vote btn
   const handleIncrement =()=> {
     setUpVote(true)
-    // setIsClicked(true)
     const voteUpObj = {
       vote:upVote
     }
@@ -154,7 +145,6 @@ export default function SuggestionCard(props) {
     <Col xs={{span:24}} align="middle">
       <Card 
         size="small" 
-        // title={userData.username} 
         style={{width:"90%",borderRadius:"5px"}}
       >
         <p>
@@ -163,6 +153,7 @@ export default function SuggestionCard(props) {
       </Card>
     </Col>
     )
+    return "Success"
   })
  
 
@@ -266,9 +257,7 @@ export default function SuggestionCard(props) {
                       form={form}
                       name="basic"
                       initialValues={{ remember: true }}
-                      // onFinish={commentSubmit}
                       layout="vertical"
-                      // onFinishFailed={onFinishFailed}
                     >
                       <div className="comments-container" >
                         <Row justify="center">

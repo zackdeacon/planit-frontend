@@ -7,7 +7,7 @@ import "aos/dist/aos.css"
 export default function UXI() {
 
     useEffect(() => {
-        Aos.init({ duration: 2000,  })
+        Aos.init({ duration: 2000 })
     }, [])
 
     return (

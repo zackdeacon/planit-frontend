@@ -18,7 +18,7 @@ video.vid {
 }
 
 .still-image { 
-    background-image: url("../../images/mountain.png");
+    background-image: url("../../images/mountain.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -30,9 +30,6 @@ video.vid {
   
 /* Darkening Filter/Content Container Div */
 .filter-div {
-/* position: absolute;
-top: 0;
-height: 100vh; */
 display: flex;
 justify-content: center;
 align-items: center;

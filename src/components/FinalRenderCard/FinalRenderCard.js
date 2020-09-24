@@ -1,53 +1,51 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { Row, Col, Button, Popconfirm , message} from 'antd'
 import "./FinalRenderCard.css"
 import API from '../../utils/API'
 import CardColumns from "../FinalRenderColumns/CardColumns"
-import { CloudTwoTone } from '@ant-design/icons'
 
 
 export default function FinalRenderCard() {
   const [suggestions, setSuggestions] = useState([]);
   const [categoryColumns, setCategoryColumns] = useState([]);
-  const [cost, setCost] = useState(0);
 
   const { id } = useParams()
-
+  
   useEffect(() => {
     API.getSuggestionsForMap(id).then(res => {
       const suggestionArr = res.data;
       setSuggestions(suggestionArr);
     }).catch(err => console.log('err', err));
-  }, []);
-
+  }, [id]);
   
   useEffect(() => {
+    function createCategoryColumns(suggestions) {
+      const categoryColumns = [];
+      const categoryObject = createCategoryObject(suggestions);
+      const categoryArray = Object.entries(categoryObject);
+      for (const [category, suggAry] of categoryArray) {
+        let sorted = sortByVotes(suggAry);
+        if (category === "Accommodation" || category === "Flights") {
+          sorted = [sorted[0]];
+        };
+        const categoryColumn = (
+          <Col key={category} keytext="center" sm={{ span: 6 }}>
+            <h1 className="columnTitle">{category}</h1>
+            <div className="RenderCardDiv">
+              {sorted.map(sug => <CardColumns key={sug._id} suggestions={sug} />)}
+            </div>
+          </Col>
+        );
+        categoryColumns.push(categoryColumn);
+      }
+      return categoryColumns;
+    }
+
     const newCategoryColumns = createCategoryColumns(suggestions);
     setCategoryColumns(newCategoryColumns);
   }, [suggestions]);
 
-  function createCategoryColumns(suggestions) {
-    const categoryColumns = [];
-    const categoryObject = createCategoryObject(suggestions);
-    const categoryArray = Object.entries(categoryObject);
-    for (const [category, suggAry] of categoryArray) {
-      let sorted = sortByVotes(suggAry);
-      if (category === "Accommodation" || category === "Flights") {
-        sorted = [sorted[0]];
-      };
-      const categoryColumn = (
-        <Col key={category} keytext="center" sm={{ span: 6 }}>
-          <h1 className="columnTitle">{category}</h1>
-          <div className="RenderCardDiv">
-            {sorted.map(sug => <CardColumns key={sug._id} suggestions={sug} />)}
-          </div>
-        </Col>
-      );
-      categoryColumns.push(categoryColumn);
-    }
-    return categoryColumns;
-  }
 
   function createCategoryObject(suggestions) {
     let categoryObject = {};
@@ -103,14 +101,6 @@ export default function FinalRenderCard() {
       costArr.push(costi)
       
     }
-    console.log('costArr', costArr)
-    // const array1 = [1, 2, 3, 4];
-    const reducer = (accumulator, currentValue) => 
-    accumulator + currentValue;
-    console.log('reducer', reducer)
-    // const newthing = costArr.reduce(reducer)
-    // setCost(newthing)
-    // console.log('cost', cost)
   }, [suggestions])
 
   return (

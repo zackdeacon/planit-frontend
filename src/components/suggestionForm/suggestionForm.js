@@ -24,9 +24,8 @@ function SuggestionCreateForm(props) {
                             type="text"
                             value={props.formData.title}
                             onChange={props.handleChange}
-                            maxLength="25"
-                            placeholder="Name Your Suggestion"
                             maxLength="20"
+                            placeholder="Name Your Suggestion"
                         />
                     </Form.Item>
 

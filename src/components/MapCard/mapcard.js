@@ -20,7 +20,7 @@ export default function MapCard(props) {
       setSuggestions(suggestionArr);
     })
       .catch(err => console.log('err', err))
-  }, [commentsDb])
+  }, [commentsDb, id])
 
   const tabsArr = [];
 
@@ -38,7 +38,6 @@ export default function MapCard(props) {
 
   return (
     <>
-      {/* <div className="mapcard-wrapper"> */}
       <div className="card-container">
         <Tabs type="card">
           {tabsArr.map(item => { return item })}

@@ -11,6 +11,8 @@
   color: white;
   font-size: 17px;
   padding-bottom: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .photo-button:hover{

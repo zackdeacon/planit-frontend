@@ -100,10 +100,12 @@
    border-radius: 5px;
    overflow: auto;
    margin-bottom: 10px;
+   pointer-events: none;
 }
 
 .comments-container p{
    margin: 0px;
+   color: #3b5e66;
 }
 
 .sug-modal-submit{

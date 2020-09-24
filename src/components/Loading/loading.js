@@ -1,4 +1,3 @@
-import userEvent from '@testing-library/user-event';
 import React, {useState, useEffect} from 'react';
 import "./loading.css";
 
@@ -13,23 +12,22 @@ export default function Loading(props) {
             return {display: props.display ? "block" : "none"}
         }
     }
-
-    const displayNone = () => {
-        if (props.display === true) {
-        } else {
-        let timeleft = 1
-        let countdown = setInterval(() => {
-                if (timeleft === 0){
-                    setClassName("disappear");
-                    clearInterval(countdown);
-                } else {
-                    timeleft = timeleft - 1;
-                }
-            }, 500);
-        }
-    }
-
+    
     useEffect(() => {
+        const displayNone = () => {
+            if (props.display === true) {
+            } else {
+            let timeleft = 1
+            let countdown = setInterval(() => {
+                    if (timeleft === 0){
+                        setClassName("disappear");
+                        clearInterval(countdown);
+                    } else {
+                        timeleft = timeleft - 1;
+                    }
+                }, 500);
+            }
+        }
         displayNone()
     }, [props.display])
 

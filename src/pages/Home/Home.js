@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import Navbar from "../../components/NavBar/navbar"
 import LandingContent from '../../components/LandingContent/landingcontent'
 import PageDivider from '../../components/PageDivider/pagedivider'
