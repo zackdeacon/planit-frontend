@@ -34,7 +34,6 @@ export default function MapDashboard(props) {
 
     useEffect(() => {
         API.getMapById(id).then(res => {
-            // console.log(res.data.name);
             const mapId = res.data._id;
             const mapImages = res.data.images
             const mapName = res.data.name;
@@ -60,7 +59,7 @@ export default function MapDashboard(props) {
             setCategories(categoriesArr)
            
         }).catch(err => console.log('err', err))
-    }, [])
+    }, [id]);
 
     const switchModal = () => {
         setModal({
@@ -98,7 +97,7 @@ export default function MapDashboard(props) {
 
     return (
         <>
-            <img src="/assets/images/charlotte-noelle-unsplash.jpg" className="dashboard-bg" />
+            <img src="/assets/images/charlotte-noelle-unsplash.jpg" className="dashboard-bg" alt="background"/>
             <div className="dash-filter-background">
                 <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
 

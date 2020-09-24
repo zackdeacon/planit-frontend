@@ -29,7 +29,7 @@ function Suggestions() {
         }).catch(err => {
             console.log(err);
         });
-    }, []);
+    }, [id]);
 
     //hanldeInputChange function to update objectForm State
     function handleInputChange(event) {
@@ -43,7 +43,6 @@ function Suggestions() {
 
     function handleFormSubmit() {
         API.postNewSuggestion(formObject).then(data => {
-            // console.log("here is your new suggestion", data)
             history.push(mapDashboard)
         })
     }
@@ -63,8 +62,6 @@ function Suggestions() {
             />
         </div>
     )
-
-
 }
 
 export default Suggestions;

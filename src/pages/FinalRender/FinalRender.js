@@ -22,7 +22,6 @@ export default function FinalRender() {
     const { id } = useParams()
 
     useEffect(() => {
-        // API.getMapById(req.params.id)
         API.getMapById(id).then(res => {
             const boardName = res.data.name;
             const categoriesArr = res.data.suggestionCategories;
@@ -31,7 +30,7 @@ export default function FinalRender() {
             })
             setCategories(categoriesArr)
         }).catch(err => console.log('err', err))
-    }, [])
+    }, [id]);
 
     const switchModal = () => {
         setModal({
@@ -45,17 +44,13 @@ export default function FinalRender() {
     }
 
     function handleCostSplit(event) {
-        // add logic for calculator
         event.preventDefault();
-
-        // answer = (formSplitCost.price / formSplitCost.splitValue);
         setFormSplitCost({ ...formSplitCost, costSplit: ((formSplitCost.price / formSplitCost.splitValue).toFixed(2)) })
-
     }
 
     return (
         <>
-            <img src="/assets/images/andrew-neel-unsplash.jpg" className="render-background" />
+            <img alt="background-img" src="/assets/images/andrew-neel-unsplash.jpg" className="render-background" />
             <div className="render-filter-background">
                 <NavBar logo="/assets/logos/logotxt.png" width="80px" left="-40px" top="10px" />
                 <Row justify="center">
@@ -101,7 +96,6 @@ export default function FinalRender() {
                             name="splitValue"
                             rules={[{ required: true, message: 'Split cost how many ways!' }]}>
                             <Input
-                                // prefix={<LockOutlined className="site-form-item-icon" />}
                                 name="splitValue"
                                 type="number"
                                 value={formSplitCost.splitValue}

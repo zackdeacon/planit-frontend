@@ -9,11 +9,9 @@ export default function CarouselContent(props) {
   const [guestModal, setGuestModal] = useState({
     visible: false
   });
-
   const [categoryModal, setCategoryModal] = useState({
     visible: false
   });
-
   const [guestEmail, setGuestEmail] = useState("");
   const [newCategory, setNewCategory] = useState("");
   const [categories, setCategories] = useState([]);
@@ -74,7 +72,6 @@ export default function CarouselContent(props) {
   }
 
   const addGuests = () => {
-    // add API route
     if (guestEmail) {
       API.inviteNewGuest({
         mapId: props.id,
